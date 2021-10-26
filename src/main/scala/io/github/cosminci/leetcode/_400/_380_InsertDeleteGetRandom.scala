@@ -28,13 +28,11 @@ object _380_InsertDeleteGetRandom:
           true
 
     def remove(value: Int): Boolean =
-      indices.get(value) match
+      indices.remove(value) match
         case None =>
           false
         case Some(idx) =>
-          val last = values.last
-          values.remove(values.length - 1)
-          indices.remove(value)
+          val last = values.remove(values.length - 1)
           if idx != values.length then
             values.update(idx, last)
             indices.update(last, idx)
