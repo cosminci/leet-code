@@ -1,5 +1,7 @@
 package io.github.cosminci.leetcode._700
 
+import io.github.cosminci.utils.DisjointSetUnion.DSU
+
 import scala.collection.mutable
 
 object _684_RedundantConnection:
@@ -12,33 +14,12 @@ object _684_RedundantConnection:
     )
 
   private def findRedundantConnection(edges: Array[Array[Int]]): Array[Int] =
-    val dsu = new DisjointSetUnion
-    edges.find { case Array(from, to) =>
-      !dsu.union(from, to)
-    }.get
-
-  class DisjointSetUnion:
-    private val components = mutable.Map.empty[Int, Int]
-    private val parents    = mutable.Map.empty[Int, Int]
-    def union(v1: Int, v2: Int): Boolean =
-      val v1Component = find(v1)
-      val v2Component = find(v2)
-      if v1Component == v2Component then return false
-
-      val v1ComponentRank = components.getOrElse(v1Component, 1)
-      val v2ComponentRank = components.getOrElse(v2Component, 1)
-      if v1ComponentRank >= v2ComponentRank then
-        parents.update(v2Component, v1Component)
-        components.update(v1Component, v1ComponentRank + v2ComponentRank)
-        components.remove(v2Component)
+    val dsu = new DSU
+    edges.find { case edge @ Array(from, to) =>
+      val (p1, p2) = (dsu.find(from), dsu.find(to))
+      if (p1 == p2) true
       else {
-        parents.update(v1Component, v2Component)
-        components.update(v2Component, v2ComponentRank + v1ComponentRank)
-        components.remove(v1Component)
+        dsu.union(p1, p2)
+        false
       }
-      true
-
-    def find(v: Int): Int =
-      var root = v
-      while parents.contains(root) do root = parents(root)
-      root
+    }.get

@@ -11,6 +11,5 @@ object _1971_FindIfPathExistsInGraph:
 
   private def validPath(n: Int, edges: Array[Array[Int]], start: Int, end: Int): Boolean =
     val dsu = new DSU
-    (0 until n).foreach(dsu.add)
     edges.foreach { case Array(n1, n2) => dsu.union(n1, n2) }
     dsu.find(start) == dsu.find(end)
