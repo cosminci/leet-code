@@ -1,11 +1,11 @@
 package io.github.cosminci.leetcode._200
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _143_ReorderList:
 
   def main(args: Array[String]): Unit =
-    reorderList(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))))
+    reorderList(linkedList(Seq(1, 2, 3, 4,5)))
 
   private def reorderList(head: ListNode): Unit =
     var length  = 1

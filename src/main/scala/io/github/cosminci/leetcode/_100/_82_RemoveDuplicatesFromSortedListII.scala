@@ -1,10 +1,10 @@
 package io.github.cosminci.leetcode._100
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _82_RemoveDuplicatesFromSortedListII:
   def main(args: Array[String]): Unit =
-    println(deleteDuplicates(new ListNode(1, new ListNode(1))))
+    println(seq(deleteDuplicates(linkedList(Seq(1, 1)))))
 
   private def deleteDuplicates(head: ListNode): ListNode =
     val newDummyHead = new ListNode(Int.MaxValue, null)

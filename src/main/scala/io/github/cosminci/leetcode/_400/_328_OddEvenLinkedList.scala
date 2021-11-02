@@ -1,15 +1,12 @@
 package io.github.cosminci.leetcode._400
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _328_OddEvenLinkedList:
   def main(args: Array[String]): Unit =
-    val result = oddEvenList(
-      new ListNode(2, new ListNode(1, new ListNode(3, ListNode(5, new ListNode(6, new ListNode(4, new ListNode(7)))))))
-    )
-    println(result)
+    println(seq(oddEvenList(linkedList(Seq(2, 1, 3, 5, 6, 4, 7)))))
 
-  def oddEvenList(head: ListNode): ListNode =
+  private def oddEvenList(head: ListNode): ListNode =
     if head == null || head.next == null then return head
     val evenHead            = head.next
     var (oddCurr, evenCurr) = (head, evenHead)

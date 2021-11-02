@@ -8,7 +8,8 @@ object _142_LinkedListCycleII:
     val head = new ListNode(3, new ListNode(2, new ListNode(0, last)))
     last.next = head.next
     println(detectCycle(head))
-  def detectCycle(head: ListNode): ListNode =
+    
+  private def detectCycle(head: ListNode): ListNode =
     if head == null || head.next == null then return null
 
     var (slow, fast) = (head, head)

@@ -1,14 +1,10 @@
 package io.github.cosminci.leetcode._300
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _234_PalindromeLinkedList:
   def main(args: Array[String]): Unit =
-    println(
-      isPalindrome(
-        new ListNode(1, new ListNode(2, new ListNode(2, new ListNode(1))))
-      )
-    )
+    println(isPalindrome(linkedList(Seq(1, 2, 2, 1))))
 
   private def isPalindrome(head: ListNode): Boolean =
     var prev: ListNode = null

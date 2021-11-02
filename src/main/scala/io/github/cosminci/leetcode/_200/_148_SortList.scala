@@ -1,13 +1,12 @@
 package io.github.cosminci.leetcode._200
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _148_SortList:
   def main(args: Array[String]): Unit =
-    val sorted = sortList(new ListNode(3, new ListNode(-4, new ListNode(-3))))
-    println(sorted)
+    println(seq(sortList(linkedList(Seq(3, -4, -3)))))
 
-  def sortList(head: ListNode): ListNode =
+  private def sortList(head: ListNode): ListNode =
     if head == null || head.next == null then return head
 
     val mid       = findMid(head)

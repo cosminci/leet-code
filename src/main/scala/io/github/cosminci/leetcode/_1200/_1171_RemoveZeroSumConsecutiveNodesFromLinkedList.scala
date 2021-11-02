@@ -1,14 +1,12 @@
 package io.github.cosminci.leetcode._1200
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 import scala.collection.mutable
 
 object _1171_RemoveZeroSumConsecutiveNodesFromLinkedList:
   def main(args: Array[String]): Unit =
-    val head   = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(-3, new ListNode(-2)))))
-    val result = removeZeroSumSublists(head)
-    println()
+    println(seq(removeZeroSumSublists(linkedList(Seq(1, 2, 3, -3, -2)))))
 
   def removeZeroSumSublists(head: ListNode): ListNode =
     val dummy      = new ListNode(0, head)

@@ -1,11 +1,10 @@
 package io.github.cosminci.leetcode._200
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _147_InsertionSortList:
   def main(args: Array[String]): Unit =
-    val sorted = insertionSortList(new ListNode(4, new ListNode(5, new ListNode(1, new ListNode(3)))))
-    println(sorted)
+    println(seq(insertionSortList(linkedList(Seq(4, 5, 1, 3)))))
 
   private def insertionSortList(head: ListNode): ListNode =
     val resultDummyHead   = new ListNode(0)

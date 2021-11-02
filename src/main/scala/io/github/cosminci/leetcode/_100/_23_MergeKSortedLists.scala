@@ -1,18 +1,11 @@
 package io.github.cosminci.leetcode._100
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _23_MergeKSortedLists:
 
   def main(args: Array[String]): Unit =
-    val result = mergeKLists(
-      Array(
-        new ListNode(1, new ListNode(4)),
-        new ListNode(3),
-        new ListNode(2, new ListNode(3, new ListNode(5)))
-      )
-    )
-    println()
+    println(seq(mergeKLists(Array(linkedList(Seq(1, 4)), linkedList(Seq(3)), linkedList(Seq(2, 3, 5))))))
 
   private def mergeKLists(lists: Array[ListNode]): ListNode = lists match
     case Array()             => null

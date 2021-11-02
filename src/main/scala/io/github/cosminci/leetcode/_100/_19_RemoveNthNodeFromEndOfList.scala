@@ -1,11 +1,10 @@
 package io.github.cosminci.leetcode._100
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _19_RemoveNthNodeFromEndOfList:
   def main(args: Array[String]): Unit =
-    val result = removeNthFromEnd(new ListNode(1), 1)
-    println(result)
+    println(seq(removeNthFromEnd(linkedList(Seq(1, 5, 2)), 2)))
 
   private def removeNthFromEnd(head: ListNode, n: Int): ListNode =
     var dummy           = new ListNode(666, head)

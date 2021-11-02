@@ -1,11 +1,10 @@
 package io.github.cosminci.leetcode._100
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _86_PartitionList:
   def main(args: Array[String]): Unit =
-    val result = partition(new ListNode(1, new ListNode(4, new ListNode(2))), 3)
-    println(result)
+    println(seq(partition(linkedList(Seq(1, 4, 2)), 3)))
 
   private def partition(head: ListNode, x: Int): ListNode =
     val smallerHead = new ListNode(-1, null)

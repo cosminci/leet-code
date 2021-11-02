@@ -1,16 +1,13 @@
 package io.github.cosminci.leetcode._100
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 import scala.math.Integral.Implicits.*
 
 object _2_AddTwoNumbers:
 
   def main(args: Array[String]): Unit =
-    addTwoNumbers(
-      new ListNode(9, new ListNode(9, new ListNode(9))),
-      new ListNode(9)
-    )
+    println(seq(addTwoNumbers(linkedList(Seq(9, 9, 9)), linkedList(Seq(9)))))
 
   private def addTwoNumbers(l1: ListNode, l2: ListNode): ListNode =
     def dfs(h1: ListNode, h2: ListNode, carry: Int): ListNode =

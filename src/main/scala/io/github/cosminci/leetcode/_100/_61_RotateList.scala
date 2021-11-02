@@ -1,14 +1,10 @@
 package io.github.cosminci.leetcode._100
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _61_RotateList:
   def main(args: Array[String]): Unit =
-    val rotated = rotateRight(
-      new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4)))),
-      0
-    )
-    println(rotated)
+    println(seq(rotateRight(linkedList(Seq(1, 2, 3, 4)), 0)))
 
   private def rotateRight(head: ListNode, k: Int): ListNode =
     if head == null || head.next == null then return head

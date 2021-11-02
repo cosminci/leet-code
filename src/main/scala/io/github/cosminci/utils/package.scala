@@ -52,6 +52,13 @@ package object utils:
           right == that.right
       case _ => false
 
+  def linkedList(elements: Seq[Int]): ListNode = 
+    elements.foldRight[ListNode](null)((value, next) => new ListNode(value, next))
+
+  def seq(head: ListNode): Seq[Int] = 
+    if (head == null) Seq.empty
+    else head.x +: seq(head.next)
+  
   class ListNode(_x: Int = 0, _next: ListNode = null):
     var next: ListNode = _next
     var x: Int         = _x

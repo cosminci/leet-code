@@ -1,11 +1,10 @@
 package io.github.cosminci.leetcode._800
 
-import io.github.cosminci.utils.ListNode
+import io.github.cosminci.utils._
 
 object _725_SplitLinkedListInParts:
   def main(args: Array[String]): Unit =
-    val split = splitListToParts(new ListNode(1, new ListNode(2, new ListNode(3))), 2)
-    println(split)
+    splitListToParts(linkedList(Seq(1, 2, 3)), 2).map(seq).foreach(println)
 
   private def splitListToParts(head: ListNode, k: Int): Array[ListNode] =
     def length(node: ListNode): Int = if node == null then 0 else 1 + length(node.next)
