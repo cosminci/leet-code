@@ -10,17 +10,16 @@ object _438_FindAllAnagramsInAString:
     println(findAnagrams("abab", "ab"))
 
   def findAnagrams(s: String, p: String): List[Int] =
-    if p.length > s.length then return List.empty
+    val pChars     = utils.characterCounts(p)
+    val firstChars = utils.characterCounts(s.take(p.length - 1))
 
-    val sChars  = utils.characterCounts(s.take(p.length)).toArray
-    val pChars  = utils.characterCounts(p).toArray
-    val results = mutable.ListBuffer.empty[Int]
-    if sChars sameElements pChars then results.append(0)
-
-    (p.length until s.length).foreach { sIdx =>
-      sChars(s(sIdx - p.length) - 'a') -= 1
-      sChars(s(sIdx) - 'a') += 1
-      if sChars sameElements pChars then results.append(sIdx - p.length + 1)
-    }
-
-    results.toList
+    (p.length - 1 until s.length)
+      .foldLeft(Seq.empty[Int], firstChars) {
+        case ((result, prevChars), sIdx) =>
+          val newChar    = s(sIdx) - 'a'
+          val oldChar    = s(sIdx - p.length + 1) - 'a'
+          val currChars  = prevChars.updated(newChar, prevChars(newChar) + 1)
+          val nextChars  = currChars.updated(oldChar, currChars(oldChar) - 1)
+          val nextResult = Option.when(currChars == pChars)(result :+ (sIdx - p.length + 1)).getOrElse(result)
+          (nextResult, nextChars)
+      }._1.toList

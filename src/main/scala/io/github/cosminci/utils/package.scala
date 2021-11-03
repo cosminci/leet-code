@@ -20,7 +20,7 @@ package object utils:
     val charCountLength = end - asciiOffset + 1
     val charCounts      = Array.fill(charCountLength)(0)
     s.foreach(char => charCounts(char.toInt - asciiOffset) += 1)
-    charCounts.toVector
+    charCounts.toSeq
 
   def neighbours[T](x: Int, y: Int, grid: Array[Array[T]]): Seq[(Int, Int)] =
     val above = Option.when(x > 0)((x - 1, y))
