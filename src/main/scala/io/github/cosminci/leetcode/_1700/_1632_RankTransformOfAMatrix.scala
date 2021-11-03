@@ -52,7 +52,7 @@ object _1632_RankTransformOfAMatrix:
 
     result
 
-  private def disjointSets(cells: Seq[(Int, Int)]): Seq[Seq[(Int, Int)]] =
+  def disjointSets(cells: Seq[(Int, Int)]): Seq[Seq[(Int, Int)]] =
     var newSetId = 0
     val sets     = mutable.Map.empty[Int, Seq[(Int, Int)]]
     val colToSet = mutable.Map.empty[Int, Int]

@@ -4,7 +4,7 @@ object _1888_MinNumberOfFlipsToMakeBinaryStringAlternating:
   def main(args: Array[String]): Unit =
     println(minFlips("010"))
 
-  private def minFlips(input: String): Int =
+  def minFlips(input: String): Int =
     val n        = input.length
     val (t1, t2) = ("01" * n, "10" * n)
     val s        = input + input

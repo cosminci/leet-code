@@ -16,7 +16,7 @@ object _153_FindMinimumInRotatedSortedArray:
       println(findMin(arr))
     }
 
-  private def findMin(nums: Array[Int]): Int =
+  def findMin(nums: Array[Int]): Int =
     @tailrec
     def dfs(start: Int, end: Int): Int =
       if end - start <= 1 then return math.min(nums(start), nums(end))

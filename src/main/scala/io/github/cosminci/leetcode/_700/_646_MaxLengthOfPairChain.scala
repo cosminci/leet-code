@@ -8,7 +8,7 @@ object _646_MaxLengthOfPairChain:
     println(findLongestChainBottomUp(Array(Array(1, 2), Array(2, 3), Array(3, 4))))
     println(findLongestChainGreedy(Array(Array(1, 2), Array(2, 3), Array(3, 4))))
 
-  private def findLongestChainTopDown(pairs: Array[Array[Int]]): Int =
+  def findLongestChainTopDown(pairs: Array[Array[Int]]): Int =
     pairs.sortInPlaceBy(_.head)
 
     val mem = mutable.Map.empty[(Int, Int), Int]
@@ -23,7 +23,7 @@ object _646_MaxLengthOfPairChain:
 
     dfs(idx = 0, minStart = -1000)
 
-  private def findLongestChainBottomUp(pairs: Array[Array[Int]]): Int =
+  def findLongestChainBottomUp(pairs: Array[Array[Int]]): Int =
     pairs.sortInPlaceBy(_.head)
 
     val dp = Array.fill(pairs.length)(1)
@@ -35,7 +35,7 @@ object _646_MaxLengthOfPairChain:
 
     dp.max
 
-  private def findLongestChainGreedy(pairs: Array[Array[Int]]): Int =
+  def findLongestChainGreedy(pairs: Array[Array[Int]]): Int =
     pairs
       .sortBy(_.last)
       .foldLeft(0, Int.MinValue) { case ((longest, currEnd), Array(start, end)) =>

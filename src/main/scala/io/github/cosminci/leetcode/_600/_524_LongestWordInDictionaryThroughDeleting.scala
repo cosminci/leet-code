@@ -8,7 +8,7 @@ object _524_LongestWordInDictionaryThroughDeleting:
   def main(args: Array[String]): Unit =
     println(findLongestWord("abpcplea", List("ale", "apple", "monkey", "plea")))
 
-  private def findLongestWord(s: String, dictionary: List[String]): String =
+  def findLongestWord(s: String, dictionary: List[String]): String =
     def isSubsequence(w: String): Boolean =
       w.length == s.foldLeft(0)((i, char) => if i < w.length && w(i) == char then i + 1 else i)
 

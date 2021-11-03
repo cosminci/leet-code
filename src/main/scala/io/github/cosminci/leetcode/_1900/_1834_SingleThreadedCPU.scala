@@ -19,7 +19,7 @@ object _1834_SingleThreadedCPU:
       )
     println(getOrder(input).toList)
 
-  private def getOrder(tasks: Array[Array[Int]]): Array[Int] =
+  def getOrder(tasks: Array[Array[Int]]): Array[Int] =
     val toSchedule = mutable.PriorityQueue.from(tasks.indices.map { i =>
       val Array(et, pt) = tasks(i)
       UnscheduledTask(i, et, pt)

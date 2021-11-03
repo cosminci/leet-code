@@ -6,7 +6,7 @@ object _636_ExclusiveTimeOfFunctions:
   def main(args: Array[String]): Unit =
     println(exclusiveTime(2, List("0:start:0", "1:start:2", "1:end:5")))
 
-  private def exclusiveTime(n: Int, logs: List[String]): Array[Int] =
+  def exclusiveTime(n: Int, logs: List[String]): Array[Int] =
     val callStack = mutable.Stack.empty[Int]
     val results   = Array.ofDim[Int](n)
     var prevTs    = 0

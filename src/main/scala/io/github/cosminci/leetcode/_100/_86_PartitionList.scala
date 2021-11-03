@@ -6,7 +6,7 @@ object _86_PartitionList:
   def main(args: Array[String]): Unit =
     println(seq(partition(linkedList(Seq(1, 4, 2)), 3)))
 
-  private def partition(head: ListNode, x: Int): ListNode =
+  def partition(head: ListNode, x: Int): ListNode =
     val smallerHead = new ListNode(-1, null)
     val largerHead  = new ListNode(-1, null)
 

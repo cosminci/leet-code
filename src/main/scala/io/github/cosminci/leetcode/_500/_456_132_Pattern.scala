@@ -9,7 +9,7 @@ object _456_132_Pattern:
     println(find132pattern(Array(3, 1, 4, 2)))
     println(find132pattern(Array(-1, 3, 2, 0)))
 
-  private def find132pattern(nums: Array[Int]): Boolean =
+  def find132pattern(nums: Array[Int]): Boolean =
     val maxStack = mutable.Stack.empty[Int]
     var s3       = Int.MinValue
     nums.reverse.foreach { n =>

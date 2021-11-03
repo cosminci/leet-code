@@ -7,7 +7,7 @@ object _1049_LastStoneWeightII:
     println(lastStoneWeightIITopDown(Array(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 14, 23, 37, 61, 98)))
     println(lastStoneWeightIIBottomUp(Array(1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 14, 23, 37, 61, 98)))
 
-  private def lastStoneWeightIITopDown(stones: Array[Int]): Int =
+  def lastStoneWeightIITopDown(stones: Array[Int]): Int =
     val mem = mutable.Map.empty[(Int, Int, Int), Int]
 
     def dfs(idx: Int, bucket1: Int, bucket2: Int): Int =
@@ -22,7 +22,7 @@ object _1049_LastStoneWeightII:
     dfs(idx = 0, bucket1 = 0, bucket2 = 0)
 
   /* Equivalent to finding the subsequence sum closest to total sum / 2 */
-  private def lastStoneWeightIIBottomUp(stones: Array[Int]): Int =
+  def lastStoneWeightIIBottomUp(stones: Array[Int]): Int =
     val totalSum     = stones.sum
     val possibleSums = mutable.Set(0)
     stones.foreach { stone =>

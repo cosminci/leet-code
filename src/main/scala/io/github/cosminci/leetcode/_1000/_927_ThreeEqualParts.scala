@@ -4,7 +4,7 @@ object _927_ThreeEqualParts:
   def main(args: Array[String]): Unit =
     println(threeEqualParts(Array(1, 0, 1, 1, 0)).toList)
 
-  private def threeEqualParts(arr: Array[Int]): Array[Int] =
+  def threeEqualParts(arr: Array[Int]): Array[Int] =
     val NoSolution = Array(-1, -1)
     val totalCount = arr.count(_ == 1)
     if totalCount % 3 != 0 then return NoSolution
@@ -20,7 +20,7 @@ object _927_ThreeEqualParts:
       p3 += 1
     Array(p1 - 1, p2)
 
-  private def startingPointers(arr: Array[Int], totalCount: Int) =
+  def startingPointers(arr: Array[Int], totalCount: Int) =
     var p1 = 0
     while arr(p1) != 1 do p1 += 1
     var (p2, count) = (p1, 0)

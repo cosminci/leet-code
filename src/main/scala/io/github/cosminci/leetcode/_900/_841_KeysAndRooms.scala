@@ -4,7 +4,7 @@ import scala.collection.mutable
 
 object _841_KeysAndRooms:
 
-  private def canVisitAllRoomsBFS(rooms: List[List[Int]]): Boolean =
+  def canVisitAllRoomsBFS(rooms: List[List[Int]]): Boolean =
     val toVisit = mutable.Queue(0)
     val visited = mutable.Set(0)
 

@@ -7,7 +7,7 @@ object _95_UniqueBinarySearchTreesII:
     val forest = generateTrees(3)
     println(forest)
 
-  private def generateTrees(n: Int): List[TreeNode] =
+  def generateTrees(n: Int): List[TreeNode] =
     def dfs(start: Int, end: Int): Seq[TreeNode] =
       (start to end).flatMap { rootValue =>
         for

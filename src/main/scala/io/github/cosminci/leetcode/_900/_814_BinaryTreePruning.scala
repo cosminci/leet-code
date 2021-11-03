@@ -4,7 +4,7 @@ import io.github.cosminci.utils.TreeNode
 
 object _814_BinaryTreePruning:
 
-  private def pruneTree(root: TreeNode): TreeNode =
+  def pruneTree(root: TreeNode): TreeNode =
     def dfs(node: TreeNode): TreeNode =
       if node == null then return null
       node.left = dfs(node.left)

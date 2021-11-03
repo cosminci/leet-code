@@ -8,7 +8,7 @@ object _2024_MaximizeTheConfusionOfAnExam:
     println(maxConsecutiveAnswers("TFFT", 1))
     println(maxConsecutiveAnswers("TTFTTFTT", 1))
 
-  private def maxConsecutiveAnswers(answerKey: String, k: Int): Int =
+  def maxConsecutiveAnswers(answerKey: String, k: Int): Int =
     def max(char: Char): Int =
       var (mismatchCount, left, result) = (0, 0, 0)
       answerKey.indices.foreach { right =>

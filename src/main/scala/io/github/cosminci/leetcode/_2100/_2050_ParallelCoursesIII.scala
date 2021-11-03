@@ -9,7 +9,7 @@ object _2050_ParallelCoursesIII:
       minimumTime(5, Array(Array(1, 5), Array(2, 5), Array(3, 5), Array(3, 4), Array(4, 5)), Array(1, 2, 3, 4, 5))
     )
 
-  private def minimumTime(n: Int, relations: Array[Array[Int]], time: Array[Int]): Int =
+  def minimumTime(n: Int, relations: Array[Array[Int]], time: Array[Int]): Int =
     val graph = Array.fill(n + 1)(mutable.ListBuffer.empty[Int])
     relations.foreach { case Array(prev, curr) => graph(curr).append(prev) }
 

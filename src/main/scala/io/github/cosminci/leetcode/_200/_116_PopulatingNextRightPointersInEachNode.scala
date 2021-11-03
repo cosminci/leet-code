@@ -15,7 +15,7 @@ object _116_PopulatingNextRightPointersInEachNode:
     root.right = new Node(3)
     connectLevelOrderTraversal(root)
 
-  private def connectLevelOrderTraversal(root: Node): Node =
+  def connectLevelOrderTraversal(root: Node): Node =
     if root == null then return null
 
     val toVisit = mutable.Queue(root)
@@ -29,7 +29,7 @@ object _116_PopulatingNextRightPointersInEachNode:
 
     root
 
-  private def connectIterative(root: Node): Node =
+  def connectIterative(root: Node): Node =
     var leftmost = root
     while leftmost != null && leftmost.left != null do
       var curr = leftmost

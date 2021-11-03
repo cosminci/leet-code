@@ -8,7 +8,7 @@ object _1482_MinNumberOfDaysToMakeMBouquets:
     println(minDays(Array(1000000000, 1000000000), 1, 1))
     println(minDays(Array(1, 10, 2, 9, 3, 8, 4, 7, 5, 6), 4, 2))
 
-  private def minDays(bloomDay: Array[Int], m: Int, k: Int): Int =
+  def minDays(bloomDay: Array[Int], m: Int, k: Int): Int =
     if m * k > bloomDay.length then return -1
 
     def canMakeBouquets(day: Int) =

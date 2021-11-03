@@ -5,7 +5,7 @@ object _14_LongestCommonPrefix:
     println(longestCommonPrefix(Array("flowe", "flower", "flower", "flower")))
     println(longestCommonPrefixBinarySearch(Array("flowe", "flower", "flower", "flower")))
 
-  private def longestCommonPrefix(strs: Array[String]): String =
+  def longestCommonPrefix(strs: Array[String]): String =
     if strs.length == 1 then return strs.head
     if strs.exists(_.isEmpty) then return ""
 
@@ -19,7 +19,7 @@ object _14_LongestCommonPrefix:
       if j == strs.length then i += 1
     ""
 
-  private def longestCommonPrefixBinarySearch(strs: Array[String]): String =
+  def longestCommonPrefixBinarySearch(strs: Array[String]): String =
     def binarySearch(min: Int, max: Int): String =
       var (l, r) = (min, max)
       while l < r do

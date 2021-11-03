@@ -10,7 +10,7 @@ object _494_TargetSum:
   /** another way to see it: sum(positive) - sum(negative) == target or sum(p) - sum(n) + sum(p) + sum(n) = target +
     * sum(p) + sum(n) 2 * sum(p) = target + sum(all) sum(p) = (target + sum(all)) / 2
     */
-  private def findTargetSumWaysBottomUp(nums: Array[Int], t: Int): Int =
+  def findTargetSumWaysBottomUp(nums: Array[Int], t: Int): Int =
     val sum = nums.sum
     if nums.length == 0 || (t + sum) % 2 == 1 || math.abs(t) > math.abs(sum) then return 0
     val target = (t + sum) / 2
@@ -24,7 +24,7 @@ object _494_TargetSum:
     }
     dp.last
 
-  private def findTargetSumWaysTopDown(nums: Array[Int], t: Int): Int =
+  def findTargetSumWaysTopDown(nums: Array[Int], t: Int): Int =
     if nums.length == 0 then return 0
     if nums.length == 1 then return if math.abs(nums.head) == math.abs(t) then 1 else 0
 

@@ -5,7 +5,7 @@ object _1411_NumberOfWaysToPaintNx3Grid:
     println(numOfWaysMathDP(7))
     println(numOfWaysMemoryDP(7))
 
-  private def numOfWaysMathDP(n: Int): Int =
+  def numOfWaysMathDP(n: Int): Int =
     val mod = 1_000_000_007
 
     var (twoColorCombiCount, threeColorCombiCount) = (6L, 6L)
@@ -17,7 +17,7 @@ object _1411_NumberOfWaysToPaintNx3Grid:
 
     ((twoColorCombiCount + threeColorCombiCount) % mod).toInt
 
-  private def numOfWaysMemoryDP(n: Int): Int =
+  def numOfWaysMemoryDP(n: Int): Int =
     val mod    = 1_000_000_007
     val colors = Seq(1, 2, 3)
     val dp     = Array.ofDim[Long](n + 1, 4, 4, 4)

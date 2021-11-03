@@ -8,7 +8,7 @@ object _638_ShoppingOffers:
     println(shoppingOffers(List(2, 3, 4), List(List(1, 1, 0, 4), List(2, 2, 1, 9)), List(1, 2, 1)))
     println(shoppingOffers(List(0, 0, 0), List(List(1, 1, 0, 4), List(2, 2, 1, 9)), List(1, 1, 1)))
 
-  private def shoppingOffers(price: List[Int], special: List[List[Int]], totalNeeds: List[Int]): Int =
+  def shoppingOffers(price: List[Int], special: List[List[Int]], totalNeeds: List[Int]): Int =
     val mem = mutable.Map.empty[Seq[Int], Int]
 
     def dfs(needs: Seq[Int]): Int =

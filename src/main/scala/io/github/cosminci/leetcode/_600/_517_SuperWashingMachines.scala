@@ -7,7 +7,7 @@ object _517_SuperWashingMachines:
     println(findMinMoves(Array(0, 2, 0)))
     println(findMinMoves(Array(0, 0, 11, 5)))
 
-  private def findMinMoves(machines: Array[Int]): Int =
+  def findMinMoves(machines: Array[Int]): Int =
     val total = machines.sum
     if total % machines.length != 0 then return -1
     val targetAvg = total / machines.length

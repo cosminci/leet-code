@@ -5,5 +5,5 @@ object _357_CountNumbersWithUniqueDigits:
     println(countNumbersWithUniqueDigits(1))
     println(countNumbersWithUniqueDigits(2))
 
-  private def countNumbersWithUniqueDigits(n: Int): Int =
+  def countNumbersWithUniqueDigits(n: Int): Int =
     if n == 0 then 1 else (1 to n - 1).map(10 - _).scanLeft(9)(_ * _).sum + 1

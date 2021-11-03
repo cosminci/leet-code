@@ -7,7 +7,7 @@ object _1448_CountGoodNodesInBinaryTree:
   def main(args: Array[String]): Unit =
     println(goodNodes(new TreeNode(3, _left = new TreeNode(3, _left = new TreeNode(4), _right = new TreeNode(2)))))
 
-  private def goodNodes(root: TreeNode): Int =
+  def goodNodes(root: TreeNode): Int =
     def dfs(node: TreeNode, prevMax: Int): Int =
       if node == null then return 0
       val (localCount, newMax) =

@@ -6,7 +6,7 @@ object _870_AdvantageShuffle:
   def main(args: Array[String]): Unit =
     println(advantageCount(Array(2, 0, 4, 1, 2), Array(1, 3, 0, 0, 2)).toSeq)
 
-  private def advantageCount(nums1: Array[Int], nums2: Array[Int]): Array[Int] =
+  def advantageCount(nums1: Array[Int], nums2: Array[Int]): Array[Int] =
     val nums1Left   = mutable.TreeMap.from(nums1.groupBy(identity).view.mapValues(_.length))
     val permutation = mutable.ListBuffer.empty[Int]
 

@@ -6,7 +6,7 @@ object _93_RestoreIPAddresses:
     println(restoreIpAddresses("0000"))
     println(restoreIpAddresses("101023"))
 
-  private def restoreIpAddresses(str: String): List[String] =
+  def restoreIpAddresses(str: String): List[String] =
     if str.length < 4 || str.length > 12 then return List.empty
 
     def isValidBlock(s: String) = s.toInt <= 255 && (s.length == 1 || s.head != '0')

@@ -5,7 +5,7 @@ object _154_FindMinInRotatedSortedArrayII:
     println(findMin(Array(1, 3, 5)))
     println(findMin(Array(2, 2, 2, 0, 1)))
 
-  private def findMin(nums: Array[Int]): Int =
+  def findMin(nums: Array[Int]): Int =
     var (l, r) = (0, nums.length - 1)
 
     while l < r do

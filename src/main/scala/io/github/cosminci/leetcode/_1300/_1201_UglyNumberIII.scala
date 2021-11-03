@@ -11,9 +11,9 @@ object _1201_UglyNumberIII:
     println(nthUglyNumber(5, 2, 11, 13))
     println(nthUglyNumber(1000000000, 2, 217983653, 336916467))
 
-  @tailrec private def gcd(a: Long, b: Long): Long = if b == 0 then a else gcd(b, a % b)
+  @tailrec def gcd(a: Long, b: Long): Long = if b == 0 then a else gcd(b, a % b)
 
-  private def nthUglyNumber(n: Int, a: Int, b: Int, c: Int): Int =
+  def nthUglyNumber(n: Int, a: Int, b: Int, c: Int): Int =
     val ab  = (a.toLong * b) / gcd(a, b)
     val ac  = (a.toLong * c) / gcd(a, c)
     val bc  = (b.toLong * c) / gcd(b, c)

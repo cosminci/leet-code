@@ -16,7 +16,7 @@ object _17_LetterCombinationsOfAPhoneNumber:
     '9' -> List("w", "x", "y", "z")
   )
 
-  private def letterCombinationsRecursive(digits: String): List[String] =
+  def letterCombinationsRecursive(digits: String): List[String] =
     if digits.length == 0 then return List.empty
 
     def dfs(idx: Int): Seq[String] =
@@ -25,7 +25,7 @@ object _17_LetterCombinationsOfAPhoneNumber:
 
     dfs(0).toList
 
-  private def letterCombinationsIterative(digits: String): List[String] =
+  def letterCombinationsIterative(digits: String): List[String] =
     if digits.length == 0 then return List.empty
     digits.tail.foldLeft(digitToLetters(digits.head)) { case (combinations, digit) =>
       digitToLetters(digit).flatMap(letter => combinations.map(_.appendedAll(letter)))

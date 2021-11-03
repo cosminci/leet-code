@@ -7,7 +7,7 @@ object _15_ThreeSum:
   def main(args: Array[String]): Unit =
     println(threeSum(Array(-1, 0, 1, 2, -1, -4)))
 
-  private def threeSum(nums: Array[Int]): List[List[Int]] =
+  def threeSum(nums: Array[Int]): List[List[Int]] =
     nums.sortInPlace()
 
     given Conversion[SearchResult, Option[Int]] =

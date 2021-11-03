@@ -6,7 +6,7 @@ object _2012_SumOfBeautyInTheArray:
     println(sumOfBeauties(Array(2, 4, 6, 4)))
     println(sumOfBeauties(Array(3, 2, 1)))
 
-  private def sumOfBeauties(nums: Array[Int]): Int =
+  def sumOfBeauties(nums: Array[Int]): Int =
     val maxPrefix = nums.scanLeft(0)(math.max).tail
     val minSuffix = nums.scanRight(Int.MaxValue)(math.min).dropRight(1)
 

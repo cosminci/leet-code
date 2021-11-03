@@ -6,7 +6,7 @@ object _48_RotateImage:
     rotateFourGroups(input)
     println(input.map(_.toList).toList)
 
-  private def rotateFourGroups(matrix: Array[Array[Int]]): Unit =
+  def rotateFourGroups(matrix: Array[Array[Int]]): Unit =
     def rotateLayer(layer: Int) =
       (layer until matrix.length - 1 - layer).foreach { offset =>
         val tmp = matrix(layer)(offset)
@@ -18,7 +18,7 @@ object _48_RotateImage:
 
     (0 until matrix.length / 2).foreach(rotateLayer)
 
-  private def rotateTransposeReflect(matrix: Array[Array[Int]]): Unit =
+  def rotateTransposeReflect(matrix: Array[Array[Int]]): Unit =
     (0 until matrix.length - 1).foreach { row =>
       (row + 1 until matrix.length).foreach { col =>
         val tmp = matrix(row)(col)

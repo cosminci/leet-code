@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._700
 
 object _639_DecodeWaysII:
-  private def numDecodings(s: String): Int =
+  def numDecodings(s: String): Int =
     val mod = 1_000_000_007
 
     var (first, second) = (1L, if s.head == '*' then 9L else if s.head == '0' then 0L else 1L)

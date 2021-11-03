@@ -11,13 +11,13 @@ object _581_ShortestUnsortedContinousSubarray:
       println(findUnsortedSubarrayPointers(nums))
     }
 
-  private def findUnsortedSubarraySort(nums: Array[Int]): Int =
+  def findUnsortedSubarraySort(nums: Array[Int]): Int =
     val subarray = nums.zip(nums.sorted).zipWithIndex.collect {
       case ((a, b), i) if a != b => i
     }
     if subarray.isEmpty then 0 else subarray.last - subarray.head + 1
 
-  private def findUnsortedSubarrayPointers(nums: Array[Int]): Int =
+  def findUnsortedSubarrayPointers(nums: Array[Int]): Int =
     if nums.length < 2 then return 0
 
     var (l, r) = (0, nums.length - 1)

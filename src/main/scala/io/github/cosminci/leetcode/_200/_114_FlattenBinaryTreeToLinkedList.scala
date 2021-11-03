@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _114_FlattenBinaryTreeToLinkedList:
-  private def flatten(root: TreeNode): Unit =
+  def flatten(root: TreeNode): Unit =
     if root == null then return
 
     val dummyHead = new TreeNode(0, null, null)

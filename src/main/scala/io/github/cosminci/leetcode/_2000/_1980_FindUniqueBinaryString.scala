@@ -5,7 +5,7 @@ object _1980_FindUniqueBinaryString:
     println(findDifferentBinaryString(Array("01", "10")))
     println(findDifferentBinaryString(Array("110", "011", "001")))
 
-  private def findDifferentBinaryString(nums: Array[String]): String =
+  def findDifferentBinaryString(nums: Array[String]): String =
     nums.indices.foldLeft("") { case (result, i) =>
       result :+ (if nums(i)(i) == '0' then '1' else '0')
     }

@@ -10,7 +10,7 @@ object _929_UniqueEmailAddresses:
       )
     )
 
-  private def numUniqueEmails(emails: Array[String]): Int =
+  def numUniqueEmails(emails: Array[String]): Int =
     emails
       .foldLeft(Set.empty[String]) {
         case (uniqueEmails, email) =>

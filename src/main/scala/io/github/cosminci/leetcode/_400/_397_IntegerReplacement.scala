@@ -10,7 +10,7 @@ object _397_IntegerReplacement {
     println(integerReplacementDFS(7))
   }
 
-  private def integerReplacementDFS(num: Int) = {
+  def integerReplacementDFS(num: Int) = {
     def dfs(n: Long): Int =
       if (n == 1) 0
       else if (n % 2 == 0) 1 + dfs(n / 2)
@@ -19,7 +19,7 @@ object _397_IntegerReplacement {
     dfs(num)
   }
 
-  private def integerReplacementBFS(n: Int): Int = {
+  def integerReplacementBFS(n: Int): Int = {
     val toVisit = mutable.Queue((n.toLong, 0))
     val visited = mutable.Set(n.toLong)
 

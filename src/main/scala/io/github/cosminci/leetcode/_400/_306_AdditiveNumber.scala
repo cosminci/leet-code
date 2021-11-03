@@ -5,7 +5,7 @@ object _306_AdditiveNumber:
     Seq("112358", "199100199", "101", "000", "0235813", "1991000199299498797")
       .foreach(num => println(isAdditiveNumber(num)))
 
-  private def isAdditiveNumber(num: String): Boolean =
+  def isAdditiveNumber(num: String): Boolean =
     def checkBootstrapped(indices: Seq[Int]): Boolean =
       var Seq(i, j) = indices
 

@@ -10,7 +10,7 @@ object _2007_FindOriginalArrayFromDoubledArray:
     println(findOriginalArray(Array(0)).toSeq)
     println(findOriginalArray(Array(0, 0, 0, 0)).toSeq)
 
-  private def findOriginalArray(changed: Array[Int]): Array[Int] =
+  def findOriginalArray(changed: Array[Int]): Array[Int] =
     val freqCounts = mutable.TreeMap.from(changed.groupBy(identity).mapValues(_.length)).withDefaultValue(0)
     if freqCounts(0) % 2 != 0 then return Array.empty
 

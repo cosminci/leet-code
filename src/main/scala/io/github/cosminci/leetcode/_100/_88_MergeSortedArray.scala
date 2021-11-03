@@ -6,7 +6,7 @@ object _88_MergeSortedArray:
     merge(nums1, 3, Array(2, 5, 6), 3)
     println(nums1.toList)
 
-  private def merge(nums1: Array[Int], m: Int, nums2: Array[Int], n: Int): Unit =
+  def merge(nums1: Array[Int], m: Int, nums2: Array[Int], n: Int): Unit =
     var (i, j) = (m - 1, n - 1)
     while i >= 0 && j >= 0 do
       if nums1(i) <= nums2(j) then

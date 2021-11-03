@@ -19,7 +19,7 @@ object _200_NumberOfIslands:
       )
     )
 
-  private def numIslands(grid: Array[Array[Char]]): Int =
+  def numIslands(grid: Array[Array[Char]]): Int =
     val nodeToSet = mutable.Map.empty[(Int, Int), Int]
 
     grid.indices.foreach { i =>
@@ -29,7 +29,7 @@ object _200_NumberOfIslands:
     }
     nodeToSet.groupBy(_._2).size
 
-  private def dfsAddToSet(grid: Array[Array[Char]], nodeToSet: mutable.Map[(Int, Int), Int], i: Int, j: Int): Unit =
+  def dfsAddToSet(grid: Array[Array[Char]], nodeToSet: mutable.Map[(Int, Int), Int], i: Int, j: Int): Unit =
     val setId = Random.nextInt(Int.MaxValue)
 
     val toVisit = mutable.Stack.empty[(Int, Int)]

@@ -6,7 +6,7 @@ object _849_MaxDistanceToClosestPerson:
     println(maxDistToClosest(Array(1, 0, 0, 0)))
     println(maxDistToClosest(Array(0, 1)))
 
-  private def maxDistToClosest(seats: Array[Int]): Int =
+  def maxDistToClosest(seats: Array[Int]): Int =
     val maxLeft = seats.scanLeft(seats.length) { (distanceToLeft, seat) =>
       if seat == 0 then distanceToLeft + 1 else 0
     }.drop(1)

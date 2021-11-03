@@ -7,7 +7,7 @@ object _416_PartitionEqualSubsetSum:
     println(canPartitionBottomUp(Array(1, 2, 5)))
     println(canPartitionTopDown(Array(1, 2, 5)))
 
-  private def canPartitionBottomUp(nums: Array[Int]): Boolean =
+  def canPartitionBottomUp(nums: Array[Int]): Boolean =
     val total = nums.sum
     if total % 2 == 1 || nums.length < 2 then return false
     val target = total / 2
@@ -20,7 +20,7 @@ object _416_PartitionEqualSubsetSum:
     }
     false
 
-  private def canPartitionTopDown(nums: Array[Int]): Boolean =
+  def canPartitionTopDown(nums: Array[Int]): Boolean =
     val total = nums.sum
     if total % 2 == 1 || nums.length < 2 then return false
     val target = total / 2

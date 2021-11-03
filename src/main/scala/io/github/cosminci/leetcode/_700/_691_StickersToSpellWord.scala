@@ -64,7 +64,7 @@ object _691_StickersToSpellWord:
       )
     )
 
-  private def minStickers(s: Array[String], t: String): Int =
+  def minStickers(s: Array[String], t: String): Int =
     if t.exists(char => !s.exists(_.contains(char))) then return -1
     val stickers = s.map(charCount)
     val target   = charCount(t)
@@ -91,5 +91,5 @@ object _691_StickersToSpellWord:
       }
     -1
 
-  private def charCount(w: String) =
+  def charCount(w: String) =
     w.toCharArray.groupBy(identity).view.mapValues(_.length).toMap

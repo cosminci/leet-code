@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._400
 
 object _374_GuessNumber:
-  private def guessNumber(n: Int): Int =
+  def guessNumber(n: Int): Int =
     var (l, r) = (0, n)
     while l < r do
       val mid = l + (r - l) / 2
@@ -10,4 +10,4 @@ object _374_GuessNumber:
       else l = mid + 1
     l
 
-  private def guess(n: Int): Int = n.compare(5)
+  def guess(n: Int): Int = n.compare(5)

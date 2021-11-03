@@ -6,7 +6,7 @@ object _19_RemoveNthNodeFromEndOfList:
   def main(args: Array[String]): Unit =
     println(seq(removeNthFromEnd(linkedList(Seq(1, 5, 2)), 2)))
 
-  private def removeNthFromEnd(head: ListNode, n: Int): ListNode =
+  def removeNthFromEnd(head: ListNode, n: Int): ListNode =
     var dummy           = new ListNode(666, head)
     var (behind, ahead) = (dummy, dummy)
 

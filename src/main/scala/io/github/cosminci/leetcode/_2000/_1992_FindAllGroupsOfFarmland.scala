@@ -16,7 +16,7 @@ object _1992_FindAllGroupsOfFarmland:
       ).map(_.toSeq).toSeq
     )
 
-  private def findFarmland(land: Array[Array[Int]]): Array[Array[Int]] =
+  def findFarmland(land: Array[Array[Int]]): Array[Array[Int]] =
     val (m, n)   = (land.length, land.head.length)
     val farmland = mutable.ListBuffer.empty[Array[Int]]
 

@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _107_BinaryTreeLevelOrderTraversalII:
-  private def levelOrderBottom(root: TreeNode): List[List[Int]] =
+  def levelOrderBottom(root: TreeNode): List[List[Int]] =
     if root == null then return List.empty
 
     val results = mutable.ListBuffer.empty[List[Int]]

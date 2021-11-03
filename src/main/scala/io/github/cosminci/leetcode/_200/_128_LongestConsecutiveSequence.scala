@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._200
 
 object _128_LongestConsecutiveSequence:
-  private def longestConsecutive(input: Array[Int]): Int =
+  def longestConsecutive(input: Array[Int]): Int =
     if input.isEmpty then return 0
     val nums = input.toSet
     var max  = 1

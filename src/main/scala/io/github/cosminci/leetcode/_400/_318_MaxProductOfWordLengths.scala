@@ -8,7 +8,7 @@ object _318_MaxProductOfWordLengths:
     println(maxProduct(Array("a", "ab", "abc", "d", "cd", "bcd", "abcd")))
     println(maxProduct(Array("a", "aa", "aaa", "aaaa")))
 
-  private def maxProduct(words: Array[String]): Int =
+  def maxProduct(words: Array[String]): Int =
     val bitsets = words.map { word =>
       word.foldLeft(0) {
         case (bitset, char) =>

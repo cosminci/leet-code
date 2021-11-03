@@ -6,7 +6,7 @@ object _1269_NumberOfWaysToStayInSamePlaceAfterSomeSteps:
     println(numWays(4, 2))
     println(numWays(27, 7))
 
-  private def numWays(steps: Int, arrLen: Int): Int =
+  def numWays(steps: Int, arrLen: Int): Int =
     val (minPos, maxPos) = (0, math.min(steps / 2, arrLen - 1))
 
     val dp = Array.ofDim[Long](steps + 1, maxPos + 1)

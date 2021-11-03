@@ -2,7 +2,7 @@ package io.github.cosminci.leetcode._2000
 
 object _1987_NumberOfUniqueGoodSubsequences:
 
-  private def numberOfUniqueGoodSubsequences(binary: String): Int =
+  def numberOfUniqueGoodSubsequences(binary: String): Int =
     val mod = 1_000_000_007
 
     val (ones, zeroes) = binary.foldLeft((0L, 0L)) { case ((oneTerminated, zeroTerminated), n) =>

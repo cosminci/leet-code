@@ -7,7 +7,7 @@ object _279_PerfectSquares:
     println(numSquaresTopDown(12))
     println(numSquaresBottomUp(12))
 
-  private def numSquaresBottomUp(num: Int): Int =
+  def numSquaresBottomUp(num: Int): Int =
     val dp = Array.fill[Int](num + 1)(num)
     dp(0) = 0
 
@@ -19,7 +19,7 @@ object _279_PerfectSquares:
     }
     dp.last
 
-  private def numSquaresTopDown(num: Int): Int =
+  def numSquaresTopDown(num: Int): Int =
     val mem = mutable.Map.empty[Int, Int]
 
     def dfs(n: Int): Int =

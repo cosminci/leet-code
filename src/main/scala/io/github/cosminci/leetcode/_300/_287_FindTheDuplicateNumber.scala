@@ -9,7 +9,7 @@ object _287_FindTheDuplicateNumber:
     println(findDuplicate(Array(1, 1, 2)))
     println(findDuplicate(Array(2, 5, 9, 6, 9, 3, 8, 9, 7, 1)))
 
-  private def findDuplicate(nums: Array[Int]): Int =
+  def findDuplicate(nums: Array[Int]): Int =
     var slow = nums(0)
     var fast = nums(slow)
 

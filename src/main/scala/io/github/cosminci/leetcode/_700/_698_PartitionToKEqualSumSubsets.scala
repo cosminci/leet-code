@@ -4,7 +4,7 @@ object _698_PartitionToKEqualSumSubsets:
   def main(args: Array[String]): Unit =
     println(canPartitionKSubsets(Array(4, 3, 2, 3, 5, 2, 1), 4))
 
-  private def canPartitionKSubsets(nums: Array[Int], k: Int): Boolean =
+  def canPartitionKSubsets(nums: Array[Int], k: Int): Boolean =
     val total = nums.sum
 
     if total % k != 0 then return false

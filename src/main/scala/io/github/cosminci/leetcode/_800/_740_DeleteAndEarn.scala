@@ -6,7 +6,7 @@ object _740_DeleteAndEarn {
     println(deleteAndEarn(Array(2, 2, 3, 3, 3, 4)))
   }
 
-  private def deleteAndEarn(nums: Array[Int]): Int = {
+  def deleteAndEarn(nums: Array[Int]): Int = {
     val counter = nums.groupBy(identity).view.mapValues(_.length)
     (1 to nums.max).foldLeft(0, 0) {
       case ((prev, curr), n) =>

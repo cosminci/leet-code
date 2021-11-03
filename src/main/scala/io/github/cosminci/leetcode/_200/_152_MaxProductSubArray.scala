@@ -8,7 +8,7 @@ object _152_MaxProductSubArray:
     println(maxProduct(Array(-2, 0, -1)))
     println(maxProduct(Array(-2, 0, 1)))
 
-  private def maxProduct(nums: Array[Int]): Int =
+  def maxProduct(nums: Array[Int]): Int =
     var result                 = nums.max
     var (maxMoving, minMoving) = (1, 1)
     nums.foreach { n =>

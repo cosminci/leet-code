@@ -4,7 +4,7 @@ object _1975_MaxMatrixSum:
   def main(args: Array[String]): Unit =
     println(maxMatrixSum(Array(Array(1, 2, 3), Array(-1, -2, -3), Array(1, 2, 3))))
 
-  private def maxMatrixSum(matrix: Array[Array[Int]]): Long =
+  def maxMatrixSum(matrix: Array[Array[Int]]): Long =
     var (total, min, negatives) = (0L, Int.MaxValue, 0)
     matrix.foreach { row =>
       row.foreach { value =>

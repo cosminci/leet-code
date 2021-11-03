@@ -5,7 +5,7 @@ object _395_LongestSubstringWithAtLeastKRepeatingChars:
     println(longestSubstring("aaabb", 3))
     println(longestSubstring("weitong", 2))
 
-  private def longestSubstring(s: String, k: Int): Int =
+  def longestSubstring(s: String, k: Int): Int =
     if s.length < k then 0
     else s.distinct
       .find(char => s.count(_ == char) < k)

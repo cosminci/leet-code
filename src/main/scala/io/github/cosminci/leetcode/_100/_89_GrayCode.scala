@@ -4,10 +4,10 @@ object _89_GrayCode:
   def main(args: Array[String]): Unit =
     println(grayCode(4))
 
-  private def grayCode(n: Int): List[Int] =
+  def grayCode(n: Int): List[Int] =
     grayCodeBinary(n).map(Integer.parseInt(_, 2)).toList
 
-  private def grayCodeBinary(n: Int): Array[String] =
+  def grayCodeBinary(n: Int): Array[String] =
     if n == 1 then return Array("0", "1")
 
     val prev    = grayCodeBinary(n - 1)

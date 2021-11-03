@@ -7,7 +7,7 @@ object _91_DecodeWays:
     println(numDecodings("100"))
     println(numDecodings("01"))
 
-  private def numDecodings(s: String): Int =
+  def numDecodings(s: String): Int =
     val dp = Array.fill[Int](s.length + 1)(1)
 
     (s.length - 1 to 0 by -1).foreach { idx =>

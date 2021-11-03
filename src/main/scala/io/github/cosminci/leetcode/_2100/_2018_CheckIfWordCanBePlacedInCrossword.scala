@@ -5,7 +5,7 @@ object _2018_CheckIfWordCanBePlacedInCrossword {
     println(placeWordInCrossword(Array(Array('#', ' ', '#'), Array(' ', ' ', '#'), Array('#', 'c', '#')), "abc"))
   }
 
-  private def placeWordInCrossword(board: Array[Array[Char]], word: String): Boolean = {
+  def placeWordInCrossword(board: Array[Array[Char]], word: String): Boolean = {
     val (m, n) = (board.length, board.head.length)
     val transposedBoard = (0 until n).map(c => board.map(_(c))).toArray
 

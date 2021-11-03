@@ -7,7 +7,7 @@ object _1584_MinCostToConnectAllPoints:
   def main(args: Array[String]): Unit =
     println(minCostConnectPoints(Array(Array(0, 0), Array(2, 2), Array(3, 10), Array(5, 2), Array(7, 0))))
 
-  private def minCostConnectPoints(points: Array[Array[Int]]): Int =
+  def minCostConnectPoints(points: Array[Array[Int]]): Int =
     if points.length == 1 then return 0
 
     val adjList = mutable.Map.empty[Point, mutable.Set[Edge]]

@@ -7,7 +7,7 @@ object _313_SuperUglyNumber:
     println(nthSuperUglyNumber(12, Array(2, 7, 13, 19)))
     println(nthSuperUglyNumber(1, Array(2, 3, 5)))
 
-  private def nthSuperUglyNumber(n: Int, primes: Array[Int]): Int =
+  def nthSuperUglyNumber(n: Int, primes: Array[Int]): Int =
     case class UglyNumber(value: Int, idx: Int, prime: Int)
 
     val nextUgly =

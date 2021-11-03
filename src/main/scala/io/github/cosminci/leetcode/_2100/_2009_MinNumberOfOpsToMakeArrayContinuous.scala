@@ -6,7 +6,7 @@ object _2009_MinNumberOfOpsToMakeArrayContinuous:
     println(minOperations(Array(1, 2, 3, 5, 6)))
     println(minOperations(Array(1, 10, 11, 1000)))
 
-  private def minOperations(nums: Array[Int]): Int =
+  def minOperations(nums: Array[Int]): Int =
     val unique = nums.distinct.sorted
     val (n, m) = (nums.length, unique.length)
 

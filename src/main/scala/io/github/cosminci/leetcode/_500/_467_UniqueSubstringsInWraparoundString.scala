@@ -7,7 +7,7 @@ object _467_UniqueSubstringsInWraparoundString {
     println(findSubstringInWraproundString("zab"))
   }
 
-  private def findSubstringInWraproundString(p: String): Int =
+  def findSubstringInWraproundString(p: String): Int =
     p.indices.foldLeft(Seq.fill(26)(0), 0) {
       case ((maxLengths, currLength), i) =>
         val charIdx = p(i) - 'a'

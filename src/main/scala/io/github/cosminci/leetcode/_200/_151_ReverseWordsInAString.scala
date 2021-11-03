@@ -25,7 +25,7 @@ object _151_ReverseWordsInAString:
     cleanupSpaces(s)
     s.toString()
 
-  private def cleanupSpaces(s: StringBuilder) =
+  def cleanupSpaces(s: StringBuilder) =
     var i = 0
     while i < s.length() do
       val prev = if i > 0 then s(i - 1) else ' '
@@ -33,7 +33,7 @@ object _151_ReverseWordsInAString:
       if s(i) == ' ' && (prev == ' ' || next == ' ') then s.deleteCharAt(i)
       else i += 1
 
-  private def reverse[T](s: StringBuilder, start: Int, end: Int) =
+  def reverse[T](s: StringBuilder, start: Int, end: Int) =
     val last = start + (end - start) / 2
     (0 until last - start).foreach { i =>
       val tmp = s(start + i)

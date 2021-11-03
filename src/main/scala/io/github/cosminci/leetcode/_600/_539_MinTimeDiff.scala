@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._600
 
 object _539_MinTimeDiff {
-  private def findMinDifference(timePoints: List[String]): Int = {
+  def findMinDifference(timePoints: List[String]): Int = {
     if (timePoints.distinct.length != timePoints.length) return 0
     val sorted = timePoints.map { s =>
       val Array(hour, minute) = s.split(':').map(_.toInt)

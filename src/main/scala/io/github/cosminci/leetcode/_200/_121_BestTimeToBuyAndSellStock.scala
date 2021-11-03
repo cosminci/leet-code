@@ -7,7 +7,7 @@ object _121_BestTimeToBuyAndSellStock:
     println(maxProfit(Array(1)))
     println(maxProfit(Array(2, 4, 1)))
 
-  private def maxProfit(prices: Array[Int]): Int =
+  def maxProfit(prices: Array[Int]): Int =
     if prices.length == 1 then return 0
     var maxProfit = 0
     var minPrice  = Int.MaxValue

@@ -23,7 +23,7 @@ object _1905_CountSubIslands:
     )
     println(countSubIslands(grid1, grid2))
 
-  private def countSubIslands(grid1: Array[Array[Int]], grid2: Array[Array[Int]]): Int =
+  def countSubIslands(grid1: Array[Array[Int]], grid2: Array[Array[Int]]): Int =
     var count        = 0
     val grid2Visited = mutable.Set.empty[(Int, Int)]
     grid2.indices.foreach { x =>

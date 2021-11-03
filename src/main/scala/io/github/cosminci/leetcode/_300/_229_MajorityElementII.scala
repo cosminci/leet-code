@@ -5,7 +5,7 @@ object _229_MajorityElementII:
     println(majorityElementBoyerMoore(Array(2, 2, 1, 3)))
     println(majorityElement(Array(2, 2, 1, 3)))
 
-  private def majorityElementBoyerMoore(nums: Array[Int]): List[Int] =
+  def majorityElementBoyerMoore(nums: Array[Int]): List[Int] =
     val (candidate1, count1, candidate2, count2) =
       nums.foldLeft((0, 0, 1, 0)) { case ((cand1, cnt1, cand2, cnt2), n) =>
         if cand1 == n then (cand1, cnt1 + 1, cand2, cnt2)
@@ -16,7 +16,7 @@ object _229_MajorityElementII:
       }
     List(candidate1, candidate2).filter(candidate => nums.count(_ == candidate) > nums.length / 3.0)
 
-  private def majorityElement(nums: Array[Int]): List[Int] =
+  def majorityElement(nums: Array[Int]): List[Int] =
     nums
       .groupBy(identity)
       .view

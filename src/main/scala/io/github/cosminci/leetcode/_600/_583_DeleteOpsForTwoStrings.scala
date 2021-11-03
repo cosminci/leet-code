@@ -9,7 +9,7 @@ object _583_DeleteOpsForTwoStrings:
     println(minDistanceTopDown("leetcode", "etco"))
     println(minDistanceBottomUp("leetcode", "etco"))
 
-  private def minDistanceTopDown(word1: String, word2: String): Int =
+  def minDistanceTopDown(word1: String, word2: String): Int =
     val (m, n) = (word1.length, word2.length)
 
     val mem = mutable.Map.empty[(Int, Int), Int]
@@ -25,7 +25,7 @@ object _583_DeleteOpsForTwoStrings:
 
     dfs(i = 0, j = 0)
 
-  private def minDistanceBottomUp(word1: String, word2: String): Int =
+  def minDistanceBottomUp(word1: String, word2: String): Int =
     val (m, n) = (word1.length, word2.length)
     val dp     = Array.tabulate(m + 1, n + 1)((i, j) => if i == 0 then j else if j == 0 then i else 0)
 

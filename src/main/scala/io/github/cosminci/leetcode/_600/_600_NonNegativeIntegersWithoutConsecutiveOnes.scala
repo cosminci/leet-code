@@ -4,7 +4,7 @@ object _600_NonNegativeIntegersWithoutConsecutiveOnes:
   def main(args: Array[String]): Unit =
     println(findIntegers(5))
 
-  private def findIntegers(n: Int): Int =
+  def findIntegers(n: Int): Int =
     if n == 0 then return 1
 
     def dfs(i: Int): Int =

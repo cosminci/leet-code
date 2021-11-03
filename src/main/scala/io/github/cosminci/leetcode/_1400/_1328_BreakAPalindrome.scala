@@ -8,7 +8,7 @@ object _1328_BreakAPalindrome {
     println(breakPalindrome("aba"))
   }
 
-  private def breakPalindrome(palindrome: String): String = {
+  def breakPalindrome(palindrome: String): String = {
     val n = palindrome.length
     if (n == 1) return ""
 

@@ -8,7 +8,7 @@ object _373_FindKPairsWithSmallestSums:
     val nums2 = Array(1, 2, 3, 4, 5)
     println(kSmallestPairs(nums1, nums2, 30))
 
-  private def kSmallestPairs(nums1: Array[Int], nums2: Array[Int], k: Int): List[List[Int]] =
+  def kSmallestPairs(nums1: Array[Int], nums2: Array[Int], k: Int): List[List[Int]] =
     val next =
       given Ordering[(Int, Int)] = (indexTuple1, indexTuple2) =>
         (nums1(indexTuple2._1) + nums2(indexTuple2._2)).compare(nums1(indexTuple1._1) + nums2(indexTuple1._2))

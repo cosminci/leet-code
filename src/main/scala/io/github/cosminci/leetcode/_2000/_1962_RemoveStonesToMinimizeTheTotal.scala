@@ -7,7 +7,7 @@ object _1962_RemoveStonesToMinimizeTheTotal:
     println(minStoneSum(Array(5, 4, 9), 2))
     println(minStoneSum(Array(4, 3, 6, 7), 3))
 
-  private def minStoneSum(piles: Array[Int], k: Int): Int =
+  def minStoneSum(piles: Array[Int], k: Int): Int =
     val largestStones = mutable.PriorityQueue.from(piles)
 
     piles.sum - (1 to k).foldLeft(0) { case (stonesRemoved, _) =>

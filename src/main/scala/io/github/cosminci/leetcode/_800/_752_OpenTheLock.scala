@@ -9,7 +9,7 @@ object _752_OpenTheLock:
     println(openLock(Array("8887", "8889", "8878", "8898", "8788", "8988", "7888", "9888"), "8888"))
     println(openLock(Array("0000"), "8888"))
 
-  private def openLock(deadends: Array[String], target: String): Int =
+  def openLock(deadends: Array[String], target: String): Int =
     if deadends.contains("0000") then return -1
 
     val targetDigits = target.toCharArray.toSeq.map(_ - '0')

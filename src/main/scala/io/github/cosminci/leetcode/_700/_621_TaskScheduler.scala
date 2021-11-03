@@ -9,7 +9,7 @@ object _621_TaskScheduler:
     println(leastInterval(Array('A', 'A', 'A', 'A', 'A', 'A', 'B', 'C', 'D', 'E', 'F', 'G'), 2))
     println(leastInterval(Array('A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C', 'D', 'D', 'E'), 2))
 
-  private def leastInterval(tasks: Array[Char], n: Int): Int =
+  def leastInterval(tasks: Array[Char], n: Int): Int =
     if n == 0 then return tasks.length
     val taskFrequencies: Seq[(Char, Int)] = tasks.groupBy(identity).view.mapValues(_.size).toSeq
 

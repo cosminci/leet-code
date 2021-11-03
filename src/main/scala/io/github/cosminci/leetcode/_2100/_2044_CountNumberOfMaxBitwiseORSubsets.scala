@@ -6,7 +6,7 @@ object _2044_CountNumberOfMaxBitwiseORSubsets:
   def main(args: Array[String]): Unit =
     println(countMaxOrSubsets(Array(3, 2, 1, 5)))
 
-  private def countMaxOrSubsets(nums: Array[Int]): Int =
+  def countMaxOrSubsets(nums: Array[Int]): Int =
     val max = nums.reduce(_ | _)
     val mem = mutable.Map.empty[(Int, Int), Int]
 

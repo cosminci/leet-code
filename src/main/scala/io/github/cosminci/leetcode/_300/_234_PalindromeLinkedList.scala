@@ -6,7 +6,7 @@ object _234_PalindromeLinkedList:
   def main(args: Array[String]): Unit =
     println(isPalindrome(linkedList(Seq(1, 2, 2, 1))))
 
-  private def isPalindrome(head: ListNode): Boolean =
+  def isPalindrome(head: ListNode): Boolean =
     var prev: ListNode = null
     var (slow, fast)   = (head, head)
 

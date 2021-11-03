@@ -7,7 +7,7 @@ object _378_KthSmallestInSortedMatrix:
   def main(args: Array[String]): Unit =
     println(kthSmallest(Array(Array(1, 2, 3), Array(2, 3, 4), Array(3, 4, 5)), 9))
 
-  private def kthSmallest(matrix: Array[Array[Int]], k: Int): Int =
+  def kthSmallest(matrix: Array[Array[Int]], k: Int): Int =
     if k == 1 then return matrix(0)(0)
     if matrix.length == 1 then return matrix(0)(k - 1)
     if matrix(0).length == 1 then return matrix(k - 1)(0)

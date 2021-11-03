@@ -4,7 +4,7 @@ object _856_ScoreOfParentheses:
   def main(args: Array[String]): Unit =
     println(scoreOfParentheses("(()(()))"))
 
-  private def scoreOfParentheses(s: String): Int =
+  def scoreOfParentheses(s: String): Int =
     s.foldLeft(Seq.empty[Int], 0) {
       case ((prevScores, currScore), char) =>
         char match {

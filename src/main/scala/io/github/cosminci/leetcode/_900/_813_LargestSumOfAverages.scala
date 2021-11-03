@@ -7,7 +7,7 @@ object _813_LargestSumOfAverages:
     println(largestSumOfAverages(Array(9, 1, 2, 3, 9), 3))
     println(largestSumOfAverages(Array(1, 2, 3, 4, 5, 6, 7), 4))
 
-  private def largestSumOfAverages(nums: Array[Int], k: Int): Double =
+  def largestSumOfAverages(nums: Array[Int], k: Int): Double =
     val mem = mutable.Map.empty[(Int, Int, Int), Double]
 
     def avg(start: Int, end: Int): Double =

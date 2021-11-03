@@ -13,7 +13,7 @@ object _973_KClosestPointsToOrigin:
     val i1 = x.head * x.head + x.last * x.last
     i.compare(i1)
 
-  private def kClosestHeap(points: Array[Array[Int]], k: Int): Array[Array[Int]] =
+  def kClosestHeap(points: Array[Array[Int]], k: Int): Array[Array[Int]] =
     val pqueue = mutable.PriorityQueue.empty[Array[Int]]
     val result = Array.ofDim[Array[Int]](k)
     pqueue.addAll(points)
@@ -22,7 +22,7 @@ object _973_KClosestPointsToOrigin:
     }
     result
 
-  private def kClosestSort(points: Array[Array[Int]], k: Int): Array[Array[Int]] =
+  def kClosestSort(points: Array[Array[Int]], k: Int): Array[Array[Int]] =
     points
       .sortBy { case Array(x, y) =>
         x * x + y * y

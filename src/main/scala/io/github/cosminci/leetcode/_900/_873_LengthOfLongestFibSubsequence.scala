@@ -9,7 +9,7 @@ object _873_LengthOfLongestFibSubsequence:
     println(lenLongestFibSubseqSet(Array(1, 3, 7, 11, 12, 14, 18)))
     println(lenLongestFibSubseqDP(Array(1, 3, 7, 11, 12, 14, 18)))
 
-  private def lenLongestFibSubseqSet(arr: Array[Int]): Int =
+  def lenLongestFibSubseqSet(arr: Array[Int]): Int =
     val distinct = Set.from(arr)
     def longest(prev2: Int, prev1: Int): Int =
       Option.when(distinct.contains(prev2 + prev1))(1 + longest(prev1, prev2 + prev1)).getOrElse(0)
@@ -21,7 +21,7 @@ object _873_LengthOfLongestFibSubsequence:
 
     results.filter(_ > 0).maxOption.getOrElse(0)
 
-  private def lenLongestFibSubseqDP(arr: Array[Int]): Int =
+  def lenLongestFibSubseqDP(arr: Array[Int]): Int =
     val dp       = mutable.Map.empty[(Int, Int), Int].withDefaultValue(2)
     val distinct = Set.from(arr)
 

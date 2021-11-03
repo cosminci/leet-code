@@ -5,14 +5,14 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _226_InvertBinaryTree:
-  private def invertTreeRecursive(root: TreeNode): TreeNode =
+  def invertTreeRecursive(root: TreeNode): TreeNode =
     if root == null then return null
     val tmp = root.left
     root.left = invertTreeRecursive(root.right)
     root.right = invertTreeRecursive(tmp)
     root
 
-  private def invertTreeQueue(root: TreeNode): TreeNode =
+  def invertTreeQueue(root: TreeNode): TreeNode =
     if root == null then return null
     val queue = mutable.Queue(root)
 

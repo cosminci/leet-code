@@ -14,7 +14,7 @@ object _1041_RobotBoundedInCircle:
     }
     p == (0, 0) || d != 'N'
 
-  private def move(direction: Char, pos: (Int, Int)): (Int, Int) = direction match
+  def move(direction: Char, pos: (Int, Int)): (Int, Int) = direction match
     case 'N' => (pos._1, pos._2 + 1)
     case 'W' => (pos._1 + 1, pos._2)
     case 'S' => (pos._1, pos._2 - 1)

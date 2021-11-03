@@ -4,7 +4,7 @@ object _58_LengthOfLastWord:
   def main(args: Array[String]): Unit =
     println(lengthOfLastWord("a"))
 
-  private def lengthOfLastWord(s: String): Int =
+  def lengthOfLastWord(s: String): Int =
     var (idx, length) = (s.length - 1, 0)
 
     while s(idx) == ' ' do idx -= 1

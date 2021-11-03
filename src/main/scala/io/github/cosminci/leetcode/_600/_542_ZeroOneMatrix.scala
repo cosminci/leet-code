@@ -19,7 +19,7 @@ object _542_ZeroOneMatrix:
       println(row.mkString(", "))
     }
 
-  private def updateMatrix(m: Array[Array[Int]]): Array[Array[Int]] =
+  def updateMatrix(m: Array[Array[Int]]): Array[Array[Int]] =
     val numRows     = m.length
     val numCols     = m(0).length
     val maxDistance = numRows + numCols

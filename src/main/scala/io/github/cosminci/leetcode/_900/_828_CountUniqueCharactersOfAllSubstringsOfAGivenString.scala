@@ -4,7 +4,7 @@ object _828_CountUniqueCharactersOfAllSubstringsOfAGivenString:
   def main(args: Array[String]): Unit =
     println(uniqueLetterString("LEETCODE"))
 
-  private def uniqueLetterString(s: String): Int =
+  def uniqueLetterString(s: String): Int =
     val prevTwoIndices = Array.fill(26)((-1, -1))
     val result         = Array.ofDim[Int](s.length + 1)
 

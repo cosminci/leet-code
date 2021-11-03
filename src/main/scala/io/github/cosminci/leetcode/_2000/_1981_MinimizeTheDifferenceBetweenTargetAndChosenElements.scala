@@ -6,7 +6,7 @@ object _1981_MinimizeTheDifferenceBetweenTargetAndChosenElements:
   def main(args: Array[String]): Unit =
     println(minimizeTheDifference(Array(Array(1, 1), Array(8, 9)), 10))
 
-  private def minimizeTheDifference(mat: Array[Array[Int]], target: Int): Int =
+  def minimizeTheDifference(mat: Array[Array[Int]], target: Int): Int =
     val min = mat.map(_.min).sum
     if min >= target then return min - target
     val minDelta = target - min

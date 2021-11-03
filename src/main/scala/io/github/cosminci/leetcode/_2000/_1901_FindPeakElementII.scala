@@ -11,7 +11,7 @@ object _1901_FindPeakElementII:
       ).toList
     )
 
-  private def findPeakGrid(mat: Array[Array[Int]]): Array[Int] =
+  def findPeakGrid(mat: Array[Array[Int]]): Array[Int] =
     var (top, bottom) = (0, mat.length - 1)
 
     while top < bottom do

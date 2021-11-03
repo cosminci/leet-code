@@ -7,7 +7,7 @@ object _1011_CapacityToShipPackagesWithinDDays:
     println(shipWithinDays(Array(3, 2, 2, 4, 1, 4), 3))
     println(shipWithinDays(Array(1, 2, 3, 1, 1), 4))
 
-  private def shipWithinDays(weights: Array[Int], days: Int): Int =
+  def shipWithinDays(weights: Array[Int], days: Int): Int =
     def canShip(capacity: Int): Boolean =
       weights
         .foldLeft((1, 0)) { case ((days, load), w) =>

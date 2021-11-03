@@ -6,7 +6,7 @@ import scala.collection.mutable
 
 object _993_CouinsInBinaryTree:
 
-  private def isCousins(root: TreeNode, x: Int, y: Int): Boolean =
+  def isCousins(root: TreeNode, x: Int, y: Int): Boolean =
     def dfs(node: TreeNode, parent: Int, depth: Int): Map[Int, (Int, Int)] =
       if Option(node).isEmpty then Map.empty
       else

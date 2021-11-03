@@ -16,7 +16,7 @@ object _2008_MaxEarningsFromTaxi:
       )
     )
 
-  private def maxTaxiEarnings(n: Int, rides: Array[Array[Int]]): Long =
+  def maxTaxiEarnings(n: Int, rides: Array[Array[Int]]): Long =
     rides.sortInPlaceBy { case Array(_, end, _) => end }
 
     val dp      = Array.ofDim[Long](n + 1)

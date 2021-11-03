@@ -8,7 +8,7 @@ object _523_ContinuousSubarraySum:
     println(checkSubarraySum(Array(23, 2, 6, 4, 7), 6))
     println(checkSubarraySum(Array(23, 2, 6, 4, 7), 13))
 
-  private def checkSubarraySum(nums: Array[Int], k: Int): Boolean =
+  def checkSubarraySum(nums: Array[Int], k: Int): Boolean =
     nums.indices.foldLeft(Map(0 -> -1), 0) {
       case ((prevSums, runningMod), i) =>
         val newRunningMod = (runningMod + nums(i)) % k

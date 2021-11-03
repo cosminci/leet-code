@@ -16,7 +16,7 @@ object _37_SudokuSolver:
     solveSudoku(board)
     print("")
 
-  private def solveSudoku(board: Array[Array[Char]]): Unit =
+  def solveSudoku(board: Array[Array[Char]]): Unit =
     def solve(prevRow: Int, prevCol: Int): Boolean =
       var col = prevCol // because it needs reset after finishing row
       (prevRow until 9).foreach { r =>

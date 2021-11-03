@@ -6,7 +6,7 @@ object _567_PermutationInString:
   def main(args: Array[String]): Unit =
     println(checkInclusion("adc", "dcda"))
 
-  private def checkInclusion(s1: String, s2: String): Boolean =
+  def checkInclusion(s1: String, s2: String): Boolean =
     if s1.length > s2.length then return false
 
     val s1Chars = utils.characterCounts(s1)

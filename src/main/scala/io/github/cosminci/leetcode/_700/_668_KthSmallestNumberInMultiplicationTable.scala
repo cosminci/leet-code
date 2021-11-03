@@ -5,7 +5,7 @@ object _668_KthSmallestNumberInMultiplicationTable:
     println(findKthNumber(3, 3, 5))
     println(findKthNumber(2, 3, 6))
 
-  private def findKthNumber(m: Int, n: Int, k: Int): Int =
+  def findKthNumber(m: Int, n: Int, k: Int): Int =
     def enoughSmallerNumbers(value: Int) =
       val range = (1 to m).takeWhile(row => math.min(value / row, n) > 0)
       val count = range.foldLeft(0) { case (acc, row) =>

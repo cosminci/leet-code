@@ -9,7 +9,7 @@ object _863_AllNodesDistanceKInBinaryTree:
     val target = new TreeNode(2)
     println(distanceK(new TreeNode(0, new TreeNode(1, new TreeNode(3), target)), target, 1))
 
-  private def distanceK(root: TreeNode, target: TreeNode, k: Int): List[Int] =
+  def distanceK(root: TreeNode, target: TreeNode, k: Int): List[Int] =
     val parents = populateParents(root)
     val toVisit = mutable.Queue(target)
     val visited = mutable.Set(target)
@@ -33,7 +33,7 @@ object _863_AllNodesDistanceKInBinaryTree:
 
     toVisit.dequeueAll(_ => true).map(_.value).toList
 
-  private def populateParents(root: TreeNode) =
+  def populateParents(root: TreeNode) =
     val parents = mutable.Map.empty[TreeNode, TreeNode]
     val toVisit = mutable.Stack(root)
 

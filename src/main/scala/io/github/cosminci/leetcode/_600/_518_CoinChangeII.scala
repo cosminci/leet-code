@@ -8,7 +8,7 @@ object _518_CoinChangeII:
     println(changeBottomUp(5, Array(1, 2, 5)))
     println(changeTopDown(5, Array(1, 2, 5)))
 
-  private def changeBottomUp(amount: Int, coins: Array[Int]): Int =
+  def changeBottomUp(amount: Int, coins: Array[Int]): Int =
     if amount == 0 then return 1
     val dp = Array.ofDim[Int](amount + 1)
     dp(0) = 1
@@ -19,7 +19,7 @@ object _518_CoinChangeII:
     }
     dp.last
 
-  private def changeTopDown(amount: Int, coins: Array[Int]): Int =
+  def changeTopDown(amount: Int, coins: Array[Int]): Int =
     val mem = mutable.Map.empty[(Int, Int), Int]
     def dfs(cIdx: Int, a: Int): Int =
       if a == 0 then return 1

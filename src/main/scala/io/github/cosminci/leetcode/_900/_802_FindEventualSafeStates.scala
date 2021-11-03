@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._900
 import scala.collection.mutable
 
 object _802_FindEventualSafeStates:
-  private def eventualSafeNodes(graph: Array[Array[Int]]): List[Int] =
+  def eventualSafeNodes(graph: Array[Array[Int]]): List[Int] =
     val mem     = mutable.Map.empty[Int, Boolean]
     val visited = mutable.Set.empty[Int]
 

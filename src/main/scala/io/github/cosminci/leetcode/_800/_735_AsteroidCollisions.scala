@@ -6,7 +6,7 @@ object _735_AsteroidCollisions:
   def main(args: Array[String]): Unit =
     println(asteroidCollision(Array(2, 5, -7, 2, 8, -5, 20, 10, -15)).toList)
 
-  private def asteroidCollision(asteroids: Array[Int]): Array[Int] =
+  def asteroidCollision(asteroids: Array[Int]): Array[Int] =
     if asteroids.length <= 1 then return asteroids
 
     val stack = mutable.Stack.empty[Int]

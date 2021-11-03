@@ -7,7 +7,7 @@ object _826_MostProfitAssigningWork:
     println(maxProfitAssignment(Array(2, 4, 6, 8, 10), Array(10, 20, 30, 40, 50), Array(4, 5, 6, 7)))
     println(maxProfitAssignment(Array(85, 47, 57), Array(24, 66, 99), Array(40, 25, 25)))
 
-  private def maxProfitAssignment(difficulties: Array[Int], profits: Array[Int], workers: Array[Int]): Int =
+  def maxProfitAssignment(difficulties: Array[Int], profits: Array[Int], workers: Array[Int]): Int =
     val jobs = difficulties.zip(profits).sorted
 
     val bestJobs = jobs.tail.foldLeft(Array(jobs.head)) { 

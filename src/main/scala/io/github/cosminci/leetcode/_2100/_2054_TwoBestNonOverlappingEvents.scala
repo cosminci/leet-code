@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._2100
 import scala.collection.mutable
 
 object _2054_TwoBestNonOverlappingEvents:
-  private def maxTwoEvents(events: Array[Array[Int]]): Int =
+  def maxTwoEvents(events: Array[Array[Int]]): Int =
     events.sortInPlaceBy(_.head)
 
     val inProgress = mutable.PriorityQueue.empty[Array[Int]]((x, y) => y(1).compare(x(1)))

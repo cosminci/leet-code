@@ -7,7 +7,7 @@ object _331_VerifyPreorderSerializationOfABinaryTree:
     println(isValidSerialization("9,3,4,#,#,1,#,#,2,#,6,#,#"))
     println(isValidSerialization("9,3,4,#,#,1,#,#,#,2,#,6,#,#"))
 
-  private def isValidSerialization(preorder: String): Boolean =
+  def isValidSerialization(preorder: String): Boolean =
     var emptySlots = 1
 
     preorder.split(',').foreach { n =>

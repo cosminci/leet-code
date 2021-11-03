@@ -4,7 +4,7 @@ object _415_AddStrings:
   def main(args: Array[String]): Unit =
     println(addStrings("9", "91"))
 
-  private def addStrings(num1: String, num2: String): String =
+  def addStrings(num1: String, num2: String): String =
     val (n1, n2) =
       if num1.length < num2.length then (num1.reverse.padTo(num2.length, '0').reverse, num2)
       else (num1, num2.reverse.padTo(num1.length, '0').reverse)

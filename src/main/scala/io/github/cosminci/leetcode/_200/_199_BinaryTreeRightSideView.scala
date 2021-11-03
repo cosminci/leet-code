@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _199_BinaryTreeRightSideView:
-  private def rightSideView(root: TreeNode): List[Int] =
+  def rightSideView(root: TreeNode): List[Int] =
     val results = mutable.ListBuffer.empty[Int]
 
     def dfs(node: TreeNode, level: Int): Unit =
@@ -17,7 +17,7 @@ object _199_BinaryTreeRightSideView:
     dfs(root, 0)
     results.toList
 
-  private def rightSideViewLevelOrderTraversal(root: TreeNode): List[Int] =
+  def rightSideViewLevelOrderTraversal(root: TreeNode): List[Int] =
     if root == null then return List.empty
 
     val results = mutable.ListBuffer.empty[Int]

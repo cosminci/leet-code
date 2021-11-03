@@ -17,7 +17,7 @@ object _173_BinarySearchTreeIterator:
     private val buffer = mutable.Stack.empty[TreeNode]
     addLeftBranch(root)
 
-    private def addLeftBranch(node: TreeNode): Unit =
+    def addLeftBranch(node: TreeNode): Unit =
       var n = node
       while n != null do
         buffer.push(n)

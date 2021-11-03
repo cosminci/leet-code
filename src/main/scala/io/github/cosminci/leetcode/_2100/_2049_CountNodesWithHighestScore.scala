@@ -6,7 +6,7 @@ object _2049_CountNodesWithHighestScore:
   def main(args: Array[String]): Unit =
     println(countHighestScoreNodes(Array(-1, 2, 0, 2, 0)))
 
-  private def countHighestScoreNodes(parents: Array[Int]): Int =
+  def countHighestScoreNodes(parents: Array[Int]): Int =
     val tree = parents.zipWithIndex.foldLeft(Map.empty[Int, Seq[Int]]) {
       case (tree, (parent, child)) =>
         tree.updated(parent, tree.getOrElse(parent, Seq.empty) :+ child)

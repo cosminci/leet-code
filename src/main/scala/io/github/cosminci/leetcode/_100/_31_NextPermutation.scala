@@ -7,7 +7,7 @@ object _31_NextPermutation:
     nextPermutation(arr)
     println(arr.toList)
 
-  private def nextPermutation(nums: Array[Int]): Unit =
+  def nextPermutation(nums: Array[Int]): Unit =
     if nums.length < 2 then return
 
     var i = nums.length - 2

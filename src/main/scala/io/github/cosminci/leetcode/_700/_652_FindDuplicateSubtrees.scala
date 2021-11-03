@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _652_FindDuplicateSubtrees:
-  private def findDuplicateSubtrees(root: TreeNode): List[TreeNode] =
+  def findDuplicateSubtrees(root: TreeNode): List[TreeNode] =
     val counts = mutable.Map.empty[String, mutable.ListBuffer[TreeNode]]
 
     def convert(node: TreeNode): String =

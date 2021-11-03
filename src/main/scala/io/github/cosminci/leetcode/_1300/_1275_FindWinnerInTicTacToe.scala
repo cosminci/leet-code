@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._1300
 
 object _1275_FindWinnerInTicTacToe:
-  private def tictactoeBruteForce(moves: Array[Array[Int]]): String =
+  def tictactoeBruteForce(moves: Array[Array[Int]]): String =
     val grid = Array.fill(3, 3)(' ')
 
     def winConditionAchieved(row: Int, col: Int, sign: Char): Boolean =
@@ -18,7 +18,7 @@ object _1275_FindWinnerInTicTacToe:
 
     if moves.length == 9 then "Draw" else "Pending"
 
-  private def tictactoeRecordMoves(moves: Array[Array[Int]]): String =
+  def tictactoeRecordMoves(moves: Array[Array[Int]]): String =
     val (rowBalance, colBalance)     = (Array.ofDim[Int](3), Array.ofDim[Int](3))
     var (diag1Balance, diag2Balance) = (0, 0)
 

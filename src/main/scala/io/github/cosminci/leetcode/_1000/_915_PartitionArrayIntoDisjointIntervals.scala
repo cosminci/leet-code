@@ -6,7 +6,7 @@ object _915_PartitionArrayIntoDisjointIntervals:
     println(partitionDisjoint(Array(5, 0, 3, 8, 6, 4, 10)))
     println(partitionDisjoint(Array(1, 1, 1, 0, 6, 12)))
 
-  private def partitionDisjoint(nums: Array[Int]): Int =
+  def partitionDisjoint(nums: Array[Int]): Int =
     var length                = 1
     var (leftMax, overallMax) = (nums.head, nums.head)
     (1 to nums.length - 2).foreach { i =>

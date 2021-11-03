@@ -7,7 +7,7 @@ object _769_MaxChunksToMakeSorted:
     println(maxChunksToSorted(Array(4, 3, 2, 1, 0)))
     println(maxChunksToSorted(Array(1, 0, 2, 3, 4)))
 
-  private def maxChunksToSorted(arr: Array[Int]): Int =
+  def maxChunksToSorted(arr: Array[Int]): Int =
     arr.indices
       .foldLeft(0, arr(0)) { case ((chunks, currChunkEnd), i) =>
         val newChunkEnd = math.max(arr(i), currChunkEnd)

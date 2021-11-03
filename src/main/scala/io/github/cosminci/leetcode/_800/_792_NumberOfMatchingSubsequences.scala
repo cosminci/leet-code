@@ -6,7 +6,7 @@ object _792_NumberOfMatchingSubsequences:
   def main(args: Array[String]): Unit =
     println(numMatchingSubseq("abcde", Array("a", "bb", "acd", "ace")))
 
-  private def numMatchingSubseq(s: String, words: Array[String]): Int =
+  def numMatchingSubseq(s: String, words: Array[String]): Int =
     s.foldLeft(words.toSeq.map(_.iterator).groupBy(_.next()), 0) {
       case ((iterators, count), char) =>
         val toAdvance = iterators.getOrElse(char, Seq.empty)

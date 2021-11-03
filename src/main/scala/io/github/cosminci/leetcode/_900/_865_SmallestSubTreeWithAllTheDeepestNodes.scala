@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._900
 import io.github.cosminci.utils.TreeNode
 
 object _865_SmallestSubTreeWithAllTheDeepestNodes:
-  private def subtreeWithAllDeepest(root: TreeNode): TreeNode =
+  def subtreeWithAllDeepest(root: TreeNode): TreeNode =
     def dfs(node: TreeNode): (TreeNode, Int) =
       if node == null then return (node, 0)
 

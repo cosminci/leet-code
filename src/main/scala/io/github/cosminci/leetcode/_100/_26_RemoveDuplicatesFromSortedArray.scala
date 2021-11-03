@@ -5,7 +5,7 @@ object _26_RemoveDuplicatesFromSortedArray:
   def main(args: Array[String]): Unit =
     println(removeDuplicates(Array(0, 0, 1, 1, 1, 2, 2, 3, 3, 4)))
 
-  private def removeDuplicates(nums: Array[Int]): Int =
+  def removeDuplicates(nums: Array[Int]): Int =
     if nums.isEmpty then return 0
 
     var i = 0

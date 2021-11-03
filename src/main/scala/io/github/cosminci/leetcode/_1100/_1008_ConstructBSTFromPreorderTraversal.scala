@@ -9,7 +9,7 @@ object _1008_ConstructBSTFromPreorderTraversal:
     val root = bstFromPreorder(Array(8, 5, 1, 7, 10, 12))
     println(root)
 
-  private def bstFromPreorder(preorder: Array[Int]): TreeNode =
+  def bstFromPreorder(preorder: Array[Int]): TreeNode =
     val root = new TreeNode(preorder.head)
 
     val stack = mutable.Stack(root)

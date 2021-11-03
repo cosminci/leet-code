@@ -7,7 +7,7 @@ object _486_PredictTheWinner:
     println(predictTheWinner(Array(1, 5, 2)))
     println(predictTheWinner(Array(1, 5, 233, 7)))
 
-  private def predictTheWinner(nums: Array[Int]): Boolean =
+  def predictTheWinner(nums: Array[Int]): Boolean =
     val mem = mutable.Map.empty[(Int, Int), Int]
 
     def dfs(left: Int, right: Int): Int =

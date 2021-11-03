@@ -7,7 +7,7 @@ object _424_LongestRepeatingCharacterReplacement:
     println(characterReplacement("ABAB", 2))
     println(characterReplacement("AABABBBA", 1))
 
-  private def characterReplacement(s: String, k: Int): Int =
+  def characterReplacement(s: String, k: Int): Int =
     val counts       = mutable.Map.empty[Char, Int]
     var maxLength    = 0
     var (start, end) = (0, 0)

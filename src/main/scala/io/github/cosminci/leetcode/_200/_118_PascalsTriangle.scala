@@ -5,7 +5,7 @@ object _118_PascalsTriangle {
     println(generate(1))
   }
 
-  private def generate(numRows: Int): List[List[Int]] = {
+  def generate(numRows: Int): List[List[Int]] = {
     (2 to numRows).scanLeft(Seq(1)) {
       case (prevRow, _) =>
         val newRow = (1 until prevRow.length).map(i => prevRow(i - 1) + prevRow(i))

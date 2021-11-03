@@ -7,7 +7,7 @@ object _1986_MinNumberOfWorkSessionsToFinishTheTasks:
     println(minSessions(Array(2, 4), 5))
     println(minSessions(Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), 14))
 
-  private def minSessions(tasks: Array[Int], sessionTime: Int): Int =
+  def minSessions(tasks: Array[Int], sessionTime: Int): Int =
     val mem = mutable.Map.empty[(Int, Seq[Int]), Int]
 
     def dfs(idx: Int, sessions: Seq[Int]): Int =

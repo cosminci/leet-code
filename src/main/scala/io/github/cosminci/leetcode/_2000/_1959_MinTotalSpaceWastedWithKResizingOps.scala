@@ -6,7 +6,7 @@ object _1959_MinTotalSpaceWastedWithKResizingOps:
   def main(args: Array[String]): Unit =
     println(minSpaceWastedKResizing(Array(10, 20, 15, 30, 20), 2))
 
-  private def minSpaceWastedKResizing(nums: Array[Int], k: Int): Int =
+  def minSpaceWastedKResizing(nums: Array[Int], k: Int): Int =
     val n = nums.length
     if k == n then return 0
 

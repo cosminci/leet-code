@@ -4,7 +4,7 @@ import scala.collection.mutable
 
 object _1306_JumpGameIII:
 
-  private def canReach(arr: Array[Int], start: Int): Boolean =
+  def canReach(arr: Array[Int], start: Int): Boolean =
     val toVisit = mutable.Stack(start)
     val visited = mutable.Set(start)
 

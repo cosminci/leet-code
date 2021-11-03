@@ -10,7 +10,7 @@ object _402_RemoveKDigits:
     println(removeKdigits("1234567890", 9))
     println(removeKdigits("9", 1))
 
-  private def removeKdigits(num: String, k: Int): String =
+  def removeKdigits(num: String, k: Int): String =
     val builder = new StringBuilder()
     var kLeft   = k
 

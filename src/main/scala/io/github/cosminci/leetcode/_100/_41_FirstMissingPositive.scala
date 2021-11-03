@@ -6,7 +6,7 @@ object _41_FirstMissingPositive:
     println(firstMissingPositive(Array(3, 4, -1, 1)))
     println(firstMissingPositive(Array(7, 8, 9, 11, 12)))
 
-  private def firstMissingPositive(nums: Array[Int]): Int =
+  def firstMissingPositive(nums: Array[Int]): Int =
     nums.indices.foreach { i => if nums(i) < 0 then nums(i) = 0 }
     nums.indices.foreach { i =>
       val j = math.abs(nums(i)) - 1

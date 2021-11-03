@@ -8,7 +8,7 @@ object _962_MaxWidthRamp:
     println(maxWidthRampTreeMap(Array(9, 8, 1, 0, 1, 9, 4, 0, 4, 1)))
     println(maxWidthRampStack(Array(9, 8, 1, 0, 1, 9, 4, 0, 4, 5)))
 
-  private def maxWidthRampTreeMap(nums: Array[Int]): Int =
+  def maxWidthRampTreeMap(nums: Array[Int]): Int =
     var max          = 0
     val prevElements = new TreeMap[Int, Int]()
 
@@ -19,7 +19,7 @@ object _962_MaxWidthRamp:
 
     max
 
-  private def maxWidthRampStack(nums: Array[Int]): Int =
+  def maxWidthRampStack(nums: Array[Int]): Int =
     var max                    = 0
     val decreasingValueIndices = mutable.Stack.empty[Int]
 

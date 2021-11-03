@@ -7,7 +7,7 @@ object _275_HIndexII:
     println(hIndex(Array(5, 5, 5, 6, 7)))
     println(hIndex(Array(0)))
 
-  private def hIndex(citations: Array[Int]): Int =
+  def hIndex(citations: Array[Int]): Int =
     val n      = citations.length
     var (l, r) = (0, n - 1)
     while l <= r do

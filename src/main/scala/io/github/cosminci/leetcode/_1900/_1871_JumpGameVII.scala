@@ -9,7 +9,7 @@ object _1871_JumpGameVII:
     println(canReach("0000000000", 8, 8))
     println(canReach("011010", 2, 3))
 
-  private def canReach(s: String, minJump: Int, maxJump: Int): Boolean =
+  def canReach(s: String, minJump: Int, maxJump: Int): Boolean =
     if s.head == '1' || s.last == '1' then return false
     var farthest   = 0
     val jumpPoints = mutable.Queue(0)

@@ -7,7 +7,7 @@ object _1220_CountVowelPermutations:
   def main(args: Array[String]): Unit =
     println(countVowelPermutation(20000))
 
-  private def countVowelPermutation(n: Int): Int =
+  def countVowelPermutation(n: Int): Int =
     val dp = Array.ofDim[Long](n, 5)
     (0 until 5).foreach(i => dp(0)(i) = 1)
     (1 until n).foreach { i =>
@@ -20,4 +20,4 @@ object _1220_CountVowelPermutations:
     }
     mod(dp.last.sum).toInt
 
-  private def mod(n: Long): Long = n % div
+  def mod(n: Long): Long = n % div

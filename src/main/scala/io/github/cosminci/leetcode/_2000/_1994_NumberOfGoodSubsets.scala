@@ -6,7 +6,7 @@ object _1994_NumberOfGoodSubsets:
   def main(args: Array[String]): Unit =
     println(numberOfGoodSubsets(Array(1, 2, 3, 4)))
 
-  private def numberOfGoodSubsets(nums: Array[Int]): Int =
+  def numberOfGoodSubsets(nums: Array[Int]): Int =
     val mod    = 1_000_000_007
     val primes = Seq(2, 3, 5, 7, 11, 13, 17, 19, 23, 29)
     val dp     = Array.tabulate[Long](1 << primes.length + 1)(i => if i == 0 then 1 else 0)

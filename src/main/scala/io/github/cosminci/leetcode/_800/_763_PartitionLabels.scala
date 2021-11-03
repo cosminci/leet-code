@@ -22,7 +22,7 @@ object _763_PartitionLabels:
       .map { interval => interval.end - interval.start + 1 }
       .toList
 
-  private def characterBounds(s: String) =
+  def characterBounds(s: String) =
     val startIndices = Array.fill(26)(-1)
     val endIndices   = Array.fill(26)(-1)
 

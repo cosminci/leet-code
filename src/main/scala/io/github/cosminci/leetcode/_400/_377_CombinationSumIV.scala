@@ -9,7 +9,7 @@ object _377_CombinationSumIV:
     println(combinationSum4TopDown(Array(9), 3))
     println(combinationSum4BottomUp(Array(9), 3))
 
-  private def combinationSum4TopDown(candidates: Array[Int], target: Int): Int =
+  def combinationSum4TopDown(candidates: Array[Int], target: Int): Int =
     val mem    = mutable.Map.empty[Int, Int]
     val sorted = candidates.sorted
 
@@ -25,7 +25,7 @@ object _377_CombinationSumIV:
 
     dfs(target)
 
-  private def combinationSum4BottomUp(candidates: Array[Int], target: Int): Int =
+  def combinationSum4BottomUp(candidates: Array[Int], target: Int): Int =
     val dp = Array.ofDim[Int](target + 1)
     dp(0) = 1
     (1 to target).foreach { t =>

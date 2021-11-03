@@ -5,7 +5,7 @@ object _8_StringToInteger:
   def main(args: Array[String]): Unit =
     println(myAtoi("20000000000000000000"))
 
-  private def myAtoi(s: String): Int =
+  def myAtoi(s: String): Int =
     val trimmed = s.trim
     if trimmed == "" then return 0
     val (sign, trimmed2) =

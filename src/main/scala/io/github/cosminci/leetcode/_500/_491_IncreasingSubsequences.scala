@@ -6,7 +6,7 @@ object _491_IncreasingSubsequences:
   def main(args: Array[String]): Unit =
     println(findSubsequences(Array(4, 6, 7, 7)))
 
-  private def findSubsequences(nums: Array[Int]): List[List[Int]] =
+  def findSubsequences(nums: Array[Int]): List[List[Int]] =
     if nums.length < 2 then return List.empty
 
     val mem = mutable.Map.empty[(Int, Int), Seq[Seq[Int]]]

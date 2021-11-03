@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _662_MaxWidthOfBinaryTree:
-  private def widthOfBinaryTree(root: TreeNode): Int =
+  def widthOfBinaryTree(root: TreeNode): Int =
     val toVisit = mutable.Queue((root, 0))
     var max     = 0
 

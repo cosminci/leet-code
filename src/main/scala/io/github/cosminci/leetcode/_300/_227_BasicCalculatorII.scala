@@ -8,7 +8,7 @@ object _227_BasicCalculatorII:
     println(calculate("3+2*2"))
     println(calculate(" 3 / 2 "))
 
-  private def calculate(s: String): Int =
+  def calculate(s: String): Int =
     val stack                = mutable.Stack.empty[Int]
     var (operand, operation) = (0, '+')
 

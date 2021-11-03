@@ -7,7 +7,7 @@ object _925_LongPressedName:
     println(isLongPressedName("vtkgn", "vttkgnx"))
     println(isLongPressedName("vtkgn", "vttkgnn"))
 
-  private def isLongPressedName(name: String, typed: String): Boolean =
+  def isLongPressedName(name: String, typed: String): Boolean =
     var idx        = 0
     var prevPopped = '_'
     typed.foreach { char =>

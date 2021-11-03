@@ -9,7 +9,7 @@ object _572_SubtreeOfAnotherTree:
     areIdentical(root, subRoot) ||
     isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot)
 
-  private def areIdentical(n1: TreeNode, n2: TreeNode): Boolean =
+  def areIdentical(n1: TreeNode, n2: TreeNode): Boolean =
     if n1 == null && n2 == null then return true
     if n1 == null || n2 == null then return false
     n1.value == n2.value && areIdentical(n1.left, n2.left) && areIdentical(n1.right, n2.right)

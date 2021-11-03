@@ -9,7 +9,7 @@ object _799_ChampagneTower:
     println(champagneTowerTopDown(25, 6, 1))
     println(champagneTowerBottomUp(25, 6, 1))
 
-  private def champagneTowerTopDown(poured: Int, queryRow: Int, queryGlass: Int): Double =
+  def champagneTowerTopDown(poured: Int, queryRow: Int, queryGlass: Int): Double =
     val mem = mutable.Map.empty[(Int, Int), Double]
 
     def dfs(row: Int, col: Int): Double =
@@ -22,7 +22,7 @@ object _799_ChampagneTower:
 
     dfs(queryRow, queryGlass).min(1)
 
-  private def champagneTowerBottomUp(poured: Int, queryRow: Int, queryGlass: Int): Double =
+  def champagneTowerBottomUp(poured: Int, queryRow: Int, queryGlass: Int): Double =
     (1 to queryRow).foldLeft(Seq(poured.toDouble)) { (prevRow, row) =>
         (1 until prevRow.length)
           .map(i => (prevRow(i - 1) - 1).max(0) / 2 + (prevRow(i) - 1).max(0) / 2)

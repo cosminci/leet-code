@@ -7,7 +7,7 @@ object _126_WordLadderII:
   def main(args: Array[String]): Unit =
     println(findLadders("red", "tax", List("ted", "tex", "red", "tax", "tad", "den", "rex", "pee")))
 
-  private def findLadders(beginWord: String, endWord: String, wordList: List[String]): List[List[String]] =
+  def findLadders(beginWord: String, endWord: String, wordList: List[String]): List[List[String]] =
     if !wordList.contains(endWord) then return List.empty
 
     val (wordToWildcards, wildcardToWords) = wildcardMappings(wordList :+ beginWord)
@@ -36,7 +36,7 @@ object _126_WordLadderII:
     paths.toList
 
 
-  private def wildcardMappings(dictionary: List[String]) =
+  def wildcardMappings(dictionary: List[String]) =
     val wordToWildcards = mutable.Map.empty[String, Seq[String]]
     val wildcardToWords = mutable.Map.empty[String, Seq[String]]
 

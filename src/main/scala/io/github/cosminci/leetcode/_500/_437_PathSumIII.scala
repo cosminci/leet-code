@@ -17,7 +17,7 @@ object _437_PathSumIII:
       )
     )
 
-  private def pathSum(root: TreeNode, targetSum: Int): Int =
+  def pathSum(root: TreeNode, targetSum: Int): Int =
     def dfs(node: TreeNode, prevRollingSum: Int, prevPrefixSums: Map[Int, Int]): Int =
       if node == null then return 0
       val rollingSum = prevRollingSum + node.value

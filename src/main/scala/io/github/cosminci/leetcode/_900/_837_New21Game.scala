@@ -4,7 +4,7 @@ object _837_New21Game:
   def main(args: Array[String]): Unit =
     println(new21Game(21, 17, 10))
 
-  private def new21Game(n: Int, k: Int, w: Int): Double = {
+  def new21Game(n: Int, k: Int, w: Int): Double = {
     if (k == 0 || n >= k + w) return 1.0
 
     val probabilities = 1.0 +: Array.fill(n)(0.0)

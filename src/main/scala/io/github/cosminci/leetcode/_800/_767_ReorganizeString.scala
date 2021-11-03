@@ -6,7 +6,7 @@ object _767_ReorganizeString:
   def main(args: Array[String]): Unit =
     println(reorganizeString("vvvlo"))
 
-  private def reorganizeString(s: String): String =
+  def reorganizeString(s: String): String =
     val charCounts = s.foldLeft(Map.empty[Char, Int]) { case (counts, char) =>
       counts.updatedWith(char) {
         case None    => Some(1)

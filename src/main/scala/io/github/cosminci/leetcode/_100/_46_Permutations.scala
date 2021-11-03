@@ -6,7 +6,7 @@ object _46_Permutations:
   def main(args: Array[String]): Unit =
     println(permute(Array(1, 2, 3)))
 
-  private def permute(nums: Array[Int]): List[List[Int]] =
+  def permute(nums: Array[Int]): List[List[Int]] =
     val mem = mutable.Map.empty[Set[Int], List[List[Int]]]
     
     def dfs(nums: Set[Int]): List[List[Int]] =

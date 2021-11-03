@@ -6,7 +6,7 @@ object _1898_MaxNumberOfRemovableChars:
     println(maximumRemovals("abcbddddd", "abcd", Array(3, 2, 1, 4, 5, 6)))
     println(maximumRemovals("qlevcvgzfpryiqlwy", "qlecfqlw", Array(12, 5)))
 
-  private def maximumRemovals(s: String, p: String, removable: Array[Int]): Int =
+  def maximumRemovals(s: String, p: String, removable: Array[Int]): Int =
     var (l, r) = (0, removable.length - 1)
     var max    = 0
     while l <= r do
@@ -18,7 +18,7 @@ object _1898_MaxNumberOfRemovableChars:
       else r = mid - 1
     max
 
-  private def isSubsequence(s: String, p: String, removed: Set[Int]): Boolean =
+  def isSubsequence(s: String, p: String, removed: Set[Int]): Boolean =
     var pIdx = p.length - 1
     var sIdx = s.length - 1
     while pIdx >= 0 && sIdx >= 0 do

@@ -12,7 +12,7 @@ object _399_EvaluateDivision:
       ).toSeq
     )
 
-  private def calcEquationBFS(
+  def calcEquationBFS(
       equations: List[List[String]],
       values: Array[Double],
       queries: List[List[String]]

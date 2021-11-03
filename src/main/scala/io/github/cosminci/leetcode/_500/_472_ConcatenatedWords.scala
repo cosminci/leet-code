@@ -8,7 +8,7 @@ object _472_ConcatenatedWords:
       findAllConcatenatedWordsInADict(Array("cat", "cats", "catsdogcats", "dog", "dogcatsdog", "rat", "ratcatdogcat"))
     )
 
-  private def findAllConcatenatedWordsInADict(words: Array[String]): List[String] =
+  def findAllConcatenatedWordsInADict(words: Array[String]): List[String] =
     val shorterWords = mutable.Set.empty[String]
     val results      = mutable.ListBuffer.empty[String]
 

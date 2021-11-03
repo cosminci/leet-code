@@ -6,7 +6,7 @@ object _350_IntersectionOfTwoArraysII:
   def main(args: Array[String]): Unit =
     println(intersect(Array(1, 2, 2, 1), Array(2, 2)).toSeq)
 
-  private def intersect(nums1: Array[Int], nums2: Array[Int]): Array[Int] =
+  def intersect(nums1: Array[Int], nums2: Array[Int]): Array[Int] =
     nums2
       .foldLeft(Seq.empty[Int], nums1.groupBy(identity).map { case (k, v) => (k, v.length) }) {
         case ((intersection, remainingNums1Counts), n) =>

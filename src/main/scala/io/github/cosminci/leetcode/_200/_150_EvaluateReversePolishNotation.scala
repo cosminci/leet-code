@@ -8,7 +8,7 @@ object _150_EvaluateReversePolishNotation:
     println(evalRPN(Array("4", "13", "5", "/", "+")))
     println(evalRPN(Array("10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+")))
 
-  private def evalRPN(tokens: Array[String]): Int =
+  def evalRPN(tokens: Array[String]): Int =
     val pending = mutable.Stack.empty[Int]
 
     tokens.foreach { t =>

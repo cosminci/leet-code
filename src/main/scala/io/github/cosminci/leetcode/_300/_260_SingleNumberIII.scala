@@ -5,7 +5,7 @@ object _260_SingleNumberIII:
     println(singleNumber(Array(-1139700704, -1653765433)).toSeq)
     println(singleNumber(Array(1, 1, 2, 3, 2, 5)).toSeq)
 
-  private def singleNumber(nums: Array[Int]): Array[Int] =
+  def singleNumber(nums: Array[Int]): Array[Int] =
     val targetXOR = nums.reduce(_ ^ _)
     val xorLSB    = targetXOR & -targetXOR
     nums.foldLeft(Array(0, 0)) { case (Array(target1, target2), n) =>

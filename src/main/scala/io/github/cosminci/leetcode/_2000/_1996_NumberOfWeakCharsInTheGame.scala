@@ -9,7 +9,7 @@ object _1996_NumberOfWeakCharsInTheGame {
     println(numberOfWeakCharacters(Array(Array(1, 5), Array(10, 4), Array(4, 3))))
   }
 
-  private def numberOfWeakCharacters(properties: Array[Array[Int]]): Int = {
+  def numberOfWeakCharacters(properties: Array[Array[Int]]): Int = {
     given Ordering[Array[Int]] = (x, y) => if (x.head == y.head) y.last.compare(x.last) else x.head.compare(y.head)
     properties.sortInPlace()
 

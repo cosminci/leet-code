@@ -10,7 +10,7 @@ object _954_ArrayOfDoubledPairs:
     println(canReorderDoubled(Array(4, -2, 2, -4)))
     println(canReorderDoubled(Array(1, 2, 4, 16, 8, 4)))
 
-  private def canReorderDoubled(arr: Array[Int]): Boolean =
+  def canReorderDoubled(arr: Array[Int]): Boolean =
     val counts = mutable.TreeMap.empty[Int, Int]
     arr.foreach { n =>
       counts.updateWith(n) {

@@ -8,7 +8,7 @@ object _1438_LongestContinuousSubArrayWithAbsoluteDiffLessThanOrEqualToLimit:
     println(longestSubarray(Array(10, 1, 2, 4, 7, 2), 5))
     println(longestSubarray(Array(4, 2, 2, 2, 4, 4, 2, 2), 0))
 
-  private def longestSubarray(nums: Array[Int], limit: Int): Int =
+  def longestSubarray(nums: Array[Int], limit: Int): Int =
     val comparator: Comparator[Int] = (i, j) =>
       val valueComparison = nums(i).compare(nums(j))
       if valueComparison != 0 then valueComparison else i.compare(j)

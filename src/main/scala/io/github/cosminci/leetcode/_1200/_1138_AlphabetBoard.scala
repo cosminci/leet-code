@@ -9,7 +9,7 @@ object _1138_AlphabetBoard {
     println(alphabetBoardPath("zdz"))
   }
 
-  private def alphabetBoardPath(target: String): String =
+  def alphabetBoardPath(target: String): String =
     target.foldLeft("", 0, 0) { case ((path, x1, y1), char) =>
       val (x2, y2) = (char - 'a') /% 5
       val xMove    = if (x1 < x2) "D" * (x2 - x1) else "U" * (x1 - x2)

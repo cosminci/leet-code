@@ -5,7 +5,7 @@ import io.github.cosminci.utils
 import scala.collection.mutable
 
 object _130_SurroundedRegions:
-  private def solve(board: Array[Array[Char]]): Unit =
+  def solve(board: Array[Array[Char]]): Unit =
     val (m, n) = (board.length, board.head.length)
     val sources = for
       r <- 0 until m

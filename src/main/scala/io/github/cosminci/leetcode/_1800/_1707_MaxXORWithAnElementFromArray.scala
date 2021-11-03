@@ -13,7 +13,7 @@ object _1707_MaxXORWithAnElementFromArray:
     val queries = Array(Array(1000000000, 1000000000))
     println(maximizeXor(nums, queries).toList)
 
-  private def maximizeXor(nums: Array[Int], queries: Array[Array[Int]]): Array[Int] =
+  def maximizeXor(nums: Array[Int], queries: Array[Array[Int]]): Array[Int] =
     nums.sortInPlace()
     val root   = new TrieNode()
     var numIdx = 0
@@ -31,7 +31,7 @@ object _1707_MaxXORWithAnElementFromArray:
 
   class TrieNode(val children: mutable.Map[Int, TrieNode] = mutable.Map.empty, var value: Option[Int] = None)
 
-  private def addToTrie(n: Int, root: TrieNode): Unit =
+  def addToTrie(n: Int, root: TrieNode): Unit =
     (31 to 0 by -1)
       .foldLeft(root) { case (node, bitIdx) =>
         val bit = (n >> bitIdx) & 1
@@ -43,7 +43,7 @@ object _1707_MaxXORWithAnElementFromArray:
       }
       .value = Some(n)
 
-  private def findMaxXORInTrie(n: Int, root: TrieNode): Int =
+  def findMaxXORInTrie(n: Int, root: TrieNode): Int =
     if root.children.isEmpty then -1
     else
       (31 to 0 by -1)

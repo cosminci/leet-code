@@ -8,7 +8,7 @@ object _446_ArithmeticSlicesII:
     println(numberOfArithmeticSlices(Array(2, 4, 6, 8, 10)))
     println(numberOfArithmeticSlices(Array(7, 7, 7, 7, 7)))
 
-  private def numberOfArithmeticSlices(nums: Array[Int]): Int =
+  def numberOfArithmeticSlices(nums: Array[Int]): Int =
     val mem    = mutable.Map.empty[(Int, Int), Int]
     var result = 0L
 

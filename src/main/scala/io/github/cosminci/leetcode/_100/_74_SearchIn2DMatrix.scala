@@ -14,7 +14,7 @@ object _74_SearchIn2DMatrix:
       )
     )
 
-  private def searchMatrix(matrix: Array[Array[Int]], target: Int): Boolean =
+  def searchMatrix(matrix: Array[Array[Int]], target: Int): Boolean =
     def binarySearch(arr: Array[Int], t: Int): Int =
       var (l, r) = (0, arr.length)
       while l < r do

@@ -11,7 +11,7 @@ object _240_SearchIn2DMatrixII {
     ), 30))
   }
 
-  private def searchMatrix(matrix: Array[Array[Int]], target: Int): Boolean = {
+  def searchMatrix(matrix: Array[Array[Int]], target: Int): Boolean = {
     var (topRow, lastCol) = (0, matrix.head.length - 1)
     while (topRow < matrix.length && lastCol >= 0) {
       if (matrix(topRow)(lastCol) == target) return true

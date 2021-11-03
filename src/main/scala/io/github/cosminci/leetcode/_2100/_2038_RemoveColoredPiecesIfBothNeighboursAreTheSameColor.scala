@@ -4,7 +4,7 @@ object _2038_RemoveColoredPiecesIfBothNeighboursAreTheSameColor:
   def main(args: Array[String]): Unit =
     println(winnerOfGame("ABBBBBBBAAA"))
 
-  private def winnerOfGame(colors: String): Boolean =
+  def winnerOfGame(colors: String): Boolean =
     val (finalScoreA, finalScoreB, _, _) = colors.foldLeft(0, 0, 0, 0) {
       case ((scoreA, scoreB, colorAStreak, colorBStreak), color) =>
         color match

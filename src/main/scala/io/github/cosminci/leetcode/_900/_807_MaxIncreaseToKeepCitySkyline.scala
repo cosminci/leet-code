@@ -11,7 +11,7 @@ object _807_MaxIncreaseToKeepCitySkyline:
       )
     ))
 
-  private def maxIncreaseKeepingSkyline(grid: Array[Array[Int]]): Int =
+  def maxIncreaseKeepingSkyline(grid: Array[Array[Int]]): Int =
     val rowMax = grid.map(_.max)
     val colMax = grid.transpose.map(_.max)
 

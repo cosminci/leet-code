@@ -9,7 +9,7 @@ object _501_FindModeOfBST:
     val tree = new TreeNode(2, null, new TreeNode(2))
     println(findMode(tree).toList)
 
-  private def findMode(root: TreeNode): Array[Int] =
+  def findMode(root: TreeNode): Array[Int] =
     val frequencies = mutable.Map.empty[Int, Int]
 
     def dfs(node: TreeNode): Unit =

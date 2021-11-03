@@ -7,7 +7,7 @@ object _120_Triangle:
     println(minimumTotalTopDown(List(List(2), List(3, 4), List(6, 5, 7), List(4, 1, 8, 3))))
     println(minimumTotalBottomUp(List(List(2), List(3, 4), List(6, 5, 7), List(4, 1, 8, 3))))
 
-  private def minimumTotalTopDown(triangle: List[List[Int]]): Int =
+  def minimumTotalTopDown(triangle: List[List[Int]]): Int =
     val mem = mutable.Map.empty[(Int, Int), Int]
 
     def dfs(row: Int, idx: Int): Int =
@@ -21,7 +21,7 @@ object _120_Triangle:
 
     dfs(0, 0)
 
-  private def minimumTotalBottomUp(triangle: List[List[Int]]): Int =
+  def minimumTotalBottomUp(triangle: List[List[Int]]): Int =
     (triangle.length - 1 to 0 by -1)
       .foldLeft(Array.ofDim[Int](triangle.last.length + 1).toSeq) { case (nextRow, rowIdx) =>
         triangle(rowIdx).indices.map(i => triangle(rowIdx)(i) + math.min(nextRow(i), nextRow(i + 1)))

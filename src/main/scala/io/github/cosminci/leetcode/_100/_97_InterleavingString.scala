@@ -8,7 +8,7 @@ object _97_InterleavingString:
   def main(args: Array[String]): Unit =
     println(isInterleave("aabcc", "dbbca", "aadbbcbcac"))
 
-  private def isInterleave(s1: String, s2: String, s3: String): Boolean =
+  def isInterleave(s1: String, s2: String, s3: String): Boolean =
     if s3.length != s1.length + s2.length then return false
     if s3.isEmpty then return true
     if s1.isEmpty then return s2 == s3

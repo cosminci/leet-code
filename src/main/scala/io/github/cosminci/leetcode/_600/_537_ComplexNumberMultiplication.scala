@@ -5,7 +5,7 @@ object _537_ComplexNumberMultiplication:
     println(complexNumberMultiply("1+1i", "1+1i"))
     println(complexNumberMultiply("1+-1i", "1+-1i"))
 
-  private def complexNumberMultiply(num1: String, num2: String): String =
+  def complexNumberMultiply(num1: String, num2: String): String =
     val (r1, i1) = tokenize(num1)
     val (r2, i2) = tokenize(num2)
     val r        = r1 * r2 - (i1 * i2)
@@ -14,6 +14,6 @@ object _537_ComplexNumberMultiplication:
     val iRaw     = if i == 0 then "0" else i
     s"$rRaw+${iRaw}i"
 
-  private def tokenize(n: String): (Int, Int) =
+  def tokenize(n: String): (Int, Int) =
     val (rRaw, iRaw) = n.splitAt(n.indexOf('+'))
     (rRaw.toInt, iRaw.drop(1).dropRight(1).toInt)

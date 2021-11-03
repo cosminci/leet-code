@@ -9,7 +9,7 @@ object _1647_MinDeletionsToMakeCharFrequenciesUnique:
     println(minDeletions("abcabc"))
     println(minDeletions("accdcdadddbaadbc"))
 
-  private def minDeletions(s: String): Int =
+  def minDeletions(s: String): Int =
     val charCounts      = utils.characterCounts(s).toArray
     var deletions       = 0
     val usedFrequencies = mutable.Set.empty[Int]

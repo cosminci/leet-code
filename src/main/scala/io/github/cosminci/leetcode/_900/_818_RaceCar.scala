@@ -9,7 +9,7 @@ object _818_RaceCar:
 
   case class State(position: Int, speed: Int)
 
-  private def racecarBFS(target: Int): Int =
+  def racecarBFS(target: Int): Int =
     val initialState = State(0, 1)
     val toVisit      = mutable.Queue(initialState)
     val visited      = mutable.Set(initialState)

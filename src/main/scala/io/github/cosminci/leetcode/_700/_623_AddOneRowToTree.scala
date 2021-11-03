@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _623_AddOneRowToTree {
-  private def addOneRow(root: TreeNode, value: Int, depth: Int): TreeNode =
+  def addOneRow(root: TreeNode, value: Int, depth: Int): TreeNode =
     if (depth == 1) new TreeNode(value, _left = root)
     else {
       (2 until depth).foldLeft(Seq(root)) {

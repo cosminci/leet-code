@@ -5,7 +5,7 @@ object _1338_ReduceArraySizeToHalf:
   def main(args: Array[String]): Unit =
     println(minSetSize(Array(3, 3, 3, 3, 5, 5, 5, 2, 2, 7)))
 
-  private def minSetSize(arr: Array[Int]): Int =
+  def minSetSize(arr: Array[Int]): Int =
     var remaining = arr.length
     arr
       .groupMapReduce(identity)(_ => 1)(_ + _)

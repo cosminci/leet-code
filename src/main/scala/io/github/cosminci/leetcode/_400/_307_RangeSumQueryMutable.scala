@@ -16,7 +16,7 @@ object _307_RangeSumQueryMutable:
     case class SegmentTreeNode(start: Int, end: Int, left: SegmentTreeNode, right: SegmentTreeNode, var sum: Int = 0)
 
     private val root = buildTree(0, nums.length - 1)
-    private def buildTree(start: Int, end: Int): SegmentTreeNode =
+    def buildTree(start: Int, end: Int): SegmentTreeNode =
       if start > end then null
       else if start == end then SegmentTreeNode(start, end, null, null, sum = nums(start))
       else
@@ -60,7 +60,7 @@ object _307_RangeSumQueryMutable:
         fenwickTree(i) = fenwickTree(i) + diff
         i += (i & -i)
 
-    private def sum(idx: Int) =
+    def sum(idx: Int) =
       var sum = 0
       var i   = idx + 1
       while i > 0 do

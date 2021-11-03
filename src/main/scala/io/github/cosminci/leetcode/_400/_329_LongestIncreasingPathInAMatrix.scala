@@ -16,7 +16,7 @@ object _329_LongestIncreasingPathInAMatrix:
       )
     )
 
-  private def longestIncreasingPath(matrix: Array[Array[Int]]): Int =
+  def longestIncreasingPath(matrix: Array[Array[Int]]): Int =
     val computed           = Array.ofDim[Int](matrix.length, matrix.head.length)
     var overallLongestPath = 1
 

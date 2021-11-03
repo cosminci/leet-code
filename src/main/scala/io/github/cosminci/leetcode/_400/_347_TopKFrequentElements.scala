@@ -9,7 +9,7 @@ object _347_TopKFrequentElements:
     println(topKFrequentPredefBuckets(Array(1, 1, 4, 4, 4, 2, 2, 3, 3, 3), 2).toList)
     println(topKFrequentPivot(Array(1, 1, 4, 4, 4, 2, 2, 3, 3, 3), 2).toList)
 
-  private def frequencies(nums: Array[Int]): Map[Int, Int] = nums
+  def frequencies(nums: Array[Int]): Map[Int, Int] = nums
     .foldLeft(Map.empty[Int, Int]) { case (counts, n) =>
       counts.updatedWith(n) {
         case None    => Some(1)
@@ -17,7 +17,7 @@ object _347_TopKFrequentElements:
       }
     }
 
-  private def topKFrequentTreeMap(nums: Array[Int], k: Int): Array[Int] =
+  def topKFrequentTreeMap(nums: Array[Int], k: Int): Array[Int] =
     given Ordering[Int] = (x, y) => y.compareTo(x)
 
     val numToFreq = mutable.Map.empty[Int, Int]
@@ -32,7 +32,7 @@ object _347_TopKFrequentElements:
     }
     freqToNum.values.flatten.take(k).toArray
 
-  private def topKFrequentPQueue(nums: Array[Int], k: Int): Array[Int] =
+  def topKFrequentPQueue(nums: Array[Int], k: Int): Array[Int] =
     given Ordering[(Int, Int)] = (x, y) => x._2.compareTo(y._2)
 
     val pqueue  = mutable.PriorityQueue.from(frequencies(nums))
@@ -41,7 +41,7 @@ object _347_TopKFrequentElements:
 
     results.toArray
 
-  private def topKFrequentPredefBuckets(nums: Array[Int], k: Int): Array[Int] =
+  def topKFrequentPredefBuckets(nums: Array[Int], k: Int): Array[Int] =
     val freqs = Array.fill(nums.length + 1)(mutable.ListBuffer.empty[Int])
     frequencies(nums)
       .foreach { case (n, freq) =>
@@ -49,7 +49,7 @@ object _347_TopKFrequentElements:
       }
     freqs.reverse.flatten.take(k)
 
-  private def topKFrequentPivot(nums: Array[Int], k: Int): Array[Int] =
+  def topKFrequentPivot(nums: Array[Int], k: Int): Array[Int] =
     val freqs  = frequencies(nums).toArray
     val target = freqs.length - k
 

@@ -11,7 +11,7 @@ object _986_IntervalListIntersections:
       ).map(_.toList).toList
     )
 
-  private def intervalIntersection(firstList: Array[Array[Int]], secondList: Array[Array[Int]]): Array[Array[Int]] =
+  def intervalIntersection(firstList: Array[Array[Int]], secondList: Array[Array[Int]]): Array[Array[Int]] =
     var (idx1, idx2) = (0, 0)
     val results      = mutable.ListBuffer.empty[Array[Int]]
 

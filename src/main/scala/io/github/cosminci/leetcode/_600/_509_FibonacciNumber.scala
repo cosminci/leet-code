@@ -5,7 +5,7 @@ object _509_FibonacciNumber:
   def main(args: Array[String]): Unit =
     println(fib(4))
 
-  private def fib(n: Int): Int =
+  def fib(n: Int): Int =
     var prev2 = 0
     var prev1 = 1
     if n == 0 then return prev2

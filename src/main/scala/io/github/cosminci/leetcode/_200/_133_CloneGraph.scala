@@ -6,7 +6,7 @@ object _133_CloneGraph:
 
   private val clones = mutable.Map.empty[Node, Node]
 
-  private def cloneGraph(graph: Node): Node =
+  def cloneGraph(graph: Node): Node =
     if graph == null then return null
     if clones.contains(graph) then return clones(graph)
 
@@ -15,6 +15,6 @@ object _133_CloneGraph:
     clone.neighbors = graph.neighbors.map(cloneGraph)
     clones(graph)
 
-  private class Node(var _value: Int):
+  class Node(var _value: Int):
     var value: Int            = _value
     var neighbors: List[Node] = List()

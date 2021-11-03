@@ -4,7 +4,7 @@ object _975_OddEvenJump:
   def main(args: Array[String]): Unit =
     println(oddEvenJumps(Array(10, 13, 12, 14, 15)))
 
-  private def oddEvenJumps(arr: Array[Int]): Int =
+  def oddEvenJumps(arr: Array[Int]): Int =
     val canOddJumpFrom = Array.ofDim[Boolean](arr.length)
     canOddJumpFrom(canOddJumpFrom.length - 1) = true
     val canEvenJumpFrom = Array.ofDim[Boolean](arr.length)

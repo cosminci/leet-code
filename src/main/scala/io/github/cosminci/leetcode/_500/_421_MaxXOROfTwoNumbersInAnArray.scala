@@ -9,7 +9,7 @@ object _421_MaxXOROfTwoNumbersInAnArray:
     println(findMaximumXORBitManipulation(Array(3, 10, 5, 25, 2, 8)))
     println(findMaximumXORTrie(Array(3, 10, 5, 25, 2, 8)))
 
-  private def findMaximumXORBitManipulation(nums: Array[Int]): Int =
+  def findMaximumXORBitManipulation(nums: Array[Int]): Int =
     (31 to 0 by -1)
       .foldLeft(0, 0) { case ((prevMaxXOR, mask), i) =>
         val newMask   = mask | (1 << i)
@@ -25,7 +25,7 @@ object _421_MaxXOROfTwoNumbersInAnArray:
 
   class TrieNode(val children: mutable.Map[Int, TrieNode] = mutable.Map.empty, var value: Option[Int] = None)
 
-  private def buildTrie(nums: Array[Int]): TrieNode = {
+  def buildTrie(nums: Array[Int]): TrieNode = {
     val root = new TrieNode()
     nums.foreach { n =>
       var node = root
@@ -44,7 +44,7 @@ object _421_MaxXOROfTwoNumbersInAnArray:
     root
   }
 
-  private def findMaximumXORTrie(nums: Array[Int]): Int = {
+  def findMaximumXORTrie(nums: Array[Int]): Int = {
     val root = buildTrie(nums)
     nums.map { n =>
       var node = root

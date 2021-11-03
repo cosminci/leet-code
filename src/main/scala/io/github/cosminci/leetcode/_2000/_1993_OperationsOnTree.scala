@@ -55,7 +55,7 @@ object _1993_OperationsOnTree:
           lock(num, user)
           true
 
-    private def lockedDescendants(num: Int): Seq[Int] =
+    def lockedDescendants(num: Int): Seq[Int] =
       val toVisit = mutable.Queue.from(parentToChildren.getOrElse(num, Seq.empty))
       val result  = mutable.ListBuffer.empty[Int]
 
@@ -66,7 +66,7 @@ object _1993_OperationsOnTree:
 
       result.toSeq
 
-    private def hasLockedAncestor(num: Int): Boolean =
+    def hasLockedAncestor(num: Int): Boolean =
       var parent = childToParent(num)
 
       while parent != -1 do

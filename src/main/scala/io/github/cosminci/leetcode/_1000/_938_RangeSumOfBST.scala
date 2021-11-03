@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _938_RangeSumOfBST:
-  private def rangeSumBSTRecursive(root: TreeNode, low: Int, high: Int): Int =
+  def rangeSumBSTRecursive(root: TreeNode, low: Int, high: Int): Int =
     def dfs(node: TreeNode): Int =
       if node == null then return 0
 
@@ -17,7 +17,7 @@ object _938_RangeSumOfBST:
 
     dfs(root)
 
-  private def rangeSumBSTIterative(root: TreeNode, low: Int, high: Int): Int =
+  def rangeSumBSTIterative(root: TreeNode, low: Int, high: Int): Int =
     val toVisit = mutable.Queue(root)
     var sum     = 0
 

@@ -6,7 +6,7 @@ import scala.collection.mutable
 
 object _1161_MaxLevelSumOfABinaryTree:
 
-  private def maxLevelSum(root: TreeNode): Int =
+  def maxLevelSum(root: TreeNode): Int =
     if root.left == null && root.right == null then return 1
 
     val toVisit                   = mutable.Queue(root)

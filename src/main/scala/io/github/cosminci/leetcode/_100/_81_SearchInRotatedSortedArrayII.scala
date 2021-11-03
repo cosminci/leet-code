@@ -5,7 +5,7 @@ object _81_SearchInRotatedSortedArrayII:
     println(search(Array(2, 5, 6, 0, 0, 1, 2), 2))
     println(search(Array(2, 5), 2))
 
-  private def search(nums: Array[Int], target: Int): Boolean =
+  def search(nums: Array[Int], target: Int): Boolean =
     if nums.length < 2 then return nums.contains(target)
 
     var (l, r) = (0, nums.length - 1)

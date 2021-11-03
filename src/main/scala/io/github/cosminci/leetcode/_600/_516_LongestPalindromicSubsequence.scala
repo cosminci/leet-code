@@ -7,7 +7,7 @@ object _516_LongestPalindromicSubsequence:
     println(longestPalindromeSubseqTopDown("AABBCA"))
     println(longestPalindromeSubseqBottomUp("AABBCA"))
 
-  private def longestPalindromeSubseqBottomUp(s: String): Int =
+  def longestPalindromeSubseqBottomUp(s: String): Int =
     val dp = Array.ofDim[Int](s.length, s.length)
     s.indices.foreach(i => dp(i)(i) = 1)
     (1 until s.length).foreach { end =>
@@ -19,7 +19,7 @@ object _516_LongestPalindromicSubsequence:
     }
     dp.head.last
 
-  private def longestPalindromeSubseqTopDown(s: String): Int =
+  def longestPalindromeSubseqTopDown(s: String): Int =
     val mem = mutable.Map.empty[(Int, Int), Int]
     def dfs(l: Int, r: Int): Int =
       if l == r then return 1

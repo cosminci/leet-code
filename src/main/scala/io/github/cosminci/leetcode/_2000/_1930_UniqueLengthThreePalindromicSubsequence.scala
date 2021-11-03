@@ -7,7 +7,7 @@ object _1930_UniqueLengthThreePalindromicSubsequence:
     println(countPalindromicSubsequence("aabca"))
     println(countPalindromicSubsequence2("aabca"))
 
-  private def countPalindromicSubsequence2(s: String): Int =
+  def countPalindromicSubsequence2(s: String): Int =
     val charsLeft = mutable.Map.from(s.groupBy(identity).view.mapValues(_.length))
     val charsSeen = mutable.Set(s.head)
     charsSeen.add(s.head)
@@ -23,14 +23,14 @@ object _1930_UniqueLengthThreePalindromicSubsequence:
     }
     palindromes.size
 
-  private def removeChar(c: Char, charsLeft: mutable.Map[Char, Int]) =
+  def removeChar(c: Char, charsLeft: mutable.Map[Char, Int]) =
     charsLeft.updateWith(c) {
       case None              => None
       case Some(c) if c == 1 => None
       case Some(c)           => Some(c - 1)
     }
 
-  private def countPalindromicSubsequence(s: String): Int =
+  def countPalindromicSubsequence(s: String): Int =
     val found          = mutable.Set.empty[(Int, Int)]
     val visitedLetters = mutable.Set.empty[Char]
     s.zipWithIndex.foreach { case (c, idx) =>

@@ -8,7 +8,7 @@ object _57_InsertInterval:
       insert(Array(Array(1, 3), Array(6, 9)), Array(2, 5)).map(_.toList).toList
     )
 
-  private def insert(
+  def insert(
       intervals: Array[Array[Int]],
       newInterval: Array[Int]
   ): Array[Array[Int]] =

@@ -5,7 +5,7 @@ object _540_SingleElementInSortedArray:
     println(singleNonDuplicate(Array(1, 1, 2, 3, 3, 4, 4, 8, 8)))
     println(singleNonDuplicate(Array(3, 3, 7, 7, 10, 11, 11)))
 
-  private def singleNonDuplicate(nums: Array[Int]): Int =
+  def singleNonDuplicate(nums: Array[Int]): Int =
     var (left, right) = (0, nums.length - 1)
 
     while left < right do

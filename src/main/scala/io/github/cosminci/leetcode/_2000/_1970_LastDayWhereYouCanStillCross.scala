@@ -6,7 +6,7 @@ object _1970_LastDayWhereYouCanStillCross:
   def main(args: Array[String]): Unit =
     println(latestDayToCross(3, 3, Array(Array(1, 2), Array(2, 1), Array(3, 3), Array(2, 2), Array(1, 1))))
 
-  private def latestDayToCross(numRows: Int, numCols: Int, cells: Array[Array[Int]]): Int =
+  def latestDayToCross(numRows: Int, numCols: Int, cells: Array[Array[Int]]): Int =
     val firstRowCells = (1 to numCols).map(c => (1, c))
     val floodedCellsPerDay = cells.scanLeft(Set.empty[(Int, Int)]) { case (alreadyFlooded, Array(x, y)) =>
       alreadyFlooded + ((x, y))

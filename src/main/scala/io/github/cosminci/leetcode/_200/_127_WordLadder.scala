@@ -7,7 +7,7 @@ object _127_WordLadder:
   def main(args: Array[String]): Unit =
     println(ladderLength("hit", "cog", List("hot", "dot", "dog", "lot", "log", "cog")))
 
-  private def ladderLength(beginWord: String, endWord: String, wordList: List[String]): Int =
+  def ladderLength(beginWord: String, endWord: String, wordList: List[String]): Int =
     if !wordList.contains(endWord) then return 0
 
     val (wordToWildcards, wildcardToWords) = wildcardMappings(wordList :+ beginWord)
@@ -28,7 +28,7 @@ object _127_WordLadder:
         }
     0
 
-  private def wildcardMappings(dictionary: List[String]) =
+  def wildcardMappings(dictionary: List[String]) =
     val wordToWildcards = mutable.Map.empty[String, Seq[String]]
     val wildcardToWords = mutable.Map.empty[String, Seq[String]]
 

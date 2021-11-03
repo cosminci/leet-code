@@ -8,7 +8,7 @@ object _820_ShortEncodingOfWords:
     println(minimumLengthEncodingTrie(Array("time", "me", "bell")))
     println(minimumLengthEncodingBruteForce(Array("time", "me", "bell")))
 
-  private def minimumLengthEncodingTrie(words: Array[String]): Int =
+  def minimumLengthEncodingTrie(words: Array[String]): Int =
     class TrieNode(val children: mutable.Map[Char, TrieNode] = mutable.Map.empty)
 
     val trieRoot = new TrieNode()
@@ -23,7 +23,7 @@ object _820_ShortEncodingOfWords:
 
     dfs(trieRoot, 0)
 
-  private def minimumLengthEncodingBruteForce(words: Array[String]): Int =
+  def minimumLengthEncodingBruteForce(words: Array[String]): Int =
     words
       .foldLeft(words.toSet) { (set, w) =>
         set.removedAll((1 until w.length).map(w.substring))

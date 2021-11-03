@@ -9,7 +9,7 @@ object _142_LinkedListCycleII:
     last.next = head.next
     println(detectCycle(head))
     
-  private def detectCycle(head: ListNode): ListNode =
+  def detectCycle(head: ListNode): ListNode =
     if head == null || head.next == null then return null
 
     var (slow, fast) = (head, head)

@@ -6,7 +6,7 @@ object _189_RotateArray:
     rotate(input, 3)
     println(input.toList)
 
-  private def rotate(nums: Array[Int], rotations: Int): Unit =
+  def rotate(nums: Array[Int], rotations: Int): Unit =
     val k = rotations % nums.length
     if k == 0 then return
     def reverse(start: Int, end: Int): Unit =

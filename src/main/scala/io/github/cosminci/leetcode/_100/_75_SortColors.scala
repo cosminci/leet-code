@@ -7,7 +7,7 @@ object _75_SortColors:
     sortColorsPointers(input)
     println(input.toList)
 
-  private def sortColorsPointers(nums: Array[Int]): Unit =
+  def sortColorsPointers(nums: Array[Int]): Unit =
     var (l, i, r) = (0, 0, nums.length - 1)
     while i <= r do
       if nums(i) == 0 then
@@ -20,7 +20,7 @@ object _75_SortColors:
       nums(i) = nums(j)
       nums(j) = tmp
 
-  private def sortColorsCounts(nums: Array[Int]): Unit =
+  def sortColorsCounts(nums: Array[Int]): Unit =
     val (zeroCount, oneCount, twoCount) = nums.foldLeft((0, 0, 0)) { case ((c0, c1, c2), n) =>
       if n == 0 then (c0 + 1, c1, c2)
       else if n == 1 then (c0, c1 + 1, c2)

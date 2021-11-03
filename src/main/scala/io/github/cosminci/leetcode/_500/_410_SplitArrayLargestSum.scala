@@ -6,7 +6,7 @@ object _410_SplitArrayLargestSum:
     println(splitArray(Array(1, 2, 3, 4, 5), 2))
     println(splitArray(Array(1, 4, 4), 3))
 
-  private def splitArray(nums: Array[Int], m: Int): Int =
+  def splitArray(nums: Array[Int], m: Int): Int =
     def canSplit(sumLimit: Int) =
       nums
         .foldLeft((1, 0)) { case ((subarrayCount, currentSum), n) =>

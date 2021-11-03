@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _515_FindLargestValueInEachTreeRow {
-  private def largestValues(root: TreeNode): List[Int] = {
+  def largestValues(root: TreeNode): List[Int] = {
     if (root == null) return List.empty
 
     val results = mutable.ListBuffer.empty[Int]

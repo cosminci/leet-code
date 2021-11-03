@@ -6,7 +6,7 @@ object _844_BackspaceStringCompare:
   def main(args: Array[String]): Unit =
     println(backspaceCompare("y#fo##f", "y#f#o##f"))
 
-  private def backspaceCompare(s: String, t: String): Boolean =
+  def backspaceCompare(s: String, t: String): Boolean =
     val stack = mutable.Stack.empty[Char]
 
     def getTyped(str: String): String =

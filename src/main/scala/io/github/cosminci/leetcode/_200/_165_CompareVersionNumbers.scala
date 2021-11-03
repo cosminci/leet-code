@@ -8,7 +8,7 @@ object _165_CompareVersionNumbers:
     println(compareVersion("1.0.1", "1"))
     println(compareVersion("7.5.2.4", "7.5.3"))
 
-  private def compareVersion(version1: String, version2: String): Int =
+  def compareVersion(version1: String, version2: String): Int =
     version1
       .split("\\.")
       .zipAll(

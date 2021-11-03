@@ -7,7 +7,7 @@ object _143_ReorderList:
   def main(args: Array[String]): Unit =
     reorderList(linkedList(Seq(1, 2, 3, 4,5)))
 
-  private def reorderList(head: ListNode): Unit =
+  def reorderList(head: ListNode): Unit =
     var length  = 1
     var tracker = head
     while tracker.next != null do

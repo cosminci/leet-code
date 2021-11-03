@@ -8,7 +8,7 @@ object _300_LongestIncreasingSubsequence:
     println(lengthOfLISDP(Array(10, 9, 2, 5, 3, 7, 101, 18)))
     println(lengthOfLISBinarySearch(Array(10, 9, 2, 5, 3, 7, 101, 18)))
 
-  private def lengthOfLISBinarySearch(nums: Array[Int]): Int =
+  def lengthOfLISBinarySearch(nums: Array[Int]): Int =
     val stacks    = Array.ofDim[Int](nums.length)
     var maxLength = 0
     nums.foreach { n =>
@@ -22,7 +22,7 @@ object _300_LongestIncreasingSubsequence:
     }
     maxLength
 
-  private def lengthOfLISDP(nums: Array[Int]): Int =
+  def lengthOfLISDP(nums: Array[Int]): Int =
     val dp = Array.fill[Int](nums.length)(1)
     (1 until nums.length).foreach { end =>
       (0 until end).foreach { start =>

@@ -6,7 +6,7 @@ object _129_SumRootToLeafNodes:
   def main(args: Array[String]): Unit =
     println(sumNumbers(new TreeNode(1, new TreeNode(2), new TreeNode(3))))
 
-  private def sumNumbers(root: TreeNode): Int =
+  def sumNumbers(root: TreeNode): Int =
     def dfs(prev: Int, node: TreeNode): Int =
       if node == null then return 0
 

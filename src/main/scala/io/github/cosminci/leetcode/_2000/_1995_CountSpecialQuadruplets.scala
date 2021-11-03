@@ -12,10 +12,10 @@ object _1995_CountSpecialQuadruplets:
       println(countQuadrupletsBruteForce(nums))
     }
 
-  private def countQuadrupletsBruteForce(nums: Array[Int]) =
+  def countQuadrupletsBruteForce(nums: Array[Int]) =
     nums.indices.combinations(4).count { case Seq(a, b, c, d) => nums(a) + nums(b) + nums(c) == nums(d) }
 
-  private def countQuadruplets(nums: Array[Int]): Int =
+  def countQuadruplets(nums: Array[Int]): Int =
     var count = 0
 
     (0 to nums.length - 4).foreach { a =>

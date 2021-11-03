@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._300
 import io.github.cosminci.utils.ListNode
 
 object _203_RemoveLinkedListElements:
-  private def removeElements(head: ListNode, `val`: Int): ListNode =
+  def removeElements(head: ListNode, `val`: Int): ListNode =
     val dummy        = new ListNode(0, head)
     var (prev, curr) = (dummy, head)
 

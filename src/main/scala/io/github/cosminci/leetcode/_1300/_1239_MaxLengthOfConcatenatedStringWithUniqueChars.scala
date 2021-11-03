@@ -7,7 +7,7 @@ object _1239_MaxLengthOfConcatenatedStringWithUniqueChars:
     println(maxLength(List("abcdefghijklmnopqrstuvwxyz")))
     println(maxLength(List("yy", "bkhwmpbiisbldzknpm")))
 
-  private def maxLength(arr: List[String]): Int =
+  def maxLength(arr: List[String]): Int =
     val bitsets = arr.collect {
       case s if (s.distinct == s) =>
         s.foldLeft(0) { case (bitset, char) =>

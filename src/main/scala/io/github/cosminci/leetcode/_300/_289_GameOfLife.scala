@@ -10,7 +10,7 @@ object _289_GameOfLife:
         gameOfLifeFlipSet(Array(Array(0, 1, 0), Array(0, 0, 1), Array(1, 1, 1), Array(0, 0, 0)))
     )
 
-  private def gameOfLifeFlipSet(board: Array[Array[Int]]): Unit =
+  def gameOfLifeFlipSet(board: Array[Array[Int]]): Unit =
     val toFlip = mutable.Set.empty[(Int, Int)]
     board.indices.foreach { x =>
       board(x).indices.foreach { y =>
@@ -23,7 +23,7 @@ object _289_GameOfLife:
       board(x)(y) = 1 - board(x)(y)
     }
 
-  private def gameOfLifeTruthTable(board: Array[Array[Int]]): Unit =
+  def gameOfLifeTruthTable(board: Array[Array[Int]]): Unit =
     board.indices.foreach { x =>
       board(x).indices.foreach { y =>
         val liveNeighbours = countLiveNeighbours(board, x, y)
@@ -38,7 +38,7 @@ object _289_GameOfLife:
       }
     }
 
-  private def countLiveNeighbours(board: Array[Array[Int]], x: Int, y: Int): Int =
+  def countLiveNeighbours(board: Array[Array[Int]], x: Int, y: Int): Int =
     Option
       .when(board.isDefinedAt(x - 1)) {
         board(x - 1)(y) % 2 +

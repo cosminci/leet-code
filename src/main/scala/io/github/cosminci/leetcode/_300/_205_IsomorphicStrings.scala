@@ -7,7 +7,7 @@ object _205_IsomorphicStrings:
     println(isIsomorphic("abcdefghijklmnopqrstuvwxyzva", "abcdefghijklmnopqrstuvwxyzck"))
     println(isIsomorphic2("abcdefghijklmnopqrstuvwxyzva", "abcdefghijklmnopqrstuvwxyzck"))
 
-  private def isIsomorphic(s: String, t: String): Boolean =
+  def isIsomorphic(s: String, t: String): Boolean =
     if s.length != t.length then return false
 
     val charMappings        = mutable.Map.empty[Char, Char]

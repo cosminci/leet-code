@@ -6,7 +6,7 @@ object _894_AllPossibleFullBinaryTrees:
   def main(args: Array[String]): Unit =
     Seq(3, 5, 7, 19).foreach(n => println(allPossibleFBT(n).length))
 
-  private def allPossibleFBT(n: Int): List[TreeNode] =
+  def allPossibleFBT(n: Int): List[TreeNode] =
     if n % 2 == 0 then List.empty
     else if n == 1 then List(new TreeNode(0))
     else

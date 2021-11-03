@@ -9,7 +9,7 @@ object _809_ExpressiveWords {
   def expressiveWords(s: String, words: Array[String]): Int =
     words.count(canStretch(s, _))
 
-  private def canStretch(s: String, w: String): Boolean = {
+  def canStretch(s: String, w: String): Boolean = {
     var (wGroupStart, sGroupStart) = (0, 0)
     while (wGroupStart != w.length && sGroupStart != s.length) {
       if (w(wGroupStart) != s(sGroupStart))

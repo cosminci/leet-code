@@ -9,7 +9,7 @@ object _2_AddTwoNumbers:
   def main(args: Array[String]): Unit =
     println(seq(addTwoNumbers(linkedList(Seq(9, 9, 9)), linkedList(Seq(9)))))
 
-  private def addTwoNumbers(l1: ListNode, l2: ListNode): ListNode =
+  def addTwoNumbers(l1: ListNode, l2: ListNode): ListNode =
     def dfs(h1: ListNode, h2: ListNode, carry: Int): ListNode =
       if h1 == null && h2 == null then
         return if carry == 0 then null else new ListNode(1)

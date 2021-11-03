@@ -7,7 +7,7 @@ object _198_HouseRobber:
     println(robTopDown(Array(2, 1, 1, 2, 5, 6, 7, 8, 2, 3, 5)))
     println(robBottomUp(Array(2, 1, 1, 2, 5, 6, 7, 8, 2, 3, 5)))
 
-  private def robTopDown(nums: Array[Int]): Int =
+  def robTopDown(nums: Array[Int]): Int =
     val mem = mutable.Map.empty[Int, Int]
     def dfs(idx: Int): Int =
       if idx >= nums.length then return 0
@@ -17,7 +17,7 @@ object _198_HouseRobber:
       result
     dfs(0)
 
-  private def robBottomUp(nums: Array[Int]): Int =
+  def robBottomUp(nums: Array[Int]): Int =
     if nums.length == 1 then return nums.head
     if nums.length == 2 then return math.max(nums(0), nums(1))
     var prev2 = nums(0)

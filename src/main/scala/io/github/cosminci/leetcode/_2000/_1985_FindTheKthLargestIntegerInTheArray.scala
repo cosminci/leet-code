@@ -6,7 +6,7 @@ object _1985_FindTheKthLargestIntegerInTheArray:
     println(kthLargestNumber(Array("2", "21", "12", "1"), 4))
     println(kthLargestNumber(Array("0", "0"), 1))
 
-  private def kthLargestNumber(nums: Array[String], k: Int): String =
+  def kthLargestNumber(nums: Array[String], k: Int): String =
     def swap(i: Int, j: Int): Unit =
       val tmp = nums(i); nums(i) = nums(j); nums(j) = tmp
 

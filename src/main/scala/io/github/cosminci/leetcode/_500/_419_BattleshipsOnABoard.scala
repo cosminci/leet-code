@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._500
 
 object _419_BattleshipsOnABoard:
-  private def countBattleships(board: Array[Array[Char]]): Int =
+  def countBattleships(board: Array[Array[Char]]): Int =
     var count = 0
     for
       x <- board.indices

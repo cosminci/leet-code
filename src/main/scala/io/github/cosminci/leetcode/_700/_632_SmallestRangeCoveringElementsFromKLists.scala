@@ -10,7 +10,7 @@ object _632_SmallestRangeCoveringElementsFromKLists:
     println(smallestRange(List(List(10), List(11))).toList)
     println(smallestRange(List(List(1), List(2), List(3), List(4), List(5), List(6), List(7))).toList)
 
-  private def smallestRange(nums: List[List[Int]]): Array[Int] =
+  def smallestRange(nums: List[List[Int]]): Array[Int] =
     val rangeMax = math.pow(10, 5).toInt + 1
     val currentSet =
       given Ordering[(Int, Int)] = (x, y) => nums(y._2)(y._1).compare(nums(x._2)(x._1))

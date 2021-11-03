@@ -6,7 +6,7 @@ object _852_PeakIndexInMountainArray:
     println(peakIndexInMountainArray(Array(24, 69, 100, 99, 79, 78, 67, 36, 26, 19)))
     println(peakIndexInMountainArray(Array(3, 4, 5, 1)))
 
-  private def peakIndexInMountainArray(arr: Array[Int]): Int =
+  def peakIndexInMountainArray(arr: Array[Int]): Int =
     var (l, r) = (0, arr.length - 1)
     while l < r do
       val mid = l + (r - l) / 2

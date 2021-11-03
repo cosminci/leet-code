@@ -5,7 +5,7 @@ import scala.collection.mutable
 object _138_CopyListWithRandomPointer:
   def main(args: Array[String]): Unit = {}
 
-  private def copyRandomListDoublePass(head: Node): Node =
+  def copyRandomListDoublePass(head: Node): Node =
     if head == null then return null
     val oldToNew = mutable.Map.empty[Node, Node]
     var curr     = head
@@ -23,7 +23,7 @@ object _138_CopyListWithRandomPointer:
 
     oldToNew(head)
 
-  private def copyRandomListSinglePass(head: Node): Node =
+  def copyRandomListSinglePass(head: Node): Node =
     if head == null then return null
 
     val newHead  = new Node(head.value)

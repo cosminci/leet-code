@@ -7,7 +7,7 @@ object _23_MergeKSortedLists:
   def main(args: Array[String]): Unit =
     println(seq(mergeKLists(Array(linkedList(Seq(1, 4)), linkedList(Seq(3)), linkedList(Seq(2, 3, 5))))))
 
-  private def mergeKLists(lists: Array[ListNode]): ListNode = lists match
+  def mergeKLists(lists: Array[ListNode]): ListNode = lists match
     case Array()             => null
     case Array(singleList)   => singleList
     case Array(list1, list2) => merge2Lists(list1, list2)
@@ -39,7 +39,7 @@ object _23_MergeKSortedLists:
 
     head
 
-  private def mergeKListsOneElementAtATime(lists: Array[ListNode]): ListNode =
+  def mergeKListsOneElementAtATime(lists: Array[ListNode]): ListNode =
     if lists.isEmpty then return null
 
     var head: ListNode = null

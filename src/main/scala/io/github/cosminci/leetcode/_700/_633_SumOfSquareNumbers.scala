@@ -4,7 +4,7 @@ object _633_SumOfSquareNumbers:
   def main(args: Array[String]): Unit =
     println(judgeSquareSum(3))
 
-  private def judgeSquareSum(c: Int): Boolean =
+  def judgeSquareSum(c: Int): Boolean =
     var (l, r) = (0, math.sqrt(c).toInt)
 
     while l <= r do

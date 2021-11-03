@@ -6,7 +6,7 @@ object _324_WiggleSortII:
     wiggleSort(input)
     print(input.toList)
 
-  private def wiggleSort(nums: Array[Int]): Unit =
+  def wiggleSort(nums: Array[Int]): Unit =
     val sorted = nums.sorted
     val n      = nums.length
     var (l, r) = ((n + 1) / 2 - 1, n - 1)

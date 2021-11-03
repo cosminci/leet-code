@@ -7,7 +7,7 @@ object _474_OnesAndZeroes:
     println(findMaxForm(Array("10", "0001", "111001", "1", "0"), 5, 3))
     println(findMaxForm(Array("10", "0", "1"), 1, 1))
 
-  private def findMaxForm(strs: Array[String], m: Int, n: Int): Int =
+  def findMaxForm(strs: Array[String], m: Int, n: Int): Int =
     def oneZeroCounts(s: String): (Int, Int) =
       s.foldLeft(0, 0) { case ((ones, zeroes), char) =>
         if char == '1' then (ones + 1, zeroes) else (ones, zeroes + 1)

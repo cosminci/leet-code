@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._500
 import scala.collection.mutable
 
 object _433_MinGeneticMutation:
-  private def minMutation(start: String, end: String, bank: Array[String]): Int =
+  def minMutation(start: String, end: String, bank: Array[String]): Int =
     def diffCount(s1: String, s2: String) =
       s1.zip(s2).count { case (c1, c2) => c1 != c2 } == 1
 

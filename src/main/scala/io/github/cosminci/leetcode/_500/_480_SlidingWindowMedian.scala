@@ -10,7 +10,7 @@ object _480_SlidingWindowMedian:
     println(medianSlidingWindow(Array(1, 3, -1, -3, 5, 3, 6, 7), 3).toList)
     println(medianSlidingWindow(Array(1, 2, 3, 4, 2, 3, 1, 4, 2), 3).toList)
 
-  private def medianSlidingWindow(nums: Array[Int], k: Int): Array[Double] =
+  def medianSlidingWindow(nums: Array[Int], k: Int): Array[Double] =
     val comparator: Comparator[Int] = (i, j) =>
       if nums(i) != nums(j) then nums(i).compare(nums(j))
       else i.compare(j)

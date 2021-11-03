@@ -7,7 +7,7 @@ object _482_LicenseKeyFormatting:
     println(licenseKeyFormatting("2-5g-3-J", 3))
     println(licenseKeyFormatting2("2-5g-3-J", 3))
 
-  private def licenseKeyFormatting(s: String, k: Int): String =
+  def licenseKeyFormatting(s: String, k: Int): String =
     s.collect { case char if char != '-' => char.toUpper }
       .reverse
       .grouped(k)
@@ -16,7 +16,7 @@ object _482_LicenseKeyFormatting:
       .reverse
       .mkString("-")
 
-  private def licenseKeyFormatting2(input: String, k: Int): String =
+  def licenseKeyFormatting2(input: String, k: Int): String =
     var dashes  = 0
     val builder = new StringBuilder
     val s       = input.filter(_ != '-')

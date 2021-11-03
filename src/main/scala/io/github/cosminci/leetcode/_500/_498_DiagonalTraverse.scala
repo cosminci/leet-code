@@ -13,7 +13,7 @@ object _498_DiagonalTraverse:
       ).toSeq
     )
 
-  private def findDiagonalOrder(mat: Array[Array[Int]]): Array[Int] =
+  def findDiagonalOrder(mat: Array[Array[Int]]): Array[Int] =
     val (m, n) = (mat.length, mat.head.length)
     val coords = for
       x <- 0 until m

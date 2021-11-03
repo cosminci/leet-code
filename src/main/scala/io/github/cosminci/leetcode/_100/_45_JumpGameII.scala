@@ -6,7 +6,7 @@ object _45_JumpGameII:
     println(jump(Array(0)))
     println(jump(Array(2, 3, 1, 1, 4)))
 
-  private def jump(nums: Array[Int]): Int =
+  def jump(nums: Array[Int]): Int =
     if nums.length == 1 then return 0
 
     var start    = 0

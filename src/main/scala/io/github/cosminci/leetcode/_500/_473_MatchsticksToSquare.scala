@@ -5,7 +5,7 @@ object _473_MatchsticksToSquare:
     println(makesquare(Array(1, 1, 2, 2, 2)))
     println(makesquare(Array(3, 3, 3, 3, 4)))
 
-  private def makesquare(matchsticks: Array[Int]): Boolean =
+  def makesquare(matchsticks: Array[Int]): Boolean =
     matchsticks.sortBy(-_)
     val totalLength = matchsticks.sum
     val sideLength  = totalLength / 4

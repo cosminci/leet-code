@@ -9,7 +9,7 @@ object _1998_GcdSortOfAnArray:
   def main(args: Array[String]): Unit =
     println(gcdSort(utils.loadInputAsListOfStrings("1998.txt").head.split(",").map(_.toInt)))
 
-  private def gcdSort(nums: Array[Int]): Boolean =
+  def gcdSort(nums: Array[Int]): Boolean =
     val spf = sieve(nums.max + 1)
     val uf  = new UnionFind
     nums.foreach { n =>
@@ -21,7 +21,7 @@ object _1998_GcdSortOfAnArray:
       uf.find(x) == uf.find(y)
     }
 
-  private def primeFactors(n: Int, spf: Seq[Int]): Seq[Int] =
+  def primeFactors(n: Int, spf: Seq[Int]): Seq[Int] =
     val factors = mutable.ListBuffer.empty[Int]
     var num     = n
     while num > 1 do
@@ -29,7 +29,7 @@ object _1998_GcdSortOfAnArray:
       num /= spf(num)
     factors.toSeq
 
-  private def sieve(n: Int): Seq[Int] =
+  def sieve(n: Int): Seq[Int] =
     val spf = Array.tabulate(n)(i => i) // init smallest prime factor to the number itself
     (2 to math.sqrt(n).toInt).foreach { i =>
       if spf(i) == i then // only if prime

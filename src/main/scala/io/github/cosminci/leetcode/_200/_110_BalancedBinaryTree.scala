@@ -4,7 +4,7 @@ import io.github.cosminci.utils.TreeNode
 
 object _110_BalancedBinaryTree:
 
-  private def isBalanced(root: TreeNode): Boolean =
+  def isBalanced(root: TreeNode): Boolean =
     def dfs(node: TreeNode): (Boolean, Int) =
       if node == null then return (true, 0)
       val (leftBalanced, leftHeight)   = dfs(node.left)

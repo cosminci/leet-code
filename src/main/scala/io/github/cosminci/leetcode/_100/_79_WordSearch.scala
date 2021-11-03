@@ -19,7 +19,7 @@ object _79_WordSearch:
       )
     )
 
-  private def exist(board: Array[Array[Char]], word: String): Boolean =
+  def exist(board: Array[Array[Char]], word: String): Boolean =
     val visited = mutable.Set.empty[(Int, Int)]
 
     def dfs(i: Int, j: Int, wIdx: Int): Boolean =

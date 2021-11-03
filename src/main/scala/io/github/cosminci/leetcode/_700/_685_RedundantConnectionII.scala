@@ -11,7 +11,7 @@ object _685_RedundantConnectionII:
     println(findRedundantDirectedConnection(Array(Array(2, 1), Array(3, 1), Array(4, 2), Array(1, 4))).toList)
     println(findRedundantDirectedConnection(Array(Array(1, 2), Array(1, 3), Array(2, 3))).toList)
 
-  private def findRedundantDirectedConnection(edges: Array[Array[Int]]): Array[Int] =
+  def findRedundantDirectedConnection(edges: Array[Array[Int]]): Array[Int] =
     val inEdges   = mutable.Map.empty[Int, mutable.Set[Int]]
     val outEdges  = mutable.Map.empty[Int, mutable.Set[Int]]
     val nodes     = mutable.Set.empty[Int]

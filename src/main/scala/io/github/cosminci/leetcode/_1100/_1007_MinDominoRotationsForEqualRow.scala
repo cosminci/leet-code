@@ -5,7 +5,7 @@ object _1007_MinDominoRotationsForEqualRow:
     println(minDominoRotations(Array(1, 1, 1, 1, 2, 1), Array(2, 1, 1, 1, 2, 1)))
     println(minDominoRotations2(Array(2, 1, 2, 4, 2, 2), Array(5, 2, 6, 2, 3, 2)))
 
-  private def minDominoRotations(tops: Array[Int], bottoms: Array[Int]): Int =
+  def minDominoRotations(tops: Array[Int], bottoms: Array[Int]): Int =
     if tops.length == 1 then return 0
 
     val dominoes = tops.zip(bottoms)
@@ -27,7 +27,7 @@ object _1007_MinDominoRotationsForEqualRow:
       }
       .min
 
-  private def minDominoRotations2(tops: Array[Int], bottoms: Array[Int]): Int =
+  def minDominoRotations2(tops: Array[Int], bottoms: Array[Int]): Int =
     if tops.length == 1 then return 0
 
     val dominoes              = tops.zip(bottoms)

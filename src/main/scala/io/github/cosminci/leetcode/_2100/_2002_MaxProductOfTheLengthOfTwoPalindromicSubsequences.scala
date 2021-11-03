@@ -8,7 +8,7 @@ object _2002_MaxProductOfTheLengthOfTwoPalindromicSubsequences:
     println(maxProduct("leetcodecom"))
     println(maxProduct("accbcaxxcxx"))
 
-  private def maxProduct(s: String): Int =
+  def maxProduct(s: String): Int =
     def dfs(idx: Int, ss1: String, ss2: String): Int =
       if idx == s.length then
         return if utils.isPalindrome(ss1) && utils.isPalindrome(ss2) then ss1.length * ss2.length else 0

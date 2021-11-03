@@ -6,7 +6,7 @@ object _32_LongestValidParantheses:
     println((longestValidParentheses(")()())")))
     println((longestValidParentheses("")))
 
-  private def longestValidParentheses(s: String): Int =
+  def longestValidParentheses(s: String): Int =
     var max = 0
 
     var (l, r) = (0, 0)

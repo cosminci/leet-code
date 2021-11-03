@@ -5,7 +5,7 @@ object _137_SingleNumberII:
     println(singleNumber(Array(2, 2, 3, 2)))
     println(singleNumber(Array(0, 1, 0, 1, 0, 1, 99)))
 
-  private def singleNumber(nums: Array[Int]): Int =
+  def singleNumber(nums: Array[Int]): Int =
     (0 until 32).foldLeft(0) {
       case (answer, bitIdx) =>
         val bitCount = nums.foldLeft(0) {

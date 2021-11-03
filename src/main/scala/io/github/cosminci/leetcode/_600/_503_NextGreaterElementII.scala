@@ -7,7 +7,7 @@ object _503_NextGreaterElementII:
     println(nextGreaterElements(Array(5, 4, 3, 2, 1)).toSeq)
     println(nextGreaterElements(Array(1, 2, 3, 4, 3)).toSeq)
 
-  private def nextGreaterElements(nums: Array[Int]): Array[Int] =
+  def nextGreaterElements(nums: Array[Int]): Array[Int] =
     val stack  = mutable.Stack.from(nums)
     val result = Array.fill(nums.length)(-1)
 

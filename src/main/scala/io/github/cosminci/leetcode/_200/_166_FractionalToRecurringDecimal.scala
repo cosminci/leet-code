@@ -9,7 +9,7 @@ object _166_FractionalToRecurringDecimal:
     println(fractionToDecimal(1, 6))
     println(fractionToDecimal(4, 333))
 
-  private def fractionToDecimal(num: Int, den: Int): String =
+  def fractionToDecimal(num: Int, den: Int): String =
     if num == 0 then return "0"
 
     val result = new StringBuilder()

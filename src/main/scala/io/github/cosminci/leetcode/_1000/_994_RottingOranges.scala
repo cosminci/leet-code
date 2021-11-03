@@ -8,7 +8,7 @@ object _994_RottingOranges:
   def main(args: Array[String]): Unit =
     println(orangesRotting(Array(Array(1, 2))))
 
-  private def orangesRotting(grid: Array[Array[Int]]): Int =
+  def orangesRotting(grid: Array[Array[Int]]): Int =
     val (m, n) = (grid.length, grid.head.length)
 
     val rottenSources = for

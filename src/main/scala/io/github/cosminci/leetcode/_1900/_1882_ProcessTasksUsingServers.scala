@@ -6,7 +6,7 @@ object _1882_ProcessTasksUsingServers:
   def main(args: Array[String]): Unit =
     println(assignTasks(Array(3, 3, 2), Array(1, 2, 3, 2, 1, 2)).toList)
 
-  private def assignTasks(servers: Array[Int], tasks: Array[Int]): Array[Int] =
+  def assignTasks(servers: Array[Int], tasks: Array[Int]): Array[Int] =
     val result = Array.ofDim[Int](tasks.length)
 
     val unscheduledTasks = tasks.zipWithIndex.map { case (duration, scheduleTs) =>

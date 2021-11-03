@@ -11,7 +11,7 @@ object _139_WordBreak:
     println(wordBreakTopDown("applepenapple", List("apple", "pen")))
     println(wordBreakBottomUp("applepenapple", List("apple", "pen")))
 
-  private def wordBreakBottomUp(s: String, wordDict: List[String]): Boolean =
+  def wordBreakBottomUp(s: String, wordDict: List[String]): Boolean =
     val dictionary = wordDict.toSet
 
     val dp = Array.ofDim[Boolean](s.length + 1)
@@ -25,7 +25,7 @@ object _139_WordBreak:
 
     dp.head
 
-  private def wordBreakTopDown(input: String, wordDict: List[String]): Boolean =
+  def wordBreakTopDown(input: String, wordDict: List[String]): Boolean =
     val dictionary = wordDict.toSet
 
     val mem = mutable.Map.empty[String, Boolean]

@@ -16,7 +16,7 @@ object _705_DesignHashSet:
 
   class MyHashSet():
     private val buckets        = Array.fill(1000)(mutable.ListBuffer.empty[Int])
-    private def hash(key: Int) = ((key * 1031237) & 1 << 20) % 5
+    def hash(key: Int) = ((key * 1031237) & 1 << 20) % 5
 
     def add(key: Int) =
       val bucket = hash(key) % buckets.length

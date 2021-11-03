@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._900
 
 object _835_ImageOverlap:
-  private def largestOverlap(img1: Array[Array[Int]], img2: Array[Array[Int]]): Int =
+  def largestOverlap(img1: Array[Array[Int]], img2: Array[Array[Int]]): Int =
     def ones(img: Array[Array[Int]]): Seq[(Int, Int)] = for
       r <- 0 until img.length
       c <- 0 until img(r).length

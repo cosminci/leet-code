@@ -6,7 +6,7 @@ object _1137_NthTribonacciNumber {
     println(tribonacci(25))
   }
 
-  private def tribonacci(n: Int): Int =
+  def tribonacci(n: Int): Int =
     if (n == 0) 0
     else
       (3 to n).foldLeft(Seq(0, 1, 1)) {

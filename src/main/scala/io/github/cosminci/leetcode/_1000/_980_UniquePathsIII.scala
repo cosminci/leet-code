@@ -14,7 +14,7 @@ object _980_UniquePathsIII:
       )
     )
 
-  private def uniquePathsIII(grid: Array[Array[Int]]): Int =
+  def uniquePathsIII(grid: Array[Array[Int]]): Int =
     val cells          = grid.indices.flatMap(r => grid(r).indices.map(c => (r, c)))
     val Some((x0, y0)) = cells.find { case (x, y) => grid(x)(y) == 1 }
     val emptyCellCount = cells.count { case (x, y) => grid(x)(y) == 0 }

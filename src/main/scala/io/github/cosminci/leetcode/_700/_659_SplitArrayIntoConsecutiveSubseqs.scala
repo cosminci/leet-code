@@ -6,7 +6,7 @@ object _659_SplitArrayIntoConsecutiveSubseqs:
     println(isPossible(Array(1, 2, 3, 3, 4, 4, 5, 5)))
     println(isPossible(Array(1, 2, 3, 4, 4, 5)))
 
-  private def isPossible(nums: Array[Int]): Boolean =
+  def isPossible(nums: Array[Int]): Boolean =
     nums.foldLeft(Map.empty[Int, Int], nums.groupBy(identity).view.mapValues(_.length).toMap) {
       case ((subseqEndCounts, freqCounts), n) =>
         val newFreqCounts = freqCounts.updated(n, freqCounts(n) - 1)

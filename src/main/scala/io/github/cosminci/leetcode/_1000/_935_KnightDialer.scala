@@ -4,7 +4,7 @@ object _935_KnightDialer:
   def main(args: Array[String]): Unit =
     println(knightDialer(4))
 
-  private def knightDialer(n: Int): Int =
+  def knightDialer(n: Int): Int =
     val sources = Map(
       0 -> Seq(4, 6),
       1 -> Seq(6, 8),

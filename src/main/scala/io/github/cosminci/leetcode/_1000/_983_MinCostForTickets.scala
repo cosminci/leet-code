@@ -13,7 +13,7 @@ object _983_MinCostForTickets:
       println(s"Bottom up: ${mincostTicketsBottomUp(days, costs)}")
     }
 
-  private def mincostTicketsBottomUp(days: Array[Int], costs: Array[Int]): Int =
+  def mincostTicketsBottomUp(days: Array[Int], costs: Array[Int]): Int =
     val dp     = Array.ofDim[Int](days.last + 1)
     val daySet = Set.from(days)
     dp(0) = 0
@@ -28,7 +28,7 @@ object _983_MinCostForTickets:
     }
     dp.last
 
-  private def mincostTicketsTopDown(days: Array[Int], costs: Array[Int]): Int =
+  def mincostTicketsTopDown(days: Array[Int], costs: Array[Int]): Int =
     val mem = mutable.Map.empty[(Int, Int), Int]
     def dfs(dayIdx: Int, validThrough: Int): Int =
       if dayIdx == days.length then return 0

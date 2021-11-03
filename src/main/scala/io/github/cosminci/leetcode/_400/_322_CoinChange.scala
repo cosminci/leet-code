@@ -15,7 +15,7 @@ object _322_CoinChange:
       println(s"BottomUp: ${coinChangeBottomUp(coins, amount)}")
     }
 
-  private def coinChangeBottomUp(coins: Array[Int], amount: Int): Int =
+  def coinChangeBottomUp(coins: Array[Int], amount: Int): Int =
     val dp = Array.fill[Int](amount + 1)(amount + 1)
     dp(0) = 0
     (1 to amount).foreach { a =>
@@ -25,7 +25,7 @@ object _322_CoinChange:
     }
     if dp.last != amount + 1 then dp.last else -1
 
-  private def coinChangeTopDown(coins: Array[Int], amount: Int): Int =
+  def coinChangeTopDown(coins: Array[Int], amount: Int): Int =
     if amount == 0 then return 0
 
     val mem = mutable.Map.empty[Int, Int]

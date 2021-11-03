@@ -7,7 +7,7 @@ object _714_BestTimeToBuyAndSellStockWithTransactionFee:
     println(maxProfit(Array(1, 3, 2, 8, 4, 9), 2))
     println(maxProfit(Array(1, 3, 7, 5, 10, 3), 3))
 
-  private def maxProfit(prices: Array[Int], fee: Int): Int =
+  def maxProfit(prices: Array[Int], fee: Int): Int =
     prices.tail
       .foldLeft(0, -prices.head) { case ((sold, bought), price) =>
         (math.max(bought + price - fee, sold), math.max(bought, sold - price))

@@ -4,7 +4,7 @@ object _526_BeautifulArrangement:
   def main(args: Array[String]): Unit =
     println(countArrangement(10))
 
-  private def countArrangement(n: Int): Int =
+  def countArrangement(n: Int): Int =
     def beautiful(i: Int, j: Int) = i % j == 0 || j % i == 0
 
     def dfs(availableBitmask: Int, idx: Int): Int =

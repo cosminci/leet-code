@@ -7,7 +7,7 @@ object _55_JumpGame:
     println(canJump(Array(2, 3, 1, 1, 4)))
     println(canJump(Array(3, 2, 1, 0, 4)))
 
-  private def canJump(nums: Array[Int]): Boolean =
+  def canJump(nums: Array[Int]): Boolean =
     nums.indices.foldLeft(0) { case (max, i) =>
       if (max < i) return false
       math.max(max, i + nums(i))

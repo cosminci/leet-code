@@ -4,7 +4,7 @@ object _838_PushDominoes:
   def main(args: Array[String]): Unit =
     println(pushDominoes(".L.R...LR..L.."))
 
-  private def pushDominoes(dominoes: String): String =
+  def pushDominoes(dominoes: String): String =
     val closestRight = Array.ofDim[Int](dominoes.length)
     dominoes.indices.foreach { i =>
       closestRight(i) =

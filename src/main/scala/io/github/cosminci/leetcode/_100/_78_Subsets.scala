@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._100
 import scala.collection.mutable
 
 object _78_Subsets:
-  private def subsets(nums: Array[Int]): List[List[Int]] =
+  def subsets(nums: Array[Int]): List[List[Int]] =
     val mem = mutable.Map.empty[Int, List[List[Int]]]
 
     def dfs(idx: Int): List[List[Int]] =

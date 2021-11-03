@@ -7,7 +7,7 @@ object _556_NextGreaterElementIII:
     println(nextGreaterElement(230241))
     println(nextGreaterElement(1))
 
-  private def nextGreaterElement(n: Int): Int =
+  def nextGreaterElement(n: Int): Int =
     val num = n.toString.toCharArray
 
     def swap(i: Int, j: Int) =

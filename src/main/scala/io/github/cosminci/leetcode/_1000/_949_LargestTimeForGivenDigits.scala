@@ -7,7 +7,7 @@ object _949_LargestTimeForGivenDigits:
     println(largestTimeFromDigits(Array(0, 4, 0, 0)))
     println(largestTimeFromDigits(Array(1, 9, 0, 6)))
 
-  private def largestTimeFromDigits(arr: Array[Int]): String =
+  def largestTimeFromDigits(arr: Array[Int]): String =
     val candidates = arr.permutations
       .filter { case Array(hour1, hour2, min1, min2) =>
         hour1 * 10 + hour2 < 24 && min1 * 10 + min2 < 60

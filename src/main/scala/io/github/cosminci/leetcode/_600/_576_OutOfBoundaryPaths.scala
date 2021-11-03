@@ -7,7 +7,7 @@ object _576_OutOfBoundaryPaths:
     println(findPaths(2, 2, 2, 0, 0))
     println(findPaths(1, 3, 3, 0, 1))
 
-  private def findPaths(m: Int, n: Int, maxMove: Int, startRow: Int, startColumn: Int): Int =
+  def findPaths(m: Int, n: Int, maxMove: Int, startRow: Int, startColumn: Int): Int =
     val mem = mutable.Map.empty[(Int, Int, Int), Long]
     def dfs(r: Int, c: Int, moves: Int): Long =
       mem.getOrElseUpdate((r, c, moves), {

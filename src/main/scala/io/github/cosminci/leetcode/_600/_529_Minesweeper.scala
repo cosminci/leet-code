@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._600
 import scala.collection.mutable
 
 object _529_Minesweeper:
-  private def updateBoard(board: Array[Array[Char]], click: Array[Int]): Array[Array[Char]] =
+  def updateBoard(board: Array[Array[Char]], click: Array[Int]): Array[Array[Char]] =
     val Array(r, c) = click
     if board(r)(c) == 'M' then
       board(r)(c) = 'X'

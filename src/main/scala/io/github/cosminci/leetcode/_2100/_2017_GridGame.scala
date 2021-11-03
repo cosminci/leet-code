@@ -6,7 +6,7 @@ object _2017_GridGame:
     println(gridGame(Array(Array(3, 3, 1), Array(8, 5, 2))))
     println(gridGame(Array(Array(1, 3, 1, 15), Array(1, 3, 3, 1))))
 
-  private def gridGame(grid: Array[Array[Int]]): Long =
+  def gridGame(grid: Array[Array[Int]]): Long =
     val suffixSums = grid.head.scanRight(0L)(_ + _).drop(1)
     val prefixSums = grid.last.scanLeft(0L)(_ + _).dropRight(1)
 

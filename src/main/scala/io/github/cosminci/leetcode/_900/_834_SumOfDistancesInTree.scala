@@ -6,7 +6,7 @@ object _834_SumOfDistancesInTree:
   def main(args: Array[String]): Unit =
     println(sumOfDistancesInTree(6, Array(Array(0, 1), Array(0, 2), Array(2, 3), Array(2, 4), Array(2, 5))).toList)
 
-  private def sumOfDistancesInTree(n: Int, edges: Array[Array[Int]]): Array[Int] =
+  def sumOfDistancesInTree(n: Int, edges: Array[Array[Int]]): Array[Int] =
     val adjMatrix = edges.foldLeft((0 until n).map(_ -> Seq.empty[Int]).toMap) { case (prevMatrix, Array(n1, n2)) =>
       prevMatrix
         .updated(n1, prevMatrix(n1).appended(n2))

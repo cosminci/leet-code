@@ -20,7 +20,7 @@ object _1958_CheckIfMoveIsLegal:
       )
     )
 
-  private def checkMove(board: Array[Array[Char]], xTarget: Int, yTarget: Int, color: Char): Boolean =
+  def checkMove(board: Array[Array[Char]], xTarget: Int, yTarget: Int, color: Char): Boolean =
     val directions = Seq((-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1))
 
     def isLegal(direction: (Int, Int)): Boolean =

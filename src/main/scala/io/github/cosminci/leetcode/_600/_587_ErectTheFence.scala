@@ -10,10 +10,7 @@ object _587_ErectTheFence:
 
   private case class Point(x: Int, y: Int)
 
-  private def orientation(p1: Point, p2: Point, p3: Point): Int =
-    (p2.y - p1.y) * (p3.x - p2.x) - (p2.x - p1.x) * (p3.y - p2.y)
-
-  private def outerTrees(trees: Array[Array[Int]]): Array[Array[Int]] =
+  def outerTrees(trees: Array[Array[Int]]): Array[Array[Int]] =
     given Ordering[Point] = (p1, p2) => if p1.x == p2.x then p1.y.compare(p2.y) else p1.x.compare(p2.x)
     val points            = trees.map { case Array(x, y) => Point(x, y) }.sorted
 
@@ -32,3 +29,6 @@ object _587_ErectTheFence:
       hull.push(points(i))
     }
     hull.distinct.toArray.map(p => Array(p.x, p.y))
+
+  private def orientation(p1: Point, p2: Point, p3: Point): Int =
+    (p2.y - p1.y) * (p3.x - p2.x) - (p2.x - p1.x) * (p3.y - p2.y)

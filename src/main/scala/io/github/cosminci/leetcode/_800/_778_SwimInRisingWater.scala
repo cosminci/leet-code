@@ -19,7 +19,7 @@ object _778_SwimInRisingWater:
       println(swimInWaterDjikstra(grid))
     }
 
-  private def swimInWaterDjikstra(grid: Array[Array[Int]]): Int =
+  def swimInWaterDjikstra(grid: Array[Array[Int]]): Int =
     given Ordering[Position] = (p1, p2) => p2.maxDepth.compare(p1.maxDepth)
 
     val toVisit = mutable.PriorityQueue(Position(0, 0, grid(0)(0)))
@@ -34,14 +34,14 @@ object _778_SwimInRisingWater:
       }
     0
 
-  private def neighbours(x: Int, y: Int, grid: Array[Array[Int]]): Seq[(Int, Int)] =
+  def neighbours(x: Int, y: Int, grid: Array[Array[Int]]): Seq[(Int, Int)] =
     val above = Option.when(x > 0)((x - 1, y))
     val left  = Option.when(y > 0)((x, y - 1))
     val right = Option.when(y < grid(x).length - 1)((x, y + 1))
     val below = Option.when(x < grid.length - 1)((x + 1, y))
     List(above, left, right, below).flatten
 
-  private def swimInWaterDFSLoop(grid: Array[Array[Int]]): Int =
+  def swimInWaterDFSLoop(grid: Array[Array[Int]]): Int =
     val origins = mutable.Set((0, 0))
     var time    = grid(0)(0)
     while true do
@@ -57,7 +57,7 @@ object _778_SwimInRisingWater:
       time += 1
     time
 
-  private def reachable(x: Int, y: Int, elevation: Int, grid: Array[Array[Int]]): Seq[(Int, Int)] =
+  def reachable(x: Int, y: Int, elevation: Int, grid: Array[Array[Int]]): Seq[(Int, Int)] =
     val above = Option.when(x > 0 && grid(x - 1)(y) <= elevation)((x - 1, y))
     val left  = Option.when(y > 0 && grid(x)(y - 1) <= elevation)((x, y - 1))
     val right = Option.when(y < grid(x).length - 1 && grid(x)(y + 1) <= elevation)((x, y + 1))

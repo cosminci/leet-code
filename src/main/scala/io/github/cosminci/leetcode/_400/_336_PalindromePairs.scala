@@ -5,7 +5,7 @@ object _336_PalindromePairs:
     println(palindromePairs(Array("a", "")))
     println(palindromePairs(Array("abcd", "dcba", "lls", "s", "sssll")))
 
-  private def palindromePairs(words: Array[String]): List[List[Int]] =
+  def palindromePairs(words: Array[String]): List[List[Int]] =
     val wordIndices = words.zipWithIndex.toMap
 
     val reversedPairs = wordIndices.collect {

@@ -6,7 +6,7 @@ object _84_LargestRectangleInHistogram:
   def main(args: Array[String]): Unit =
     println(largestRectangleArea(Array(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1)))
 
-  private def largestRectangleArea(heights: Array[Int]): Int =
+  def largestRectangleArea(heights: Array[Int]): Int =
     var maxBlock          = Block(0, 0)
     val paddedHistogram   = heights.prepended(0).appended(0)
     val increasingHeights = mutable.Stack.empty[Block]
@@ -31,4 +31,4 @@ object _84_LargestRectangleInHistogram:
     }
     maxBlock.width * maxBlock.height
 
-  final case class Block(height: Int, width: Int)
+  private case class Block(height: Int, width: Int)

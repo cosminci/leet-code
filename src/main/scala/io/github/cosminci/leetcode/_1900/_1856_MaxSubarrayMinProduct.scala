@@ -8,7 +8,7 @@ object _1856_MaxSubarrayMinProduct:
     println(maxSumMinProduct(Array(2, 3, 3, 1, 2)))
     println(maxSumMinProduct(Array(3, 1, 5, 6, 4, 2)))
 
-  private def maxSumMinProduct(nums: Array[Int]): Int =
+  def maxSumMinProduct(nums: Array[Int]): Int =
     var max        = BigInt(0)
     val prefixSums = nums.scanLeft(BigInt(0))(_ + _)
 

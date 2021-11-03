@@ -4,7 +4,7 @@ object _522_LongestUncommonSubsequenceII:
   def main(args: Array[String]): Unit =
     println(findLUSlength(Array("abce", "abcd")))
 
-  private def findLUSlength(strs: Array[String]): Int =
+  def findLUSlength(strs: Array[String]): Int =
     strs.sortInPlaceBy(-_.length)
 
     strs.indices
@@ -16,7 +16,7 @@ object _522_LongestUncommonSubsequenceII:
       .map(strs(_).length)
       .getOrElse(-1)
 
-  private def isSubsequence(target: String, source: String): Boolean =
+  def isSubsequence(target: String, source: String): Boolean =
     if target.length > source.length then return false
     var (i, j) = (0, 0)
     while i < source.length && j < target.length do

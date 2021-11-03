@@ -5,7 +5,7 @@ object _1968_ArrayWithElementsNotEqualToAverageOfNeighbours:
     println(rearrangeArraySort(Array(1, 2, 3, 4, 5)).toList)
     println(rearrangeArraySwap(Array(1, 2, 3, 4, 5)).toList)
 
-  private def rearrangeArraySwap(nums: Array[Int]): Array[Int] =
+  def rearrangeArraySwap(nums: Array[Int]): Array[Int] =
     var order = nums(0) <= nums(1)
     (1 until nums.length - 1).foreach { i =>
       if order ^ (nums(i + 1) < nums(i)) then
@@ -16,5 +16,5 @@ object _1968_ArrayWithElementsNotEqualToAverageOfNeighbours:
     }
     nums
 
-  private def rearrangeArraySort(nums: Array[Int]): Array[Int] =
+  def rearrangeArraySort(nums: Array[Int]): Array[Int] =
     nums.sorted.grouped(2).map(_.reverse).flatten.toArray

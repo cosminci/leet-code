@@ -5,7 +5,7 @@ object _477_TotalHammingDistance:
     println(totalHammingDistance(Array(4, 14, 2)))
     println(totalHammingDistance(Array(4, 14, 4)))
 
-  private def totalHammingDistance(nums: Array[Int]): Int =
+  def totalHammingDistance(nums: Array[Int]): Int =
     (0 until 32)
       .map(i => nums.fold(0)((bitCount, n) => bitCount + ((n >> i) & 1)))
       .foldLeft(0)((total, bitCount) => total + bitCount * (nums.length - bitCount))

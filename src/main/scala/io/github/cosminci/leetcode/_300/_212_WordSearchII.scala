@@ -41,7 +41,7 @@ object _212_WordSearchII:
     }
     matches.toList
 
-  private def buildPrefixTrie(words: Array[String]) =
+  def buildPrefixTrie(words: Array[String]) =
     val root = TrieNode(mutable.Map.empty, terminator = false)
     words.foreach { w =>
       var node = root

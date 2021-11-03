@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._800
 import scala.collection.mutable
 
 object _785_IsGraphBipartite:
-  private def isBipartite(graph: Array[Array[Int]]): Boolean =
+  def isBipartite(graph: Array[Array[Int]]): Boolean =
     val colors = Array.ofDim[Int](graph.length)
 
     graph.indices.foreach { node =>

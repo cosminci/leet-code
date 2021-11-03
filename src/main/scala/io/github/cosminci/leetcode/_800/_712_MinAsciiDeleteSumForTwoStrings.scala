@@ -11,7 +11,7 @@ object _712_MinAsciiDeleteSumForTwoStrings:
     println(minimumDeleteSumTopDown("delete", "leet"))
     println(minimumDeleteSumBottomUp("delete", "leet"))
 
-  private def minimumDeleteSumTopDown(s1: String, s2: String): Int =
+  def minimumDeleteSumTopDown(s1: String, s2: String): Int =
     val mem = mutable.Map.empty[(Int, Int), Int]
 
     def dfs(i: Int, j: Int): Int =
@@ -27,7 +27,7 @@ object _712_MinAsciiDeleteSumForTwoStrings:
 
     dfs(i = 0, j = 0)
 
-  private def minimumDeleteSumBottomUp(s1: String, s2: String): Int =
+  def minimumDeleteSumBottomUp(s1: String, s2: String): Int =
     val (m, n)      = (s1.length, s2.length)
     val s1PrefixSum = s1.scanLeft(0)(_ + _).tail
     val s2PrefixSum = s2.scanLeft(0)(_ + _).tail

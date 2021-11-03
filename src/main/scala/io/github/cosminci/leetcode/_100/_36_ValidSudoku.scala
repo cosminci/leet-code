@@ -19,7 +19,7 @@ object _36_ValidSudoku:
       )
     )
 
-  private def isValidSudoku(board: Array[Array[Char]]): Boolean =
+  def isValidSudoku(board: Array[Array[Char]]): Boolean =
     val rowBitArray    = Array.ofDim[Boolean](9, 9)
     val colBitArray    = Array.ofDim[Boolean](9, 9)
     val squareBitArray = Array.ofDim[Boolean](9, 9)

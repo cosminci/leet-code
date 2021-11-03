@@ -10,7 +10,7 @@ object _131_PalindromePartitioning:
   def main(args: Array[String]): Unit =
     println(partition("bb"))
 
-  private def partition(s: String): List[List[String]] =
+  def partition(s: String): List[List[String]] =
     if s.length == 1 then return List(List(s.head.toString))
     if mem.contains(s) then return mem(s)
 

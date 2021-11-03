@@ -5,7 +5,7 @@ object _327_CountOfRangeSum:
   def main(args: Array[String]): Unit =
     print(countRangeSum(Array(5, 2, -2, 4, 1, 3, -2), 0, 4))
 
-  private def countRangeSum(nums: Array[Int], lower: Int, upper: Int): Int =
+  def countRangeSum(nums: Array[Int], lower: Int, upper: Int): Int =
     val prefixSums = nums.scanLeft(0L)(_ + _)
     val temp       = Array.ofDim[Long](prefixSums.length)
     var count      = 0

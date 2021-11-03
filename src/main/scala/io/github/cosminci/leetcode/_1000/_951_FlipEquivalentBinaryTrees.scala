@@ -6,7 +6,7 @@ object _951_FlipEquivalentBinaryTrees:
   def main(args: Array[String]): Unit =
     println(flipEquiv(new TreeNode(2), new TreeNode(2)))
 
-  private def flipEquiv(root1: TreeNode, root2: TreeNode): Boolean =
+  def flipEquiv(root1: TreeNode, root2: TreeNode): Boolean =
     def dfs(node1: TreeNode, node2: TreeNode): Boolean =
       if node1 == null && node2 == null then return true
       if node1 == null || node2 == null || node1.value != node2.value then return false

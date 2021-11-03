@@ -10,7 +10,7 @@ object _220_ContainsDuplicateIII {
     println(containsNearbyAlmostDuplicate(Array(Int.MinValue, Int.MaxValue), 1, 1))
   }
 
-  private def containsNearbyAlmostDuplicate(nums: Array[Int], k: Int, t: Int): Boolean = {
+  def containsNearbyAlmostDuplicate(nums: Array[Int], k: Int, t: Int): Boolean = {
     val slidingWindow = {
       given Ordering[Int] = (i, j) => nums(i).compare(nums(j))
       mutable.TreeSet.empty[Int]

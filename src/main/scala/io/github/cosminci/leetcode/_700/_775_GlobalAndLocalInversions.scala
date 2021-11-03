@@ -8,6 +8,6 @@ object _775_GlobalAndLocalInversions {
     println(isIdealPermutation(Array(1, 2, 0)))
   }
 
-  private def isIdealPermutation(nums: Array[Int]): Boolean =
+  def isIdealPermutation(nums: Array[Int]): Boolean =
     nums.indices.forall(i => math.abs(nums(i) - i) <= 1)
 }

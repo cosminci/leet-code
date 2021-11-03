@@ -7,7 +7,7 @@ object _787_CheapestFlightsWithinKStops:
     println(findCheapestPrice(3, Array(Array(0, 1, 100), Array(1, 2, 100), Array(0, 2, 500)), 0, 2, 0))
     println(findCheapestPriceBellmanFord(3, Array(Array(0, 1, 100), Array(1, 2, 100), Array(0, 2, 500)), 0, 2, 0))
 
-  private def findCheapestPriceBellmanFord(n: Int, flights: Array[Array[Int]], src: Int, dst: Int, k: Int): Int =
+  def findCheapestPriceBellmanFord(n: Int, flights: Array[Array[Int]], src: Int, dst: Int, k: Int): Int =
     var shortestCost = Array.fill[Int](n + 1)(Int.MaxValue)
     shortestCost(src) = 0
 
@@ -22,7 +22,7 @@ object _787_CheapestFlightsWithinKStops:
 
     if shortestCost(dst) != Int.MaxValue then shortestCost(dst) else -1
 
-  private def findCheapestPrice(n: Int, flights: Array[Array[Int]], src: Int, dst: Int, k: Int): Int =
+  def findCheapestPrice(n: Int, flights: Array[Array[Int]], src: Int, dst: Int, k: Int): Int =
     val adjacencyList = flights.foldLeft(Map.empty[Int, Seq[(Int, Int)]]) { case (adjList, Array(from, to, cost)) =>
       adjList.updatedWith(from) {
         case None               => Some(Seq((to, cost)))

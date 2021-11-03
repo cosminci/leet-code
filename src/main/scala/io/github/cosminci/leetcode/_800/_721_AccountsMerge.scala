@@ -25,7 +25,7 @@ object _721_AccountsMerge:
       )
     )
 
-  private def accountsMerge(accounts: List[List[String]]): List[List[String]] =
+  def accountsMerge(accounts: List[List[String]]): List[List[String]] =
     val accountEmailSets = mutable.Map.empty[String, mutable.Set[String]]
     val emailToAccount   = mutable.Map.empty[String, String]
     val accountToName    = mutable.Map.empty[String, String]

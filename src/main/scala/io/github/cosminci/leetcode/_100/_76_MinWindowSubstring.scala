@@ -9,7 +9,7 @@ object _76_MinWindowSubstring:
     println(minWindow("a", "aa"))
     println(minWindow("a", "b"))
 
-  private def minWindow(s: String, t: String): String =
+  def minWindow(s: String, t: String): String =
     if t.length > s.length then return ""
 
     val tChars = t.foldLeft(Map.empty[Char, Int]) { case (counts, char) =>

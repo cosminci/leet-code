@@ -4,7 +4,7 @@ object _874_WalkingRobotSimulation:
   def main(args: Array[String]): Unit =
     println(robotSim(Array(4, -1, 3), Array.empty))
 
-  private def robotSim(commands: Array[Int], obstacles: Array[Array[Int]]): Int =
+  def robotSim(commands: Array[Int], obstacles: Array[Array[Int]]): Int =
     val delta = Seq((0, 1), (1, 0), (0, -1), (-1, 0))
     val obst  = Set.from(obstacles.map(arr => (arr(0), arr(1))))
 

@@ -18,7 +18,7 @@ object _417_PacificAtlanticWaterFlow:
       )
     )
 
-  private def pacificAtlantic(heights: Array[Array[Int]]): List[List[Int]] =
+  def pacificAtlantic(heights: Array[Array[Int]]): List[List[Int]] =
     val reachable = Array.ofDim[Int](heights.length, heights.head.length)
 
     val toVisitPacific = mutable.Queue.from {

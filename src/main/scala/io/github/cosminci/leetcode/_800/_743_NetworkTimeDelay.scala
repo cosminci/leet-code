@@ -5,7 +5,7 @@ import scala.collection.mutable
 object _743_NetworkTimeDelay:
   def main(args: Array[String]): Unit =
     println(networkDelayTime(Array(Array(1, 2, 1), Array(2, 3, 2), Array(1, 3, 4)), 3, 1))
-  private def networkDelayTime(times: Array[Array[Int]], n: Int, k: Int): Int =
+  def networkDelayTime(times: Array[Array[Int]], n: Int, k: Int): Int =
     val adjList = mutable.Map.empty[Int, mutable.Map[Int, Int]]
     (1 to n).foreach { node =>
       adjList.update(node, mutable.Map.empty)

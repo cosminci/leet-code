@@ -4,7 +4,7 @@ object _2003_SmallestMissingGeneticValueInEachSubtree:
   def main(args: Array[String]): Unit =
     print(smallestMissingValueSubtree(Array(-1, 0, 1, 0, 3, 3), Array(5, 4, 6, 2, 1, 3)).toSeq)
 
-  private def smallestMissingValueSubtree(parents: Array[Int], nums: Array[Int]): Array[Int] =
+  def smallestMissingValueSubtree(parents: Array[Int], nums: Array[Int]): Array[Int] =
     val n = parents.length
 
     val result           = Array.fill(n)(1)

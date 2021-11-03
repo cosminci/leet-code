@@ -2,7 +2,7 @@ package io.github.cosminci.leetcode._500
 
 object _463_IslandPerimeter:
 
-  private def islandPerimeter(grid: Array[Array[Int]]): Int =
+  def islandPerimeter(grid: Array[Array[Int]]): Int =
     def isWater(x: Int, y: Int): Boolean = x < 0 || x == grid.length || y < 0 || y == grid(x).length || grid(x)(y) == 1
 
     var perimeter = 0

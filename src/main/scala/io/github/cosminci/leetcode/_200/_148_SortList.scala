@@ -6,7 +6,7 @@ object _148_SortList:
   def main(args: Array[String]): Unit =
     println(seq(sortList(linkedList(Seq(3, -4, -3)))))
 
-  private def sortList(head: ListNode): ListNode =
+  def sortList(head: ListNode): ListNode =
     if head == null || head.next == null then return head
 
     val mid       = findMid(head)

@@ -5,7 +5,7 @@ import io.github.cosminci.utils
 import scala.collection.mutable
 
 object _1293_ShortestPathInGridWithObstacleElimination {
-  private def shortestPath(grid: Array[Array[Int]], k: Int): Int = {
+  def shortestPath(grid: Array[Array[Int]], k: Int): Int = {
     val toVisit = mutable.Queue((0, 0, 0, k))
     val visited = mutable.Map((0, 0) -> k)
     val target = (grid.length - 1, grid.head.length - 1)

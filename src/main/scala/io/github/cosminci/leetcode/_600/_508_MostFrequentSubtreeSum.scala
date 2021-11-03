@@ -8,7 +8,7 @@ object _508_MostFrequentSubtreeSum:
   def main(args: Array[String]): Unit =
     println(findFrequentTreeSum(new TreeNode(5, new TreeNode(2), new TreeNode(-5))).toSeq)
 
-  private def findFrequentTreeSum(root: TreeNode): Array[Int] =
+  def findFrequentTreeSum(root: TreeNode): Array[Int] =
     val sumCounts = mutable.Map.empty[Int, Int]
     def dfs(node: TreeNode): Int =
       if node == null then return 0

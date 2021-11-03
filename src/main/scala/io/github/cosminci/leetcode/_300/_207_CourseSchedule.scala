@@ -8,7 +8,7 @@ object _207_CourseSchedule:
     println(canFinish(3, Array(Array(0, 1), Array(0, 2), Array(2, 1))))
 
 
-  private def canFinish(numCourses: Int, prerequisites: Array[Array[Int]]): Boolean =
+  def canFinish(numCourses: Int, prerequisites: Array[Array[Int]]): Boolean =
     val graph = mutable.Map.empty[Int, mutable.ListBuffer[Int]]
     (0 until numCourses).foreach(c => graph.update(c, mutable.ListBuffer.empty))
     prerequisites.foreach { case Array(course, dependency) =>

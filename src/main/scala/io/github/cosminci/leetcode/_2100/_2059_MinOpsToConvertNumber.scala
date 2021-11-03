@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._2100
 import scala.collection.mutable
 
 object _2059_MinOpsToConvertNumber:
-  private def minimumOperations(nums: Array[Int], start: Int, goal: Int): Int =
+  def minimumOperations(nums: Array[Int], start: Int, goal: Int): Int =
     if start == goal then return 0
 
     val toVisit = mutable.Queue((start, 0))

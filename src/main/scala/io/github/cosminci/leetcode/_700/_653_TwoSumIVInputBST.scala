@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _653_TwoSumIVInputBST {
-  private def findTarget(root: TreeNode, k: Int): Boolean = {
+  def findTarget(root: TreeNode, k: Int): Boolean = {
     val seen = mutable.Set.empty[Int]
     val toVisit = mutable.Stack.empty[TreeNode]
     var node = root

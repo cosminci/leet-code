@@ -14,7 +14,7 @@ object _430_FlattenMultiLevelDoublyLinkedList:
     var next: Node  = null
     var child: Node = null
 
-  private def flatten(head: Node): Node =
+  def flatten(head: Node): Node =
     if head == null then return null
 
     var curr = head

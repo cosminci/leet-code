@@ -5,7 +5,7 @@ object _43_MultiplyStrings:
   def main(args: Array[String]): Unit =
     println(multiply("123", "456"))
 
-  private def multiply(num1: String, num2: String): String =
+  def multiply(num1: String, num2: String): String =
     if num1 == "0" || num2 == "0" then return "0"
     val n1 = num1.map(_ - '0').reverse
     val n2 = num2.map(_ - '0').reverse
@@ -28,5 +28,5 @@ object _43_MultiplyStrings:
 
     result.reverse.dropWhile(_ == '0')
 
-  private def updateResult(result: String, index: Int, value: Int) =
+  def updateResult(result: String, index: Int, value: Int) =
     result.updated(index, ('0' + value).toChar)

@@ -11,7 +11,7 @@ object _2055_PlatesBetweenCandles:
       ).toSeq
     )
 
-  private def platesBetweenCandles(s: String, queries: Array[Array[Int]]): Array[Int] = {
+  def platesBetweenCandles(s: String, queries: Array[Array[Int]]): Array[Int] = {
     val prefixCount = s.scanLeft(0) { case (count, pos) => if (pos == '|') count + 1 else count }
     val prevCandle  = s.indices.scanLeft(0) { case (prev, i) => if (s(i) == '|') i else prev }
     val nextCandle  = s.indices.scanRight(s.length) { case (i, next) => if (s(i) == '|') i else next }

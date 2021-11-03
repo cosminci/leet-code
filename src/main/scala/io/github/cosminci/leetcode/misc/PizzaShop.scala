@@ -8,7 +8,7 @@ object PizzaShop:
     println(closestPrice(Array(1100, 900), Array(200), 1000))
     println(closestPrice(Array(800, 800, 800, 800), Array(100), 1000))
 
-  private def closestPrice(pizzas: Array[Int], toppings: Array[Int], budget: Int) =
+  def closestPrice(pizzas: Array[Int], toppings: Array[Int], budget: Int) =
     val toppingMixes = toppings.indices.flatMap(i => (i + 1 until toppings.length).map(j => toppings(i) + toppings(j)))
     val toppingOptions = new java.util.TreeSet[Int]()
     toppingMixes.appendedAll(toppings).appended(0).foreach(toppingOptions.add)

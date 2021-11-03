@@ -5,7 +5,7 @@ object _7_ReverseInteger:
   def main(args: Array[String]): Unit =
     println(reverse(-2147483648))
 
-  private def reverse(n: Int): Int =
+  def reverse(n: Int): Int =
     if n == Int.MinValue then return 0
     var x = n
     var result = 0

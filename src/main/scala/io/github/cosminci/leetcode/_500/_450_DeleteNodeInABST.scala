@@ -4,9 +4,9 @@ import io.github.cosminci.utils.TreeNode
 
 object _450_DeleteNodeInABST:
 
-  private def deleteNode(root: TreeNode, key: Int): TreeNode =
+  def deleteNode(root: TreeNode, key: Int): TreeNode =
     if root == null then null
-    if root.value < key then
+    else if root.value < key then
       root.left = deleteNode(root.left, key)
       root
     else if root.value > key then

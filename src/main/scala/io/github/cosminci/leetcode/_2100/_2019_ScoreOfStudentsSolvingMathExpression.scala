@@ -8,7 +8,7 @@ object _2019_ScoreOfStudentsSolvingMathExpression:
     println(scoreOfStudents("3+5*2", Array(13, 0, 10, 13, 13, 16, 16)))
     println(scoreOfStudents("6+0*1", Array(12, 9, 6, 4, 8, 6)))
 
-  private def scoreOfStudents(s: String, answers: Array[Int]): Int =
+  def scoreOfStudents(s: String, answers: Array[Int]): Int =
     val correctAnswer = (1 to s.length by 2)
       .filter(i => i == s.length || s(i) == '+')
       .foldLeft(0, 0) { case ((sum, j), i) =>

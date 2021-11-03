@@ -4,7 +4,7 @@ object _719_FindKthSmallestPairDistance:
   def main(args: Array[String]): Unit =
     println(smallestDistancePair(Array(9, 10, 7, 10, 6, 1, 5, 4, 9, 8), 18))
 
-  private def smallestDistancePair(nums: Array[Int], k: Int): Int =
+  def smallestDistancePair(nums: Array[Int], k: Int): Int =
     nums.sortInPlace()
 
     def enoughSmallerPairs(value: Int) =

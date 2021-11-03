@@ -5,7 +5,7 @@ object _1592_RearrangeTheSpaces:
   def main(args: Array[String]): Unit =
     println(reorderSpaces("  this   is  a sentence "))
 
-  private def reorderSpaces(text: String): String =
+  def reorderSpaces(text: String): String =
     val spaces = text.count(_ == ' ')
     val words = text.split(" ").collect {
       case w if w.trim.nonEmpty =>

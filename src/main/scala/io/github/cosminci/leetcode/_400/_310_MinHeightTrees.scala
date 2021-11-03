@@ -9,7 +9,7 @@ object _310_MinHeightTrees:
     println(findMinHeightTrees(2, Array(Array(0, 1))))
     println(findMinHeightTrees(1, Array.empty))
 
-  private def findMinHeightTrees(n: Int, edges: Array[Array[Int]]): List[Int] =
+  def findMinHeightTrees(n: Int, edges: Array[Array[Int]]): List[Int] =
     val adjacencyList = mutable.Map.from((0 until n).map(_ -> mutable.Set.empty[Int]))
     edges.foreach { case Array(n1, n2) =>
       adjacencyList(n1).add(n2)

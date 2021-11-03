@@ -6,7 +6,7 @@ object _332_ReconstructItinerary:
   def main(args: Array[String]): Unit =
     println(findItinerary(List(List("JFK", "KUL"), List("JFK", "NRT"), List("NRT", "JFK"))))
 
-  private def findItinerary(tickets: List[List[String]]): List[String] =
+  def findItinerary(tickets: List[List[String]]): List[String] =
     given Ordering[String] = (x, y) => y.compareTo(x)
     val adjMatrix          = mutable.Map.empty[String, mutable.PriorityQueue[String]]
     tickets.foreach { case List(from, to) =>

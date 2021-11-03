@@ -5,7 +5,7 @@ object _169_MajorityElement:
     println(majorityElement(Array(7, 7, 7, 5, 4, 3, 2)))
     println(majorityElementBoyerMoore(Array(7, 7, 7, 5, 4, 3, 7)))
 
-  private def majorityElementBoyerMoore(nums: Array[Int]): Int =
+  def majorityElementBoyerMoore(nums: Array[Int]): Int =
     nums.tail
       .foldLeft((nums.head, 1)) { case ((candidate, count), n) =>
         if count == 0 then (n, 1)
@@ -13,7 +13,7 @@ object _169_MajorityElement:
       }
       ._1
 
-  private def majorityElement(nums: Array[Int]): Int =
+  def majorityElement(nums: Array[Int]): Int =
     nums
       .foldLeft(Map.empty[Int, Int]) { (counts, n) =>
         counts.updatedWith(n) {

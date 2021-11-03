@@ -21,7 +21,7 @@ object _827_MakingALargeIsland:
       )
     )
 
-  private def largestIsland(grid: Array[Array[Int]]): Int =
+  def largestIsland(grid: Array[Array[Int]]): Int =
     var (islands, coordToIsland) = mapIslands(grid)
     if islands.size == 0 then return 1
 
@@ -41,7 +41,7 @@ object _827_MakingALargeIsland:
 
     maxSize
 
-  private def mapIslands(grid: Array[Array[Int]]) =
+  def mapIslands(grid: Array[Array[Int]]) =
     val islands       = mutable.Map.empty[Int, Vector[(Int, Int)]]
     val coordToIsland = mutable.Map.empty[(Int, Int), Int]
 

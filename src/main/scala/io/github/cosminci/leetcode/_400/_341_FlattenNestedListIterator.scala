@@ -15,7 +15,7 @@ object _341_FlattenNestedListIterator {
   class NestedIterator(nestedList: List[NestedInteger]) {
     private var stream = lazyIterator(nestedList)
 
-    private def lazyIterator(list: Seq[NestedInteger]): LazyList[Int] =
+    def lazyIterator(list: Seq[NestedInteger]): LazyList[Int] =
       list.foldRight(LazyList.empty[Int]) {
         case (ni, acc) =>
           if (ni.isInteger) acc.prepended(ni.getInteger)

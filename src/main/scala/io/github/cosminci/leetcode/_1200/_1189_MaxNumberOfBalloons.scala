@@ -7,7 +7,7 @@ object _1189_MaxNumberOfBalloons:
     println(maxNumberOfBalloons("nlaebolko"))
     println(maxNumberOfBalloons("loonbalxballpoon"))
 
-  private def maxNumberOfBalloons(text: String): Int =
+  def maxNumberOfBalloons(text: String): Int =
     val letterCounts = utils.characterCounts(text)
     Map('b' -> 1, 'a' -> 1, 'l' -> 2, 'o' -> 2, 'n' -> 1).map { case (char, weight) =>
       letterCounts(char - 'a') / weight

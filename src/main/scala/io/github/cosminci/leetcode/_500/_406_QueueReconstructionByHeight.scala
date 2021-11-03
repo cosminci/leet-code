@@ -10,7 +10,7 @@ object _406_QueueReconstructionByHeight:
       ).map(_.toList).toList
     )
 
-  private def reconstructQueue(people: Array[Array[Int]]): Array[Array[Int]] =
+  def reconstructQueue(people: Array[Array[Int]]): Array[Array[Int]] =
     val result = new LinkedList[Array[Int]]()
     people
       .sortWith { case (x, y) =>

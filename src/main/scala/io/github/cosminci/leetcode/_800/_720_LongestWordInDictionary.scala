@@ -7,7 +7,7 @@ object _720_LongestWordInDictionary:
     println(longestWord(Array("w", "wo", "wor", "worl", "world")))
     println(longestWord(Array("a", "banana", "app", "appl", "ap", "apply", "apple")))
 
-  private def longestWord(words: Array[String]): String =
+  def longestWord(words: Array[String]): String =
     val prefixGroupsByLength = words.groupBy(_.length).toSeq.sortBy(_._1).map(_._2)
 
     var prevPrefixes = Set("")

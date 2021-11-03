@@ -43,14 +43,14 @@ object _146_LRUCache:
           add(node)
           kvStore.update(key, node)
 
-    private def add(node: ListNode): Unit =
+    def add(node: ListNode): Unit =
       val last = lastDummy.prev
       last.next = node
       lastDummy.prev = node
       node.prev = last
       node.next = lastDummy
 
-    private def remove(node: ListNode): Unit =
+    def remove(node: ListNode): Unit =
       val (n, p) = (node.next, node.prev)
       p.next = n
       n.prev = p

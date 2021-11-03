@@ -4,7 +4,7 @@ object _922_SortArrayByParityII:
   def main(args: Array[String]): Unit =
     println(sortArrayByParityII(Array(1, 1, 1, 2, 2, 2)).toSeq)
 
-  private def sortArrayByParityII(nums: Array[Int]): Array[Int] =
+  def sortArrayByParityII(nums: Array[Int]): Array[Int] =
     def swap(i: Int, j: Int) =
       val tmp = nums(i)
       nums(i) = nums(j)

@@ -15,7 +15,7 @@ object _752_TransformToChessboard:
       )
     )
 
-  private def movesToChessboard(board: Array[Array[Int]]): Int =
+  def movesToChessboard(board: Array[Array[Int]]): Int =
     val n = board.length
     for
       i <- 0 until n

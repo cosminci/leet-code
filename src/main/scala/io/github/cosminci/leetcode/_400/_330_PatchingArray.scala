@@ -8,7 +8,7 @@ object _330_PatchingArray {
     println(minPatches(Array(1, 2, 2), 5))
   }
 
-  private def minPatches(nums: Array[Int], n: Int): Int = {
+  def minPatches(nums: Array[Int], n: Int): Int = {
     var (idx, patches, currentTarget) = (0, 0, 1L)
 
     while (currentTarget <= n) {

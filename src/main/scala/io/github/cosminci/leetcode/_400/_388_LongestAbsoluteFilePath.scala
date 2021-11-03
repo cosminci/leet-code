@@ -5,7 +5,7 @@ object _388_LongestAbsoluteFilePath {
     println(lengthLongestPath("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"))
   }
 
-  private def lengthLongestPath(input: String): Int =
+  def lengthLongestPath(input: String): Int =
     input.split('\n').foldLeft(Map(-1 -> 0), 0) {
       case ((pathLengths, maxLength), line) =>
         val depth = line.count(_ == '\t')

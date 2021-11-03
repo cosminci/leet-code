@@ -4,7 +4,7 @@ object _264_UglyNumberII:
   def main(args: Array[String]): Unit =
     println(nthUglyNumber(10))
 
-  private def nthUglyNumber(n: Int): Int =
+  def nthUglyNumber(n: Int): Int =
     val factors = Array(2, 3, 5)
 
     val ugly = Array.tabulate(n)(i => if i == 0 then 1 else 0)

@@ -7,7 +7,7 @@ object _363_MaxSumOfRectangleNoLargerThanK:
     println(maxSumSubmatrix(Array(Array(2, 2, -1)), 3))
     println(maxSumSubmatrix(Array(Array(2, 2, -1)), 0))
 
-  private def maxSumSubmatrix(matrix: Array[Array[Int]], k: Int): Int =
+  def maxSumSubmatrix(matrix: Array[Array[Int]], k: Int): Int =
     var globalMax = Int.MinValue
 
     matrix.head.indices.foreach { left =>

@@ -25,7 +25,7 @@ object _882_ReachableNodesInSubdividedGraph:
 
   case class NextStop(node: Int, moves: Int)
 
-  private def reachableNodes(edges: Array[Array[Int]], maxMoves: Int, n: Int): Int =
+  def reachableNodes(edges: Array[Array[Int]], maxMoves: Int, n: Int): Int =
     val adjMatrix = edges.foldLeft(Map.empty[Int, Seq[NextStop]].withDefaultValue(Seq.empty)) {
       case (acc, Array(from, to, cost)) =>
         acc

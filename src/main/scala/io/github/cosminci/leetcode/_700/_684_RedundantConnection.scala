@@ -13,7 +13,7 @@ object _684_RedundantConnection:
       ).toList
     )
 
-  private def findRedundantConnection(edges: Array[Array[Int]]): Array[Int] =
+  def findRedundantConnection(edges: Array[Array[Int]]): Array[Int] =
     val dsu = new DSU
     edges.find { case edge @ Array(from, to) =>
       val (p1, p2) = (dsu.find(from), dsu.find(to))

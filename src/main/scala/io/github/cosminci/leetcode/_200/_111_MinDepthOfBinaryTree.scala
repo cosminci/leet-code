@@ -6,7 +6,7 @@ import scala.collection.mutable
 
 object _111_MinDepthOfBinaryTree:
 
-  private def minDepth(root: TreeNode): Int =
+  def minDepth(root: TreeNode): Int =
     var level = 0
     if root == null then return level
     val toVisit = mutable.Queue(root)

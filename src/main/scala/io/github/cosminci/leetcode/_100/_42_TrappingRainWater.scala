@@ -12,7 +12,7 @@ object _42_TrappingRainWater:
     println(trap(Array(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1)))
     println(trapStack(Array(0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1)))
 
-  private def trap(heights: Array[Int]): Int = {
+  def trap(heights: Array[Int]): Int = {
     if (heights.length == 0) return 0
 
     var waterTrapped        = 0
@@ -33,7 +33,7 @@ object _42_TrappingRainWater:
     waterTrapped
   }
 
-  private def trapStack(heights: Array[Int]): Int =
+  def trapStack(heights: Array[Int]): Int =
     val tracker = mutable.Stack.empty[Block]
 
     var waterTrapped = 0

@@ -6,7 +6,7 @@ object _92_ReverseLinkedListII:
   def main(args: Array[String]): Unit =
     println(seq(reverseBetween(linkedList(Seq(5, 1)), 1, 2)))
 
-  private def reverseBetween(head: ListNode, left: Int, right: Int): ListNode =
+  def reverseBetween(head: ListNode, left: Int, right: Int): ListNode =
     if right - left < 1 then return head
 
     val dummy = new ListNode(0, head)

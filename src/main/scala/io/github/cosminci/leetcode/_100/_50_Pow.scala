@@ -7,7 +7,7 @@ object _50_Pow:
     println(myPow(2, Int.MinValue))
     println(myPow(-2.0, -2))
 
-  private def myPow(x: Double, n: Int): Double =
+  def myPow(x: Double, n: Int): Double =
     def dfs(num: Double, pow: Int): Double =
       if pow == 0 then return 1
       val oddFactor = if pow % 2 == 0 then 1 else num

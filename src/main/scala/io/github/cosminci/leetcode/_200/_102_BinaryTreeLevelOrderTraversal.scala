@@ -10,7 +10,7 @@ object _102_BinaryTreeLevelOrderTraversal:
     println(levelOrder(root))
     println(levelOrderNoMaxDepth(root))
 
-  private def levelOrder(root: TreeNode): List[List[Int]] =
+  def levelOrder(root: TreeNode): List[List[Int]] =
     if root == null then return List.empty
 
     val toVisit = mutable.Queue((root, 0))
@@ -22,11 +22,11 @@ object _102_BinaryTreeLevelOrderTraversal:
       if node.right != null then toVisit.enqueue((node.right, depth + 1))
     result.map(_.toList).toList
 
-  private def maxDepth(root: TreeNode): Int =
+  def maxDepth(root: TreeNode): Int =
     if root == null then return 0
     1 + math.max(maxDepth(root.left), maxDepth(root.right))
 
-  private def levelOrderNoMaxDepth(root: TreeNode): List[List[Int]] =
+  def levelOrderNoMaxDepth(root: TreeNode): List[List[Int]] =
     if root == null then return List.empty
 
     val toVisit = mutable.ListBuffer(root)

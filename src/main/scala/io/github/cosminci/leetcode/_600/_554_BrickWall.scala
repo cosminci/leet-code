@@ -18,7 +18,7 @@ object _554_BrickWall:
     )
     println(leastBricks(List(List(1), List(1), List(1))))
 
-  private def leastBricks(wall: List[List[Int]]): Int =
+  def leastBricks(wall: List[List[Int]]): Int =
     val edgeCounts = mutable.Map.empty[Int, Int]
     val wallWidth  = wall.head.sum
     val wallHeight = wall.length

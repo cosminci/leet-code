@@ -6,7 +6,7 @@ object _941_ValidMountainArray:
     println(validMountainArray(Array(3, 5, 5)))
     println(validMountainArray(Array(0, 3, 2, 1)))
 
-  private def validMountainArray(arr: Array[Int]): Boolean =
+  def validMountainArray(arr: Array[Int]): Boolean =
     var idx = 0
 
     while idx + 1 < arr.length && arr(idx) < arr(idx + 1) do idx += 1

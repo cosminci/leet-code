@@ -8,7 +8,7 @@ object _1143_LongestCommonSubsequence:
     println(longestCommonSubsequenceBottomUp("abcde", "ace"))
     println(longestCommonSubsequenceTopDown("abcde", "ace"))
 
-  private def longestCommonSubsequenceBottomUp(t1: String, t2: String): Int =
+  def longestCommonSubsequenceBottomUp(t1: String, t2: String): Int =
     val dp = Array.ofDim[Int](t1.length + 1, t2.length + 1)
     t1.indices.foreach { i =>
       t2.indices.foreach { j =>
@@ -18,7 +18,7 @@ object _1143_LongestCommonSubsequence:
     }
     dp(t1.length)(t2.length)
 
-  private def longestCommonSubsequenceTopDown(t1: String, t2: String): Int =
+  def longestCommonSubsequenceTopDown(t1: String, t2: String): Int =
     val mem = mutable.Map.empty[(Int, Int), Int]
 
     def dfs(t1Idx: Int, t2Idx: Int): Int =

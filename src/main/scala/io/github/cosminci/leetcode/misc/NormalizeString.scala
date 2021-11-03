@@ -7,7 +7,7 @@ object NormalizeString:
   def main(args: Array[String]): Unit =
     println(normalize("  This  is   an  example string   ,   ok ?   "))
 
-  private def normalize(str: String): String =
+  def normalize(str: String): String =
     val result      = mutable.Stack.empty[Char]
     val punctuation = Set('.', ',', '!', '?', ';', ':')
     str.indices.foreach { i =>

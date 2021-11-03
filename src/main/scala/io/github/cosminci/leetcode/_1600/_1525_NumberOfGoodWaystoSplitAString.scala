@@ -8,7 +8,7 @@ object _1525_NumberOfGoodWaystoSplitAString:
     println(numSplits("aacaba"))
     println(numSplits("aaaaa"))
 
-  private def numSplits(s: String): Int =
+  def numSplits(s: String): Int =
     val rightCharCounts = mutable.Map.empty[Char, Int]
     val leftCharCounts  = mutable.Map.empty[Char, Int]
     s.foreach { char =>

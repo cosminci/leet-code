@@ -27,7 +27,7 @@ object _846_HandOfStraights:
       }
     true
 
-  private def removeCard(counts: mutable.TreeMap[Int, Int], card: Int): Unit =
+  def removeCard(counts: mutable.TreeMap[Int, Int], card: Int): Unit =
     counts.updateWith(card) {
       case None | Some(1) => None
       case Some(c)        => Some(c - 1)

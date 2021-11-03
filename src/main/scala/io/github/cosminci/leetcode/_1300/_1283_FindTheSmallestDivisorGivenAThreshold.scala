@@ -7,7 +7,7 @@ object _1283_FindTheSmallestDivisorGivenAThreshold:
     println(smallestDivisor(Array(21212, 10101, 12121), 1000000))
     println(smallestDivisor(Array(2, 3, 4, 7, 11), 11))
 
-  private def smallestDivisor(nums: Array[Int], threshold: Int): Int =
+  def smallestDivisor(nums: Array[Int], threshold: Int): Int =
     def withinThreshold(divisor: Int) =
       nums.map(n => math.ceil(n.toDouble / divisor)).sum.toInt <= threshold
 

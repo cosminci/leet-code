@@ -7,7 +7,7 @@ object _441_ArrangingCoins:
     println(arrangeCoinsBinarySearch(1804289383))
     println(arrangeCoinsCompletingTheSquare(1804289383))
 
-  private def arrangeCoinsBinarySearch(n: Int): Int =
+  def arrangeCoinsBinarySearch(n: Int): Int =
     var (l, r) = (0, n)
     while l <= r do
       val mid  = l + (r - l) / 2
@@ -17,5 +17,5 @@ object _441_ArrangingCoins:
       else r = mid - 1
     l - 1
 
-  private def arrangeCoinsCompletingTheSquare(n: Int): Int =
+  def arrangeCoinsCompletingTheSquare(n: Int): Int =
     (math.sqrt(2 * n.toLong + 0.25) - 0.5).toInt

@@ -5,7 +5,7 @@ object _1997_FirstDayWhereYouHaveBeenInAllTheRooms:
     println(firstDayBeenInAllRooms(Array(0, 0)))
     println(firstDayBeenInAllRooms(Array(0, 0, 2)))
 
-  private def firstDayBeenInAllRooms(nextVisit: Array[Int]): Int =
+  def firstDayBeenInAllRooms(nextVisit: Array[Int]): Int =
     val mod = 1_000_000_007
     val dp  = Array.ofDim[Long](nextVisit.length)
 

@@ -12,7 +12,7 @@ object _174_DungeonGame:
     println(calculateMinimumHPTopDown(dungeon))
     println(calculateMinimumHPBottomUp(dungeon))
 
-  private def calculateMinimumHPTopDown(dungeon: Array[Array[Int]]): Int =
+  def calculateMinimumHPTopDown(dungeon: Array[Array[Int]]): Int =
     val (m, n) = (dungeon.length, dungeon.head.length)
 
     val mem = mutable.Map.empty[(Int, Int), Int]
@@ -32,7 +32,7 @@ object _174_DungeonGame:
 
     dfs(x = 0, y = 0)
 
-  private def calculateMinimumHPBottomUp(dungeon: Array[Array[Int]]): Int =
+  def calculateMinimumHPBottomUp(dungeon: Array[Array[Int]]): Int =
     val (m, n) = (dungeon.length, dungeon.head.length)
 
     val dp = Array.fill(m + 1, n + 1)((1e9 + 5).toInt)

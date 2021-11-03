@@ -6,7 +6,7 @@ object _1044_LongestDuplicateSubstring:
   def main(args: Array[String]): Unit =
     println(longestDupSubstring("banana"))
 
-  private def longestDupSubstring(s: String): String =
+  def longestDupSubstring(s: String): String =
     var maxLength = 1
     var longest   = ""
 

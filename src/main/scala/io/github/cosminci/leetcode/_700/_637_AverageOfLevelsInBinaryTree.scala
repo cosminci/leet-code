@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _637_AverageOfLevelsInBinaryTree:
-  private def averageOfLevels(root: TreeNode): Array[Double] =
+  def averageOfLevels(root: TreeNode): Array[Double] =
     val toVisit = mutable.Queue(root)
     var results = mutable.ListBuffer.empty[Double]
 

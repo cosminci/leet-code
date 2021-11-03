@@ -8,7 +8,7 @@ object _73_SetMatrixZeroes:
     setZeroes(input)
     println()
 
-  private def setZeroes(matrix: Array[Array[Int]]): Unit =
+  def setZeroes(matrix: Array[Array[Int]]): Unit =
     val nullifyFirstRow = matrix.head.contains(0)
     val nullifyFirstCol = matrix.map(_.head).contains(0)
 

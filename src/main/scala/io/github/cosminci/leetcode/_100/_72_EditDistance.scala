@@ -10,7 +10,7 @@ object _72_EditDistance:
     println(minDistanceTopDown("horse", "ros"))
     println(minDistanceBottomUp("horse", "ros"))
 
-  private def minDistanceBottomUp(word1: String, word2: String): Int =
+  def minDistanceBottomUp(word1: String, word2: String): Int =
     val dp = Array.ofDim[Int](word1.length + 1, word2.length + 1)
     (1 to word1.length).foreach { i => dp(i)(0) = i }
     (1 to word2.length).foreach { i => dp(0)(i) = i }
@@ -28,7 +28,7 @@ object _72_EditDistance:
     }
     dp(word1.length)(word2.length)
 
-  private def minDistanceTopDown(word1: String, word2: String): Int =
+  def minDistanceTopDown(word1: String, word2: String): Int =
     val mem = mutable.Map.empty[(Int, Int), Int]
     def dfs(idx1: Int, idx2: Int): Int =
       if idx1 == word1.length then return word2.length - idx2

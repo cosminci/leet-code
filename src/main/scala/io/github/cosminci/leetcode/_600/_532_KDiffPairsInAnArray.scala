@@ -7,7 +7,7 @@ object _532_KDiffPairsInAnArray:
     println(findPairs(Array(1, 3, 1, 5, 4), 0))
     println(findPairs(Array(1, 2, 4, 4, 3, 3, 0, 9, 2, 3), 3))
 
-  private def findPairs(nums: Array[Int], k: Int): Int =
+  def findPairs(nums: Array[Int], k: Int): Int =
     if k == 0 then
       nums.groupBy(identity).values.count(_.length > 1)
     else

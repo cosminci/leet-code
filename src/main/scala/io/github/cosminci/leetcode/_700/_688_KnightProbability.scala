@@ -5,7 +5,7 @@ object _688_KnightProbability:
     println(knightProbability(3, 2, 0, 0))
     println(knightProbability(1, 0, 0, 0))
 
-  private def knightProbability(n: Int, k: Int, row: Int, col: Int): Double =
+  def knightProbability(n: Int, k: Int, row: Int, col: Int): Double =
     val boardProbabilities = Seq.tabulate(n)(r => Seq.tabulate(n)(c => if r == row && c == col then 1.0 else 0.0))
 
     def validJumps(r: Int, c: Int) =

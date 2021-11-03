@@ -8,7 +8,7 @@ object _1911_MaxAlternatingSubsequenceSum:
     println(maxAlternatingSumTopDown(input))
     println(maxAlternatingSumBottomUp(input))
 
-  private def maxAlternatingSumTopDown(nums: Array[Int]): Long =
+  def maxAlternatingSumTopDown(nums: Array[Int]): Long =
     val mem = mutable.Map.empty[(Int, Boolean), Long]
     def dfs(idx: Int, prevAdded: Boolean): Long =
       if idx == nums.length then return 0
@@ -20,7 +20,7 @@ object _1911_MaxAlternatingSubsequenceSum:
       max
     dfs(0, prevAdded = false)
 
-  private def maxAlternatingSumBottomUp(nums: Array[Int]): Long =
+  def maxAlternatingSumBottomUp(nums: Array[Int]): Long =
     var prevEven = 0L
     var prevOdd  = 0L
     nums.indices.foreach { i =>

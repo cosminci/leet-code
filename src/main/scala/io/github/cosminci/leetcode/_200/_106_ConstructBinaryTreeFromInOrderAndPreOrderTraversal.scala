@@ -7,7 +7,7 @@ object _106_ConstructBinaryTreeFromInOrderAndPreOrderTraversal:
     val root = buildTree(Array(3, 9, 20, 15, 7), Array(9, 3, 15, 20, 7))
     println(root)
 
-  private def buildTree(preorder: Array[Int], inorder: Array[Int]): TreeNode =
+  def buildTree(preorder: Array[Int], inorder: Array[Int]): TreeNode =
     def dfs(preord: Array[Int], inord: Array[Int]): TreeNode =
       if preord.isEmpty || inord.isEmpty then return null
       val node = new TreeNode(preord.head)

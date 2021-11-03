@@ -4,7 +4,7 @@ object _795_NumberOfSubarraysWithBoundedMax:
   def main(args: Array[String]): Unit =
     println(numSubarrayBoundedMax(Array(0, 3, 1, 4, 5, 2, 1, 5, 10, 6), 3, 6))
 
-  private def numSubarrayBoundedMax(nums: Array[Int], left: Int, right: Int): Int =
+  def numSubarrayBoundedMax(nums: Array[Int], left: Int, right: Int): Int =
     nums.indices.foldLeft(0, -1, -1) {
       case ((count, l0, r0), idx) =>
         val l = if nums(idx) > right then idx else l0

@@ -11,7 +11,7 @@ object _628_MaxProductOfThreeNumbers:
     println(maximumProduct(Array(-2, -1, -3, -7)))
     println(maximumProduct(Array(1000, 1000, 1000)))
 
-  private def maximumProduct(nums: Array[Int]): Int =
+  def maximumProduct(nums: Array[Int]): Int =
     val comparator: Comparator[Int] = (i, j) =>
       val valueComparison = nums(i).compare(nums(j))
       if valueComparison == 0 then i.compare(j) else valueComparison

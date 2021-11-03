@@ -7,7 +7,7 @@ object _464_CanIWin:
     println(canIWin(10, 1))
     println(canIWin(4, 6))
 
-  private def canIWin(maxChoosableInteger: Int, desiredTotal: Int): Boolean =
+  def canIWin(maxChoosableInteger: Int, desiredTotal: Int): Boolean =
     val mem   = Array.ofDim[Int](1 << 20)
     val total = maxChoosableInteger * (maxChoosableInteger + 1) / 2
     if total < desiredTotal then return false

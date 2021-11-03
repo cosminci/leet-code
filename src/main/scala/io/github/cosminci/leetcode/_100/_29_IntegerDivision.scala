@@ -5,7 +5,7 @@ object _29_IntegerDivision:
     println(divide(-2147483648, -1))
     println(divide(18, -3))
 
-  private def divide(dividend: Int, divisor: Int): Int =
+  def divide(dividend: Int, divisor: Int): Int =
     if dividend == Int.MinValue && divisor == -1 then return Int.MaxValue
 
     var (a, b, res) = (math.abs(dividend), math.abs(divisor), 0)

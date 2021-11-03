@@ -8,7 +8,7 @@ object _162_FindPeakElement:
     println(findPeakElement(Array(1, 2, 3)))
     println(findPeakElement(Array(3, 2, 1)))
 
-  private def findPeakElement(nums: Array[Int]): Int =
+  def findPeakElement(nums: Array[Int]): Int =
     var (l, r) = (0, nums.length - 1)
     while l <= r do
       val mid   = (l + r) / 2

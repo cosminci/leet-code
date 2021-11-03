@@ -6,7 +6,7 @@ object _30_SubstringWithContactenationOfAllWords:
   def main(args: Array[String]): Unit =
     println(findSubstring("barfoothefoobarman", Array("foo", "bar")))
 
-  private def findSubstring(s: String, words: Array[String]): List[Int] =
+  def findSubstring(s: String, words: Array[String]): List[Int] =
     val wordBag     = words.groupBy(identity).view.mapValues(_.size).toMap
     val wordLength  = words.head.length
     val totalLength = wordLength * words.length

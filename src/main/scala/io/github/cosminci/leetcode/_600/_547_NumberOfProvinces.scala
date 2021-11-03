@@ -14,7 +14,7 @@ object _547_NumberOfProvinces:
       )
     )
 
-  private def findCircleNum(isConnected: Array[Array[Int]]): Int =
+  def findCircleNum(isConnected: Array[Array[Int]]): Int =
     isConnected.indices
       .foldLeft(Set.empty[Int], 0) { case ((visited, count), rootCity) =>
         if visited.contains(rootCity) then (visited, count)

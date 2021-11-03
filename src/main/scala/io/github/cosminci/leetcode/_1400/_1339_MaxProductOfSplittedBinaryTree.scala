@@ -8,7 +8,7 @@ object _1339_MaxProductOfSplittedBinaryTree:
   def main(args: Array[String]): Unit =
     println(maxProduct(new TreeNode(1, new TreeNode(1))))
 
-  private def maxProduct(root: TreeNode): Int =
+  def maxProduct(root: TreeNode): Int =
     val sums = mutable.Map.empty[TreeNode, BigInt]
     def dfsSum(node: TreeNode): BigInt =
       if node == null then return BigInt(0)

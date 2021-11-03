@@ -15,7 +15,7 @@ object _1423_MaxPointsFromCards:
       println(s"Sliding window 2: ${maxScoreSliding2(points, k)}")
     }
 
-  private def maxScorePrecomp(cardPoints: Array[Int], k: Int): Int =
+  def maxScorePrecomp(cardPoints: Array[Int], k: Int): Int =
     var max       = 0
     val leftSums  = Array.ofDim[Int](k + 1)
     val rightSums = Array.ofDim[Int](k + 1)
@@ -30,7 +30,7 @@ object _1423_MaxPointsFromCards:
     }
     max
 
-  private def maxScoreSliding1(cardPoints: Array[Int], k: Int): Int =
+  def maxScoreSliding1(cardPoints: Array[Int], k: Int): Int =
     var sum = cardPoints.take(k).sum
     var max = sum
     (0 until k).foreach { idx =>
@@ -39,7 +39,7 @@ object _1423_MaxPointsFromCards:
     }
     max
 
-  private def maxScoreSliding2(cardPoints: Array[Int], k: Int): Int =
+  def maxScoreSliding2(cardPoints: Array[Int], k: Int): Int =
     var sum   = cardPoints.take(k).sum
     var max   = sum
     var left  = k - 1

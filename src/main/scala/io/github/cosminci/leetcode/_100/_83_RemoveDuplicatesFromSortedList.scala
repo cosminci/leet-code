@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._100
 import io.github.cosminci.utils.ListNode
 
 object _83_RemoveDuplicatesFromSortedList:
-  private def deleteDuplicates(head: ListNode): ListNode =
+  def deleteDuplicates(head: ListNode): ListNode =
     val dummy        = new ListNode(-101, head)
     var (prev, curr) = (dummy, head)
 

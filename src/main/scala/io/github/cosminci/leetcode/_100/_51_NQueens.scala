@@ -6,7 +6,7 @@ object _51_NQueens:
   def main(args: Array[String]): Unit =
     println(solveNQueens(7))
 
-  private def solveNQueens(n: Int): List[List[String]] =
+  def solveNQueens(n: Int): List[List[String]] =
     @tailrec
     def solve(prevConfigs: List[List[(Int, Int)]]): List[List[(Int, Int)]] =
       if prevConfigs.isEmpty then return List.empty
@@ -27,7 +27,7 @@ object _51_NQueens:
       grid.map(_.mkString).toList
     }
 
-  private def isValid(prevValidConfig: List[(Int, Int)], newPosition: (Int, Int)) =
+  def isValid(prevValidConfig: List[(Int, Int)], newPosition: (Int, Int)) =
     val (x, y) = newPosition
     prevValidConfig.forall { case (prevX, prevY) =>
       prevX != x && prevY != y && (prevX - prevY) != (x - y) && (prevX + prevY) != (x + y)

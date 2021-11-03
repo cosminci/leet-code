@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._1000
 
 object _950_RectangleAreaII:
-  private def rectangleArea(rectangles: Array[Array[Int]]): Int =
+  def rectangleArea(rectangles: Array[Array[Int]]): Int =
     val n = rectangles.length
     val (xSet, ySet) = rectangles.foldLeft(Set.empty[Int], Set.empty[Int]) {
       case ((xAcc, yAcc), Array(x1, y1, x2, y2)) =>

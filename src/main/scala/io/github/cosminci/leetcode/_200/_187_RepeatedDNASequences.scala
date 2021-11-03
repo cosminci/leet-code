@@ -7,10 +7,10 @@ object _187_RepeatedDNASequences:
     println(findRepeatedDnaSequencesSliding("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"))
     println(findRepeatedDnaSequencesFold("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"))
 
-  private def findRepeatedDnaSequencesSliding(s: String): List[String] =
+  def findRepeatedDnaSequencesSliding(s: String): List[String] =
     s.sliding(10).toSeq.groupBy(identity).filter(_._2.length > 1).keys.toList
 
-  private def findRepeatedDnaSequencesFold(s: String): List[String] =
+  def findRepeatedDnaSequencesFold(s: String): List[String] =
     s.foldLeft(Set.empty[String], Set.empty[String], Set("")) {
       case ((duplicatedLength10Seqs, length10Seqs, incompleteSeqs), char) =>
         incompleteSeqs.foldLeft(duplicatedLength10Seqs, length10Seqs, Set.empty[String]) {

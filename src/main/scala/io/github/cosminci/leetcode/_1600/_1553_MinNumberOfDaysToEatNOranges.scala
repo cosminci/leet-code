@@ -12,7 +12,7 @@ object _1553_MinNumberOfDaysToEatNOranges:
     utils.timeSolution("Bottom up", () => minDaysBottomUp(61455274))
     utils.timeSolution("Top down", () => minDaysTopDown(61455274))
 
-  private def minDaysBottomUp(n: Int): Int =
+  def minDaysBottomUp(n: Int): Int =
     val dp = Array.ofDim[Int](n + 1)
     dp(1) = 1
     (2 to n).foreach { day =>
@@ -20,7 +20,7 @@ object _1553_MinNumberOfDaysToEatNOranges:
     }
     dp(n)
 
-  private def minDaysTopDown(n: Int): Int =
+  def minDaysTopDown(n: Int): Int =
     if mem.contains(n) then return mem(n)
     val result = 1 + math.min(n % 3 + minDaysTopDown(n / 3), n % 2 + minDaysTopDown(n / 2))
     mem.update(n, result)

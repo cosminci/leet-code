@@ -9,7 +9,7 @@ object _1249_MinRemoveToMakeValidParantheses:
     println(minRemoveToMakeValid("))(("))
     println(minRemoveToMakeValid("(a(b(c)d)"))
 
-  private def minRemoveToMakeValid(s: String): String =
+  def minRemoveToMakeValid(s: String): String =
     val paranIndices = mutable.Stack.empty[(Char, Int)]
 
     s.indices.foreach { i =>

@@ -7,7 +7,7 @@ object _299_BullsAndCows:
     println(getHint("1", "0"))
     println(getHint("1", "1"))
 
-  private def getHint(secret: String, guess: String): String =
+  def getHint(secret: String, guess: String): String =
     val (numBulls, secretCounts, guessCounts) =
       secret.zip(guess).zipWithIndex
         .foldLeft(0, Seq.fill(10)(0), Seq.fill(10)(0)) {

@@ -7,7 +7,7 @@ object _316_RemoveDuplicateLetters:
     println(removeDuplicateLetters("cbacdcbc"))
     println(removeDuplicateLetters("bcabc"))
 
-  private def removeDuplicateLetters(s: String): String =
+  def removeDuplicateLetters(s: String): String =
     s.distinct.sorted.foreach { char =>
       val suffix = s.substring(s.indexOf(char))
       if suffix.toSet == s.toSet then return char +: removeDuplicateLetters(suffix.filter(_ != char))

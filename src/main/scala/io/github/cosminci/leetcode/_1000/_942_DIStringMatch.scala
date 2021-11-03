@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._1000
 
 object _942_DIStringMatch {
-  private def diStringMatch(s: String): Array[Int] = {
+  def diStringMatch(s: String): Array[Int] = {
     var (l, h) = (0, s.length)
     s.map {
       case 'I' =>

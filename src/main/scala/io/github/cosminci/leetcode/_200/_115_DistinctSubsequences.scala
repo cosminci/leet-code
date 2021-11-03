@@ -9,7 +9,7 @@ object _115_DistinctSubsequences:
     println(numDistinctTopDown("babgbag", "bag"))
     println(numDistinctBottomUp("babgbag", "bag"))
 
-  private def numDistinctBottomUp(s: String, t: String): Int =
+  def numDistinctBottomUp(s: String, t: String): Int =
     val dp = Array.ofDim[Int](s.length + 1, t.length + 1)
     dp.indices.foreach(i => dp(i)(0) = 1)
     t.indices.foreach { tIdx =>
@@ -21,7 +21,7 @@ object _115_DistinctSubsequences:
     }
     dp(s.length)(t.length)
 
-  private def numDistinctTopDown(s: String, t: String): Int =
+  def numDistinctTopDown(s: String, t: String): Int =
     val mem = mutable.Map.empty[(Int, Int), Int]
     def dfs(sIdx: Int, tIdx: Int): Int =
       if tIdx == t.length then return 1

@@ -6,7 +6,7 @@ object _1043_PartitionArrayForMaxSum:
     println(maxSumAfterPartitioningTopDown(Array(1, 4, 1, 5, 7, 3, 6, 1, 9, 9, 3), 4))
     println(maxSumAfterPartitioningBottomUp(Array(1, 4, 1, 5, 7, 3, 6, 1, 9, 9, 3), 4))
 
-  private def maxSumAfterPartitioningTopDown(arr: Array[Int], k: Int): Int =
+  def maxSumAfterPartitioningTopDown(arr: Array[Int], k: Int): Int =
     val mem = Array.fill[Int](arr.length)(Int.MinValue)
 
     def dfs(start: Int): Int =
@@ -26,7 +26,7 @@ object _1043_PartitionArrayForMaxSum:
       result
     dfs(start = 0)
 
-  private def maxSumAfterPartitioningBottomUp(arr: Array[Int], k: Int): Int =
+  def maxSumAfterPartitioningBottomUp(arr: Array[Int], k: Int): Int =
     val dp = Array.ofDim[Int](arr.length)
     arr.indices.foreach { i =>
       val value = (0 until k).map { numsToTakeIdx =>

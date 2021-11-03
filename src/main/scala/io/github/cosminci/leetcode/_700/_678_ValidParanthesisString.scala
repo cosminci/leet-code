@@ -6,7 +6,7 @@ object _678_ValidParanthesisString:
   def main(args: Array[String]): Unit =
     println(checkValidString("((()**()**"))
 
-  private def checkValidString(s: String): Boolean =
+  def checkValidString(s: String): Boolean =
     s.foldLeft(0, 0) { case ((balanceMin, balanceMax), char) =>
       char match
         case '(' =>

@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._100
 import io.github.cosminci.utils.TreeNode
 
 object _99_RecoverBST:
-  private def recoverTree(root: TreeNode): Unit =
+  def recoverTree(root: TreeNode): Unit =
     var firstNode: TreeNode  = null
     var secondNode: TreeNode = null
     var prevNode: TreeNode   = null

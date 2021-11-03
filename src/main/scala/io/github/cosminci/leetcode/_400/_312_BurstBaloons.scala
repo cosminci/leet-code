@@ -8,7 +8,7 @@ object _312_BurstBaloons:
     println(maxCoins(Array(1, 5)))
     println(maxCoins(Array(1)))
 
-  private def maxCoins(nums: Array[Int]): Int =
+  def maxCoins(nums: Array[Int]): Int =
     val numbers = nums.prepended(1).appended(1)
     val mem     = mutable.Map.empty[(Int, Int), Int]
 

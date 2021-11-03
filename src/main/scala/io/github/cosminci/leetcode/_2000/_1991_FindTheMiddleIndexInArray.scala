@@ -7,6 +7,6 @@ object _1991_FindTheMiddleIndexInArray:
     println(findMiddleIndex(Array(1, -1, 4)))
     println(findMiddleIndex(Array(2, 5)))
 
-  private def findMiddleIndex(nums: Array[Int]): Int =
+  def findMiddleIndex(nums: Array[Int]): Int =
     val prefixSums = nums.scanLeft(0)(_ + _)
     nums.indices.indexWhere(i => prefixSums(i) == prefixSums.last - prefixSums(i) - nums(i))

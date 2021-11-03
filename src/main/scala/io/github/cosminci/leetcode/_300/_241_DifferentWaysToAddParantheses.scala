@@ -6,7 +6,7 @@ object _241_DifferentWaysToAddParantheses:
     println(diffWaysToCompute("2*3-4*5"))
     println(diffWaysToCompute("11"))
 
-  private def diffWaysToCompute(expression: String): List[Int] =
+  def diffWaysToCompute(expression: String): List[Int] =
     def eval(operand1: Int, operand2: Int, operation: Char): Int =
       operation match
         case '+' => operand1 + operand2

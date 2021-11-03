@@ -9,7 +9,7 @@ object _1235_MaxProfitInJobScheduling {
   }
 
   case class Job(start: Int, end: Int, profit: Int)
-  private def jobScheduling(startTime: Array[Int], endTime: Array[Int], profit: Array[Int]): Int = {
+  def jobScheduling(startTime: Array[Int], endTime: Array[Int], profit: Array[Int]): Int = {
     val jobs = startTime.zip(endTime).zip(profit).map {
       case ((s, e), p) => Job(s, e, p)
     }.sortBy(_.end)

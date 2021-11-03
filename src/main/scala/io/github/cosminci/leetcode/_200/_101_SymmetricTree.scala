@@ -5,7 +5,7 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _101_SymmetricTree:
-  private def isSymmetric(root: TreeNode): Boolean =
+  def isSymmetric(root: TreeNode): Boolean =
     val toVisit = mutable.Queue(root.left, root.right)
 
     while toVisit.nonEmpty do

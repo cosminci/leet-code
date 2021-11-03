@@ -5,7 +5,7 @@ object _1963_MinNumberOfSwapsToMakeStringBalanced:
     println(minSwaps("][]["))
     println(minSwaps("]]][[["))
 
-  private def minSwaps(s: String): Int =
+  def minSwaps(s: String): Int =
     (s.foldLeft((0, 0)) { case ((stack, mismatches), char) =>
       if char == '[' then (stack + 1, mismatches)
       else if stack > 0 then (stack - 1, mismatches)

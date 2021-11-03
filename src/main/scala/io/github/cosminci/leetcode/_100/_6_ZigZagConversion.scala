@@ -6,7 +6,7 @@ object _6_ZigZagConversion:
   def main(args: Array[String]): Unit =
     println(convert("PAYPALISHIRING", 4))
 
-  private def convert(s: String, numRows: Int): String =
+  def convert(s: String, numRows: Int): String =
     if numRows == 1 then return s
     val indices = s.indices
 

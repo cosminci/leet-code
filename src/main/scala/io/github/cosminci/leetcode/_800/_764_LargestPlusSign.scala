@@ -6,7 +6,7 @@ object _764_LargestPlusSign:
     println(orderOfLargestPlusSign(5, Array(Array(4, 2))))
     println(orderOfLargestPlusSign(1, Array(Array(0, 0))))
 
-  private def orderOfLargestPlusSign(n: Int, mines: Array[Array[Int]]): Int =
+  def orderOfLargestPlusSign(n: Int, mines: Array[Array[Int]]): Int =
     if mines.length == n * n then return 0
 
     val minesSet = Set.from(mines.map(m => (m.head, m.last)))

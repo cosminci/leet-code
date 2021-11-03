@@ -4,7 +4,7 @@ object _546_RemoveBoxes:
   def main(args: Array[String]): Unit =
     print(removeBoxes(Array(1, 3, 2, 2, 2, 3, 4, 3, 1)))
 
-  private def removeBoxes(boxes: Array[Int]): Int =
+  def removeBoxes(boxes: Array[Int]): Int =
     val len = boxes.length
     val dp  = Array.ofDim[Int](len, len, len)
 

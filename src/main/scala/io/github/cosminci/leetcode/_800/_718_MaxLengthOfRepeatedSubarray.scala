@@ -4,7 +4,7 @@ object _718_MaxLengthOfRepeatedSubarray:
   def main(args: Array[String]): Unit =
     println(findLength(Array(1, 2, 3, 2, 1), Array(3, 2, 1, 4, 7)))
 
-  private def findLength(nums1: Array[Int], nums2: Array[Int]): Int =
+  def findLength(nums1: Array[Int], nums2: Array[Int]): Int =
     val dp  = Array.ofDim[Int](nums1.length + 1, nums2.length + 1)
     var max = 0
     nums1.indices.foreach { n1Idx =>

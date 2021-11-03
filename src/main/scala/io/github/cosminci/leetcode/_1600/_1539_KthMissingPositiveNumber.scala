@@ -5,7 +5,7 @@ object _1539_KthMissingPositiveNumber:
     println(findKthPositive(Array(2, 3, 4, 7, 11), 5))
     println(findKthPositive(Array(1, 2, 3, 4), 2))
 
-  private def findKthPositive(arr: Array[Int], k: Int): Int =
+  def findKthPositive(arr: Array[Int], k: Int): Int =
     var (l, r) = (0, arr.length)
 
     while l < r do

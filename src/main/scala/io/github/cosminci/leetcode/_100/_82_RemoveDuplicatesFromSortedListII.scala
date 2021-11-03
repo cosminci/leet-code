@@ -6,7 +6,7 @@ object _82_RemoveDuplicatesFromSortedListII:
   def main(args: Array[String]): Unit =
     println(seq(deleteDuplicates(linkedList(Seq(1, 1)))))
 
-  private def deleteDuplicates(head: ListNode): ListNode =
+  def deleteDuplicates(head: ListNode): ListNode =
     val newDummyHead = new ListNode(Int.MaxValue, null)
     var newCurr      = newDummyHead
     var (prev, curr) = (newDummyHead, head)

@@ -6,7 +6,7 @@ object _977_SquaresOfASortedArray:
   def main(args: Array[String]): Unit =
     println(sortedSquares(Array(-4, -1, 0, 3, 10)).toList)
 
-  private def sortedSquares(nums: Array[Int]): Array[Int] =
+  def sortedSquares(nums: Array[Int]): Array[Int] =
     var (l, r) = (0, nums.length - 1)
     val result = mutable.ListBuffer.empty[Int]
 

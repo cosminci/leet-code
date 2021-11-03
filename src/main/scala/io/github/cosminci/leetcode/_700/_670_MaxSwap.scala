@@ -5,7 +5,7 @@ object _670_MaxSwap:
     println(maximumSwap(98368))
     println(maximumSwap(1993))
 
-  private def maximumSwap(num: Int): Int =
+  def maximumSwap(num: Int): Int =
     val numDigits = num.toString.map(_ - '0')
     val maxSuffix = numDigits.scanRight(0)((n, max) => math.max(n, max)).tail
 

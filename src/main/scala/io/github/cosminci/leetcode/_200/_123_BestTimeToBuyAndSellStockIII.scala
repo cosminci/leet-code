@@ -4,7 +4,7 @@ object _123_BestTimeToBuyAndSellStockIII {
   def main(args: Array[String]): Unit =
     println(maxProfit(Array(3, 3, 5, 0, 0, 3, 1, 4)))
 
-  private def maxProfit(prices: Array[Int]): Int =
+  def maxProfit(prices: Array[Int]): Int =
     prices.tail.foldLeft(Int.MaxValue, 0, Int.MaxValue, 0) {
       case ((buy1, sell1, buy2, sell2), price) =>
         (math.min(buy1, price),

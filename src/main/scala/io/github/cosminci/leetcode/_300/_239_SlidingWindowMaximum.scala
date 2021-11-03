@@ -10,7 +10,7 @@ object _239_SlidingWindowMaximum:
     println(maxSlidingWindow(Array(1, 3, 1, 2, 0, 5), 3).toList)
     println(maxSlidingWindow(Array(1, 3, -1, -3, 5, 3, 6, 7), 3).toList)
 
-  private def maxSlidingWindow(nums: Array[Int], k: Int): Array[Int] =
+  def maxSlidingWindow(nums: Array[Int], k: Int): Array[Int] =
     if k >= nums.length then return Array(nums.max)
 
     val result = Array.ofDim[Int](nums.length - k + 1)

@@ -11,7 +11,7 @@ object _687_LongestUnivaluePath:
       )
     )
 
-  private def longestUnivaluePath(root: TreeNode): Int =
+  def longestUnivaluePath(root: TreeNode): Int =
     var max = 0
 
     def dfs(node: TreeNode): (Int, Int) =

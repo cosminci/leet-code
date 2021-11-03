@@ -10,7 +10,7 @@ object _797_AllPathsFromSourceToTarget:
       ).map(_.toSeq).toSeq
     )
 
-  private def allPathsSourceTarget(graph: Array[Array[Int]]): List[List[Int]] =
+  def allPathsSourceTarget(graph: Array[Array[Int]]): List[List[Int]] =
     val target = graph.length - 1
 
     def dfs(node: Int, path: List[Int]): List[List[Int]] =

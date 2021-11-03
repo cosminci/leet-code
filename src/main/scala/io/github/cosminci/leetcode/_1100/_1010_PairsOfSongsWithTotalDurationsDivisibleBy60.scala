@@ -6,7 +6,7 @@ object _1010_PairsOfSongsWithTotalDurationsDivisibleBy60:
     println(numPairsDivisibleBy60(Array(60, 60, 60)))
     println(numPairsDivisibleBy60(Array(60, 60)))
 
-  private def numPairsDivisibleBy60(time: Array[Int]): Int =
+  def numPairsDivisibleBy60(time: Array[Int]): Int =
     time
       .foldLeft((0, Map.empty[Int, Int])) { case ((totalCount, prevCounts), duration) =>
         val newTotal = totalCount + prevCounts.getOrElse((60 - duration % 60) % 60, 0)

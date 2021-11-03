@@ -5,7 +5,7 @@ object _77_Combinations:
     println(combine(5, 3))
     println(combine(13, 13))
 
-  private def combine(inputN: Int, inputK: Int): List[List[Int]] =
+  def combine(inputN: Int, inputK: Int): List[List[Int]] =
     def dfs(n: Int, k: Int): Seq[Seq[Int]] =
       if k == 1 then return (1 to n).map(i => Seq(i))
       (n to k by -1).flatMap { head =>

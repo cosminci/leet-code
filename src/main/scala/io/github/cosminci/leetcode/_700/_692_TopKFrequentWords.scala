@@ -9,7 +9,7 @@ object _692_TopKFrequentWords:
     println(topKFrequentHeap(Array("the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"), 4))
     println(topKFrequentSort(Array("the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"), 4))
 
-  private def topKFrequentHeap(words: Array[String], k: Int): List[String] =
+  def topKFrequentHeap(words: Array[String], k: Int): List[String] =
     val freqCounts = words.groupBy(identity).view.mapValues(_.length).toMap
     val freqHeap =
       given Ordering[String] = (x, y) =>
@@ -21,7 +21,7 @@ object _692_TopKFrequentWords:
       results :+ freqHeap.dequeue()
     }
 
-  private def topKFrequentSort(words: Array[String], k: Int): List[String] =
+  def topKFrequentSort(words: Array[String], k: Int): List[String] =
     words
       .groupBy(identity)
       .view

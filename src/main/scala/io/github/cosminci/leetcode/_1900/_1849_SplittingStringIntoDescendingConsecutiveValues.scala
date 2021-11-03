@@ -12,7 +12,7 @@ object _1849_SplittingStringIntoDescendingConsecutiveValues:
     println(splitString("10009998"))
     println(splitString("001"))
 
-  private def splitString(s: String): Boolean =
+  def splitString(s: String): Boolean =
     @tailrec
     def dfs(s: String, prev: BigInt): Boolean =
       if s.isEmpty then return true

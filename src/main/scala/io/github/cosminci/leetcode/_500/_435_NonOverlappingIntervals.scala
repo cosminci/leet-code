@@ -7,7 +7,7 @@ object _435_NonOverlappingIntervals:
     println(eraseOverlapIntervals(Array(Array(1, 2), Array(1, 2), Array(1, 2))))
     println(eraseOverlapIntervals(Array(Array(1, 2), Array(2, 3))))
 
-  private def eraseOverlapIntervals(intervals: Array[Array[Int]]): Int =
+  def eraseOverlapIntervals(intervals: Array[Array[Int]]): Int =
     intervals.sortInPlaceBy(_.last)
 
     var deleteCount = 0

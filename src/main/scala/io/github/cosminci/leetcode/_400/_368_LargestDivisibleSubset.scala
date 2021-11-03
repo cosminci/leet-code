@@ -5,7 +5,7 @@ object _368_LargestDivisibleSubset:
     println(largestDivisibleSubset(Array(1, 2, 3)))
     println(largestDivisibleSubset(Array(1, 2, 4, 8)))
 
-  private def largestDivisibleSubset(nums: Array[Int]): List[Int] =
+  def largestDivisibleSubset(nums: Array[Int]): List[Int] =
     nums.sorted
       .foldLeft(Map.empty[Int, Set[Int]]) { case (divisorSubsets, n) =>
         val nDivisors = divisorSubsets

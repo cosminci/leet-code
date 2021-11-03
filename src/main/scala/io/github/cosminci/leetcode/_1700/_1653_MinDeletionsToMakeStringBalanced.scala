@@ -6,7 +6,7 @@ object _1653_MinDeletionsToMakeStringBalanced:
     println(minimumDeletions("aababbab"))
     println(minimumDeletions("bbaaaaabb"))
 
-  private def minimumDeletions(s: String): Int =
+  def minimumDeletions(s: String): Int =
     val (aCount, bCount) = (s.count(_ == 'a'), s.count(_ == 'b'))
 
     var (aAccumulated, bAccumulated) = (0, 0)

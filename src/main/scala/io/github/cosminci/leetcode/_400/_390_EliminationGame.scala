@@ -4,7 +4,7 @@ object _390_EliminationGame:
   def main(args: Array[String]): Unit =
     println(lastRemaining(100))
 
-  private def lastRemaining(num: Int): Int =
+  def lastRemaining(num: Int): Int =
     def leftToRight(n: Int): Int =
       if n <= 2 then n else 2 * rightToLeft(n / 2)
 

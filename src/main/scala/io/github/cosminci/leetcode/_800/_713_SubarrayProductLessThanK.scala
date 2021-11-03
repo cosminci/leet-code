@@ -4,7 +4,7 @@ object _713_SubarrayProductLessThanK:
   def main(args: Array[String]): Unit =
     println(numSubarrayProductLessThanK(Array(10, 5, 2, 6), 100))
 
-  private def numSubarrayProductLessThanK(nums: Array[Int], k: Int): Int =
+  def numSubarrayProductLessThanK(nums: Array[Int], k: Int): Int =
     if k <= 1 then return 0
 
     var (l, r)         = (0, 0)

@@ -5,7 +5,7 @@ object _845_LongestMountainInArray:
     println(longestMountain(Array(2, 1, 4, 7, 3, 2, 5)))
     println(longestMountain(Array(2, 2, 2)))
 
-  private def longestMountain(arr: Array[Int]): Int =
+  def longestMountain(arr: Array[Int]): Int =
     (1 until arr.length).foldLeft(0, 0, 0) {
       case ((prevMax, prevAsc, prevDesc), i) =>
         val mountainEnded = prevDesc > 0 && arr(i - 1) < arr(i) || arr(i - 1) == arr(i)

@@ -5,7 +5,7 @@ object _34_FindFirstAndLastPositionOfElementInSortedArray:
     println(searchRange(Array(), 0).toList)
     println(searchRange(Array(7, 7, 7, 8, 8, 10, 10, 10), 8).toList)
 
-  private def searchRange(nums: Array[Int], target: Int): Array[Int] =
+  def searchRange(nums: Array[Int], target: Int): Array[Int] =
     def minIdx =
       var (l, r) = (0, nums.length)
       while l < r do

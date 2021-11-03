@@ -3,7 +3,7 @@ package io.github.cosminci.leetcode._700
 import scala.collection.mutable
 
 object _648_ReplaceWords:
-  private def replaceWords(dictionary: List[String], sentence: String): String =
+  def replaceWords(dictionary: List[String], sentence: String): String =
     class TrieNode(
         val children: mutable.Map[Char, TrieNode] = mutable.Map.empty,
         var isLeaf: Boolean = false

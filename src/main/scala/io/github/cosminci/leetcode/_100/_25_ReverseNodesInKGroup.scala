@@ -7,7 +7,7 @@ object _25_ReverseNodesInKGroup:
   def main(args: Array[String]): Unit =
     println(seq(reverseKGroup(linkedList(Seq(1, 2)), 2)))
 
-  private def reverseKGroup(head: ListNode, k: Int): ListNode =
+  def reverseKGroup(head: ListNode, k: Int): ListNode =
     if head == null || head.next == null then return head
 
     var (finalHead, start, end) = (head, head, head)

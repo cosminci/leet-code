@@ -6,7 +6,7 @@ object _1326_MinNumberOfTapsToOpenToWaterAGarden:
   def main(args: Array[String]): Unit =
     println(minTaps(7, Array(1, 2, 1, 0, 2, 1, 0, 1)))
 
-  private def minTaps(n: Int, ranges: Array[Int]): Int =
+  def minTaps(n: Int, ranges: Array[Int]): Int =
     val intervals = ranges.indices.map { rangeCenter =>
       Interval(
         math.max(0, rangeCenter - ranges(rangeCenter)),

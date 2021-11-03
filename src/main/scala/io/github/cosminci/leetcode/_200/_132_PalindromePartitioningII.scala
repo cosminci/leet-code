@@ -7,7 +7,7 @@ object _132_PalindromePartitioningII:
     println(minCutBottomUp("ababababababababababababcbabababababababa"))
     println(minCutTopDown("ababababababababababababcbabababababababa"))
 
-  private def minCutBottomUp(s: String): Int =
+  def minCutBottomUp(s: String): Int =
     val isPalindromeDP = Array.ofDim[Boolean](s.length, s.length)
     val minCutUntilIdx = Array.ofDim[Int](s.length)
 
@@ -26,7 +26,7 @@ object _132_PalindromePartitioningII:
     }
     minCutUntilIdx.last
 
-  private def minCutTopDown(s: String): Int =
+  def minCutTopDown(s: String): Int =
     val mem = mutable.Map.empty[(Int, Int), Int]
 
     def dfs(startIdx: Int, endIdx: Int): Int =

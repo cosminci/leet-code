@@ -4,7 +4,7 @@ import io.github.cosminci.utils.TreeNode
 
 object _222_CountCompleteTreeNodes:
 
-  private def countNodes(root: TreeNode): Int =
+  def countNodes(root: TreeNode): Int =
     if root == null then return 0
 
     var (left, right) = (root, root)

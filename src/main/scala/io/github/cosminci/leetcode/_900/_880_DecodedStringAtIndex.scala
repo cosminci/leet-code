@@ -6,7 +6,7 @@ object _880_DecodedStringAtIndex:
     println(decodeAtIndex("ha22", 5))
     println(decodeAtIndex("a2345678999999999999999", 1))
 
-  private def decodeAtIndex(s: String, k: Int): String =
+  def decodeAtIndex(s: String, k: Int): String =
     @annotation.tailrec
     def dfs(length: Long, idx: Int, k: Long): String =
       if s(idx).isDigit then dfs(length / (s(idx) - '0'), idx - 1, k % length)

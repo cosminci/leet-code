@@ -9,7 +9,7 @@ object _630_CourseScheduleIII:
     println(scheduleCourseTopDown(courses))
     println(scheduleCoursePQueue(courses))
 
-  private def scheduleCourseTopDown(courses: Array[Array[Int]]): Int =
+  def scheduleCourseTopDown(courses: Array[Array[Int]]): Int =
     courses.sortInPlaceBy(_.last) // sort by end limit
 
     val mem = mutable.Map.empty[(Int, Int), Int]
@@ -29,7 +29,7 @@ object _630_CourseScheduleIII:
 
     dfs(idx = 0, currentTime = 0)
 
-  private def scheduleCoursePQueue(courses: Array[Array[Int]]): Int =
+  def scheduleCoursePQueue(courses: Array[Array[Int]]): Int =
     courses.sortInPlaceBy(_.last) // sort by end limit
 
     var currentTime = 0

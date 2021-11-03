@@ -19,7 +19,7 @@ object _1976_NumberOfWaysToArriveAtDestination:
   case class Ways(count: Long, cost: Long)
   case class Path(from: Int, to: Int, cost: Long)
 
-  private def countPaths(n: Int, roads: Array[Array[Int]]): Int =
+  def countPaths(n: Int, roads: Array[Array[Int]]): Int =
     val mod          = 1_000_000_007
     val waysToArrive = Array.fill[Ways](n)(Ways(0, Long.MaxValue))
 

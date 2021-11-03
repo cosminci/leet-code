@@ -8,7 +8,7 @@ object _134_GasStation:
     println(canCompleteCircuit(Array(1, 2, 3, 4, 5), Array(3, 4, 5, 1, 2)))
     println(canCompleteCircuit(Array(2, 3, 4), Array(3, 4, 3)))
 
-  private def canCompleteCircuit(gas: Array[Int], cost: Array[Int]): Int =
+  def canCompleteCircuit(gas: Array[Int], cost: Array[Int]): Int =
     if gas.sum < cost.sum then return -1
 
     gas.indices

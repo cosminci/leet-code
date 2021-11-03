@@ -8,7 +8,7 @@ object _904_FruitIntoBaskets:
     println(totalFruitTopDown(Array(3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4)))
     println(totalFruitSliding(Array(3, 3, 3, 1, 2, 1, 1, 2, 3, 3, 4)))
 
-  private def totalFruitSliding(fruits: Array[Int]): Int =
+  def totalFruitSliding(fruits: Array[Int]): Int =
     val baskets = mutable.Map.empty[Int, Int]
     fruits(2) = 3
     var max    = 0
@@ -29,7 +29,7 @@ object _904_FruitIntoBaskets:
       r += 1
     math.max(max, baskets.values.sum)
 
-  private def totalFruitTopDown(fruits: Array[Int]): Int =
+  def totalFruitTopDown(fruits: Array[Int]): Int =
     val mem = mutable.Map.empty[(Int, Set[Int]), Int]
 
     def dfs(idx: Int, fruitTypes: Set[Int]): Int =

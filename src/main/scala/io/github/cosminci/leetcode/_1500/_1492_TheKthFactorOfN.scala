@@ -8,7 +8,7 @@ object _1492_TheKthFactorOfN:
     println(kthFactor(1, 1))
     println(kthFactor(1, 2))
 
-  private def kthFactor(n: Int, kth: Int): Int =
+  def kthFactor(n: Int, kth: Int): Int =
     var root = math.sqrt(n).toInt
     var k    = kth
     (1 to root).foreach { i =>

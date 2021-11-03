@@ -7,7 +7,7 @@ object _1921_EliminateMaxNumberOfMonsters:
   def main(args: Array[String]): Unit =
     println(eliminateMaximum(Array(1, 3, 4, 2, 3), Array(1, 1, 1, 1, 1)))
 
-  private def eliminateMaximum(dist: Array[Int], speed: Array[Int]): Int =
+  def eliminateMaximum(dist: Array[Int], speed: Array[Int]): Int =
     def computeMinutesLeft(monster: Int) = math.ceil(dist(monster).toDouble / speed(monster)).toInt
 
     val minutesLeft = Array.ofDim[Int](dist.length)

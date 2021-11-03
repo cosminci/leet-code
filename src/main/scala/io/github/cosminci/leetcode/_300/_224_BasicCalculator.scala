@@ -7,7 +7,7 @@ object _224_BasicCalculator:
     println(calculate("( -1)"))
     println(calculate("(1+(4+5+2)-3)+(6+8)"))
 
-  private def calculate(s: String): Int =
+  def calculate(s: String): Int =
     val stack = mutable.Stack.empty[Int]
 
     var (result, operand, sign) = (0, 0, 1)

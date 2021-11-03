@@ -8,7 +8,7 @@ object _71_SimplifyPath:
     println(simplifyPath("/home//foo/"))
     println(simplifyPath("/../"))
 
-  private def simplifyPath(path: String): String =
+  def simplifyPath(path: String): String =
     val pathBuilder = mutable.Stack.empty[String]
     val segments    = path.split('/').filter(_.nonEmpty)
 

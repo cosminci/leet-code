@@ -13,7 +13,7 @@ object _1023_SortItemsByGroupsRespectingDependencies:
       ).toList
     )
 
-  private def sortItems(n: Int, m: Int, group: Array[Int], beforeItems: List[List[Int]]): Array[Int] =
+  def sortItems(n: Int, m: Int, group: Array[Int], beforeItems: List[List[Int]]): Array[Int] =
     var nextGroupId = m
     group.indices.foreach { i =>
       if group(i) == -1 then group(i) = nextGroupId; nextGroupId += 1
@@ -45,7 +45,7 @@ object _1023_SortItemsByGroupsRespectingDependencies:
 
     if finalOrder.length == n then finalOrder.toArray else Array.empty
 
-  private def topologicalSort(
+  def topologicalSort(
       items: Seq[Int],
       predecessors: mutable.Map[Int, mutable.Set[Int]],
       successors: mutable.Map[Int, mutable.Set[Int]]

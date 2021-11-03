@@ -6,7 +6,7 @@ object _995_MinNumberOfKConsecutiveBitFlips:
   def main(args: Array[String]): Unit =
     println(minKBitFlips(Array(0, 0, 0, 1, 0, 1, 1, 0), 3))
 
-  private def minKBitFlips(nums: Array[Int], k: Int): Int =
+  def minKBitFlips(nums: Array[Int], k: Int): Int =
     val flipsWindow = mutable.Queue.empty[Int]
     var flipCount   = 0
 

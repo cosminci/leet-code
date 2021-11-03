@@ -9,7 +9,7 @@ object _926_FlipStringToMonotoneIncreasing:
     println(minFlipsMonoIncr("010110"))
     println(minFlipsMonoIncr("00011000"))
 
-  private def minFlipsMonoIncr(s: String): Int =
+  def minFlipsMonoIncr(s: String): Int =
     var onesRemaining     = s.count(_ == '1')
     var zeroesRemaining   = s.length - onesRemaining
     var onesAccumulated   = 0

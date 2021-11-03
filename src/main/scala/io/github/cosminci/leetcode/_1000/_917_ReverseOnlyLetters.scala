@@ -6,7 +6,7 @@ object _917_ReverseOnlyLetters:
     println(reverseOnlyLetters("a-bC-dEf-ghIj"))
     println(reverseOnlyLetters("Test1ng-Leet=code-Q!"))
 
-  private def reverseOnlyLetters(s: String): String =
+  def reverseOnlyLetters(s: String): String =
     val result = new StringBuilder(s)
     var (l, r) = (0, s.length - 1)
     while l < r do

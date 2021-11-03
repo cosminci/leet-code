@@ -7,7 +7,7 @@ object _2023_NumberOfPairsOfStringsWithConcatenationEqualToTarget:
     println(numOfPairsBruteForce(Array("1201954", "543", "3", "12019"), "12019543"))
     println(numOfPairsFreqMap(Array("1201954", "543", "3", "12019"), "12019543"))
 
-  private def numOfPairsBruteForce(nums: Array[String], target: String): Int =
+  def numOfPairsBruteForce(nums: Array[String], target: String): Int =
     val hits = for
       i <- nums.indices
       j <- nums.indices
@@ -15,7 +15,7 @@ object _2023_NumberOfPairsOfStringsWithConcatenationEqualToTarget:
     yield true
     hits.length
 
-  private def numOfPairsFreqMap(nums: Array[String], target: String): Int =
+  def numOfPairsFreqMap(nums: Array[String], target: String): Int =
     val freqMap  = Map.from(nums.groupBy(identity).mapValues(_.length)).withDefaultValue(0)
     val prefixes = target.scanLeft("")(_ + _).slice(1, target.length)
 

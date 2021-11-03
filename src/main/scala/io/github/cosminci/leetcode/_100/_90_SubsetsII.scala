@@ -5,7 +5,7 @@ object _90_SubsetsII:
     println(subsetsWithDupRecursive(Array(4, 4, 4, 1, 4)))
     println(subsetsWithDupIterative(Array(4, 4, 4, 1, 4)))
 
-  private def subsetsWithDupIterative(nums: Array[Int]): List[List[Int]] =
+  def subsetsWithDupIterative(nums: Array[Int]): List[List[Int]] =
     val digitCounts = nums.groupBy(identity).view.mapValues(_.size).toMap
 
     digitCounts.foldLeft(List(List.empty[Int])) { case (subsets, (digit, count)) =>
@@ -15,7 +15,7 @@ object _90_SubsetsII:
       }
     }
 
-  private def subsetsWithDupRecursive(nums: Array[Int]): List[List[Int]] =
+  def subsetsWithDupRecursive(nums: Array[Int]): List[List[Int]] =
     def dfs(idx: Int): Set[Map[Int, Int]] =
       if idx == nums.length then return Set(Map.empty)
 
@@ -28,9 +28,7 @@ object _90_SubsetsII:
       }
 
     dfs(0)
-      .map(counts =>
-        counts.foldLeft(List.empty[Int]) { case (acc, (digit, count)) =>
-          acc.prependedAll(Seq.fill(count)(digit))
-        }
-      )
+      .map(_.foldLeft(List.empty[Int]) { case (acc, (digit, count)) =>
+        acc.prependedAll(Seq.fill(count)(digit))
+      })
       .toList

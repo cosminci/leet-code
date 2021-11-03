@@ -6,7 +6,7 @@ object _442_FindAllDuplicatesInAnArray:
     println(findDuplicates(Array(1, 1, 2)))
     println(findDuplicates(Array(1)))
 
-  private def findDuplicates(nums: Array[Int]): List[Int] =
+  def findDuplicates(nums: Array[Int]): List[Int] =
     nums.foldLeft(List.empty) { case (duplicates, n) =>
       val idx = math.abs(n) - 1
       if nums(idx) < 0 then duplicates :+ idx + 1

@@ -6,7 +6,7 @@ object _1887_ReductionOperationToMakeTheArrayElementsEqual:
     println(reductionOperations(Array(1, 1, 1)))
     println(reductionOperations(Array(1, 1, 2, 2, 3)))
 
-  private def reductionOperations(nums: Array[Int]): Int =
+  def reductionOperations(nums: Array[Int]): Int =
     nums.sortInPlace()
     val min = nums.head
     nums.indices.tail

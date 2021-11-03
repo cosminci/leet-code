@@ -15,7 +15,7 @@ object _1074_NumberOfSubmatricesThatSumToTarget:
       )
     )
 
-  private def numSubmatrixSumTarget(matrix: Array[Array[Int]], target: Int): Int =
+  def numSubmatrixSumTarget(matrix: Array[Array[Int]], target: Int): Int =
     val (m, n) = (matrix.length, matrix.head.length)
     (0 until m).foreach { r =>
       (1 until n).foreach { c =>

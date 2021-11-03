@@ -6,7 +6,7 @@ object _213_HouseRobberII:
     println(rob(Array(1, 2, 3, 1)))
     println(rob(Array(0)))
 
-  private def rob(nums: Array[Int]): Int =
+  def rob(nums: Array[Int]): Int =
     if nums.length == 1 then return nums.head
 
     def robHouses(houses: Array[Int]) =

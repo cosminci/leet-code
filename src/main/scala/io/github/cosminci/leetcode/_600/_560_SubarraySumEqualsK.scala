@@ -5,7 +5,7 @@ object _560_SubarraySumEqualsK:
     println(subarraySum(Array(1, 2, 3), 3))
     println(subarraySumMap(Array(1, 2, 3), 3))
 
-  private def subarraySumMap(nums: Array[Int], k: Int): Int =
+  def subarraySumMap(nums: Array[Int], k: Int): Int =
     nums
       .foldLeft((Map(0 -> 1), 0, 0)) { case ((cumulativeSumCounts, kCount, cumulativeSum), n) =>
         val newCumulativeSum = cumulativeSum + n
@@ -20,7 +20,7 @@ object _560_SubarraySumEqualsK:
       }
       ._2
 
-  private def subarraySum(nums: Array[Int], k: Int): Int =
+  def subarraySum(nums: Array[Int], k: Int): Int =
     var count = 0
     nums.indices.foreach { i =>
       var sum = 0

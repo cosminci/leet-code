@@ -7,7 +7,7 @@ object _108_ConvertSortedArrayToBST:
     val root = sortedArrayToBST(Array(1, 2, 3, 4))
     println(root)
 
-  private def sortedArrayToBST(nums: Array[Int]): TreeNode =
+  def sortedArrayToBST(nums: Array[Int]): TreeNode =
     if nums.isEmpty then return null
 
     val (left, right) = nums.splitAt(nums.length / 2)

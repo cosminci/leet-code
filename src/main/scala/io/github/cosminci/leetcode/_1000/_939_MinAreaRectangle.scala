@@ -7,7 +7,7 @@ object _939_MinAreaRectangle:
     println(minAreaRect(Array(Array(1, 1), Array(1, 3), Array(3, 1), Array(3, 3), Array(2, 2))))
     println(minAreaRect(Array(Array(1, 1), Array(1, 3), Array(3, 1), Array(3, 3), Array(4, 1), Array(4, 3))))
 
-  private def minAreaRect(points: Array[Array[Int]]): Int =
+  def minAreaRect(points: Array[Array[Int]]): Int =
     val seen    = mutable.Set.empty[(Int, Int)]
     var minArea = Int.MaxValue
 

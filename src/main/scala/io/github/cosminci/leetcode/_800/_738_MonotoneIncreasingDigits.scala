@@ -6,7 +6,7 @@ object _738_MonotoneIncreasingDigits:
       println(monotoneIncreasingDigits(n))
     }
 
-  private def monotoneIncreasingDigits(n: Int): Int =
+  def monotoneIncreasingDigits(n: Int): Int =
     val nDigits = n.toString.map(_ - '0')
 
     val (result, monotoneEnd) = (nDigits.length - 1 to 1 by -1).foldLeft(nDigits, nDigits.length - 1) {

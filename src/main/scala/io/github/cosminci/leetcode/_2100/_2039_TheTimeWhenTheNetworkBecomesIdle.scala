@@ -6,7 +6,7 @@ object _2039_TheTimeWhenTheNetworkBecomesIdle:
   def main(args: Array[String]): Unit =
     println(networkBecomesIdle(Array(Array(0, 1), Array(1, 2)), Array(0, 2, 1)))
 
-  private def networkBecomesIdle(edges: Array[Array[Int]], patience: Array[Int]): Int =
+  def networkBecomesIdle(edges: Array[Array[Int]], patience: Array[Int]): Int =
     val adjMatrix = mutable.Map.empty[Int, mutable.ListBuffer[Int]]
     edges.foreach { case Array(from, to) =>
       adjMatrix.getOrElseUpdate(from, mutable.ListBuffer.empty).append(to)

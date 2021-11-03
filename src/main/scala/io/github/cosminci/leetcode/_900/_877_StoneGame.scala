@@ -7,7 +7,7 @@ object _877_StoneGame:
   def main(args: Array[String]): Unit =
     println(stoneGame(Array(5, 5, 6, 5)))
 
-  private def stoneGame(piles: Array[Int]): Boolean =
+  def stoneGame(piles: Array[Int]): Boolean =
     val mem = mutable.Map.empty[(Int, Int), Int]
 
     def dfs(l: Int, r: Int): Int =

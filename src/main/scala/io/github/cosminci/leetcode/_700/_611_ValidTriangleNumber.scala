@@ -6,7 +6,7 @@ object _611_ValidTriangleNumber:
     println(triangleNumber(Array(2, 2, 3, 4)))
     println(triangleNumber(Array(4, 2, 3, 4)))
 
-  private def triangleNumber(input: Array[Int]): Int =
+  def triangleNumber(input: Array[Int]): Int =
     if input.length < 3 then return 0
     val nums  = input.sorted
     var count = 0

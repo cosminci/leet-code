@@ -4,7 +4,7 @@ object _566_ReshapeTheMatrix:
   def main(args: Array[String]): Unit =
     println(matrixReshape(Array(Array(1), Array(2), Array(3), Array(4)), 2, 2).map(_.toList).toList)
 
-  private def matrixReshape(mat: Array[Array[Int]], r: Int, c: Int): Array[Array[Int]] =
+  def matrixReshape(mat: Array[Array[Int]], r: Int, c: Int): Array[Array[Int]] =
     if r * c != mat.length * mat(0).length then return mat
 
     val result = Array.ofDim[Int](r, c)

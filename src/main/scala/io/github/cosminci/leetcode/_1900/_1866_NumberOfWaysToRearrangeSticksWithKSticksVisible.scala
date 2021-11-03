@@ -7,7 +7,7 @@ object _1866_NumberOfWaysToRearrangeSticksWithKSticksVisible:
   def main(args: Array[String]): Unit =
     println(rearrangeSticks(3, 2))
 
-  private def rearrangeSticks(n: Int, k: Int): Int =
+  def rearrangeSticks(n: Int, k: Int): Int =
     val mem = mutable.Map.empty[(Int, Int), BigInt]
     def dfs(n: Int, k: Int): BigInt =
       if k == 0 || n == 0 || k > n then return BigInt(0)
