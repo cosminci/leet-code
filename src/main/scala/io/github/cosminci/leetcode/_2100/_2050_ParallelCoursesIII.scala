@@ -10,11 +10,10 @@ object _2050_ParallelCoursesIII:
     )
 
   def minimumTime(n: Int, relations: Array[Array[Int]], time: Array[Int]): Int =
-    val graph = Array.fill(n + 1)(mutable.ListBuffer.empty[Int])
-    relations.foreach { case Array(prev, curr) => graph(curr).append(prev) }
+    val adjList = relations.groupMap(r => r(1))(r => r(0)).withDefaultValue(Array.empty[Int])
 
     val mem = mutable.Map.empty[Int, Int]
     def dfs(course: Int): Int =
-      mem.getOrElseUpdate(course, time(course - 1) + graph(course).map(dfs).maxOption.getOrElse(0))
+      mem.getOrElseUpdate(course, time(course - 1) + adjList(course).map(dfs).maxOption.getOrElse(0))
 
     (1 to n).map(dfs).max
