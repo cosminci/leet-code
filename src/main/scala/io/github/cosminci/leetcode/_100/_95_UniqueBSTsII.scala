@@ -2,7 +2,7 @@ package io.github.cosminci.leetcode._100
 
 import io.github.cosminci.utils.TreeNode
 
-object _95_UniqueBinarySearchTreesII:
+object _95_UniqueBSTsII:
   def main(args: Array[String]): Unit =
     val forest = generateTrees(3)
     println(forest)
