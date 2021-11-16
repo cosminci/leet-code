@@ -6,16 +6,15 @@ object _668_KthSmallestNumberInMultiplicationTable:
     println(findKthNumber(2, 3, 6))
 
   def findKthNumber(m: Int, n: Int, k: Int): Int =
-    def enoughSmallerNumbers(value: Int) =
-      val range = (1 to m).takeWhile(row => math.min(value / row, n) > 0)
-      val count = range.foldLeft(0) { case (acc, row) =>
-        acc + math.min(value / row, n)
-      }
-      count >= k
+    def enough(value: Int) =
+      (1 to m).map(row => n.min(value / row)).sum >= k
 
-    var (l, r) = (1, m * n)
-    while l < r do
-      val mid = l + (r - l) / 2
-      if enoughSmallerNumbers(mid) then r = mid
-      else l = mid + 1
-    l
+    @annotation.tailrec
+    def dfs(l: Int, r: Int): Int =
+      if l >= r then l
+      else
+        val mid = l + (r - l) / 2
+        if enough(mid) then dfs(l, mid)
+        else dfs(mid + 1, r)
+
+    dfs(l = 1, r = m * n)
