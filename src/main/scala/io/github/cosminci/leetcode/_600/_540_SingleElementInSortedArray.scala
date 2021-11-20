@@ -6,11 +6,12 @@ object _540_SingleElementInSortedArray:
     println(singleNonDuplicate(Array(3, 3, 7, 7, 10, 11, 11)))
 
   def singleNonDuplicate(nums: Array[Int]): Int =
-    var (left, right) = (0, nums.length - 1)
+    @annotation.tailrec
+    def dfs(l: Int, r: Int): Int =
+      if l >= r then nums(l)
+      else
+        val mid = l + (r - l) / 2
+        if nums(mid) != nums(mid ^ 1) then dfs(l, mid)
+        else dfs(mid + 1, r)
 
-    while left < right do
-      val mid = left + (right - left) / 2
-      if nums(mid) != nums(mid ^ 1) then right = mid
-      else left = mid + 1
-
-    nums(left)
+    dfs(l = 0, r = nums.length - 1)
