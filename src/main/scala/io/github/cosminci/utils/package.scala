@@ -1,5 +1,6 @@
 package io.github.cosminci
 
+import scala.collection.mutable
 import scala.io.Source
 import scala.util.Using
 
@@ -51,7 +52,7 @@ package object utils:
           left == that.left &&
           right == that.right
       case _ => false
-
+      
   def linkedList(elements: Seq[Int]): ListNode = 
     elements.foldRight[ListNode](null)((value, next) => new ListNode(value, next))
 
