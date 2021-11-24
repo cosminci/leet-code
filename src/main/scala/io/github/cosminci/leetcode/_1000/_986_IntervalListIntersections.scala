@@ -1,7 +1,5 @@
 package io.github.cosminci.leetcode._1000
 
-import scala.collection.mutable
-
 object _986_IntervalListIntersections:
   def main(args: Array[String]): Unit =
     println(
@@ -12,15 +10,15 @@ object _986_IntervalListIntersections:
     )
 
   def intervalIntersection(firstList: Array[Array[Int]], secondList: Array[Array[Int]]): Array[Array[Int]] =
-    var (idx1, idx2) = (0, 0)
-    val results      = mutable.ListBuffer.empty[Array[Int]]
+    @annotation.tailrec
+    def dfs(idx1: Int, idx2: Int, result: Array[Array[Int]]): Array[Array[Int]] =
+      if idx1 == firstList.length || idx2 == secondList.length then result
+      else
+        val Array(start1, end1) = firstList(idx1)
+        val Array(start2, end2) = secondList(idx2)
 
-    while idx1 != firstList.length && idx2 != secondList.length do
-      val Array(start1, end1) = firstList(idx1)
-      val Array(start2, end2) = secondList(idx2)
+        val candidate      = Array(math.max(start1, start2), math.min(end1, end2))
+        val (nidx1, nidx2) = Option.when(end1 <= end2)(idx1 + 1, idx2).getOrElse(idx1, idx2 + 1)
+        dfs(nidx1, nidx2, result ++ Option.when(candidate.head <= candidate.last)(candidate))
 
-      val candidate = Array(math.max(start1, start2), math.min(end1, end2))
-      if candidate.head <= candidate.last then results.append(candidate)
-      if end1 <= end2 then idx1 += 1 else idx2 += 1
-
-    results.toArray
+    dfs(idx1 = 0, idx2 = 0, Array.empty)
