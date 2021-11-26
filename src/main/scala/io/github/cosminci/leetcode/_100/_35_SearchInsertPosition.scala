@@ -5,9 +5,12 @@ object _35_SearchInsertPosition:
     println(searchInsert(Array(1, 3, 5, 6), 5))
 
   def searchInsert(nums: Array[Int], target: Int): Int =
-    var (l, r) = (0, nums.length)
-    while l < r do
-      val mid = l + (r - l) / 2
-      if nums(mid) >= target then r = mid
-      if nums(mid) < target then l = mid + 1
-    l
+    @annotation.tailrec
+    def dfs(l: Int, r: Int): Int =
+      if l >= r then l
+      else {
+        val mid = l + (r - l) / 2
+        if nums(mid) >= target then dfs(l, mid)
+        else dfs(mid + 1, r)
+      }
+    dfs(l = 0, r = nums.length)
