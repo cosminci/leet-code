@@ -1,15 +1,11 @@
 package io.github.cosminci.leetcode._300
 
 object _238_ProductOfArrayExceptSelf:
+  def main(args: Array[String]): Unit =
+    println(productExceptSelf(Array(1, 2, 3, 4)).toSeq)
+    println(productExceptSelf(Array(-1, 1, 0, -3, 3)).toSeq)
+
   def productExceptSelf(nums: Array[Int]): Array[Int] =
-    val dp = Array.ofDim[Int](nums.length)
-    dp(0) = 1
-    (1 until dp.length).foreach { i =>
-      dp(i) = dp(i - 1) * nums(i - 1)
-    }
-    var suffix = 1
-    (dp.length - 1 to 0 by -1).foreach { i =>
-      dp(i) = dp(i) * suffix
-      suffix *= nums(i)
-    }
-    dp
+    val prefixProduct = nums.dropRight(1).scanLeft(1)(_ * _)
+    val suffixProduct = nums.drop(1).scanRight(1)(_ * _)
+    prefixProduct.zip(suffixProduct).map(_ * _)
