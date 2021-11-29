@@ -1,6 +1,6 @@
 package io.github.cosminci.leetcode._800
 
-import scala.collection.mutable
+import io.github.cosminci.utils.UnionFind
 
 object _721_AccountsMerge:
   def main(args: Array[String]): Unit =
@@ -14,51 +14,27 @@ object _721_AccountsMerge:
       )
     ).foreach(println)
 
-    println(
-      accountsMerge(
-        List(
-          List("John", "johnsmith@mail.com", "john_newyork@mail.com"),
-          List("John", "johnsmith@mail.com", "john00@mail.com"),
-          List("Mary", "mary@mail.com"),
-          List("John", "johnnybravo@mail.com")
-        )
+    accountsMerge(
+      List(
+        List("John", "johnsmith@mail.com", "john_newyork@mail.com"),
+        List("John", "johnsmith@mail.com", "john00@mail.com"),
+        List("Mary", "mary@mail.com"),
+        List("John", "johnnybravo@mail.com")
       )
-    )
+    ).foreach(println)
 
   def accountsMerge(accounts: List[List[String]]): List[List[String]] =
-    val accountEmailSets = mutable.Map.empty[String, mutable.Set[String]]
-    val emailToAccount   = mutable.Map.empty[String, String]
-    val accountToName    = mutable.Map.empty[String, String]
+    val uf = new UnionFind[String]
 
-    accounts.foreach { acc =>
-      val friendlyName = acc.head
-      val emails       = acc.tail
-
-      emails.find(emailToAccount.contains) match
-        case None =>
-          val primaryEmail = emails.head
-          accountEmailSets.update(primaryEmail, mutable.Set.from(emails))
-          emails.foreach { email => emailToAccount.update(email, emails.head) }
-          accountToName.update(primaryEmail, friendlyName)
-
-        case Some(existingEmail) =>
-          val existingPrimaryEmail = emailToAccount(existingEmail)
-          emails.foreach { email =>
-            emailToAccount.get(email) match
-              case None =>
-                accountEmailSets(existingPrimaryEmail).add(email)
-                emailToAccount.update(email, existingPrimaryEmail)
-
-              case Some(primaryEmail) =>
-                if primaryEmail != existingPrimaryEmail then
-                  val emailsToMerge = accountEmailSets(primaryEmail)
-                  emailsToMerge.foreach(emailToAccount.update(_, existingPrimaryEmail))
-                  accountEmailSets(existingPrimaryEmail).addAll(emailsToMerge)
-                  accountEmailSets.remove(primaryEmail)
-                  accountToName.remove(primaryEmail)
-          }
+    val emailToName = accounts.foldLeft(Map.empty[String, String]) {
+      case (emailToName, account) =>
+        val name :: emails = account
+        emailToName.updated(emails.reduce(uf.union), name)
     }
 
-    accountEmailSets.map { case (primaryEmail, emails) =>
-      emails.toList.sorted.prepended(accountToName(primaryEmail))
-    }.toList
+    accounts
+      .flatMap(_.tail)
+      .distinct
+      .groupBy(uf.find)
+      .map { case (rootEmail, emails) => emailToName(rootEmail) +: emails.sorted}
+      .toList
