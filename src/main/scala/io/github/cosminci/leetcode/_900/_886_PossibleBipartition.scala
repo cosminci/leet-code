@@ -1,6 +1,6 @@
 package io.github.cosminci.leetcode._900
 
-import io.github.cosminci.utils.DisjointSetUnion.DSU
+import io.github.cosminci.utils.UnionFind
 
 object _886_PossibleBipartition {
   def possibleBipartition(n: Int, dislikes: Array[Array[Int]]): Boolean = {
@@ -9,10 +9,10 @@ object _886_PossibleBipartition {
         acc.updated(n1, acc(n1) :+ n2).updated(n2, acc(n2) :+ n1)
     }
 
-    val dsu = new DSU
+    val uf = new UnionFind[Int]
     (1 to n + 1).forall { curr =>
       if (adjList(curr).isEmpty) true
-      else adjList(curr).reduce(dsu.union) != dsu.find(curr)
+      else adjList(curr).reduce(uf.union) != uf.find(curr)
     }
   }
 }

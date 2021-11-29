@@ -1,7 +1,7 @@
 package io.github.cosminci.leetcode._2000
 
 import io.github.cosminci.utils
-import io.github.cosminci.utils.DisjointSetUnion.DSU
+import io.github.cosminci.utils.UnionFind
 
 import scala.collection.mutable
 
@@ -12,7 +12,7 @@ object _1998_GcdSortOfAnArray:
 
   def gcdSort(nums: Array[Int]): Boolean =
     val spf = sieve(nums.max + 1)
-    val uf  = new DSU
+    val uf  = new UnionFind[Int]
     nums.foreach { n =>
       primeFactors(n, spf).foreach { f =>
         uf.union(n, f)

@@ -1,13 +1,13 @@
 package io.github.cosminci.leetcode._1000
 
 import io.github.cosminci.utils
-import io.github.cosminci.utils.DisjointSetUnion.DSU
+import io.github.cosminci.utils.UnionFind
 
 import scala.collection.mutable
 
 object _952_LargestComponentSizeByCommonFactor {
   def largestComponentSize(nums: Array[Int]): Int = {
-    val dsu  = new DSU
+    val uf  = new UnionFind[Int]
 
     val primes = mutable.Map.empty[Int, mutable.ListBuffer[Int]]
     for {
@@ -15,8 +15,8 @@ object _952_LargestComponentSizeByCommonFactor {
       p <- primeSet(n)
     } primes.getOrElseUpdate(p, mutable.ListBuffer.empty).append(n)
 
-    primes.values.foreach(_.reduce(dsu.union))
-    nums.map(dsu.find).groupBy(identity).values.map(_.length).max
+    primes.values.foreach(_.reduce(uf.union))
+    nums.map(uf.find).groupBy(identity).values.map(_.length).max
   }
 
   private def primeSet(n: Int): Set[Int] =

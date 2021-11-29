@@ -1,6 +1,6 @@
 package io.github.cosminci.leetcode._700
 
-import io.github.cosminci.utils.DisjointSetUnion.DSU
+import io.github.cosminci.utils.UnionFind
 
 import scala.collection.mutable
 
@@ -14,12 +14,12 @@ object _684_RedundantConnection:
     )
 
   def findRedundantConnection(edges: Array[Array[Int]]): Array[Int] =
-    val dsu = new DSU
+    val uf = new UnionFind[Int]
     edges.find { case edge @ Array(from, to) =>
-      val (p1, p2) = (dsu.find(from), dsu.find(to))
+      val (p1, p2) = (uf.find(from), uf.find(to))
       if (p1 == p2) true
       else {
-        dsu.union(p1, p2)
+        uf.union(p1, p2)
         false
       }
     }.get
