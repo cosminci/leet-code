@@ -17,3 +17,5 @@ class UnionFind[T]:
   def find(n: T): T =
     if parent(n) != n then parent.update(n, find(parent(n)))
     parent(n)
+
+  def nodes(): Set[T] = parent.keySet.toSet
