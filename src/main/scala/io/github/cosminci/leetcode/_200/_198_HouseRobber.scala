@@ -10,12 +10,11 @@ object _198_HouseRobber:
   def robTopDown(nums: Array[Int]): Int =
     val mem = mutable.Map.empty[Int, Int]
     def dfs(idx: Int): Int =
-      if idx >= nums.length then return 0
-      if mem.contains(idx) then return mem(idx)
-      val result = math.max(nums(idx) + dfs(idx + 2), dfs(idx + 1))
-      mem.update(idx, result)
-      result
-    dfs(0)
+      mem.getOrElseUpdate(idx, {
+        if idx >= nums.length then 0
+        else (nums(idx) + dfs(idx + 2)).max(dfs(idx + 1))
+      })
+    dfs(idx = 0)
 
   def robBottomUp(nums: Array[Int]): Int =
     if nums.length == 1 then return nums.head
