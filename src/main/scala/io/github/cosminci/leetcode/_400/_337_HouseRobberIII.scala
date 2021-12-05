@@ -5,15 +5,11 @@ import io.github.cosminci.utils.TreeNode
 object _337_HouseRobberIII:
   def rob(root: TreeNode): Int =
     def dfs(node: TreeNode): (Int, Int) =
-      if node == null then return (0, 0)
-
-      val (maxLeftWith, maxLeftWithout)   = dfs(node.left)
-      val (maxRightWith, maxRightWithout) = dfs(node.right)
-
-      (
-        node.value + maxLeftWithout + maxRightWithout,
-        math.max(maxLeftWith, maxLeftWithout) + math.max(maxRightWith, maxRightWithout)
-      )
+      if node == null then (0, 0)
+      else
+        val (leftWith, leftWithout)   = dfs(node.left)
+        val (rightWith, rightWithout) = dfs(node.right)
+        (node.value + leftWithout + rightWithout, leftWith.max(leftWithout) + rightWith.max(rightWithout))
 
     val (withRoot, withoutRoot) = dfs(root)
-    math.max(withRoot, withoutRoot)
+    withRoot max withoutRoot
