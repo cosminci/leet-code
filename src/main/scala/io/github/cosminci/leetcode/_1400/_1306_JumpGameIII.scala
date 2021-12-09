@@ -5,19 +5,17 @@ import scala.collection.mutable
 object _1306_JumpGameIII:
 
   def canReach(arr: Array[Int], start: Int): Boolean =
-    val toVisit = mutable.Stack(start)
     val visited = mutable.Set(start)
 
-    while toVisit.nonEmpty do
-      val position = toVisit.pop()
-      if arr(position) == 0 then return true
-      val frontJump = position + arr(position)
-      if frontJump < arr.length && !visited.contains(frontJump) then
-        toVisit.push(frontJump)
-        visited.add(frontJump)
-      val backJump = position - arr(position)
-      if backJump >= 0 && !visited.contains(backJump) then
-        toVisit.push(backJump)
-        visited.add(backJump)
+    def canReachAfterJump(position: Int) =
+      Option.when(arr.isDefinedAt(position) && !visited.contains(position)) {
+        visited.add(position)
+        position
+      }.exists(dfs)
 
-    false
+    def dfs(position: Int): Boolean =
+      arr(position) == 0 ||
+        canReachAfterJump(position + arr(position)) ||
+        canReachAfterJump(position - arr(position))
+
+    dfs(start)
