@@ -13,12 +13,12 @@ object _416_PartitionEqualSubsetSum:
     val target = total / 2
 
     val prevSums = mutable.Set(0)
-    (nums.length - 1 to 0 by -1).foreach { idx =>
-      val newSums = prevSums.map(_ + nums(idx))
-      if newSums.contains(target) then return true
+    (nums.length - 1 to 0 by -1).exists { idx =>
+      val newSums   = prevSums.map(_ + nums(idx))
+      val predicate = newSums.contains(target)
       prevSums.addAll(newSums)
+      predicate
     }
-    false
 
   def canPartitionTopDown(nums: Array[Int]): Boolean =
     val total = nums.sum
@@ -27,11 +27,9 @@ object _416_PartitionEqualSubsetSum:
 
     val mem = mutable.Map.empty[(Int, Int), Boolean]
     def dfs(idx: Int, target: Int): Boolean =
-      if idx == nums.length then return target == 0
-      if mem.contains((idx, target)) then return mem((idx, target))
-
-      val result = dfs(idx + 1, target - nums(idx)) || dfs(idx + 1, target)
-      mem.update((idx, target), result)
-      result
+      mem.getOrElseUpdate((idx, target), {
+        if idx == nums.length then target == 0
+        else dfs(idx + 1, target - nums(idx)) || dfs(idx + 1, target)
+      })
 
     dfs(0, target)
