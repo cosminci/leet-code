@@ -7,9 +7,8 @@ import scala.collection.mutable
 object _938_RangeSumOfBST:
   def rangeSumBSTRecursive(root: TreeNode, low: Int, high: Int): Int =
     def dfs(node: TreeNode): Int =
-      if node == null then return 0
-
-      if node.value < low then dfs(node.right)
+      if node == null then 0
+      else if node.value < low then dfs(node.right)
       else if node.value > high then dfs(node.left)
       else if node.value == low then node.value + dfs(node.right)
       else if node.value == high then node.value + dfs(node.left)
@@ -25,11 +24,8 @@ object _938_RangeSumOfBST:
       val node = toVisit.dequeue()
       if node != null then
         if node.value >= low && node.value <= high then sum += node.value
-
         if node.value > high then toVisit.enqueue(node.left)
         else if node.value < low then toVisit.enqueue(node.right)
-        else
-          toVisit.enqueue(node.left)
-          toVisit.enqueue(node.right)
+        else Seq(node.left, node.right).foreach(toVisit.enqueue)
 
     sum
