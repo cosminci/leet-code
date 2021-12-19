@@ -1,29 +1,30 @@
 package io.github.cosminci.leetcode._400
 
-import scala.collection.mutable
+import scala.annotation.tailrec
 
 object _394_DecodeString:
   def main(args: Array[String]): Unit =
-    println(decodeString("3[a2[c]]"))
+    println(decodeString("2[abc]3[cd]ef"))
+    println(decodeString("abc3[cd]xyz"))
 
   def decodeString(s: String): String =
-    val openGroups = mutable.Stack.empty[(Int, String)]
-    var idx        = 0
-    while idx != s.length do
-      if s(idx).isDigit then
-        var end = idx + 1
-        while s(end).isDigit do end += 1
-        openGroups.push((s.substring(idx, end).toInt, ""))
-        idx = end - 1
+    def destructure(stack: Seq[(Int, String)]) =
+      Option.when(stack.nonEmpty)(stack.dropRight(1), stack.last).getOrElse(Seq.empty, (1, ""))
+
+    @annotation.tailrec
+    def dfs(idx: Int, stack: Seq[(Int, String)]): String =
+      if idx == s.length then stack.head._2
+      else if s(idx).isDigit then
+        val end = s.indexWhere(char => !char.isDigit, from = idx)
+        dfs(end, stack :+ (s.substring(idx, end).toInt, ""))
       else if s(idx).isLetter then
-        val currentGroup = openGroups.pop()
-        openGroups.push((currentGroup._1, s"${currentGroup._2}${s(idx)}"))
+        val end = Some(s.indexWhere(char => !char.isLetter, from = idx)).filter(_ >= 0).getOrElse(s.length)
+        val (rest, (count, letters)) = destructure(stack)
+        dfs(end, rest :+ (count, s"$letters${s.substring(idx, end)}"))
       else if s(idx) == ']' then
-        val completeGroup = openGroups.pop()
-        val result        = completeGroup._2 * completeGroup._1
-        if openGroups.nonEmpty then
-          val currentGroup = openGroups.pop()
-          openGroups.push((currentGroup._1, s"${currentGroup._2}$result"))
-        else openGroups.push((1, result))
-      idx += 1
-    openGroups.head._2
+        val (rest, (count, letters))             = destructure(stack)
+        val (prevRest, (prevCount, prevLetters)) = destructure(rest)
+        dfs(idx + 1, prevRest :+ (prevCount, s"$prevLetters${letters * count}"))
+      else dfs(idx + 1, stack)
+
+    dfs(idx = 0, stack = Seq.empty)
