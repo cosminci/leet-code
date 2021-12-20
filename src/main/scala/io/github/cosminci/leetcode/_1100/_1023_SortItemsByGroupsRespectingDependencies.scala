@@ -1,4 +1,4 @@
-package io.github.cosminci.leetcode._1300
+package io.github.cosminci.leetcode._1100
 
 import scala.collection.mutable
 
