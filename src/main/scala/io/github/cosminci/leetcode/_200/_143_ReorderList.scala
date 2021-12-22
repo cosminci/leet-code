@@ -1,41 +1,37 @@
 package io.github.cosminci.leetcode._200
 
-import io.github.cosminci.utils._
+import io.github.cosminci.utils.*
 
 object _143_ReorderList:
 
   def main(args: Array[String]): Unit =
-    reorderList(linkedList(Seq(1, 2, 3, 4,5)))
+    val head = linkedList(Seq(1, 2, 3, 4, 5))
+    reorderList(head)
+    println(seq(head))
 
   def reorderList(head: ListNode): Unit =
-    var length  = 1
-    var tracker = head
-    while tracker.next != null do
-      length += 1
-      tracker = tracker.next
-    if length <= 2 then return
+    @annotation.tailrec
+    def findMiddle(slow: ListNode, fast: ListNode): ListNode =
+      if fast.next == null || fast.next.next == null then slow
+      else findMiddle(slow.next, fast.next.next)
 
-    tracker = head
-    var prev: ListNode = null
-    (1 to (length / 2 + length % 2)).foreach { _ =>
-      prev = tracker
-      tracker = tracker.next
-    }
-    prev.next = null
+    @annotation.tailrec
+    def reverse(prev: ListNode, curr: ListNode): ListNode =
+      if curr == null then prev
+      else
+        val next = curr.next
+        curr.next = prev
+        reverse(curr, next)
 
-    prev = null
-    while tracker != null do
-      val next = tracker.next
-      tracker.next = prev
-      prev = tracker
-      tracker = next
+    @annotation.tailrec
+    def merge(head1: ListNode, head2: ListNode): Unit =
+      if head2 == null then ()
+      else
+        val next = head1.next
+        head1.next = head2
+        merge(head2, next)
 
-    var start = head
-    var end   = prev
-    while start != null && end != null do
-      val startNext = start.next
-      start.next = end
-      val endNext = end.next
-      end.next = startNext
-      start = startNext
-      end = endNext
+    val mid  = findMiddle(slow = head, fast = head)
+    val last = reverse(prev = null, curr = mid.next)
+    mid.next = null
+    merge(head1 = head, head2 = last)
