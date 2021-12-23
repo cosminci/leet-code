@@ -1,31 +1,19 @@
 package io.github.cosminci.leetcode._300
 
-import scala.collection.mutable
-
 object _210_CourseScheduleII:
 
   def main(args: Array[String]): Unit =
     println(findOrder(1, Array.empty).toList)
 
   def findOrder(numCourses: Int, prerequisites: Array[Array[Int]]): Array[Int] =
-    val adjacencyList = mutable.Map.empty[Int, mutable.Set[Int]]
-    (0 until numCourses).foreach(c => adjacencyList.update(c, mutable.Set.empty))
-    prerequisites.foreach { case Array(c, dep) =>
-      adjacencyList.update(c, adjacencyList(c).addOne(dep))
-    }
+    val adjList = (0 until numCourses).map(_ -> Set.empty[Int]).toMap ++
+      prerequisites.groupMap(_.head)(_.last).mapValues(_.toSet).toMap
 
-    val completable      = Array.ofDim[Int](numCourses)
-    val completableOrder = mutable.ListBuffer.empty[Int]
-    val visited          = mutable.Set.empty[Int]
+    @annotation.tailrec
+    def traverse(adjList: Map[Int, Set[Int]], acc: Array[Int]): Array[Int] =
+      lazy val (roots, nonRoots) = adjList.partition(_._2.isEmpty)
+      if adjList.isEmpty then acc
+      else if roots.isEmpty then Array.empty
+      else traverse(nonRoots.mapValues(_ -- roots.keys).toMap, acc ++ roots.keys)
 
-    def dfs(course: Int): Boolean =
-      if completable(course) == 1 then return true
-      if visited.contains(course) then return false
-      visited.add(course)
-      if adjacencyList(course).isEmpty || adjacencyList(course).forall(dfs) then
-        completable(course) = 1
-        completableOrder.addOne(course)
-        true
-      else false
-
-    if (0 until numCourses).forall(dfs) then completableOrder.toArray else Array.empty
+    traverse(adjList, Array.empty)
