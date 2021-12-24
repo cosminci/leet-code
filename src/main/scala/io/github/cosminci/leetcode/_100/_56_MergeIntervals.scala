@@ -9,19 +9,12 @@ object _56_MergeIntervals {
   }
 
   def merge(intervals: Array[Array[Int]]): Array[Array[Int]] = {
-    given Ordering[Array[Int]] = (x, y) => x.head.compareTo(y.head)
-    intervals.sortInPlace
+    @annotation.tailrec
+    def merge(merged: Array[Array[Int]], interval: Array[Int]): Array[Array[Int]] =
+      if (merged.isEmpty) Array(interval)
+      else if (interval.head > merged.last.last) merged :+ interval
+      else merge(merged.dropRight(1), Array(merged.last.head, merged.last.last.max(interval.last)))
 
-    val result = mutable.Stack(intervals.head)
-    intervals.tail.foreach {
-      case interval @ Array(start, end) =>
-        if (start > result.head.last)
-          result.push(interval)
-        else {
-          val prev = result.pop()
-          result.push(Array(prev.head, math.max(prev.last, end)))
-        }
-    }
-    result.popAll().toArray
+    intervals.sortBy(_.head).foldLeft(Array.empty[Array[Int]])(merge)
   }
 }
