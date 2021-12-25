@@ -1,33 +1,29 @@
 package io.github.cosminci.leetcode._300
 
-import scala.collection.mutable
-
 object _227_BasicCalculatorII:
   def main(args: Array[String]): Unit =
     println(calculate("7/ 3+5 / 2 "))
     println(calculate("3+2*2"))
     println(calculate(" 3 / 2 "))
 
-  def calculate(s: String): Int =
-    val stack                = mutable.Stack.empty[Int]
-    var (operand, operation) = (0, '+')
+  def calculate(s: String): Int = {
+    @annotation.tailrec
+    def dfs(i: Int, stack: Array[Int], operand: Int, operation: Char): Int =
+      if (i == s.length) stack.sum
+      else {
+        val newOperand = if (s(i).isDigit) operand * 10 + s(i) - '0' else operand
 
-    s.indices.foreach { i =>
-      val char = s(i)
-      if char.isDigit then operand = operand * 10 + (char - '0')
+        if (i != s.length - 1 && (s(i).isDigit || s(i) == ' '))
+          dfs(i + 1, stack, newOperand, operation)
+        else if (operation == '+')
+          dfs(i + 1, stack :+ newOperand, 0, s(i))
+        else if (operation == '-')
+          dfs(i + 1, stack :+ -newOperand, 0, s(i))
+        else if (operation == '/')
+          dfs(i + 1, stack.dropRight(1) :+ stack.last / newOperand, 0, s(i))
+        else
+          dfs(i + 1, stack.dropRight(1) :+ stack.last * newOperand, 0, s(i))
+      }
 
-      if (!char.isDigit && char != ' ') || i == s.length - 1 then
-        operation match
-          case '+' =>
-            stack.push(operand)
-          case '-' =>
-            stack.push(-operand)
-          case '/' =>
-            stack.push(stack.pop() / operand)
-          case _ =>
-            stack.push(stack.pop() * operand)
-        operand = 0
-        operation = char
-    }
-
-    stack.sum
+    dfs(i = 0, stack = Array.empty, operand = 0, operation = '+')
+  }
