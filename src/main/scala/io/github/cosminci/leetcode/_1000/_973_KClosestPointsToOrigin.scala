@@ -8,13 +8,8 @@ object _973_KClosestPointsToOrigin:
     println(kClosestHeap(Array(Array(3, 3), Array(5, -1), Array(-2, 4)), 2).map(_.toList).toList)
     println(kClosestSort(Array(Array(3, 3), Array(5, -1), Array(-2, 4)), 2).map(_.toList).toList)
 
-  given Ordering[Array[Int]] = (x: Array[Int], y: Array[Int]) =>
-    val i  = y.head * y.head + y.last * y.last
-    val i1 = x.head * x.head + x.last * x.last
-    i.compare(i1)
-
   def kClosestHeap(points: Array[Array[Int]], k: Int): Array[Array[Int]] =
-    val pqueue = mutable.PriorityQueue.empty[Array[Int]]
+    val pqueue = mutable.PriorityQueue.empty[Array[Int]](Ordering.by(distanceToOrigin).reverse)
     val result = Array.ofDim[Array[Int]](k)
     pqueue.addAll(points)
     (0 until k).foreach { i =>
@@ -22,9 +17,8 @@ object _973_KClosestPointsToOrigin:
     }
     result
 
-  def kClosestSort(points: Array[Array[Int]], k: Int): Array[Array[Int]] =
-    points
-      .sortBy { case Array(x, y) =>
-        x * x + y * y
-      }
-      .take(k)
+  def kClosestSort(points: Array[Array[Int]], k: Int): Array[Array[Int]] = 
+    points.sortBy(distanceToOrigin).take(k)
+
+
+  private def distanceToOrigin(p: Array[Int]) = p.head * p.head + p.last * p.last
