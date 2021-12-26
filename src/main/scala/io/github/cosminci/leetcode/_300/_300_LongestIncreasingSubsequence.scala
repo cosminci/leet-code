@@ -9,18 +9,10 @@ object _300_LongestIncreasingSubsequence:
     println(lengthOfLISBinarySearch(Array(10, 9, 2, 5, 3, 7, 101, 18)))
 
   def lengthOfLISBinarySearch(nums: Array[Int]): Int =
-    val stacks    = Array.ofDim[Int](nums.length)
-    var maxLength = 0
-    nums.foreach { n =>
-      var (l, r) = (0, maxLength)
-      while l < r do
-        val mid = l + (r - l) / 2
-        if stacks(mid) >= n then r = mid
-        else l = mid + 1
-      stacks(l) = n
-      if l == maxLength then maxLength += 1
-    }
-    maxLength
+    nums.foldLeft(Seq.fill(nums.length + 1)(Int.MaxValue)) {
+      case (stack, n) =>
+        stack.updated(stack.search(n).insertionPoint, n)
+    }.indexWhere(_ == Int.MaxValue)
 
   def lengthOfLISDP(nums: Array[Int]): Int =
     val dp = Array.fill[Int](nums.length)(1)
