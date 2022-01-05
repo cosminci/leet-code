@@ -30,13 +30,13 @@ package object utils:
     val below = Option.when(x < grid.length - 1)((x + 1, y))
     Seq(above, left, right, below).flatten
   
-  def isPalindrome(s: String): Boolean =
-    var (l, r) = (0, s.length - 1)
-    while l < r do
-      if s(l) != s(r) then return false
-      l += 1
-      r -= 1
-    true
+  def isPalindrome(s: String): Boolean = {
+    @annotation.tailrec
+    def dfs(l: Int, r: Int): Boolean =
+      l >= r || (s(l) == s(r) && dfs(l + 1, r - 1))
+
+    dfs(l = 0, r = s.length - 1)
+  }
   
   class TreeNode(_value: Int = 0, _left: TreeNode = null, _right: TreeNode = null):
     var value: Int      = _value
