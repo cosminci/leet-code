@@ -9,10 +9,8 @@ object _452_MinNumberOfArrowsToBurstBalloons:
     println(findMinArrowShots(Array(Array(1, 2), Array(2, 3), Array(3, 4), Array(4, 5))))
 
   def findMinArrowShots(points: Array[Array[Int]]): Int =
-    points.sortInPlaceBy(_.head)
-    val overlaps = mutable.Stack(points.head)
-    points.tail.foreach { b =>
-      if b.head > overlaps.head.last then overlaps.push(b)
-      else overlaps.push(Array(b.head, math.min(b.last, overlaps.pop().last)))
-    }
-    overlaps.size
+    points.sortBy(_(0)).tail.foldLeft(Seq(points.minBy(_(0)))) {
+      case (all @ prev :+ last, b) =>
+        if (b(0) > last(1)) all :+ b
+        else prev :+ Array(b(0), b(1).min(last(1)))
+    }.length
