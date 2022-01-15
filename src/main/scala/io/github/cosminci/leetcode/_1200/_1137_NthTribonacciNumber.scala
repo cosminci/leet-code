@@ -1,4 +1,4 @@
-package io.github.cosminci.leetcode._1400
+package io.github.cosminci.leetcode._1200
 
 object _1137_NthTribonacciNumber:
   def main(args: Array[String]): Unit =

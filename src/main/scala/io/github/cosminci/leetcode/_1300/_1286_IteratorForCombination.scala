@@ -1,4 +1,4 @@
-package io.github.cosminci.leetcode._1400
+package io.github.cosminci.leetcode._1300
 
 object _1286_IteratorForCombination:
   def main(args: Array[String]): Unit =
