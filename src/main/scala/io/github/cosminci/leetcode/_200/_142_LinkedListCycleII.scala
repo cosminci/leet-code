@@ -4,23 +4,23 @@ import io.github.cosminci.utils.ListNode
 
 object _142_LinkedListCycleII:
   def main(args: Array[String]): Unit =
-    var last = new ListNode(-4)
+    val last = new ListNode(-4)
     val head = new ListNode(3, new ListNode(2, new ListNode(0, last)))
     last.next = head.next
     println(detectCycle(head))
-    
+
   def detectCycle(head: ListNode): ListNode =
-    if head == null || head.next == null then return null
+    @annotation.tailrec
+    def findCycle(slow: ListNode, fast: ListNode): ListNode =
+      if fast.next == null || fast.next.next == null then null
+      else
+        val (nextSlow, nextFast) = (slow.next, fast.next.next)
+        if nextSlow == nextFast then findCycleStart(head, nextFast)
+        else findCycle(nextSlow, nextFast)
 
-    var (slow, fast) = (head, head)
-    while fast.next != null && fast.next.next != null do
-      slow = slow.next
-      fast = fast.next.next
-      if slow == fast then
-        slow = head
-        while slow != fast do
-          slow = slow.next
-          fast = fast.next
-        return slow
+    @annotation.tailrec
+    def findCycleStart(slow: ListNode, fast: ListNode): ListNode =
+      if slow == fast then slow
+      else findCycleStart(slow.next, fast.next)
 
-    null
+    Option.when(head != null && head.next != null)(findCycle(head, head)).orNull
