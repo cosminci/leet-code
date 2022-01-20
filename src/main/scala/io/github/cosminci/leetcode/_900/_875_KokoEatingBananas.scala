@@ -8,19 +8,12 @@ object _875_KokoEatingBananas:
     println(minEatingSpeed(Array(30, 11, 23, 4, 20), 6))
 
   def minEatingSpeed(piles: Array[Int], h: Int): Int =
-    val minK = math.ceil(piles.sum / h.toDouble).toInt
-    val maxK = piles.max
+    @annotation.tailrec
+    def binarySearch(l: Int, r: Int): Int =
+      if l >= r then r
+      else
+        val mid = (l + r) / 2
+        if piles.map(p => math.ceil(p.toDouble / mid)).sum <= h then binarySearch(l, mid)
+        else binarySearch(mid + 1, r)
 
-    var (l, r) = (minK, maxK)
-    while l <= r do
-      val k = (l + r) / 2
-      if canConsumeAll(piles, h, k) then
-        if l == k then return k
-        r = k
-      else l = k + 1
-    0
-
-  def canConsumeAll(piles: Array[Int], h: Int, k: Int): Boolean =
-    piles.foldLeft(h) { case (hoursLeft, pile) =>
-      hoursLeft - math.ceil(pile / k.toDouble).toInt
-    } >= 0
+    binarySearch(l = 1, r = piles.max)
