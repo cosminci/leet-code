@@ -9,9 +9,8 @@ object _134_GasStation:
     println(canCompleteCircuit(Array(2, 3, 4), Array(3, 4, 3)))
 
   def canCompleteCircuit(gas: Array[Int], cost: Array[Int]): Int =
-    if gas.sum < cost.sum then return -1
-
-    gas.indices
+    if gas.sum < cost.sum then -1
+    else gas.indices
       .foldLeft((0, 0)) { case ((total, start), i) =>
         val newTotal = total + gas(i) - cost(i)
         if newTotal < 0 then (0, i + 1)
