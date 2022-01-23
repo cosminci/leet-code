@@ -3,8 +3,8 @@ package io.github.cosminci.leetcode._2200
 object _2134_MinSwapsToGroupAllOnesTogetherII:
 
   def minSwaps(nums: Array[Int]): Int =
-    val (windowSize, n)  = (nums.sum, nums.length)
-    val initialOnes = nums.slice(0, windowSize).sum
+    val (windowSize, n) = (nums.sum, nums.length)
+    val initialOnes     = nums.slice(0, windowSize).sum
 
     @annotation.tailrec
     def dfs(l: Int, prevOnes: Int, minZeroes: Int): Int =

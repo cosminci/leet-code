@@ -8,7 +8,6 @@ object _2131_LongestPalindromeByConcatenatingTwoLetterWords:
         val isSym = word == rev
         if counter(rev) > 0 then
           (counter.updated(rev, counter(rev) - 1), pairs + 1, Option.when(isSym)(sym - 1).getOrElse(sym))
-        else
-          (counter.updated(word, counter(word) + 1), pairs, Option.when(isSym)(sym + 1).getOrElse(sym))
+        else (counter.updated(word, counter(word) + 1), pairs, Option.when(isSym)(sym + 1).getOrElse(sym))
     }
     4 * pairs + Option.when(sym > 0)(2).getOrElse(0)
