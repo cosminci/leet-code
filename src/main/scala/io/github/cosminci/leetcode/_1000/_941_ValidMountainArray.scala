@@ -7,12 +7,12 @@ object _941_ValidMountainArray:
     println(validMountainArray(Array(0, 3, 2, 1)))
 
   def validMountainArray(arr: Array[Int]): Boolean =
-    var idx = 0
+    val peak = Iterator
+      .iterate(0)(_ + 1)
+      .dropWhile(i => i + 1 < arr.length && arr(i) < arr(i + 1))
+      .next()
 
-    while idx + 1 < arr.length && arr(idx) < arr(idx + 1) do idx += 1
-
-    if idx == 0 || idx == arr.length - 1 then return false
-
-    while idx + 1 < arr.length && arr(idx) > arr(idx + 1) do idx += 1
-
-    idx == arr.length - 1
+    peak != 0 && peak != arr.length - 1 && Iterator
+      .iterate(peak)(_ + 1)
+      .dropWhile(i => i + 1 < arr.length && arr(i) > arr(i + 1))
+      .next() == arr.length - 1
