@@ -11,50 +11,38 @@ object _421_MaxXOROfTwoNumbersInAnArray:
 
   def findMaximumXORBitManipulation(nums: Array[Int]): Int =
     (31 to 0 by -1)
-      .foldLeft(0, 0) { case ((prevMaxXOR, mask), i) =>
-        val newMask   = mask | (1 << i)
+      .foldLeft(0, 0) { case ((prevMaxXOR, prevMask), i) =>
+        val newMask   = prevMask | (1 << i)
         val leftParts = Set.from(nums.map(_ & newMask))
         val candidate = prevMaxXOR | (1 << i)
-        val newMaxXOR = leftParts
-          .find(leftPart => leftParts.contains(candidate ^ leftPart))
-          .map(_ => candidate)
-          .getOrElse(prevMaxXOR)
+        val newMaxXOR =
+          if leftParts.exists(a => leftParts.contains(candidate ^ a)) then candidate
+          else prevMaxXOR
+
         (newMaxXOR, newMask)
       }
       ._1
 
-  class TrieNode(val children: mutable.Map[Int, TrieNode] = mutable.Map.empty, var value: Option[Int] = None)
-
-  def buildTrie(nums: Array[Int]): TrieNode = {
-    val root = new TrieNode()
-    nums.foreach { n =>
-      var node = root
-      (31 to 0 by -1).foreach { bitIdx =>
-        val bit = (n >> bitIdx) & 1
-        if (node.children.contains(bit)) {
-          node = node.children(bit)
-        } else {
-          val newNode = new TrieNode()
-          node.children.update(bit, newNode)
-          node = newNode
-        }
-      }
-      node.value = Some(n)
-    }
-    root
-  }
-
-  def findMaximumXORTrie(nums: Array[Int]): Int = {
+  def findMaximumXORTrie(nums: Array[Int]): Int =
     val root = buildTrie(nums)
     nums.map { n =>
-      var node = root
-      (31 to 0 by -1).foreach { bitIdx =>
-        val bit = (n >> bitIdx) & 1
-        if (node.children.contains(bit ^ 1))
-          node = node.children(bit ^ 1)
-        else
-          node = node.children(bit)
-      }
-      node.value.get ^ n
+      (31 to 0 by -1)
+        .foldLeft(root) { (node, bitIdx) =>
+          val bit = (n >> bitIdx) & 1
+          node.children.getOrElse(bit ^ 1, node.children(bit))
+        }
+        .value ^ n
     }.max
-  }
+
+  class TrieNode(val children: mutable.Map[Int, TrieNode] = mutable.Map.empty, var value: Int = 0)
+
+  private def buildTrie(nums: Array[Int]): TrieNode =
+    nums.foldLeft(new TrieNode()) { (root, n) =>
+      (31 to 0 by -1)
+        .foldLeft(root) { (node, bitIdx) =>
+          val bit = (n >> bitIdx) & 1
+          node.children.getOrElseUpdate(bit, new TrieNode())
+        }
+        .value = n
+      root
+    }
