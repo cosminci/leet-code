@@ -8,12 +8,7 @@ object _121_BestTimeToBuyAndSellStock:
     println(maxProfit(Array(2, 4, 1)))
 
   def maxProfit(prices: Array[Int]): Int =
-    if prices.length == 1 then return 0
-    var maxProfit = 0
-    var minPrice  = Int.MaxValue
-    prices.indices.foreach { i =>
-      val price = prices(i)
-      if price < minPrice then minPrice = price
-      else maxProfit = math.max(maxProfit, price - minPrice)
-    }
-    maxProfit
+    prices.foldLeft(0, Int.MaxValue) { case ((maxProfit, minPrice), price) =>
+      if (price < minPrice) (maxProfit, price)
+      else (maxProfit.max(price - minPrice), minPrice)
+    }._1
