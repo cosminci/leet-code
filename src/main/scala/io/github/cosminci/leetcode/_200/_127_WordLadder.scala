@@ -8,38 +8,37 @@ object _127_WordLadder:
     println(ladderLength("hit", "cog", List("hot", "dot", "dog", "lot", "log", "cog")))
 
   def ladderLength(beginWord: String, endWord: String, wordList: List[String]): Int =
-    if !wordList.contains(endWord) then return 0
-
     val (wordToWildcards, wildcardToWords) = wildcardMappings(wordList :+ beginWord)
 
-    val toVisit = mutable.Queue.empty[(String, Int)]
-    val visited = mutable.Set.empty[String]
-    toVisit.enqueue((beginWord, 1))
-    visited.addOne(beginWord)
+    val toVisit = mutable.Queue((beginWord, 1))
+    val visited = mutable.Set(beginWord)
 
     while toVisit.nonEmpty do
       val (word, changeCount) = toVisit.dequeue()
       if word == endWord then return changeCount
-      else
-        wordToWildcards(word).flatMap(wildcardToWords).foreach { w =>
-          if !visited.contains(w) then
-            toVisit.enqueue((w, changeCount + 1))
-            visited.addOne(w)
+
+      wordToWildcards(word)
+        .flatMap(wildcardToWords)
+        .filter(w => !visited.contains(w))
+        .foreach { w =>
+          toVisit.enqueue((w, changeCount + 1))
+          visited.addOne(w)
         }
     0
 
-  def wildcardMappings(dictionary: List[String]) =
-    val wordToWildcards = mutable.Map.empty[String, Seq[String]]
-    val wildcardToWords = mutable.Map.empty[String, Seq[String]]
+  private def wildcardMappings(words: List[String]) =
+    words.foldLeft(Map.empty[String, Seq[String]], Map.empty[String, Seq[String]].withDefaultValue(Seq.empty)) {
+      case ((wordToWildcards, wildcardToWords), word) =>
+        val wildcards = word.indices.map(word.updated(_, '*'))
 
-    dictionary.foreach { word =>
-      wordToWildcards.update(word, word.indices.map(i => word.updated(i, '*')))
-      wordToWildcards(word).foreach { wildcard =>
-        wildcardToWords.updateWith(wildcard) {
-          case None        => Some(Seq(word))
-          case Some(words) => Some(words :+ word)
+        val newWcToWords = wildcards.foldLeft(wildcardToWords) { (wildcardToWords, wildcard) =>
+          wildcardToWords.updated(
+            wildcard,
+            wildcardToWords.get(wildcard) match
+              case None        => Seq(word)
+              case Some(words) => words :+ word
+          )
         }
-      }
-    }
 
-    (wordToWildcards.toMap, wildcardToWords.toMap)
+        (wordToWildcards.updated(word, wildcards), newWcToWords)
+    }
