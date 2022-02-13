@@ -7,13 +7,9 @@ object _78_Subsets:
     val mem = mutable.Map.empty[Int, List[List[Int]]]
 
     def dfs(idx: Int): List[List[Int]] =
-      if idx == nums.length then return List(List.empty)
-      if mem.contains(idx) then return mem(idx)
+      mem.getOrElseUpdate(idx, {
+        if idx == nums.length then List(List.empty)
+        else dfs(idx + 1) ++ dfs(idx + 1).map(_.prepended(nums(idx)))
+      })
 
-      val nextIdxSubsets = dfs(idx + 1)
-      val result         = nextIdxSubsets ++ nextIdxSubsets.map(_.prepended(nums(idx)))
-
-      mem.update(idx, result)
-      result
-
-    dfs(0)
+    dfs(idx = 0)
