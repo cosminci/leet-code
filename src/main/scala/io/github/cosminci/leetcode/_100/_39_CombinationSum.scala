@@ -10,22 +10,15 @@ object _39_CombinationSum:
     println(combinationSum(Array(1), 1))
     println(combinationSum(Array(1), 2))
 
-  def combinationSum(candidates: Array[Int], target: Int): List[List[Int]] =
-    val mem    = mutable.Map.empty[(Int, Int), List[List[Int]]]
-    val sorted = candidates.sorted
+  def combinationSum(nums: Array[Int], target: Int): List[List[Int]] =
+    nums.sortInPlace()
 
-    def dfs(t: Int, minIdx: Int): List[List[Int]] =
-      if minIdx == sorted.length || t < sorted(minIdx) then return List.empty
+    val mem = mutable.Map.empty[(Int, Int), List[List[Int]]]
+    def dfs(t: Int, idx: Int): List[List[Int]] =
+      mem.getOrElseUpdate((t, idx), {
+        if idx == nums.length || t < nums(idx) then List.empty
+        else if t == nums(idx) then List(List(t))
+        else dfs(t - nums(idx), idx).map(nums(idx) +: _) ++ dfs(t, idx + 1)
+      })
 
-      if mem.contains((t, minIdx)) then return mem((t, minIdx))
-      val result =
-        if t == sorted(minIdx) then List(List(t))
-        else
-          val withCurrent =
-            dfs(t - sorted(minIdx), minIdx).map(_.prepended(sorted(minIdx)))
-          val withoutCurrent = dfs(t, minIdx + 1)
-          withCurrent ++ withoutCurrent
-      mem.update((t, minIdx), result)
-      result
-
-    dfs(target, 0)
+    dfs(target, idx = 0)
