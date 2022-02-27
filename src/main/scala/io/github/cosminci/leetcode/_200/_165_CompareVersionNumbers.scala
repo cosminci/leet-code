@@ -11,13 +11,9 @@ object _165_CompareVersionNumbers:
   def compareVersion(version1: String, version2: String): Int =
     version1
       .split("\\.")
-      .zipAll(
-        version2.split("\\."),
-        "0",
-        "0"
-      )
+      .zipAll(version2.split('.'), "0", "0")
       .collectFirst {
-        case (v1Revision, v2Revision) if v1Revision.toInt != v2Revision.toInt =>
-          if v1Revision.toInt > v2Revision.toInt then 1 else -1
+        case (v1, v2) if v1.toInt != v2.toInt =>
+          if v1.toInt > v2.toInt then 1 else -1
       }
       .getOrElse(0)
