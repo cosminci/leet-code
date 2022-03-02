@@ -7,7 +7,7 @@ object _740_DeleteAndEarn {
   }
 
   def deleteAndEarn(nums: Array[Int]): Int = {
-    val counter = nums.groupBy(identity).view.mapValues(_.length)
+    val counter = nums.groupMapReduce(identity)(_ => 1)(_ + _)
     (1 to nums.max).foldLeft(0, 0) {
       case ((prev, curr), n) =>
         (curr, math.max(prev + n * counter.getOrElse(n, 0), curr))

@@ -24,8 +24,8 @@ object _799_ChampagneTower:
 
   def champagneTowerBottomUp(poured: Int, queryRow: Int, queryGlass: Int): Double =
     (1 to queryRow).foldLeft(Seq(poured.toDouble)) { (prevRow, row) =>
-        (1 until prevRow.length)
-          .map(i => (prevRow(i - 1) - 1).max(0) / 2 + (prevRow(i) - 1).max(0) / 2)
-          .prepended((prevRow.head - 1).max(0) / 2)
-          .appended((prevRow.last - 1).max(0) / 2)
-      }(queryGlass).min(1)
+      (1 until prevRow.length)
+        .map(i => (prevRow(i - 1) - 1).max(0) / 2 + (prevRow(i) - 1).max(0) / 2)
+        .prepended((prevRow.head - 1).max(0) / 2)
+        .appended((prevRow.last - 1).max(0) / 2)
+    }(queryGlass).min(1)
