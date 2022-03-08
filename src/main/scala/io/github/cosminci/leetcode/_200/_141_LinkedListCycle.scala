@@ -5,12 +5,11 @@ import io.github.cosminci.utils.ListNode
 object _141_LinkedListCycle:
 
   def hasCycle(head: ListNode): Boolean =
-    if head == null || head.next == null then return false
-    var slow = head
-    var fast = head.next
+    @annotation.tailrec
+    def dfs(slow: ListNode, fast: ListNode): Boolean =
+      if fast == null || fast.next == null then false
+      else if fast == slow then true
+      else dfs(slow.next, fast.next.next)
 
-    while fast != null && fast.next != null do
-      if fast == slow then return true
-      slow = slow.next
-      fast = fast.next.next
-    false
+    if head == null then false
+    else dfs(head, head.next)
