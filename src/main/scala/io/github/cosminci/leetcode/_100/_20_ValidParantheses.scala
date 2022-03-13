@@ -4,18 +4,14 @@ import scala.collection.mutable
 
 object _20_ValidParantheses:
 
-  @main def main = println(isValid("(([{[[]]}]))"))
-
   def isValid(s: String): Boolean =
-    val prevStack = mutable.Stack.empty[Char]
-    s.foreach { p =>
-      if p == '(' || p == '[' || p == '{' then prevStack.push(p)
-      else {
-        if prevStack.isEmpty then return false
-        val prev = prevStack.pop()
-        if p == ')' && prev != '(' then return false
-        else if p == ']' && prev != '[' then return false
-        else if p == '}' && prev != '{' then return false
-      }
-    }
-    prevStack.isEmpty
+    @annotation.tailrec
+    def dfs(stack: Seq[Char], idx: Int): Boolean =
+      if idx == s.length then stack.isEmpty
+      else if s(idx) == '(' then dfs(stack :+ ')', idx + 1)
+      else if s(idx) == '[' then dfs(stack :+ ']', idx + 1)
+      else if s(idx) == '{' then dfs(stack :+ '}', idx + 1)
+      else if stack.isEmpty || s(idx) != stack.last then false
+      else dfs(stack.dropRight(1), idx + 1)
+
+    dfs(stack = Seq.empty, idx = 0)
