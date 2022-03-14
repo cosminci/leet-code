@@ -9,13 +9,13 @@ object _71_SimplifyPath:
     println(simplifyPath("/../"))
 
   def simplifyPath(path: String): String =
-    val pathBuilder = mutable.Stack.empty[String]
-    val segments    = path.split('/').filter(_.nonEmpty)
-
-    segments.foreach { segment =>
-      if segment == ".." then
-        if pathBuilder.nonEmpty then pathBuilder.pop()
-      else if segment != "." then pathBuilder.push(segment)
-    }
-
-    pathBuilder.popAll().mkString("/").prepended('/')
+    path
+      .split('/')
+      .filter(_.nonEmpty)
+      .foldLeft(Seq.empty[String]) { case (acc, segment) =>
+        if segment == ".." then acc.dropRight(1)
+        else if segment != "." then acc :+ segment
+        else acc
+      }
+      .mkString("/")
+      .prepended('/')
