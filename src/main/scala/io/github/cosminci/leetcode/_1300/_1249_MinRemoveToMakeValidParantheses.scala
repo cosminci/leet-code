@@ -10,14 +10,13 @@ object _1249_MinRemoveToMakeValidParantheses:
     println(minRemoveToMakeValid("(a(b(c)d)"))
 
   def minRemoveToMakeValid(s: String): String =
-    val paranIndices = mutable.Stack.empty[(Char, Int)]
+    @annotation.tailrec
+    def dfs(stack: Array[(Char, Int)], i: Int): Array[(Char, Int)] =
+      if i == s.length then stack
+      else if s(i) == ')' && stack.lastOption.exists(_._1 == '(') then dfs(stack.dropRight(1), i + 1)
+      else if s(i) == ')' then dfs(stack :+ (')', i), i + 1)
+      else if s(i) == '(' then dfs(stack :+ ('(', i), i + 1)
+      else dfs(stack, i + 1)
 
-    s.indices.foreach { i =>
-      if s(i) == ')' then
-        if paranIndices.headOption.exists(_._1 == '(') then paranIndices.pop()
-        else paranIndices.push((')', i))
-      else if s(i) == '(' then paranIndices.push(('(', i))
-    }
-
-    val toRemove = paranIndices.map(_._2)
+    val toRemove = dfs(stack = Array.empty, i = 0).map(_._2).toSet
     s.indices.filterNot(toRemove.contains).map(s).mkString
