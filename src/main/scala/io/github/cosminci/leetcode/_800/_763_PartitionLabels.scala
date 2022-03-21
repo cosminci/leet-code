@@ -3,33 +3,17 @@ package io.github.cosminci.leetcode._800
 object _763_PartitionLabels:
 
   def main(args: Array[String]): Unit =
-    println(partitionLabels("eccbbbbdec"))
     println(partitionLabels("ababcbacadefegdehijhklij"))
 
-  case class Interval(start: Int, end: Int)
-
   def partitionLabels(s: String): List[Int] =
-    characterBounds(s)
-      .map { case (startIdx, endIdx) => Interval(startIdx, endIdx) }
-      .sortBy(_.start)
-      .foldLeft(Vector.empty[Interval]) { case (mergedIntervals, newInterval) =>
-        if mergedIntervals.lastOption.exists(_.end > newInterval.start) then
-          val prevInterval    = mergedIntervals.last
-          val updatedInterval = Interval(prevInterval.start, math.max(prevInterval.end, newInterval.end))
-          mergedIntervals.dropRight(1).appended(updatedInterval)
-        else mergedIntervals.appended(newInterval)
-      }
-      .map { interval => interval.end - interval.start + 1 }
-      .toList
+    val ends = s.indices.foldLeft(Map.empty[Char, Int])((ends, i) => ends + (s(i) -> i))
 
-  def characterBounds(s: String) =
-    val startIndices = Array.fill(26)(-1)
-    val endIndices   = Array.fill(26)(-1)
+    s.indices
+      .foldLeft(Seq.empty[Int], 0, 0) { case ((result, start, last), i) =>
+        val newLast = last.max(ends(s(i)))
+        val (newResult, newStart) =
+          if newLast == i then (result :+ (newLast - start + 1), newLast + 1)
+          else (result, start)
 
-    s.indices.foreach { i =>
-      val letterIdx = s(i) - 'a'
-      if startIndices(letterIdx) == -1 then startIndices(letterIdx) = i
-      endIndices(letterIdx) = i
-    }
-
-    startIndices.zip(endIndices).filter(_._1 != -1)
+        (newResult, newStart, newLast)
+      }._1.toList
