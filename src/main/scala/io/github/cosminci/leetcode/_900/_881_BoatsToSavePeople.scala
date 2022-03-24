@@ -6,12 +6,11 @@ object _881_BoatsToSavePeople:
 
   def numRescueBoats(people: Array[Int], limit: Int): Int =
     people.sortInPlace()
-    var (l, r)   = (0, people.length - 1)
-    var numBoats = 0
 
-    while l <= r do
-      if people(l) + people(r) <= limit then l += 1
-      r -= 1
-      numBoats += 1
+    @annotation.tailrec
+    def dfs(l: Int, r: Int, boats: Int): Int =
+      if l > r then boats
+      else if people(l) + people(r) <= limit then dfs(l + 1, r - 1, boats + 1)
+      else dfs(l, r - 1, boats + 1)
 
-    numBoats
+    dfs(l = 0, r = people.length - 1, boats = 0)
