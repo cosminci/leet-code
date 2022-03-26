@@ -6,9 +6,12 @@ object _704_BinarySearch:
     println(search(Array(-1, 0, 3, 5, 9, 12), 2))
 
   def search(nums: Array[Int], target: Int): Int =
-    var (l, r) = (0, nums.length - 1)
-    while l < r do
-      val mid = l + (r - l) / 2
-      if nums(mid) < target then l = mid + 1
-      else r = mid
-    if nums(l) == target then l else -1
+    @annotation.tailrec
+    def dfs(l: Int, r: Int): Int =
+      if l >= r then Option.when(nums(l) == target)(l).getOrElse(-1)
+      else
+        val mid = l + (r - l) / 2
+        if nums(mid) < target then dfs(l = mid + 1, r)
+        else dfs(l, r = mid)
+
+    dfs(l = 0, r = nums.length - 1)
