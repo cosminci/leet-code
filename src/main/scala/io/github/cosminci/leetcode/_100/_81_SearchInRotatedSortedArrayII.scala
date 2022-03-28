@@ -6,20 +6,17 @@ object _81_SearchInRotatedSortedArrayII:
     println(search(Array(2, 5), 2))
 
   def search(nums: Array[Int], target: Int): Boolean =
-    if nums.length < 2 then return nums.contains(target)
+    @annotation.tailrec
+    def dfs(l: Int, r: Int): Boolean =
+      if l > r then false
+      else
+        val mid = l + (r - l) / 2
+        if nums(mid) == target then true
+        else if nums(l) == nums(mid) && nums(mid) == nums(r) then dfs(l + 1, r - 1)
+        else if nums(l) <= nums(mid) then
+          if nums(l) <= target && nums(mid) > target then dfs(l, r = mid - 1)
+          else dfs(l = mid + 1, r)
+        else if nums(mid) < target && nums(r) >= target then dfs(l = mid + 1, r)
+        else dfs(l, r = mid - 1)
 
-    var (l, r) = (0, nums.length - 1)
-
-    while l <= r do
-      val mid = l + (r - l) / 2
-
-      if target == nums(mid) then return true
-
-      if nums(mid) == nums(l) then l += 1
-      else if nums(mid) >= nums(l) == target >= nums(l) then
-        if nums(mid) < target then l = mid + 1
-        else r = mid - 1
-      else if nums(mid) > nums(l) then l = mid + 1
-      else r = mid - 1
-
-    false
+    dfs(l = 0, r = nums.length - 1)
