@@ -10,16 +10,14 @@ object _287_FindTheDuplicateNumber:
     println(findDuplicate(Array(2, 5, 9, 6, 9, 3, 8, 9, 7, 1)))
 
   def findDuplicate(nums: Array[Int]): Int =
-    var slow = nums(0)
-    var fast = nums(slow)
+    @annotation.tailrec
+    def intersectionPoint(slow: Int, fast: Int): Int =
+      if (nums(slow) == nums(fast)) slow
+      else intersectionPoint(nums(slow), nums(nums(fast)))
 
-    while nums(slow) != nums(fast) do
-      slow = nums(slow)
-      fast = nums(nums(fast))
+    @annotation.tailrec
+    def cycleStart(a: Int, b: Int): Int =
+      if (nums(a) == nums(b)) nums(a)
+      else cycleStart(nums(a), nums(b))
 
-    var slow2 = 0
-    while nums(slow) != nums(slow2) do
-      slow = nums(slow)
-      slow2 = nums(slow2)
-
-    nums(slow)
+    cycleStart(a = 0, b = intersectionPoint(slow = nums(0), fast = nums(nums(0))))
