@@ -8,16 +8,18 @@ object _410_SplitArrayLargestSum:
 
   def splitArray(nums: Array[Int], m: Int): Int =
     def canSplit(sumLimit: Int) =
-      nums
-        .foldLeft((1, 0)) { case ((subarrayCount, currentSum), n) =>
+      nums.foldLeft((1, 0)) {
+        case ((subarrayCount, currentSum), n) =>
           if currentSum + n <= sumLimit then (subarrayCount, currentSum + n)
           else (subarrayCount + 1, n)
-        }
-        ._1 <= m
+      }._1 <= m
 
-    var (l, r) = (nums.max, nums.sum)
-    while l < r do
-      val mid = l + (r - l) / 2
-      if canSplit(mid) then r = mid
-      else l = mid + 1
-    l
+    @annotation.tailrec
+    def binarySearch(l: Int, r: Int): Int =
+      if l >= r then l
+      else
+        val mid = l + (r - l) / 2
+        if canSplit(mid) then binarySearch(l, r = mid)
+        else binarySearch(l = mid + 1, r)
+
+    binarySearch(l = nums.max, r = nums.sum)
