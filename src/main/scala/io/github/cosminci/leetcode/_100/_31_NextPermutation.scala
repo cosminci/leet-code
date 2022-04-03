@@ -8,24 +8,17 @@ object _31_NextPermutation:
     println(arr.toList)
 
   def nextPermutation(nums: Array[Int]): Unit =
-    if nums.length < 2 then return
-
-    var i = nums.length - 2
-    while i >= 0 && nums(i) >= nums(i + 1) do i -= 1
-
-    if i >= 0 then
-      var j = nums.length - 1
-      while nums(j) <= nums(i) do j -= 1
-      swap(i, j, nums)
-
+    val i = nums.zip(nums.drop(1)).lastIndexWhere { case (a, b) => a < b }
+    if i >= 0 then swap(i, nums.lastIndexWhere(_ > nums(i)), nums)
     reverse(i + 1, nums)
 
   private def reverse(start: Int, nums: Array[Int]): Unit =
-    var (i, j) = (start, nums.length - 1)
-    while i < j do
-      swap(i, j, nums)
-      i += 1
-      j -= 1
+    @annotation.tailrec
+    def dfs(l: Int, r: Int): Unit =
+      if l < r then
+        swap(l, r, nums)
+        dfs(l + 1, r - 1)
+    dfs(l = start, r = nums.length - 1)
 
   private def swap(i: Int, j: Int, nums: Array[Int]): Unit =
     val tmp = nums(j)
