@@ -6,14 +6,12 @@ object _11_ContainerWithMostWater:
     println(maxArea(Array(1, 8, 6, 100, 90, 4, 8, 3, 7)))
 
   def maxArea(heights: Array[Int]): Int =
-    var (l, r) = (0, heights.length - 1)
-    var max    = area(heights, l, r)
-    while l < r do
-      if heights(l) < heights(r) then l += 1
-      else r -= 1
-      val newArea = area(heights, l, r)
-      max = math.max(max, newArea)
-    max
+    def area(l: Int, r: Int): Int = (heights(l) min heights(r)) * (r - l)
 
-  private def area(heights: Array[Int], startIdx: Int, endIdx: Int) =
-    math.min(heights(startIdx), heights(endIdx)) * (endIdx - startIdx)
+    @annotation.tailrec
+    def dfs(l: Int, r: Int, prevMax: Int): Int =
+      if l >= r then prevMax
+      else if heights(l) < heights(r) then dfs(l + 1, r, prevMax.max(area(l + 1, r)))
+      else dfs(l, r - 1, prevMax.max(area(l, r - 1)))
+
+    dfs(l = 0, r = heights.length - 1, area(0, heights.length - 1))
