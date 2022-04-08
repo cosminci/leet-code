@@ -11,15 +11,11 @@ object _703_KthLargestElementInAStream:
     println(kthLargest.add(-4))
     println(kthLargest.add(3))
 
-  class KthLargest(_k: Int, _nums: Array[Int]):
+  class KthLargest(k: Int, nums: Array[Int]):
     given Ordering[Int] = (x, y) => y.compareTo(x)
+    private val maxK    = mutable.PriorityQueue.from(nums.sorted.take(k))
 
-    val maxK = mutable.PriorityQueue.from(_nums.sorted.take(_k))
-
-    def add(`val`: Int): Int =
-      if maxK.size < _k then maxK.enqueue(`val`)
-      else if maxK.head <= `val` then
-        maxK.dequeue()
-        maxK.enqueue(`val`)
-
+    def add(value: Int): Int =
+      maxK.enqueue(value)
+      if maxK.size > k then maxK.dequeue()
       maxK.head
