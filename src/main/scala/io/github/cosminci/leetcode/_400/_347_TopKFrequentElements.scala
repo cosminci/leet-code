@@ -7,15 +7,7 @@ object _347_TopKFrequentElements:
     println(topKFrequentTreeMap(Array(1, 1, 4, 4, 4, 2, 2, 3, 3, 3), 2).toList)
     println(topKFrequentPQueue(Array(1, 1, 4, 4, 4, 2, 2, 3, 3, 3), 2).toList)
     println(topKFrequentPredefBuckets(Array(1, 1, 4, 4, 4, 2, 2, 3, 3, 3), 2).toList)
-    println(topKFrequentPivot(Array(1, 1, 4, 4, 4, 2, 2, 3, 3, 3), 2).toList)
-
-  def frequencies(nums: Array[Int]): Map[Int, Int] = nums
-    .foldLeft(Map.empty[Int, Int]) { case (counts, n) =>
-      counts.updatedWith(n) {
-        case None    => Some(1)
-        case Some(c) => Some(c + 1)
-      }
-    }
+    println(topKFrequentQuickSelect(Array(1, 1, 4, 4, 4, 2, 2, 3, 3, 3), 2).toList)
 
   def topKFrequentTreeMap(nums: Array[Int], k: Int): Array[Int] =
     given Ordering[Int] = (x, y) => y.compareTo(x)
@@ -43,21 +35,19 @@ object _347_TopKFrequentElements:
 
   def topKFrequentPredefBuckets(nums: Array[Int], k: Int): Array[Int] =
     val freqs = Array.fill(nums.length + 1)(mutable.ListBuffer.empty[Int])
-    frequencies(nums)
-      .foreach { case (n, freq) =>
-        freqs(freq).addOne(n)
-      }
+    frequencies(nums).foreach { case (n, freq) => freqs(freq).addOne(n) }
     freqs.reverse.flatten.take(k)
 
-  def topKFrequentPivot(nums: Array[Int], k: Int): Array[Int] =
+  def topKFrequentQuickSelect(nums: Array[Int], k: Int): Array[Int] =
     val freqs  = frequencies(nums).toArray
     val target = freqs.length - k
 
-    def swap(i: Int, j: Int) =
+    def swap(i: Int, j: Int): Unit =
       val tmp = freqs(i)
       freqs(i) = freqs(j)
       freqs(j) = tmp
 
+    @annotation.tailrec
     def fixPivot(start: Int, end: Int): Array[Int] =
       val pivot = freqs(end)._2
       var i     = start
@@ -70,5 +60,7 @@ object _347_TopKFrequentElements:
       else if i - 1 < target then fixPivot(i, end)
       else fixPivot(start, i - 2)
 
-    fixPivot(0, freqs.length - 1)
+    fixPivot(start = 0, end = freqs.length - 1)
+
+  private def frequencies(nums: Array[Int]): Map[Int, Int] = nums.groupMapReduce(identity)(_ => 1)(_ + _)
 
