@@ -8,5 +8,5 @@ object _485_MaxConsectiveOnes {
     }._1
 
   def findMaxConsecutiveOnesScan(nums: Array[Int]): Int =
-    nums.scanLeft(0) { case (currCount, n) => if (n == 1) currCount + 1 else 0 }.max
+    nums.scanLeft(0)((currCount, n) => if (n == 1) currCount + 1 else 0).max
 }
