@@ -5,37 +5,15 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _230_KthSmallestElementInBST:
-  def main(args: Array[String]): Unit =
-    println(kthSmallestIterative(new TreeNode(1, new TreeNode(0)), 1))
 
-  def kthSmallestIterative(root: TreeNode, k: Int): Int =
-    var count   = 0
-    var node    = root
-    val toVisit = mutable.Stack.empty[TreeNode]
+  def kthSmallest(root: TreeNode, k: Int): Int =
+    @annotation.tailrec
+    def pushLeft(stack: Array[TreeNode], node: TreeNode): Array[TreeNode] =
+      if node == null then stack else pushLeft(stack :+ node, node.left)
 
-    while true do
-      while node != null do
-        toVisit.push(node)
-        node = node.left
-      node = toVisit.pop()
-      count += 1
-      if count == k then return node.value
-      node = node.right
+    @annotation.tailrec
+    def dfs(stack: Array[TreeNode], k: Int): Int =
+      if k == 1 then stack.last.value
+      else dfs(pushLeft(stack.dropRight(1), stack.last.right), k - 1)
 
-    return -1
-
-  def kthSmallestRecursive(root: TreeNode, k: Int): Int =
-    var count  = 0
-    var result = Int.MinValue
-
-    def dfs(node: TreeNode): Unit =
-      if count >= k || node == null then return
-      dfs(node.left)
-      count += 1
-      if count == k then
-        result = node.value
-        return
-      dfs(node.right)
-
-    dfs(root)
-    result
+    dfs(pushLeft(Array.empty, root), k)
