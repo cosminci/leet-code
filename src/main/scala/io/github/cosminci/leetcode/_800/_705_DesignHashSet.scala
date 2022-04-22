@@ -15,14 +15,14 @@ object _705_DesignHashSet:
     println(myHashSet.contains(2))
 
   class MyHashSet():
-    private val buckets        = Array.fill(1000)(mutable.ListBuffer.empty[Int])
-    def hash(key: Int) = ((key * 1031237) & 1 << 20) % 5
+    private val buckets             = Array.fill(1000)(mutable.ListBuffer.empty[Int])
+    private def hash(key: Int): Int = ((key * 1031237) & 1 << 20) % 5
 
-    def add(key: Int) =
+    def add(key: Int): Unit =
       val bucket = hash(key) % buckets.length
       if !buckets(bucket).contains(key) then buckets(bucket).addOne(key)
 
-    def remove(key: Int) =
+    def remove(key: Int): Unit =
       val bucket = hash(key) % buckets.length
       val idx    = buckets(bucket).indexOf(key)
       if idx != -1 then buckets(bucket).remove(idx)
