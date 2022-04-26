@@ -13,23 +13,17 @@ object _1584_MinCostToConnectAllPoints:
     val pq      = mutable.PriorityQueue.empty[(Int, Int)]
     val visited = Array.ofDim[Boolean](points.length)
 
-    def enqueueNewPoints(i: Int): Unit =
-      points.indices
-        .filter(p => !visited(p))
-        .foreach(j => pq.enqueue((-distance(points, i, j), j)))
-
-    def nextCheapestPoint(curr: Int) =
-      Iterator
-        .iterate((0, curr))(_ => pq.dequeue())
-        .dropWhile { case (_, j) => visited(j) }
-        .next()
-
     Iterator
       .iterate((0, 0, 1)) { case (totalCost, i, connected) =>
         visited(i) = true
-        enqueueNewPoints(i)
-        val (distance, j) = nextCheapestPoint(i)
-        (totalCost - distance, j, connected + 1)
+        points.indices
+          .filter(p => !visited(p))
+          .foreach(j => pq.enqueue((-distance(points, i, j), j)))
+        val (d, j) = Iterator
+          .iterate((0, i))(_ => pq.dequeue())
+          .dropWhile { case (_, j) => visited(j) }
+          .next()
+        (totalCost - d, j, connected + 1)
       }
       .dropWhile { case (_, _, connected) => connected < points.length }
       .next()
@@ -37,14 +31,13 @@ object _1584_MinCostToConnectAllPoints:
 
   def minCostConnectPointsPrimII(points: Array[Array[Int]]): Int =
     Iterator
-      .iterate((0, 0, 1, Array.fill(points.length)(10_000_000))) {
-        case (totalCost, i, connected, minDistance) =>
-          val newMinDistance = minDistance.zipWithIndex.map { case (d, j) =>
-            if i == j || d == Int.MaxValue then Int.MaxValue
-            else d.min(distance(points, i, j))
-          }
-          val closest = points.indices.minBy(idx => newMinDistance(idx))
-          (totalCost + newMinDistance(closest), closest, connected + 1, newMinDistance)
+      .iterate((0, 0, 1, Seq.fill(points.length)(10_000_000))) { case (totalCost, i, connected, minDistance) =>
+        val newMinDistance = points.indices.map { j =>
+          if i == j || minDistance(j) == Int.MaxValue then Int.MaxValue
+          else minDistance(j).min(distance(points, i, j))
+        }
+        val closest = points.indices.minBy(idx => newMinDistance(idx))
+        (totalCost + newMinDistance(closest), closest, connected + 1, newMinDistance)
       }
       .dropWhile { case (_, _, connected, _) => connected < points.length }
       .next()
