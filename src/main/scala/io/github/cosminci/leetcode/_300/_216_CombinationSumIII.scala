@@ -11,11 +11,10 @@ object _216_CombinationSumIII:
 
   def combinationSum3(k: Int, n: Int): List[List[Int]] =
     def dfs(chosen: Seq[Int], min: Int): Seq[Seq[Int]] =
-      if chosen.size == k && chosen.sum == n then return Seq(chosen)
+      if chosen.size == k && chosen.sum == n then Seq(chosen)
+      else for
+        choice <- min to 9 if chosen.sum + choice <= n && chosen.size < k
+        combi  <- dfs(chosen :+ choice, choice + 1)
+      yield combi
 
-      (min to 9).flatMap { choice =>
-        if chosen.sum + choice <= n && chosen.size < k then dfs(chosen :+ choice, choice + 1)
-        else Seq.empty
-      }
-
-    dfs(List.empty, 1).map(_.toList).toList
+    dfs(chosen = List.empty, min = 1).map(_.toList).toList
