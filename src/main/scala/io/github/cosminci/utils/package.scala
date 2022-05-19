@@ -24,11 +24,10 @@ package object utils:
     charCounts.toSeq
 
   def neighbours[T](x: Int, y: Int, grid: Array[Array[T]]): Seq[(Int, Int)] =
-    val above = Option.when(x > 0)((x - 1, y))
-    val left  = Option.when(y > 0)((x, y - 1))
-    val right = Option.when(y < grid(x).length - 1)((x, y + 1))
-    val below = Option.when(x < grid.length - 1)((x + 1, y))
-    Seq(above, left, right, below).flatten
+    Seq((-1, 0), (0, -1), (0, 1), (1, 0)).collect {
+      case (dx, dy) if x + dx >= 0 && x + dx < grid.length && y + dy >= 0 && y + dy < grid.head.length =>
+        (x + dx, y + dy)
+    }
   
   def isPalindrome(s: String): Boolean = {
     @annotation.tailrec
