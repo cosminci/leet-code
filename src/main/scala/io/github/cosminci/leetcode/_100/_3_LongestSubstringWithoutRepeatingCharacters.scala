@@ -1,25 +1,12 @@
 package io.github.cosminci.leetcode._100
 
-import scala.collection.mutable
-
 object _3_LongestSubstringWithoutRepeatingCharacters:
-  def main(args: Array[String]): Unit =
-    println(lengthOfLongestSubstring(""))
 
   def lengthOfLongestSubstring(s: String): Int =
-    var windowStart = 0
-    var maxLength   = 0
-    val charIndices = mutable.Map.empty[Char, Int]
-
-    s.indices.foreach { idx =>
-      charIndices.get(s(idx)) match
-        case None =>
-          maxLength = math.max(maxLength, charIndices.size + 1)
-        case Some(i) =>
-          val charactersSkipped = s.substring(windowStart, i + 1)
-          windowStart = i + 1
-          charactersSkipped.foreach(charIndices.remove)
-      charIndices.update(s(idx), idx)
-    }
-
-    maxLength
+    s.indices
+      .foldLeft(0, 0, Map.empty[Char, Int]) { case ((max, start, indices), j) =>
+        indices.get(s(j)) match
+          case None    => (max.max(j - start + 1), start, indices.updated(s(j), j))
+          case Some(i) => (max, i + 1, indices.removedAll(s.substring(start, i + 1)).updated(s(j), j))
+      }
+      ._1
