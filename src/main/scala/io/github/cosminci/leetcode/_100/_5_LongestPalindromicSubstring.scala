@@ -1,38 +1,13 @@
 package io.github.cosminci.leetcode._100
 
 object _5_LongestPalindromicSubstring:
-  def main(args: Array[String]): Unit =
-    println(longestPalindromeDP("aaaaaa"))
-    println(longestPalindromeExpand("bb"))
 
-  def longestPalindromeExpand(s: String): String =
-    def expand(left: Int, right: Int) =
-      var l   = left
-      var r   = right
-      var max = ""
-      while l >= 0 && r < s.length && s.charAt(l) == s.charAt(r) do
-        max = s.substring(l, r + 1)
-        l -= 1
-        r += 1
-      max
-      
-    s.indices.foldLeft("") { case (prevMax, i) =>
-      val maxOdd   = expand(i, i)
-      val maxEven  = expand(i, i + 1)
-      val localMax = if maxEven.length > maxOdd.length then maxEven else maxOdd
-      if localMax.length > prevMax.length then localMax else prevMax
+  def longestPalindrome(s: String): String =
+    @annotation.tailrec
+    def expand(l: Int, r: Int, prev: String): String =
+      if l < 0 || r >= s.length || s.charAt(l) != s.charAt(r) then prev
+      else expand(l - 1, r + 1, s.substring(l, r + 1))
+
+    s.indices.foldLeft("") { (prevMax, i) =>
+      Array(prevMax, expand(l = i, r = i, prev = ""), expand(l = i, r = i + 1, prev = "")).maxBy(_.length)
     }
-
-  def longestPalindromeDP(s: String): String =
-    val n   = s.length
-    val dp  = Array.ofDim[Boolean](n, n)
-    var max = (0, 0)
-
-    (0 until n).foreach { endIdx =>
-      (0 until endIdx).foreach { startIdx =>
-        if s.charAt(startIdx) == s.charAt(endIdx) && (endIdx - startIdx <= 1 || dp(startIdx + 1)(endIdx - 1)) then
-          dp(startIdx)(endIdx) = true
-          if endIdx - startIdx + 1 > max._2 - max._1 then max = (startIdx, endIdx + 1)
-      }
-    }
-    s.substring(max._1, max._2)
