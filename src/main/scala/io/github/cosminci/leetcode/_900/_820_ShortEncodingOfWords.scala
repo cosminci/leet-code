@@ -9,25 +9,23 @@ object _820_ShortEncodingOfWords:
     println(minimumLengthEncodingBruteForce(Array("time", "me", "bell")))
 
   def minimumLengthEncodingTrie(words: Array[String]): Int =
-    class TrieNode(val children: mutable.Map[Char, TrieNode] = mutable.Map.empty)
+    case class TrieNode(children: mutable.Map[Char, TrieNode] = mutable.Map.empty)
 
-    val trieRoot = new TrieNode()
-    words.foreach { word =>
-      word.reverse.foldLeft(trieRoot) { (node, char) =>
-        node.children.getOrElseUpdate(char, new TrieNode())
+    val trieRoot = words.foldLeft(TrieNode()) { (root, word) =>
+      word.foldRight(root) { (char, node) =>
+        node.children.getOrElseUpdate(char, TrieNode())
       }
+      root
     }
     def dfs(node: TrieNode, depth: Int): Int =
       if node.children.isEmpty then depth + 1
       else node.children.values.map(dfs(_, depth + 1)).sum
 
-    dfs(trieRoot, 0)
+    dfs(trieRoot, depth = 0)
 
   def minimumLengthEncodingBruteForce(words: Array[String]): Int =
     words
-      .foldLeft(words.toSet) { (set, w) =>
-        set.removedAll((1 until w.length).map(w.substring))
-      }
+      .foldLeft(words.toSet)((set, w) => set.removedAll((1 until w.length).map(w.substring)))
       .toSeq
       .map(_.length + 1)
       .sum
