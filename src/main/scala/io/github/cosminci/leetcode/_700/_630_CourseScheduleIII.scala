@@ -10,31 +10,26 @@ object _630_CourseScheduleIII:
     println(scheduleCoursePQueue(courses))
 
   def scheduleCourseTopDown(courses: Array[Array[Int]]): Int =
-    courses.sortInPlaceBy(_.last) // sort by end limit
-
+    courses.sortInPlaceBy(_.last)
     val mem = mutable.Map.empty[(Int, Int), Int]
 
-    def dfs(idx: Int, currentTime: Int): Int =
-      if idx == courses.length then return 0
-      if mem.contains((idx, currentTime)) then return mem((idx, currentTime))
-
-      val Array(duration, endLimit) = courses(idx)
-      val result =
+    def dfs(idx: Int, currentTime: Int): Int = mem.getOrElseUpdate((idx, currentTime),
+      if idx == courses.length then 0
+      else {
+        val Array(duration, endLimit) = courses(idx)
         if currentTime + duration <= endLimit then
-          math.max(1 + dfs(idx + 1, currentTime + duration), dfs(idx + 1, currentTime))
+          (1 + dfs(idx + 1, currentTime + duration)).max(dfs(idx + 1, currentTime))
         else dfs(idx + 1, currentTime)
-
-      mem.update((idx, currentTime), result)
-      result
+      })
 
     dfs(idx = 0, currentTime = 0)
 
   def scheduleCoursePQueue(courses: Array[Array[Int]]): Int =
-    courses.sortInPlaceBy(_.last) // sort by end limit
+    courses.sortInPlaceBy(_.last)
 
     var currentTime = 0
     val taken =
-      given Ordering[Array[Int]] = (x, y) => x.head.compare(y.head) // max heap by duration
+      given Ordering[Array[Int]] = (x, y) => x.head.compare(y.head)
       mutable.PriorityQueue.empty[Array[Int]]
 
     courses.foreach { case course @ Array(duration, endLimit) =>
