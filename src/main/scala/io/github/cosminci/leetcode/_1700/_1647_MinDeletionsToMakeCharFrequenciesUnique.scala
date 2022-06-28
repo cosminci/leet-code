@@ -5,19 +5,14 @@ import io.github.cosminci.utils
 import scala.collection.mutable
 
 object _1647_MinDeletionsToMakeCharFrequenciesUnique:
-  def main(args: Array[String]): Unit =
-    println(minDeletions("abcabc"))
-    println(minDeletions("accdcdadddbaadbc"))
 
   def minDeletions(s: String): Int =
-    val charCounts      = utils.characterCounts(s).toArray
-    var deletions       = 0
-    val usedFrequencies = mutable.Set.empty[Int]
-
-    (0 until 26).foreach { i =>
-      while charCounts(i) > 0 && !usedFrequencies.add(charCounts(i)) do
-        charCounts(i) = charCounts(i) - 1
-        deletions += 1
-    }
-
-    deletions
+    s.length - s.groupMapReduce(identity)(_ => 1)(_ + _)
+      .values
+      .toArray
+      .sorted
+      .foldRight(Int.MaxValue, 0) { case (freq, (prev, keep)) =>
+        val unusedFreq = freq.min(prev - 1)
+        if unusedFreq == 0 then (prev, keep)
+        else (unusedFreq, keep + unusedFreq)
+      }._2
