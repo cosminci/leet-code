@@ -1,14 +1,14 @@
 package io.github.cosminci.leetcode._200
 
 object _128_LongestConsecutiveSequence:
-  def longestConsecutive(input: Array[Int]): Int =
-    if input.isEmpty then return 0
-    val nums = input.toSet
-    var max  = 1
-    nums.foreach { n =>
-      if !nums.contains(n - 1) then
-        var seq = 1
-        while nums.contains(n + seq) do seq += 1
-        max = math.max(max, seq)
+
+  def longestConsecutive(nums: Array[Int]): Int =
+    val distinct = nums.toSet
+    nums.foldLeft(0) { (prevMax, n) =>
+      if distinct.contains(n - 1) then prevMax
+      else Iterator
+        .iterate(1)(_ + 1)
+        .dropWhile(i => distinct.contains(n + i))
+        .next()
+        .max(prevMax)
     }
-    max
