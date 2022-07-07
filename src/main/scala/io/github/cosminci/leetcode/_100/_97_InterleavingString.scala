@@ -3,26 +3,18 @@ package io.github.cosminci.leetcode._100
 import scala.collection.mutable
 
 object _97_InterleavingString:
-  private val mem = mutable.Map.empty[(String, String, String), Boolean]
-
-  def main(args: Array[String]): Unit =
-    println(isInterleave("aabcc", "dbbca", "aadbbcbcac"))
 
   def isInterleave(s1: String, s2: String, s3: String): Boolean =
-    if s3.length != s1.length + s2.length then return false
-    if s3.isEmpty then return true
-    if s1.isEmpty then return s2 == s3
-    if s2.isEmpty then return s1 == s3
+    val mem = mutable.Map.empty[(Int, Int, Int), Boolean]
 
-    if mem.contains((s1, s2, s3)) then return mem((s1, s2, s3))
-
-    val result =
-      if s1.head == s3.head && s2.head != s3.head then isInterleave(s1.tail, s2, s3.tail)
-      else if s1.head != s3.head && s2.head == s3.head then isInterleave(s1, s2.tail, s3.tail)
-      else if s1.head == s3.head && s2.head == s3.head then
-        isInterleave(s1.tail, s2, s3.tail) || isInterleave(s1, s2.tail, s3.tail)
+    def dfs(i: Int, j: Int, k: Int): Boolean = mem.getOrElseUpdate((i, j, k),
+      if k == s3.length then true
+      else if i == s1.length then s2.substring(j) == s3.substring(k)
+      else if j == s2.length then s1.substring(i) == s3.substring(k)
+      else if s1(i) == s3(k) && s2(j) != s3(k) then dfs(i + 1, j, k + 1)
+      else if s1(i) != s3(k) && s2(j) == s3(k) then dfs(i, j + 1, k + 1)
+      else if s1(i) == s3(k) && s2(j) == s3(k) then dfs(i + 1, j, k + 1) || dfs(i, j + 1, k + 1)
       else false
+    )
 
-    mem.update((s1, s2, s3), result)
-
-    result
+    (s1.length + s2.length == s3.length) && dfs(i = 0, j = 0, k = 0)
