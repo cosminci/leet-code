@@ -1,23 +1,24 @@
 package io.github.cosminci.leetcode._500
 
+import scala.collection.mutable
+
 object _473_MatchsticksToSquare:
-  def main(args: Array[String]): Unit =
-    println(makesquare(Array(1, 1, 2, 2, 2)))
-    println(makesquare(Array(3, 3, 3, 3, 4)))
 
-  def makesquare(matchsticks: Array[Int]): Boolean =
-    matchsticks.sortBy(-_)
-    val totalLength = matchsticks.sum
-    val sideLength  = totalLength / 4
-    if totalLength % 4 != 0 || matchsticks.exists(_ > sideLength) then return false
+  def makesquare(nums: Array[Int]): Boolean =
+    val sideLen = nums.sum / 4
+    val mem     = mutable.Map.empty[Int, Int]
 
-    def dfs(sides: Seq[Int], idx: Int): Boolean =
-      if idx == matchsticks.length then return true
+    def dfs(mask: Int): Int = mem.getOrElseUpdate(mask,
+      if mask == 0 then 0
+      else
+        nums.indices
+          .collect { case i if (mask & 1 << i) > 0 =>
+            (i, dfs(mask ^ (1 << i)))
+          }
+          .collectFirst { case (i, sideLeft) if sideLeft >= 0 && sideLeft + nums(i) <= sideLen =>
+            (sideLeft + nums(i)) % sideLen
+          }
+          .getOrElse(-1)
+    )
 
-      val matchstick = matchsticks(idx)
-      sides.indices.exists { i =>
-        val newSideLength = sides(i) + matchstick
-        newSideLength <= sideLength && dfs(sides.updated(i, newSideLength), idx + 1)
-      }
-
-    dfs(Seq.fill(4)(0), 0)
+    nums.sum % 4 == 0 && nums.forall(_ <= sideLen) && dfs(mask = (1 << nums.length) - 1) == 0
