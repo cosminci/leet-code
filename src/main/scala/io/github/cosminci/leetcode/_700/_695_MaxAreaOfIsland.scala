@@ -7,30 +7,15 @@ import scala.collection.mutable
 object _695_MaxAreaOfIsland:
 
   def maxAreaOfIsland(grid: Array[Array[Int]]): Int =
-    val visited = mutable.Set.empty[(Int, Int)]
-
-    def islandSize(rootX: Int, rootY: Int): Int =
-      visited.add((rootX, rootY))
-
-      val toVisit = mutable.Queue((rootX, rootY))
-      var size    = 0
-
-      while toVisit.nonEmpty do
-        val (currX, currY) = toVisit.dequeue()
-        size += 1
-
-        utils.neighbours(currX, currY, grid).foreach { case (nextX, nextY) =>
-          if !visited.contains((nextX, nextY)) && grid(nextX)(nextY) == 1 then
-            toVisit.enqueue((nextX, nextY))
-            visited.add((nextX, nextY))
-        }
-
-      size
+    def dfs(x: Int, y: Int): Int =
+      grid(x)(y) = 0
+      1 + utils.neighbours(x, y, grid)
+        .collect { case (nx, ny) if grid(nx)(ny) == 1 => dfs(nx, ny) }
+        .sum
 
     val islandSizes = for
       x <- grid.indices
-      y <- grid(x).indices
-      if grid(x)(y) == 1 && !visited.contains((x, y))
-    yield islandSize(x, y)
+      y <- grid(x).indices if grid(x)(y) == 1
+    yield dfs(x, y)
 
     islandSizes.maxOption.getOrElse(0)
