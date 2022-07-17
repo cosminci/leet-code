@@ -2,18 +2,13 @@ package io.github.cosminci
 
 import scala.collection.mutable
 import scala.io.Source
+import scala.math.Integral.Implicits._
 import scala.util.Using
 
 package object utils:
-
-  def timeSolution[R](opName: String, op: () => R): Unit =
-    val time     = System.currentTimeMillis()
-    val result   = op()
-    val duration = System.currentTimeMillis() - time
-    println(s"$opName result: $result. Took ${duration}ms to solve.")
-
-  def loadInputAsListOfStrings(path: String): List[String] =
-    Using.resource(Source.fromResource(path))(_.getLines().toList)
+  
+  @annotation.tailrec
+  def gcd[T: Integral](a: T, b: T): T = if b == 0 then a else gcd(b, a % b)
 
   def characterCounts(s: String, upper: Boolean = false): Seq[Int] =
     val (start, end)    = if upper then ('A'.toInt, 'Z'.toInt) else ('a'.toInt, 'z'.toInt)
@@ -52,12 +47,12 @@ package object utils:
           right == that.right
       case _ => false
       
-  def linkedList(elements: Seq[Int]): ListNode = 
+  def seqToLinkedList(elements: Seq[Int]): ListNode = 
     elements.foldRight[ListNode](null)((value, next) => new ListNode(value, next))
 
-  def seq(head: ListNode): Seq[Int] = 
+  def linkedListToSeq(head: ListNode): Seq[Int] = 
     if (head == null) Seq.empty
-    else head.x +: seq(head.next)
+    else head.x +: linkedListToSeq(head.next)
   
   class ListNode(_x: Int = 0, _next: ListNode = null):
     var next: ListNode = _next

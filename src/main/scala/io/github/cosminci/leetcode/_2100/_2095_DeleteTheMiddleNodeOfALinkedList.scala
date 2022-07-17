@@ -4,10 +4,10 @@ import io.github.cosminci.utils.*
 
 object _2095_DeleteTheMiddleNodeOfALinkedList:
   def main(args: Array[String]): Unit =
-    println(seq(deleteMiddle(linkedList(Seq(1, 3, 4, 7, 1, 2, 6)))))
-    println(seq(deleteMiddle(linkedList(Seq(1, 2, 3, 4)))))
-    println(seq(deleteMiddle(linkedList(Seq(2, 1)))))
-    println(seq(deleteMiddle(linkedList(Seq(2)))))
+    println(linkedListToSeq(deleteMiddle(seqToLinkedList(Seq(1, 3, 4, 7, 1, 2, 6)))))
+    println(linkedListToSeq(deleteMiddle(seqToLinkedList(Seq(1, 2, 3, 4)))))
+    println(linkedListToSeq(deleteMiddle(seqToLinkedList(Seq(2, 1)))))
+    println(linkedListToSeq(deleteMiddle(seqToLinkedList(Seq(2)))))
 
   def deleteMiddle(head: ListNode): ListNode =
     @annotation.tailrec

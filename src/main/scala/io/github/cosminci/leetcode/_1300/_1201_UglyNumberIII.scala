@@ -1,5 +1,7 @@
 package io.github.cosminci.leetcode._1300
 
+import io.github.cosminci.utils.gcd
+
 import scala.annotation.tailrec
 
 object _1201_UglyNumberIII:
@@ -11,13 +13,11 @@ object _1201_UglyNumberIII:
     println(nthUglyNumber(5, 2, 11, 13))
     println(nthUglyNumber(1000000000, 2, 217983653, 336916467))
 
-  @tailrec def gcd(a: Long, b: Long): Long = if b == 0 then a else gcd(b, a % b)
-
   def nthUglyNumber(n: Int, a: Int, b: Int, c: Int): Int =
     val ab  = (a.toLong * b) / gcd(a, b)
     val ac  = (a.toLong * c) / gcd(a, c)
     val bc  = (b.toLong * c) / gcd(b, c)
-    val abc = (a * bc) / gcd(a, bc)
+    val abc = (a * bc) / gcd(a, bc.toInt)
 
     def enoughNumbers(value: Long) =
       value / a + value / b + value / c - value / ab - value / ac - value / bc + value / abc >= n

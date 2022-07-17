@@ -5,9 +5,9 @@ import io.github.cosminci.utils.*
 object _143_ReorderList:
 
   def main(args: Array[String]): Unit =
-    val head = linkedList(Seq(1, 2, 3, 4, 5))
+    val head = seqToLinkedList(Seq(1, 2, 3, 4, 5))
     reorderList(head)
-    println(seq(head))
+    println(linkedListToSeq(head))
 
   def reorderList(head: ListNode): Unit =
     @annotation.tailrec

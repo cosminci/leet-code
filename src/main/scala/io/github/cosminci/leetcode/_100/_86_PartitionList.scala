@@ -4,7 +4,7 @@ import io.github.cosminci.utils._
 
 object _86_PartitionList:
   def main(args: Array[String]): Unit =
-    println(seq(partition(linkedList(Seq(1, 4, 2)), 3)))
+    println(linkedListToSeq(partition(seqToLinkedList(Seq(1, 4, 2)), 3)))
 
   def partition(head: ListNode, x: Int): ListNode =
     val smallerHead = new ListNode(-1, null)

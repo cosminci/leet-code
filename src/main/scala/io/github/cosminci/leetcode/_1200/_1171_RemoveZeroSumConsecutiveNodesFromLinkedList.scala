@@ -6,7 +6,7 @@ import scala.collection.mutable
 
 object _1171_RemoveZeroSumConsecutiveNodesFromLinkedList:
   def main(args: Array[String]): Unit =
-    println(seq(removeZeroSumSublists(linkedList(Seq(1, 2, 3, -3, -2)))))
+    println(linkedListToSeq(removeZeroSumSublists(seqToLinkedList(Seq(1, 2, 3, -3, -2)))))
 
   def removeZeroSumSublists(head: ListNode): ListNode =
     val dummy      = new ListNode(0, head)

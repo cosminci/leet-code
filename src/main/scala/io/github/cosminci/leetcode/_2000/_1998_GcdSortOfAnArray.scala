@@ -7,9 +7,6 @@ import scala.collection.mutable
 
 object _1998_GcdSortOfAnArray:
 
-  def main(args: Array[String]): Unit =
-    println(gcdSort(utils.loadInputAsListOfStrings("1998.txt").head.split(",").map(_.toInt)))
-
   def gcdSort(nums: Array[Int]): Boolean =
     val spf = sieve(nums.max + 1)
     val uf  = new UnionFind[Int]

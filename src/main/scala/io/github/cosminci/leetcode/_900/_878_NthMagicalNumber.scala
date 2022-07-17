@@ -1,10 +1,9 @@
 package io.github.cosminci.leetcode._900
 
+import io.github.cosminci.utils.gcd
+
 object _878_NthMagicalNumber:
   def nthMagicalNumber(n: Int, a: Int, b: Int): Int =
-    @annotation.tailrec
-    def gcd(a: Int, b: Int): Int = if b == 0 then a else gcd(b, a % b)
-
     val lcm = a * b / gcd(a, b)
     @annotation.tailrec
     def binarySearch(l: Long, r: Long): Int =

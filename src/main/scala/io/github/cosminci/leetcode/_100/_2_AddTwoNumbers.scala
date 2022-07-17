@@ -7,7 +7,7 @@ import scala.math.Integral.Implicits.*
 object _2_AddTwoNumbers:
 
   def main(args: Array[String]): Unit =
-    println(seq(addTwoNumbers(linkedList(Seq(9, 9, 9)), linkedList(Seq(9)))))
+    println(linkedListToSeq(addTwoNumbers(seqToLinkedList(Seq(9, 9, 9)), seqToLinkedList(Seq(9)))))
 
   def addTwoNumbers(l1: ListNode, l2: ListNode): ListNode =
     def dfs(h1: ListNode, h2: ListNode, carry: Int): ListNode =

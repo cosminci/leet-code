@@ -5,13 +5,6 @@ import io.github.cosminci.utils
 import scala.collection.mutable
 
 object _1707_MaxXORWithAnElementFromArray:
-  def main(args: Array[String]): Unit =
-    println(maximizeXor(Array(0, 1, 2, 3, 4), Array(Array(3, 1), Array(1, 3), Array(5, 6))).toList)
-    println(maximizeXor(Array(5, 2, 4, 6, 6, 3), Array(Array(12, 4), Array(8, 1), Array(6, 3))).toList)
-    val input   = utils.loadInputAsListOfStrings("1707.txt")
-    val nums    = input.head.tail.dropRight(1).split(",").map(_.toInt)
-    val queries = Array(Array(1000000000, 1000000000))
-    println(maximizeXor(nums, queries).toList)
 
   def maximizeXor(nums: Array[Int], queries: Array[Array[Int]]): Array[Int] =
     nums.sortInPlace()

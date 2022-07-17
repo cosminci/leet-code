@@ -4,7 +4,7 @@ import io.github.cosminci.utils._
 
 object _725_SplitLinkedListInParts:
   def main(args: Array[String]): Unit =
-    splitListToParts(linkedList(Seq(1, 2, 3)), 2).map(seq).foreach(println)
+    splitListToParts(seqToLinkedList(Seq(1, 2, 3)), 2).map(linkedListToSeq).foreach(println)
 
   def splitListToParts(head: ListNode, k: Int): Array[ListNode] =
     def length(node: ListNode): Int = if node == null then 0 else 1 + length(node.next)

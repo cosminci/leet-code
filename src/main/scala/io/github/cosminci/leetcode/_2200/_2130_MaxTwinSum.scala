@@ -4,7 +4,7 @@ import io.github.cosminci.utils.*
 
 object _2130_MaxTwinSum:
   def main(args: Array[String]): Unit =
-    println(pairSum(linkedList(Seq(5, 4, 3, 3))))
+    println(pairSum(seqToLinkedList(Seq(5, 4, 3, 3))))
 
   def pairSum(head: ListNode): Int =
     @annotation.tailrec

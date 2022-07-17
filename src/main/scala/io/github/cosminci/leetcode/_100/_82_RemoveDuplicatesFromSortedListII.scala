@@ -4,7 +4,7 @@ import io.github.cosminci.utils._
 
 object _82_RemoveDuplicatesFromSortedListII:
   def main(args: Array[String]): Unit =
-    println(seq(deleteDuplicates(linkedList(Seq(1, 1)))))
+    println(linkedListToSeq(deleteDuplicates(seqToLinkedList(Seq(1, 1)))))
 
   def deleteDuplicates(head: ListNode): ListNode =
     val newDummyHead = new ListNode(Int.MaxValue, null)

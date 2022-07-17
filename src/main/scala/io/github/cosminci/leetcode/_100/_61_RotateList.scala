@@ -4,7 +4,7 @@ import io.github.cosminci.utils._
 
 object _61_RotateList:
   def main(args: Array[String]): Unit =
-    println(seq(rotateRight(linkedList(Seq(1, 2, 3, 4)), 0)))
+    println(linkedListToSeq(rotateRight(seqToLinkedList(Seq(1, 2, 3, 4)), 0)))
 
   def rotateRight(head: ListNode, k: Int): ListNode =
     if head == null || head.next == null then return head

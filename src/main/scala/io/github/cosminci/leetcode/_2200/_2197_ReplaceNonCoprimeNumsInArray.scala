@@ -1,12 +1,10 @@
 package io.github.cosminci.leetcode._2200
 
+import io.github.cosminci.utils.gcd
+
 object _2197_ReplaceNonCoprimeNumsInArray:
 
   def replaceNonCoprimes(nums: Array[Int]): List[Int] =
-    @annotation.tailrec
-    def gcd(a: Int, b: Int): Int =
-      if b == 0 then a else gcd(b, a % b)
-
     def lcm(a: Int, b: Int) =
       (a.toLong * b / gcd(a, b)).toInt
 

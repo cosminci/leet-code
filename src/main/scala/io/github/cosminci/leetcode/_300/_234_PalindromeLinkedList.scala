@@ -4,7 +4,7 @@ import io.github.cosminci.utils._
 
 object _234_PalindromeLinkedList:
   def main(args: Array[String]): Unit =
-    println(isPalindrome(linkedList(Seq(1, 2, 2, 1))))
+    println(isPalindrome(seqToLinkedList(Seq(1, 2, 2, 1))))
 
   def isPalindrome(head: ListNode): Boolean =
     var prev: ListNode = null

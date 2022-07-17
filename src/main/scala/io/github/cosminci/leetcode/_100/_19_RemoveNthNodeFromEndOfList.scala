@@ -4,7 +4,7 @@ import io.github.cosminci.utils._
 
 object _19_RemoveNthNodeFromEndOfList:
   def main(args: Array[String]): Unit =
-    println(seq(removeNthFromEnd(linkedList(Seq(1, 5, 2)), 2)))
+    println(linkedListToSeq(removeNthFromEnd(seqToLinkedList(Seq(1, 5, 2)), 2)))
 
   def removeNthFromEnd(head: ListNode, n: Int): ListNode =
     var dummy           = new ListNode(666, head)

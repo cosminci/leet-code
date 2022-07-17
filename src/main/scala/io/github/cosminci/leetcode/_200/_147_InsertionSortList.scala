@@ -4,7 +4,7 @@ import io.github.cosminci.utils.*
 
 object _147_InsertionSortList:
   def main(args: Array[String]): Unit =
-    println(seq(insertionSortList(linkedList(Seq(4, 5, 1, 3)))))
+    println(linkedListToSeq(insertionSortList(seqToLinkedList(Seq(4, 5, 1, 3)))))
 
   def insertionSortList(head: ListNode): ListNode =
     val dummyHead               = new ListNode(0)

@@ -8,10 +8,6 @@ object _1553_MinNumberOfDaysToEatNOranges:
 
   private val mem = mutable.Map[Int, Int](0 -> 0, 1 -> 1)
 
-  def main(args: Array[String]): Unit =
-    utils.timeSolution("Bottom up", () => minDaysBottomUp(61455274))
-    utils.timeSolution("Top down", () => minDaysTopDown(61455274))
-
   def minDaysBottomUp(n: Int): Int =
     val dp = Array.ofDim[Int](n + 1)
     dp(1) = 1

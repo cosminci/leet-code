@@ -4,7 +4,7 @@ import io.github.cosminci.utils._
 
 object _148_SortList:
   def main(args: Array[String]): Unit =
-    println(seq(sortList(linkedList(Seq(3, -4, -3)))))
+    println(linkedListToSeq(sortList(seqToLinkedList(Seq(3, -4, -3)))))
 
   def sortList(head: ListNode): ListNode =
     if head == null || head.next == null then return head

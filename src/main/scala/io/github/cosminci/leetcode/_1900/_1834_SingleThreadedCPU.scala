@@ -6,19 +6,6 @@ import scala.collection.mutable
 
 object _1834_SingleThreadedCPU:
 
-  def main(args: Array[String]): Unit =
-    val inputLine = utils.loadInputAsListOfStrings("1834.txt").head
-    val input = inputLine
-      .substring(1, inputLine.length - 1)
-      .split("],\\[")
-      .map(
-        _.replace("]", "")
-          .replace("[", "")
-          .split(',')
-          .map(_.toInt)
-      )
-    println(getOrder(input).toList)
-
   def getOrder(tasks: Array[Array[Int]]): Array[Int] =
     val toSchedule = mutable.PriorityQueue.from(tasks.indices.map { i =>
       val Array(et, pt) = tasks(i)

@@ -9,13 +9,12 @@ object _332_ReconstructItinerary:
   def findItinerary(tickets: List[List[String]]): List[String] =
     given Ordering[String] = (x, y) => y.compareTo(x)
     val adjMatrix          = mutable.Map.empty[String, mutable.PriorityQueue[String]]
-    tickets.foreach { case List(from, to) =>
-      adjMatrix.getOrElseUpdate(from, mutable.PriorityQueue.empty).enqueue(to)
+    tickets.foreach { ticket =>
+      adjMatrix.getOrElseUpdate(ticket.head, mutable.PriorityQueue.empty).enqueue(ticket(1))
     }
 
     val itinerary = mutable.ListBuffer.empty[String]
-    def visit(source: String): Unit =
-      var curr = source
+    def visit(curr: String): Unit =
       while adjMatrix.get(curr).exists(_.nonEmpty) do visit(adjMatrix(curr).dequeue())
       itinerary.prepend(curr)
 

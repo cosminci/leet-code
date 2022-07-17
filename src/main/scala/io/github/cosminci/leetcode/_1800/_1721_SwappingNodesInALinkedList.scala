@@ -1,6 +1,6 @@
 package io.github.cosminci.leetcode._1800
 
-import io.github.cosminci.utils.{ListNode, linkedList}
+import io.github.cosminci.utils.{ListNode, seqToLinkedList}
 
 object _1721_SwappingNodesInALinkedList:
 

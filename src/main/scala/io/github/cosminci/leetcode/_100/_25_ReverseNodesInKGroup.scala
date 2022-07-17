@@ -5,7 +5,7 @@ import io.github.cosminci.utils._
 object _25_ReverseNodesInKGroup:
 
   def main(args: Array[String]): Unit =
-    println(seq(reverseKGroup(linkedList(Seq(1, 2)), 2)))
+    println(linkedListToSeq(reverseKGroup(seqToLinkedList(Seq(1, 2)), 2)))
 
   def reverseKGroup(head: ListNode, k: Int): ListNode =
     if head == null || head.next == null then return head

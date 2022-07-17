@@ -4,7 +4,7 @@ import io.github.cosminci.utils._
 
 object _92_ReverseLinkedListII:
   def main(args: Array[String]): Unit =
-    println(seq(reverseBetween(linkedList(Seq(5, 1)), 1, 2)))
+    println(linkedListToSeq(reverseBetween(seqToLinkedList(Seq(5, 1)), 1, 2)))
 
   def reverseBetween(head: ListNode, left: Int, right: Int): ListNode =
     if right - left < 1 then return head

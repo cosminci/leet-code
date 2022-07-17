@@ -1,10 +1,10 @@
 package io.github.cosminci.leetcode._2100
 
-import io.github.cosminci.utils.{ListNode, linkedList}
+import io.github.cosminci.utils.{ListNode, seqToLinkedList}
 
 object _2058_FindTheMinAndMaxNumberOfNodesBetweenCriticalPoints:
   def main(args: Array[String]): Unit =
-    println(nodesBetweenCriticalPoints(linkedList(Seq(1, 3, 2, 2, 3, 2, 2, 2, 7))).toSeq)
+    println(nodesBetweenCriticalPoints(seqToLinkedList(Seq(1, 3, 2, 2, 3, 2, 2, 2, 7))).toSeq)
 
   def nodesBetweenCriticalPoints(head: ListNode): Array[Int] =
     var (first, last, min)    = (-1, -1, Int.MaxValue)
