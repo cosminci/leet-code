@@ -1,15 +1,10 @@
 package io.github.cosminci.leetcode._200
 
-object _118_PascalsTriangle {
-  def main(args: Array[String]): Unit = {
-    println(generate(1))
-  }
+object _118_PascalsTriangle:
 
-  def generate(numRows: Int): List[List[Int]] = {
-    (2 to numRows).scanLeft(Seq(1)) {
-      case (prevRow, _) =>
-        val newRow = (1 until prevRow.length).map(i => prevRow(i - 1) + prevRow(i))
-        newRow.prepended(1).appended(1)
-    }.map(_.toList).toList
-  }
-}
+  def generate(numRows: Int): List[List[Int]] =
+    Iterator
+      .iterate(Seq(1))(prev => 1 +: (1 until prev.length).map(i => prev(i - 1) + prev(i)) :+ 1)
+      .take(numRows)
+      .map(_.toList)
+      .toList
