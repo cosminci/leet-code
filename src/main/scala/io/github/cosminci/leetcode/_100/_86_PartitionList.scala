@@ -1,24 +1,24 @@
 package io.github.cosminci.leetcode._100
 
-import io.github.cosminci.utils._
+import io.github.cosminci.utils.*
 
 object _86_PartitionList:
-  def main(args: Array[String]): Unit =
-    println(linkedListToSeq(partition(seqToLinkedList(Seq(1, 4, 2)), 3)))
 
   def partition(head: ListNode, x: Int): ListNode =
     val smallerHead = new ListNode(-1, null)
     val largerHead  = new ListNode(-1, null)
 
-    var (curr, smaller, larger) = (head, smallerHead, largerHead)
-    while curr != null do
-      if curr.x < x then
-        smaller.next = curr
-        smaller = smaller.next
-      else
-        larger.next = curr
-        larger = larger.next
-      curr = curr.next
+    val (_, smaller, larger) = Iterator
+      .iterate((head, smallerHead, largerHead)) { case (curr, smaller, larger) =>
+        if curr.x < x then
+          smaller.next = curr
+          (curr.next, smaller.next, larger)
+        else
+          larger.next = curr
+          (curr.next, smaller, larger.next)
+      }
+      .dropWhile(_._1 != null)
+      .next()
 
     larger.next = null
     smaller.next = largerHead.next
