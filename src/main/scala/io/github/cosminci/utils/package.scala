@@ -10,6 +10,18 @@ package object utils:
   @annotation.tailrec
   def gcd[T: Integral](a: T, b: T): T = if b == 0 then a else gcd(b, a % b)
 
+  def bisectLeft(nums: collection.Seq[Int], n: Int): Int =
+    @annotation.tailrec
+    def dfs(l: Int, r: Int): Int =
+      if l >= r then l
+      else {
+        val mid = l + (r - l) / 2
+        if nums(mid) < n then dfs(mid + 1, r)
+        else dfs(l, mid)
+      }
+    dfs(l = 0, r = nums.length)
+
+  
   def characterCounts(s: String, upper: Boolean = false): Seq[Int] =
     val (start, end)    = if upper then ('A'.toInt, 'Z'.toInt) else ('a'.toInt, 'z'.toInt)
     val asciiOffset     = start
