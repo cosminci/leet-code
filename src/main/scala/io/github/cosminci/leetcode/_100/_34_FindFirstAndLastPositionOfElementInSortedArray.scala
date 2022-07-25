@@ -1,27 +1,15 @@
 package io.github.cosminci.leetcode._100
 
 object _34_FindFirstAndLastPositionOfElementInSortedArray:
-  def main(args: Array[String]): Unit =
-    println(searchRange(Array(), 0).toList)
-    println(searchRange(Array(7, 7, 7, 8, 8, 10, 10, 10), 8).toList)
 
   def searchRange(nums: Array[Int], target: Int): Array[Int] =
-    def minIdx =
-      var (l, r) = (0, nums.length)
-      while l < r do
-        val mid = l + (r - l) / 2
-        if nums(mid) >= target then r = mid
-        else l = mid + 1
-      if l == nums.length || nums(l) != target then -1 else l
+    def dfs(lo: Int, hi: Int): Seq[Int] =
+      if nums(lo) == target && target == nums(hi) then Seq(lo, hi)
+      else if target < nums(lo) || target > nums(hi) then Seq(-1, -1)
+      else
+        val mid    = lo + (hi - lo) / 2
+        val (l, r) = (dfs(lo, mid), dfs(mid + 1, hi))
+        if (l ++ r).contains(-1) then Seq(l, r).max else Seq(l.head, r.last)
 
-    def maxIdx =
-      var (l, r) = (0, nums.length)
-      while l < r do
-        val mid = l + (r - l) / 2
-        if nums(mid) <= target then l = mid + 1
-        else r = mid
-      if nums(l - 1) == target then l - 1 else -1
-
-    val min = minIdx
-    if min == -1 then Array(-1, -1)
-    else Array(min, maxIdx)
+    if nums.isEmpty then Array(-1, -1)
+    else dfs(lo = 0, hi = nums.indices.last).toArray
