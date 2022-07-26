@@ -5,13 +5,11 @@ import io.github.cosminci.utils.TreeNode
 object _236_LowestCommonAncestor:
 
   def lowestCommonAncestor(root: TreeNode, p: TreeNode, q: TreeNode): TreeNode =
-    if root == null then return null
-
-    if root.value == p.value || root.value == q.value then return root
-
-    val right = lowestCommonAncestor(root.right, p, q)
-    val left  = lowestCommonAncestor(root.left, p, q)
-
-    if right != null && left != null then root
-    else if right != null then right
-    else left
+    def dfs(node: TreeNode): TreeNode =
+      if node == null || node == p || node == q then node
+      else
+        val Seq(left, right) = Seq(node.left, node.right).map(dfs)
+        if left == null then right
+        else if right == null then left
+        else node
+    dfs(root)
