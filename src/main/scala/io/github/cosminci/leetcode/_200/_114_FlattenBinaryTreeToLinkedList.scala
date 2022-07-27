@@ -5,19 +5,16 @@ import io.github.cosminci.utils.TreeNode
 import scala.collection.mutable
 
 object _114_FlattenBinaryTreeToLinkedList:
+
   def flatten(root: TreeNode): Unit =
-    if root == null then return
-
-    val dummyHead = new TreeNode(0, null, null)
-    var curr      = dummyHead
-    val stack     = mutable.Stack(root)
-
-    while stack.nonEmpty do
-      val node = stack.pop()
-      curr.right = node
-      curr = node
-
-      if node.right != null then stack.push(node.right)
-      if node.left != null then stack.push(node.left)
-
-      curr.left = null
+    Iterator
+      .iterate((new TreeNode(_value = 0, _left = null, _right = null), Seq.empty ++ Option(root))) {
+        case (prev, stack) =>
+          val curr +: remaining = stack
+          val newStack = Option(curr.left) ++: Option(curr.right) ++: remaining
+          prev.right = curr
+          curr.left = null
+          (curr, newStack)
+      }
+      .dropWhile { case (_, stack) => stack.nonEmpty }
+      .next()
