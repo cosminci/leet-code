@@ -8,8 +8,11 @@ object _890_FindAndReplacePattern:
     def normalize(s: String) =
       s.foldLeft(Seq.empty[Int], Map.empty[Char, Int]) { case ((pattern, mappings), char) =>
         mappings.get(char) match
-          case None           => (pattern :+ mappings.size, mappings.updated(char, mappings.size))
-          case Some(prevCode) => (pattern :+ prevCode, mappings)
+          case Some(prevCode) =>
+            (pattern :+ prevCode, mappings)
+          case None =>
+            val newCode = mappings.size
+            (pattern :+ newCode, mappings.updated(char, newCode))
       }._1
 
     words.filter(w => normalize(w) == normalize(pattern)).toList
