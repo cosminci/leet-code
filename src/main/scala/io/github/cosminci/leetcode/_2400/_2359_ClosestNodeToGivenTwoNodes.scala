@@ -5,17 +5,15 @@ import scala.collection.mutable
 object _2359_ClosestNodeToGivenTwoNodes:
 
   def closestMeetingNode(edges: Array[Int], node1: Int, node2: Int): Int =
-    def bfs(toVisit: mutable.Queue[(Int, Int)], distances: Array[Int]): Unit =
-      while toVisit.nonEmpty do
-        val (curr, distance) = toVisit.dequeue()
-        distances(curr) = distance
-        val next = edges(curr)
-        if next != -1 && distances(next) == Int.MaxValue then toVisit.enqueue((next, distance + 1))
+    @annotation.tailrec
+    def dfs(distances: Array[Int], curr: Int, distance: Int): Array[Int] =
+      distances(curr) = distance
+      val next = edges(curr)
+      if next == -1 || distances(next) != Int.MaxValue then distances
+      else dfs(distances, next, distance + 1)
 
-    val node1Distances = Array.fill(edges.length)(Int.MaxValue)
-    val node2Distances = Array.fill(edges.length)(Int.MaxValue)
-    bfs(mutable.Queue((node1, 0)), node1Distances)
-    bfs(mutable.Queue((node2, 0)), node2Distances)
+    val node1Distances = dfs(Array.fill(edges.length)(Int.MaxValue), node1, distance = 0)
+    val node2Distances = dfs(Array.fill(edges.length)(Int.MaxValue), node2, distance = 0)
 
     node1Distances
       .zip(node2Distances)
