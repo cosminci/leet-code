@@ -1,6 +1,7 @@
 package io.github.cosminci.leetcode._2200
 
 import scala.collection.immutable.TreeMap
+import scala.collection.mutable
 
 object _2182_ConstructStringWithRepeatLimit {
   def main(args: Array[String]): Unit = {
@@ -16,11 +17,11 @@ object _2182_ConstructStringWithRepeatLimit {
           case None => result.toString()
           case Some((char, count)) =>
             val repeat = if (counts.head._1 != char) 1 else count.min(repeatLimit)
-            dfs(substract(counts, char, repeat), result.append(char.toString * repeat), char)
+            dfs(subtract(counts, char, repeat), result.append(char.toString * repeat), char)
         }
       }
 
-    def substract(counts: TreeMap[Char, Int], char: Char, repeat: Int): TreeMap[Char, Int] =
+    def subtract(counts: TreeMap[Char, Int], char: Char, repeat: Int): TreeMap[Char, Int] =
       counts.updatedWith(char) {
         case None => None
         case Some(v) if v <= repeat => None
@@ -28,6 +29,6 @@ object _2182_ConstructStringWithRepeatLimit {
       }
 
     val counts = TreeMap.from(s.groupMapReduce(identity)(_ => 1)(_ + _))(Ordering.Char.reverse)
-    dfs(counts, result = new StringBuilder, prev = '_')
+    dfs(counts, result = new mutable.StringBuilder, prev = '_')
   }
 }
