@@ -38,35 +38,36 @@ object _307_RangeSumQueryMutable:
 
     def sumRange(left: Int, right: Int): Int =
       def dfs(node: SegmentTreeNode, l: Int, r: Int): Int =
-        if node.start == l && node.end == r then return node.sum
-
-        val mid = node.start + (node.end - node.start) / 2
-        if r <= mid then dfs(node.left, l, r)
-        else if l >= mid + 1 then dfs(node.right, l, r)
-        else dfs(node.left, l, mid) + dfs(node.right, mid + 1, r)
+        if node.start == l && node.end == r then node.sum
+        else
+          val mid = node.start + (node.end - node.start) / 2
+          if r <= mid then dfs(node.left, l, r)
+          else if l >= mid + 1 then dfs(node.right, l, r)
+          else dfs(node.left, l, mid) + dfs(node.right, mid + 1, r)
 
       dfs(root, left, right)
+
 
   class NumArrayFenwickTree(nums: Array[Int]):
     private val fenwickTree =
       val prefixSum = nums.scanLeft(0)(_ + _)
-      Array.tabulate(nums.length + 1)(i => prefixSum(i) - prefixSum(i - (i & -i)))
+      Array.tabulate(nums.length + 1)(i => prefixSum(i) - prefixSum(i - lsb(i)))
 
     def update(idx: Int, value: Int): Unit =
       val diff = value - nums(idx)
       nums(idx) = value
-      var i = idx + 1
-      while i < fenwickTree.length do
-        fenwickTree(i) = fenwickTree(i) + diff
-        i += (i & -i)
-
-    def sum(idx: Int) =
-      var sum = 0
-      var i   = idx + 1
-      while i > 0 do
-        sum += fenwickTree(i)
-        i -= (i & -i)
-      sum
+      Iterator
+        .iterate(idx + 1) { i => fenwickTree(i) += diff; i + lsb(i) }
+        .dropWhile(_ < fenwickTree.length)
+        .next()
 
     def sumRange(left: Int, right: Int): Int =
       sum(right) - sum(left - 1)
+
+    private def sum(idx: Int) =
+      Iterator
+        .iterate((0, idx + 1)) { case (sum, i) => (sum + fenwickTree(i), i - lsb(i))}
+        .dropWhile { case (_, i) => i > 0 }
+        .next()._1
+
+    private def lsb(i: Int) = i & -i
