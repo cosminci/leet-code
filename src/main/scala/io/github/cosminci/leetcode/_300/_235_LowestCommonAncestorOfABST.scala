@@ -5,10 +5,8 @@ import io.github.cosminci.utils.TreeNode
 object _235_LowestCommonAncestorOfABST:
 
   def lowestCommonAncestor(root: TreeNode, p: TreeNode, q: TreeNode): TreeNode =
-    var node            = root
-    val (lower, higher) = (math.min(p.value, q.value), math.max(p.value, q.value))
-    while true do
-      if node.value > higher then node = node.left
-      else if node.value < lower then node = node.right
-      else return node
-    node
+    val (lower, higher) = (p.value min q.value, p.value max q.value)
+    Iterator
+      .iterate(root)(node => if node.value > higher then node.left else node.right)
+      .dropWhile(node => node.value > higher || node.value < lower)
+      .next()
