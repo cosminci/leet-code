@@ -5,49 +5,42 @@ import scala.collection.mutable
 object _126_WordLadderII:
 
   def main(args: Array[String]): Unit =
-    println(findLadders("red", "tax", List("ted", "tex", "red", "tax", "tad", "den", "rex", "pee")))
+    println(findLadders("hit", "cog", List("hot", "dot", "dog", "lot", "log", "cog")))
 
   def findLadders(beginWord: String, endWord: String, wordList: List[String]): List[List[String]] =
-    if !wordList.contains(endWord) then return List.empty
+    val graph = buildGraph(beginWord +: wordList)
 
-    val (wordToWildcards, wildcardToWords) = wildcardMappings(wordList :+ beginWord)
+    val queue  = mutable.Queue(beginWord)
+    val depths = mutable.Map.from(wordList.map(_ -> -1) :+ (beginWord -> 0))
+    val paths  = mutable.Map(beginWord -> Seq(Seq(beginWord))).withDefaultValue(Seq.empty)
 
-    val toVisit = mutable.Queue.empty[Vector[String]]
-    val visited = mutable.Map.empty[String, Int]
-    toVisit.enqueue(Vector(beginWord))
-    visited.addOne((beginWord, 1))
-
-    var foundLength = 0
-    val paths       = mutable.ListBuffer.empty[List[String]]
-    while toVisit.nonEmpty do
-      val wordPath = toVisit.dequeue()
-      if foundLength > 0 && wordPath.length > foundLength then return paths.toList
-      if wordPath.last == endWord then
-        foundLength = wordPath.length
-        paths.addOne(wordPath.toList)
-      else
-        wordToWildcards(wordPath.last).flatMap(wildcardToWords).foreach { w =>
-          val newLength = wordPath.length + 1
-          if !visited.contains(w) || visited(w) == newLength then
-            toVisit.enqueue(wordPath :+ w)
-            visited.addOne((w, newLength))
+    while queue.nonEmpty do
+      val w = queue.dequeue()
+      if w == endWord then return paths(w).map(_.toList).toList
+      graph
+        .getOrElse(w, Set.empty)
+        .filter(nei => depths(nei) == -1 || depths(nei) == depths(w) + 1)
+        .foreach { nei =>
+          if depths(nei) == -1 then
+            queue.append(nei)
+            depths(nei) = depths(w) + 1
+          paths(w).foreach(path => paths.update(nei, paths(nei) :+ (path :+ nei)))
         }
 
-    paths.toList
+    List.empty
 
-
-  def wildcardMappings(dictionary: List[String]) =
-    val wordToWildcards = mutable.Map.empty[String, Seq[String]]
-    val wildcardToWords = mutable.Map.empty[String, Seq[String]]
-
-    dictionary.foreach { word =>
-      wordToWildcards.update(word, word.indices.map(i => word.updated(i, '*')))
-      wordToWildcards(word).foreach { wildcard =>
-        wildcardToWords.updateWith(wildcard) {
-          case None        => Some(Seq(word))
-          case Some(words) => Some(words :+ word)
+  private def buildGraph(words: List[String]) =
+    words
+      .foldLeft(Map.empty[String, Set[String]]) { (patterns, w) =>
+        w.indices.foldLeft(patterns) { (patterns, i) =>
+          patterns.updated(w.updated(i, '*'), patterns.getOrElse(w.updated(i, '*'), Set.empty) + w)
         }
       }
-    }
-
-    (wordToWildcards.toMap, wildcardToWords.toMap)
+      .values
+      .foldLeft(Map.empty[String, Set[String]]) { (graph, pset) =>
+        pset.toSeq.combinations(2).foldLeft(graph) { case (graph, Seq(p1, p2)) =>
+          graph
+            .updated(p1, graph.getOrElse(p1, Set.empty) + p2)
+            .updated(p2, graph.getOrElse(p2, Set.empty) + p1)
+        }
+      }
