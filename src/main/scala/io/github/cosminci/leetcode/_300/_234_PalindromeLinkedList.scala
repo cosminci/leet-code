@@ -1,27 +1,22 @@
 package io.github.cosminci.leetcode._300
 
-import io.github.cosminci.utils._
+import io.github.cosminci.utils.*
 
 object _234_PalindromeLinkedList:
-  def main(args: Array[String]): Unit =
-    println(isPalindrome(seqToLinkedList(Seq(1, 2, 2, 1))))
 
   def isPalindrome(head: ListNode): Boolean =
-    var prev: ListNode = null
-    var (slow, fast)   = (head, head)
+    def traverse(rev: ListNode, slow: ListNode, fast: ListNode) =
+      val (nextRev, nextSlow, nextFast) = (slow, slow.next, fast.next.next)
+      nextRev.next = rev
+      (nextRev, nextSlow, nextFast)
 
-    // reverse links up to mid
-    while fast != null && fast.next != null do
-      fast = fast.next.next
-      val next = slow.next
-      slow.next = prev
-      prev = slow
-      slow = next
+    val (rev, slow, fast) = Iterator
+      .iterate((null: ListNode, head, head))(traverse)
+      .dropWhile { case (_, _, fast) => fast != null && fast.next != null }
+      .next()
 
-    // skip middle element if odd number of elements
-    if fast != null then slow = slow.next
-
-    while prev != null && slow.x == prev.x do
-      slow = slow.next
-      prev = prev.next
-    prev == null
+    Iterator
+      .iterate((rev, Option(fast).map(_ => slow.next).getOrElse(slow))) { case (rev, slow) => (rev.next, slow.next) }
+      .dropWhile { case (rev, slow) => rev != null && rev.x == slow.x }
+      .next()
+      ._1 == null
