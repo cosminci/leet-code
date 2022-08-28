@@ -1,35 +1,25 @@
 package io.github.cosminci.leetcode._400
 
+import scala.collection.immutable.TreeSet
+
 object _363_MaxSumOfRectangleNoLargerThanK:
-  def main(args: Array[String]): Unit =
-    println(maxSumSubmatrix(Array(Array(5, -4, -3, 4), Array(-3, -4, 4, 5), Array(5, 1, 5, -4)), 10))
-    println(maxSumSubmatrix(Array(Array(1, 0, 1), Array(0, -2, 3)), 2))
-    println(maxSumSubmatrix(Array(Array(2, 2, -1)), 3))
-    println(maxSumSubmatrix(Array(Array(2, 2, -1)), 0))
 
   def maxSumSubmatrix(matrix: Array[Array[Int]], k: Int): Int =
-    var globalMax = Int.MinValue
+    matrix.head.indices.foldLeft(Int.MinValue) { case (globalMax, lCol) =>
+      (lCol until matrix.head.length)
+        .foldLeft(globalMax, Seq.fill(matrix.length)(0)) { case ((globalMax, runningSums), rCol) =>
+          val newRunningSums = runningSums.indices.map(row => runningSums(row) + matrix(row)(rCol))
+          val prefixSum      = newRunningSums.scanLeft(0)(_ + _).tail
 
-    matrix.head.indices.foreach { left =>
-      val runningSums = Array.ofDim[Int](matrix.length)
+          val newGlobalMax = prefixSum.foldLeft(globalMax, TreeSet.empty[Int]) {
+            case ((globalMax, prevSums), sum) =>
+              val entireSubarraySum  = Option.when(sum <= k)(sum)
+              val partialSubarraySum = prevSums.minAfter(sum - k).map(sum - _)
+              val localMax           = (Array(globalMax) ++ entireSubarraySum ++ partialSubarraySum).max
 
-      (left until matrix.head.length).foreach { right =>
-        val sumTracker = new java.util.TreeSet[Int]
-        matrix.indices.foreach(idx => runningSums(idx) += matrix(idx)(right))
-
-        var maxSubarraySum = 0
-        runningSums.indices.foreach { idx =>
-          maxSubarraySum += runningSums(idx)
-          if maxSubarraySum == k then return k
-          if maxSubarraySum <= k && maxSubarraySum > globalMax then globalMax = maxSubarraySum
-
-          Option(sumTracker.ceiling(maxSubarraySum - k)).foreach { subtractable =>
-            val localMax = maxSubarraySum - subtractable
-            if localMax == k then return k
-            if localMax > globalMax then globalMax = localMax
-          }
-          sumTracker.add(maxSubarraySum)
-        }
-      }
+              if (localMax == k) return localMax
+              (localMax, prevSums + sum)
+            }._1
+          (newGlobalMax, newRunningSums)
+        }._1
     }
-    globalMax
