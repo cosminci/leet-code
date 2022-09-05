@@ -4,19 +4,11 @@ import io.github.cosminci.utils.Node
 
 import scala.collection.mutable
 
-object _429_NAryTreeLevelOrderTraversal {
-  def levelOrder(root: Node): List[List[Int]] = {
-    if (root == null) return List.empty
+object _429_NAryTreeLevelOrderTraversal:
 
-    val result = mutable.ListBuffer.empty[List[Int]]
-    val toVisit = mutable.Queue(root)
-    while (toVisit.nonEmpty) {
-      val levelNodes = toVisit.dequeueAll(_ => true)
-      levelNodes.foreach { n =>
-        n.children.foreach(toVisit.enqueue)
-      }
-      result.append(levelNodes.map(_.value).toList)
-    }
-    result.toList
-  }
-}
+  def levelOrder(root: Node): List[List[Int]] =
+    def dfs(curr: Seq[Node]): List[List[Int]] =
+      if curr.isEmpty then List.empty
+      else curr.map(_.value).toList +: dfs(curr.flatMap(_.children))
+
+    dfs(curr = Seq(Option(root)).flatten)
