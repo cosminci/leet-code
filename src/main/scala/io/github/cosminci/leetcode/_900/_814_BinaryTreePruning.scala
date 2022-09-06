@@ -6,8 +6,9 @@ object _814_BinaryTreePruning:
 
   def pruneTree(root: TreeNode): TreeNode =
     def dfs(node: TreeNode): TreeNode =
-      if node == null then return null
-      node.left = dfs(node.left)
-      node.right = dfs(node.right)
-      if node.left == null && node.right == null && node.value == 0 then null else node
+      if node == null then null
+      else
+        val (left, right) = (dfs(node.left), dfs(node.right))
+        Option.when(left != null || right != null || node.value == 1)(new TreeNode(node.value, left, right)).orNull
+
     dfs(root)
