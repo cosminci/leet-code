@@ -1,32 +1,26 @@
 package io.github.cosminci.leetcode._900
 
+import scala.collection.mutable
+
 object _838_PushDominoes:
-  def main(args: Array[String]): Unit =
-    println(pushDominoes(".L.R...LR..L.."))
 
   def pushDominoes(dominoes: String): String =
-    val closestRight = Array.ofDim[Int](dominoes.length)
-    dominoes.indices.foreach { i =>
-      closestRight(i) =
-        if dominoes(i) == 'R' then 0
-        else if i > 0 && closestRight(i - 1) != Int.MaxValue && dominoes(i) == '.' then closestRight(i - 1) + 1
-        else Int.MaxValue
-    }
+    val padded = 'L' +: dominoes :+ 'R'
 
-    val closestLeft = Array.ofDim[Int](dominoes.length)
-    (dominoes.length - 1 to 0 by -1).foreach { i =>
-      closestLeft(i) =
-        if dominoes(i) == 'L' then 0
-        else if i < dominoes.length - 1 && closestLeft(i + 1) != Int.MaxValue && dominoes(i) == '.' then
-          closestLeft(i + 1) + 1
-        else Int.MaxValue
-    }
+    val result = new mutable.StringBuilder()
+    (1 until padded.length).foldLeft(0) { (left, right) =>
+      if padded(right) == '.' then left
+      else
+        val dist = right - left - 1
+        if padded(right) == padded(left) then
+          result.appendAll(padded(right).toString * dist)
+        else if padded(left) == 'R' && padded(right) == 'L' then
+          val (quot, rem) = (dist / 2, dist % 2)
+          result.appendAll("R" * quot ++ "." * rem ++ "L" * quot)
+        else
+          result.appendAll("." * dist)
 
-    val result = Array.ofDim[Char](dominoes.length)
-    dominoes.indices.foreach { i =>
-      result(i) =
-        if closestLeft(i) < closestRight(i) then 'L'
-        else if closestLeft(i) > closestRight(i) then 'R'
-        else '.'
+        result.append(padded(right))
+        right
     }
-    result.mkString
+    result.dropRight(1).mkString
