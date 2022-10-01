@@ -1,19 +1,16 @@
 package io.github.cosminci.leetcode._100
 
+import scala.collection.mutable
+
 object _91_DecodeWays:
-  def main(args: Array[String]): Unit =
-    println(numDecodings("123123"))
-    println(numDecodings("10"))
-    println(numDecodings("100"))
-    println(numDecodings("01"))
 
   def numDecodings(s: String): Int =
-    val dp = Array.fill[Int](s.length + 1)(1)
+    val mem = mutable.Map.empty[Int, Int]
+    def dfs(i: Int): Int = mem.getOrElseUpdate(i, {
+      if i == s.length then 1
+      else if s(i) == '0' then 0
+      else if i == s.length - 1 || s"${s(i)}${s(i + 1)}".toInt > 26 then dfs(i + 1)
+      else dfs(i + 1) + dfs(i + 2)
+    })
 
-    (s.length - 1 to 0 by -1).foreach { idx =>
-      dp(idx) = if s(idx) == '0' then 0 else dp(idx + 1)
-
-      if idx + 1 < s.length && s(idx) != '0' && s"${s(idx)}${s(idx + 1)}".toInt <= 26 then dp(idx) += dp(idx + 2)
-    }
-
-    dp.head
+    dfs(i = 0)
