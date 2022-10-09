@@ -4,23 +4,15 @@ import io.github.cosminci.utils.TreeNode
 
 import scala.collection.mutable
 
-object _653_TwoSumIVInputBST {
-  def findTarget(root: TreeNode, k: Int): Boolean = {
-    val seen = mutable.Set.empty[Int]
-    val toVisit = mutable.Stack.empty[TreeNode]
-    var node = root
-    while (node != null || toVisit.nonEmpty) {
-      while (node != null) {
-        toVisit.push(node)
-        node = node.left
-      }
-      node = toVisit.pop()
-      if (seen.contains(k - node.value))
-        return true
-      seen.add(node.value)
+object _653_TwoSumIVInputBST:
 
-      node = node.right
-    }
-    false
-  }
-}
+  def findTarget(root: TreeNode, k: Int): Boolean =
+    @annotation.tailrec
+    def dfs(prev: Set[Int], next: Seq[TreeNode]): Boolean =
+      next.headOption match
+        case None => false
+        case Some(curr) =>
+          prev.contains(k - curr.value) ||
+            dfs(prev + curr.value, next.tail ++ Option(curr.left) ++ Option(curr.right))
+
+    dfs(prev = Set.empty, next = Seq(root))
