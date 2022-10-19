@@ -1,33 +1,21 @@
 package io.github.cosminci.leetcode._700
 
 import scala.collection.mutable
+import scala.util.chaining.*
 
 object _692_TopKFrequentWords:
-  def main(args: Array[String]): Unit =
-    println(topKFrequentHeap(Array("i", "love", "leetcode", "i", "love", "coding"), 2))
-    println(topKFrequentSort(Array("i", "love", "leetcode", "i", "love", "coding"), 2))
-    println(topKFrequentHeap(Array("the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"), 4))
-    println(topKFrequentSort(Array("the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"), 4))
-
-  def topKFrequentHeap(words: Array[String], k: Int): List[String] =
-    val freqCounts = words.groupBy(identity).view.mapValues(_.length).toMap
-    val freqHeap =
-      given Ordering[String] = (x, y) =>
-        val freqOrdering = freqCounts(x).compare(freqCounts(y))
-        if freqOrdering != 0 then freqOrdering else y.compare(x)
-      mutable.PriorityQueue.from(freqCounts.keys)
-
-    (1 to k).foldLeft(List.empty[String]) { case (results, _) =>
-      results :+ freqHeap.dequeue()
-    }
 
   def topKFrequentSort(words: Array[String], k: Int): List[String] =
     words
-      .groupBy(identity)
-      .view
-      .mapValues(_.length)
-      .toSeq
-      .sortBy((word, count) => (-count, word))
-      .take(k)
-      .map(_._1)
+      .groupMapReduce(identity)(_ => 1)(_ + _)
       .toList
+      .sortBy { case (word, count) => (-count, word) }
+      .take(k)
+      .map { case (word, _) => word }
+
+  def topKFrequentHeap(words: Array[String], k: Int): List[String] =
+    val counts = words.groupMapReduce(identity)(_ => 1)(_ + _)
+    val pqueue = mutable.PriorityQueue.from(counts.keys) { (w1: String, w2: String) =>
+      counts(w1).compare(counts(w2)).pipe(res => if res != 0 then res else w2.compare(w1))
+    }
+    (1 to k).foldLeft(Seq.empty[String])((results, _) => results :+ pqueue.dequeue()).toList
