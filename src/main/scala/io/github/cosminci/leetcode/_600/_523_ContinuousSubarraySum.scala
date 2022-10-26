@@ -1,23 +1,18 @@
 package io.github.cosminci.leetcode._600
 
 object _523_ContinuousSubarraySum:
-  def main(args: Array[String]): Unit =
-    println(checkSubarraySum(Array(23, 2, 4, 6, 6), 7))
-    println(checkSubarraySum(Array(1, 0), 2))
-    println(checkSubarraySum(Array(23, 2, 4, 6, 7), 6))
-    println(checkSubarraySum(Array(23, 2, 6, 4, 7), 6))
-    println(checkSubarraySum(Array(23, 2, 6, 4, 7), 13))
 
   def checkSubarraySum(nums: Array[Int], k: Int): Boolean =
-    nums.indices.foldLeft(Map(0 -> -1), 0) {
-      case ((prevSums, runningMod), i) =>
-        val newRunningMod = (runningMod + nums(i)) % k
-        if prevSums.get(newRunningMod).exists(j => i - j > 1) then return true
+    @annotation.tailrec
+    def dfs(i: Int, prevRunningMod: Int, prevMods: Map[Int, Int]): Boolean =
+      if i == nums.length then false
+      else
+        val runningMod = (prevRunningMod + nums(i)) % k
+        if prevMods.get(runningMod).exists(j => i - j > 1) then true
+        else
+          dfs(i + 1, runningMod, prevMods.updatedWith(runningMod) {
+            case None => Some(i)
+            case j    => j
+          })
 
-        val newPrevSums =
-          if prevSums.contains(newRunningMod) then prevSums
-          else prevSums.updated(newRunningMod, i)
-
-        (newPrevSums, newRunningMod)
-    }
-    false
+    dfs(i = 0, prevRunningMod = 0, prevMods = Map(0 -> -1))
