@@ -5,18 +5,9 @@ import scala.util.Random
 
 object _380_InsertDeleteGetRandom:
 
-  def main(args: Array[String]): Unit =
-    val rSet = new RandomizedSet
-    println(rSet.insert(0))
-    println(rSet.insert(1))
-    println(rSet.remove(0))
-    println(rSet.insert(2))
-    println(rSet.remove(1))
-    println(rSet.getRandom())
-
   class RandomizedSet:
     private val indices = mutable.Map.empty[Int, Int]
-    private val values  = mutable.ListBuffer.empty[Int]
+    private val values  = mutable.ArrayBuffer.empty[Int]
 
     def insert(value: Int): Boolean =
       indices.get(value) match
