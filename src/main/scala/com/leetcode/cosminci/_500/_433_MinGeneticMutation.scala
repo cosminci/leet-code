@@ -1,22 +1,20 @@
 package com.leetcode.cosminci._500
 
-import scala.collection.mutable
-
 object _433_MinGeneticMutation:
+
   def minMutation(start: String, end: String, bank: Array[String]): Int =
-    def diffCount(s1: String, s2: String) =
-      s1.zip(s2).count { case (c1, c2) => c1 != c2 } == 1
+    def nextSearchState(toVisit: Seq[(String, Int)], visited: Set[String]) =
+      val (curr, steps) +: tail = toVisit
+      bank
+        .filterNot(visited.contains)
+        .filter { next => curr.zip(next).count { case (base1, base2) => base1 != base2 } == 1 }
+        .foldLeft((tail, visited)) { case ((toVisit, visited), next) =>
+          (toVisit :+ (next, steps + 1), visited + next)
+        }
 
-    val toVisit = mutable.Queue((start, 0))
-    val visited = mutable.Set(start)
-
-    while toVisit.nonEmpty do
-      val (curr, steps) = toVisit.dequeue()
-      if curr == end then return steps
-
-      bank.foreach { next =>
-        if !visited.contains(next) && diffCount(curr, next) then
-          toVisit.enqueue((next, steps + 1))
-          visited.add(next)
-      }
-    -1
+    Iterator
+      .iterate((Seq((start, 0)), Set(start)))((nextSearchState _).tupled)
+      .takeWhile { case (toVisit, _) => toVisit.nonEmpty }
+      .flatMap { case (toVisit, _) => toVisit.headOption }
+      .collectFirst { case (mutation, steps) if mutation == end => steps }
+      .getOrElse(-1)
