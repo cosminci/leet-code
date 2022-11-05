@@ -5,55 +5,39 @@ import com.leetcode.cosminci.utils
 import scala.collection.mutable
 
 object _212_WordSearchII:
-  def main(args: Array[String]): Unit =
-    println(
-      findWordsRecursiveDFS(
-        Array(
-          "oaan".toCharArray,
-          "etae".toCharArray,
-          "ihkr".toCharArray,
-          "iflv".toCharArray
-        ),
-        Array("oath", "pea", "eat", "rain", "oaths", "rai", "raix")
-      )
-    )
 
   def findWordsRecursiveDFS(board: Array[Array[Char]], words: Array[String]): List[String] =
     val root    = buildPrefixTrie(words.sortBy(_.length))
-    val matches = mutable.Set.empty[String]
+    val matches = mutable.ListBuffer.empty[String]
 
-    val visited = mutable.Set.empty[(Int, Int)]
-    def dfs(x: Int, y: Int, node: TrieNode, prefix: String): Unit =
-      if visited.contains((x, y)) || !node.next.contains(board(x)(y)) then return
-
-      if node.next(board(x)(y)).terminator then matches.add(prefix + board(x)(y))
-
-      visited.add((x, y))
-      utils.neighbours(x, y, board).foreach { case (nx, ny) =>
-        dfs(nx, ny, node.next(board(x)(y)), prefix + board(x)(y))
-      }
-      visited.remove((x, y))
+    def dfs(x: Int, y: Int, node: TrieNode): Unit =
+      val ch = board(x)(y)
+      node.next.get(ch) match
+        case None           => ()
+        case _ if ch == '#' => ()
+        case Some(next) =>
+          if next.word != null then
+            matches.append(next.word)
+            next.word = null // de-duplicate
+          board(x)(y) = '#'
+          utils.neighbours(x, y, board).foreach { case (nx, ny) => dfs(nx, ny, next) }
+          board(x)(y) = ch
 
     board.indices.foreach { x =>
       board(x).indices.foreach { y =>
-        dfs(x, y, root, "")
+        dfs(x, y, root)
       }
     }
     matches.toList
 
-  def buildPrefixTrie(words: Array[String]) =
-    val root = TrieNode(mutable.Map.empty, terminator = false)
-    words.foreach { w =>
-      var node = root
-      w.zipWithIndex.foreach { case (char, idx) =>
-        if node.next.contains(char) then node = node.next(char)
-        else {
-          val newNode = TrieNode(mutable.Map.empty, terminator = idx == w.length - 1)
-          node.next.update(char, newNode)
-          node = newNode
-        }
-      }
+  private def buildPrefixTrie(words: Array[String]) =
+    val root = TrieNode()
+    words.foldLeft(root) { (root, w) =>
+      w.foldLeft(root) { (node, ch) =>
+        node.next.getOrElseUpdate(ch, TrieNode())
+      }.word = w
+      root
     }
     root
 
-  case class TrieNode(next: mutable.Map[Char, TrieNode], terminator: Boolean)
+  case class TrieNode(next: mutable.Map[Char, TrieNode] = mutable.Map.empty, var word: String = null)
