@@ -9,6 +9,8 @@ package object utils:
   
   @annotation.tailrec
   def gcd[T: Integral](a: T, b: T): T = if b == 0 then a else gcd(b, a % b)
+  
+  def lcm[T: Integral](a: T, b: T): T = a / gcd(a, b) * b
 
   def bisectLeft(nums: collection.Seq[Int], n: Int): Int =
     @annotation.tailrec
