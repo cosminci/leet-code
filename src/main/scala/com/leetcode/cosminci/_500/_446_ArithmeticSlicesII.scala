@@ -1,27 +1,19 @@
 package com.leetcode.cosminci._500
 
-import scala.collection.mutable
+import scala.util.chaining.*
 
 object _446_ArithmeticSlicesII:
-  def main(args: Array[String]): Unit =
-    println(numberOfArithmeticSlices(Array(0, 2000000000, -294967296)))
-    println(numberOfArithmeticSlices(Array(2, 4, 6, 8, 10)))
-    println(numberOfArithmeticSlices(Array(7, 7, 7, 7, 7)))
 
   def numberOfArithmeticSlices(nums: Array[Int]): Int =
-    val mem    = mutable.Map.empty[(Int, Int), Int]
-    var result = 0L
-
-    nums.indices.foreach { i =>
-      (0 until i).foreach { j =>
-        val delta = nums(i).toLong - nums(j)
-        if delta >= Int.MinValue && delta <= Int.MaxValue then
-          val d      = delta.toInt
-          val jCount = mem.getOrElse((j, d), 0)
-          val iCount = mem.getOrElse((i, d), 0)
-          mem.update((i, d), iCount + jCount + 1)
-          result += jCount
-      }
+    nums.map(_.toLong).pipe { nums =>
+      nums.indices
+        .foldLeft(Map.empty[(Int, Long), Int], 0) { case ((mem, res), j) =>
+          (0 until j).foldLeft(mem, res) { case ((mem, res), i) =>
+            val delta  = nums(j) - nums(i)
+            val iCount = mem.getOrElse((i, delta), 0)
+            val jCount = mem.getOrElse((j, delta), 0)
+            (mem.updated((j, delta), iCount + jCount + 1), res + iCount)
+          }
+        }
+        .pipe { case (_, result) => result }
     }
-
-    result.toInt
