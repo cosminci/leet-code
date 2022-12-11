@@ -2,18 +2,17 @@ package com.leetcode.cosminci._200
 
 import com.leetcode.cosminci.utils.TreeNode
 
+import scala.util.chaining.*
+
 object _124_BinaryTreeMaxPathSum:
 
   def maxPathSum(root: TreeNode): Int =
-    var max = Int.MinValue
-    def dfs(node: TreeNode): Int =
-      if node == null then return 0
+    def dfs(node: TreeNode): (Int, Int) =
+      if node == null then (0, Int.MinValue)
+      else
+        val (leftAsLinkMax, leftAsRootMax)   = dfs(node.left).pipe { case (local, global) => (local.max(0), global) }
+        val (rightAsLinkMax, rightAsRootMax) = dfs(node.right).pipe { case (local, global) => (local.max(0), global) }
+        val selfAsRootMax                    = leftAsLinkMax + rightAsLinkMax + node.value
+        (leftAsLinkMax.max(rightAsLinkMax) + node.value, selfAsRootMax.max(leftAsRootMax).max(rightAsRootMax))
 
-      val leftMax  = math.max(0, dfs(node.left))
-      val rightMax = math.max(0, dfs(node.right))
-      val localMax = leftMax + rightMax + node.value
-      if localMax > max then max = localMax
-
-      math.max(leftMax, rightMax) + node.value
-    dfs(root)
-    max
+    dfs(root).pipe { case (_, max) => max }
