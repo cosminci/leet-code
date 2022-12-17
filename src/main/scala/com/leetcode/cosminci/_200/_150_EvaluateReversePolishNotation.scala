@@ -1,30 +1,19 @@
 package com.leetcode.cosminci._200
 
-import scala.collection.mutable
+import scala.util.{Failure, Success, Try}
 
 object _150_EvaluateReversePolishNotation:
-  def main(args: Array[String]): Unit =
-    println(evalRPN(Array("2", "1", "+", "3", "*")))
-    println(evalRPN(Array("4", "13", "5", "/", "+")))
-    println(evalRPN(Array("10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+")))
 
   def evalRPN(tokens: Array[String]): Int =
-    val pending = mutable.Stack.empty[Int]
-
-    tokens.foreach { t =>
-      if t == "+" then
-        val (operand2, operand1) = (pending.pop(), pending.pop())
-        pending.push(operand1 + operand2)
-      else if t == "-" then
-        val (operand2, operand1) = (pending.pop(), pending.pop())
-        pending.push(operand1 - operand2)
-      else if t == "*" then
-        val (operand2, operand1) = (pending.pop(), pending.pop())
-        pending.push(operand1 * operand2)
-      else if t == "/" then
-        val (operand2, operand1) = (pending.pop(), pending.pop())
-        pending.push(operand1 / operand2)
-      else pending.push(t.toInt)
+    tokens.foldLeft(Seq.empty[Int]) { (stack, t) =>
+      Try(t.toInt) match
+        case Success(v) => stack :+ t.toInt
+        case _ =>
+          val (head, Seq(operand1, operand2)) = stack.splitAt(stack.length - 2)
+          t match
+            case "+" => head :+ operand1 + operand2
+            case "-" => head :+ operand1 - operand2
+            case "*" => head :+ operand1 * operand2
+            case "/" => head :+ operand1 / operand2
     }
-
-    pending.last
+    .head
