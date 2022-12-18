@@ -1,4 +1,4 @@
-package com.leetcode.cosminci._2500
+package com.leetcode.cosminci._2600
 
 object _2501_LongestSquareStreakInArray:
 
