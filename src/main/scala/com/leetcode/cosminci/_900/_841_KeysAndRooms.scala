@@ -1,19 +1,14 @@
 package com.leetcode.cosminci._900
 
-import scala.collection.mutable
+import scala.util.chaining.*
 
 object _841_KeysAndRooms:
 
-  def canVisitAllRoomsBFS(rooms: List[List[Int]]): Boolean =
-    val toVisit = mutable.Queue(0)
-    val visited = mutable.Set(0)
-
-    while toVisit.nonEmpty do
-      val room = toVisit.dequeue()
-      rooms(room).foreach { key =>
-        if !visited.contains(key) then
-          visited.add(key)
-          toVisit.enqueue(key)
+  def canVisitAllRooms(rooms: List[List[Int]]): Boolean =
+    Iterator
+      .iterate((Seq(0), Set(0))) { case (head +: toVisit, visited) =>
+        (toVisit ++ rooms(head).filterNot(visited.contains), visited + head)
       }
-
-    visited.size == rooms.length
+      .dropWhile { case (toVisit, _) => toVisit.nonEmpty }
+      .next()
+      .pipe { case (_, visited) => visited.size == rooms.length }
