@@ -1,48 +1,25 @@
 package com.leetcode.cosminci._1900
 
-import com.leetcode.cosminci.utils
-
-import scala.collection.mutable
+import scala.collection.immutable.TreeSet
+import scala.util.chaining.*
 
 object _1834_SingleThreadedCPU:
 
-  def getOrder(tasks: Array[Array[Int]]): Array[Int] =
-    val toSchedule = mutable.PriorityQueue.from(tasks.indices.map { i =>
-      val Array(et, pt) = tasks(i)
-      UnscheduledTask(i, et, pt)
-    })
+  case class Task(start: Int, time: Int, i: Int)
 
-    var timestamp                   = 0
-    var busy: Option[ExecutingTask] = None
-    val results                     = mutable.ListBuffer.empty[Int]
+  def getOrder(input: Array[Array[Int]]): Array[Int] =
+    val tasks   = input.zipWithIndex.map { case (Array(s, t), i) => Task(s, t, i) }.sortBy(t => (t.start, t.time, t.i))
+    val pending = TreeSet.empty[Task](Ordering.by(t => (t.time, t.i)))
 
-    val scheduled = mutable.PriorityQueue.empty[ScheduledTask]
-    while results.size != tasks.length do
-      while toSchedule.headOption.exists(_.enqueueTime <= timestamp) do
-        val task = toSchedule.dequeue()
-        scheduled.enqueue(ScheduledTask(task.id, task.processingTime))
-      busy.foreach { case ExecutingTask(id, finishTime) =>
-        if finishTime == timestamp then
-          results.addOne(id)
-          busy = None
+    Iterator
+      .iterate((0, 0, pending, Array.empty[Int])) { case (i, time, pending, res) =>
+        val (j, newPending) = Iterator
+          .iterate((i, pending)) { case (i, pending) => (i + 1, pending + tasks(i)) }
+          .dropWhile { case (i, pending) => i < tasks.length && tasks(i).start <= time }.next()
+
+        newPending.headOption match
+          case Some(task) => (j, time + task.time, newPending.tail, res :+ task.i)
+          case None => if j < tasks.length then (j, tasks(j).start, newPending, res) else (j, time, newPending, res)
       }
-      if busy.isEmpty && scheduled.nonEmpty then
-        val task = scheduled.dequeue()
-        busy = Some(ExecutingTask(task.id, timestamp + task.processingTime))
-      val currentTaskFinishTs = busy.map(_.finishTime).getOrElse(Int.MaxValue)
-      val nextTaskScheduleTs  = toSchedule.headOption.map(_.enqueueTime).getOrElse(Int.MaxValue)
-      timestamp = math.min(currentTaskFinishTs, nextTaskScheduleTs)
-
-    results.toArray
-
-  case class UnscheduledTask(id: Int, enqueueTime: Int, processingTime: Int)
-
-  case class ScheduledTask(id: Int, processingTime: Int)
-
-  given Ordering[UnscheduledTask] = (x: UnscheduledTask, y: UnscheduledTask) => y.enqueueTime.compare(x.enqueueTime)
-
-  given Ordering[ScheduledTask] = (x: ScheduledTask, y: ScheduledTask) =>
-    val etComparison = y.processingTime.compare(x.processingTime)
-    if etComparison != 0 then etComparison else y.id.compare(x.id)
-
-  case class ExecutingTask(id: Int, finishTime: Int)
+      .dropWhile { case (_, _, _, res) => res.length != tasks.length }.next()
+      .pipe { case (_, _, _, res) => res }
