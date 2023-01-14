@@ -15,8 +15,7 @@ object _1061_LexicographicallySmallestEquivString:
     def union(c1: Char, c2: Char): Unit =
       val (p1, p2) = (find(c1), find(c2))
       if p1 != p2 then
-        val (lo, hi) = if p1 < p2 then (p2, p1) else (p1, p2)
-        parents.update(lo, hi)
+        parents.update(p1 max p2, p1 min p2)
 
     def find(c: Char): Char =
       if parents(c) == c then c else find(parents(c))
