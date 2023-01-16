@@ -1,31 +1,15 @@
 package com.leetcode.cosminci._100
 
-import scala.collection.mutable
+import scala.util.chaining.*
 
 object _57_InsertInterval:
-  def main(args: Array[String]): Unit =
-    println(
-      insert(Array(Array(1, 3), Array(6, 9)), Array(2, 5)).map(_.toList).toList
-    )
 
-  def insert(
-      intervals: Array[Array[Int]],
-      newInterval: Array[Int]
-  ): Array[Array[Int]] =
-    if intervals.isEmpty then return Array(newInterval)
-    if newInterval(1) < intervals.head(0) then return newInterval +: intervals
-    if newInterval(0) > intervals.last(1) then return intervals :+ newInterval
-
-    val result = mutable.ListBuffer.empty[Array[Int]]
-
-    var Array(newStart, newEnd) = newInterval
-    intervals.zipWithIndex.foreach { case (i @ Array(start, end), idx) =>
-      if end < newStart then result.addOne(i)
-      else if start > newEnd then
-        return result.addOne(Array(newStart, newEnd)).toArray ++ intervals
-          .slice(idx, intervals.length)
-      else
-        newStart = math.min(start, newStart)
-        newEnd = math.max(end, newEnd)
-    }
-    result.addOne(Array(newStart, newEnd)).toArray
+  def insert(intervals: Array[Array[Int]], newInterval: Array[Int]): Array[Array[Int]] =
+    intervals
+      .foldLeft((Array.empty[Array[Int]], newInterval)) {
+        case ((prev, newInterval @ Array(newL, newR)), last @ Array(prevL, prevR)) =>
+          if newR < prevL then (prev :+ newInterval, last)
+          else if newL > prevR then (prev :+ last, newInterval)
+          else (prev, Array(prevL min newL, prevR max newR))
+      }
+      .pipe { case (acc, last) => acc :+ last }
