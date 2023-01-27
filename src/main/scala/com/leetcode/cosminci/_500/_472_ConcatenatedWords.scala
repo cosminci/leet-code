@@ -1,32 +1,17 @@
 package com.leetcode.cosminci._500
 
-import scala.collection.mutable
-
 object _472_ConcatenatedWords:
-  def main(args: Array[String]): Unit =
-    println(
-      findAllConcatenatedWordsInADict(Array("cat", "cats", "catsdogcats", "dog", "dogcatsdog", "rat", "ratcatdogcat"))
-    )
 
   def findAllConcatenatedWordsInADict(words: Array[String]): List[String] =
-    val shorterWords = mutable.Set.empty[String]
-    val results      = mutable.ListBuffer.empty[String]
+    def isConcatenatable(shorterWords: Set[String], target: String): Boolean =
+      shorterWords.nonEmpty &&
+        (1 to target.length)
+          .foldLeft(Seq(true)) { (dp, i) =>
+            dp :+ (0 until i).exists(j => dp(j) && shorterWords.contains(target.substring(j, i)))
+          }.last
 
-    def isConcatenatable(target: String): Boolean =
-      if shorterWords.isEmpty then return false
-      val dp = Array.ofDim[Boolean](target.length + 1)
-      dp(target.length) = true
-
-      (target.length - 1 to 0 by -1).foreach { i =>
-        dp(i) = shorterWords.exists { w =>
-          target.substring(i).startsWith(w) && dp(i + w.length)
-        }
-      }
-      dp.head
-
-    words.sortBy(_.length).foreach { word =>
-      if isConcatenatable(word) then results.append(word)
-      shorterWords.add(word)
-    }
-
-    results.toList
+    words.sortBy(_.length)
+      .foldLeft(Seq.empty[String], Set.empty[String]) { case ((results, shorterWords), word) =>
+        val newResults = if isConcatenatable(shorterWords, word) then results :+ word else results
+        (newResults, shorterWords + word)
+      }._1.toList
