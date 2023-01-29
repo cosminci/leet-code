@@ -7,6 +7,15 @@ import scala.util.Using
 
 package object utils:
 
+  def powMod(base: Int, pow: Int, mod: Int): Int =
+    @annotation.tailrec
+    def dfs(base: Long, pow: Int, result: Long): Int =
+      if pow == 0 then result.toInt
+      else if pow % 2 == 0 then dfs((base * base) % mod, pow / 2, result)
+      else dfs((base * base) % mod, pow / 2, (result * base) % mod)
+
+    dfs(base, pow, result = 1L)
+
   @annotation.tailrec
   def gcd[T: Integral](a: T, b: T): T = if b == 0 then a else gcd(b, a % b)
 
