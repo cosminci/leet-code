@@ -1,22 +1,14 @@
 package com.leetcode.cosminci._100
 
+import scala.collection.mutable
+
 object _45_JumpGameII:
 
-  def main(args: Array[String]): Unit =
-    println(jump(Array(0)))
-    println(jump(Array(2, 3, 1, 1, 4)))
-
   def jump(nums: Array[Int]): Int =
-    if nums.length == 1 then return 0
-
-    var start    = 0
-    var farthest = nums(0)
-
-    var count = 1
-    while farthest < nums.length - 1 do
-      val prevStart = start
-      start = farthest
-      farthest = (prevStart to farthest).map(i => i + nums(i)).max
-      count += 1
-
-    count
+    val mem = mutable.Map.empty[Int, Int]
+    def dfs(i: Int): Int = mem.getOrElseUpdate(i,
+      if i == nums.length - 1 then 0
+      else if nums(i) == 0 then Int.MaxValue
+      else 1 + ((i + 1) to (i + nums(i)).min(nums.length - 1)).map(dfs).min
+    )
+    dfs(i = 0)
