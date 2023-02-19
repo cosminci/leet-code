@@ -2,24 +2,16 @@ package com.leetcode.cosminci._200
 
 import com.leetcode.cosminci.utils.TreeNode
 
-import scala.collection.mutable
+import scala.util.chaining.*
 
 object _103_BinaryTreeZigzagLevelOrderTraversal:
+
   def zigzagLevelOrder(root: TreeNode): List[List[Int]] =
-    if root == null then return List.empty
-
-    val results = mutable.ListBuffer.empty[List[Int]]
-    val toVisit = mutable.Queue(root)
-    var reverse = false
-
-    while toVisit.nonEmpty do
-      val levelNodes  = toVisit.dequeueAll(_ => true)
-      val levelValues = levelNodes.map(_.value)
-      results.append((if reverse then levelValues.reverse else levelValues).toList)
-      levelNodes.foreach { n =>
-        if n.left != null then toVisit.enqueue(n.left)
-        if n.right != null then toVisit.enqueue(n.right)
+    Iterator
+      .iterate((Seq.empty[List[Int]], List(Option(root)).flatten, false)) { case (result, level, reverse) =>
+        val toAppend  = if reverse then level.map(_.value).reverse else level.map(_.value)
+        val nextLevel = level.flatMap(n => Seq(Option(n.left), Option(n.right)).flatten)
+        (result :+ toAppend, nextLevel, !reverse)
       }
-      reverse = !reverse
-
-    results.toList
+      .dropWhile { case (_, level, _) => level.nonEmpty }.next()
+      .pipe { case (result, _, _) => result.toList }
