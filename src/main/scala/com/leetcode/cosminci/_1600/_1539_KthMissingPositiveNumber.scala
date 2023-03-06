@@ -1,16 +1,14 @@
 package com.leetcode.cosminci._1600
 
+import scala.util.chaining.*
+
 object _1539_KthMissingPositiveNumber:
-  def main(args: Array[String]): Unit =
-    println(findKthPositive(Array(2, 3, 4, 7, 11), 5))
-    println(findKthPositive(Array(1, 2, 3, 4), 2))
 
   def findKthPositive(arr: Array[Int], k: Int): Int =
-    var (l, r) = (0, arr.length)
-
-    while l < r do
-      val mid = l + (r - l) / 2
-      if arr(mid) - (mid + 1) < k then l = mid + 1
-      else r = mid
-
-    l + k
+    Iterator
+      .iterate((0, arr.length)) { case (l, r) =>
+        val mid = l + (r - l) / 2
+        if arr(mid) - mid - 1 < k then (mid + 1, r) else (l, mid)
+      }
+      .dropWhile { case (l, r) => l < r }.next()
+      .pipe { case (l, _) => l + k }
