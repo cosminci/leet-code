@@ -6,18 +6,9 @@ import scala.collection.mutable
 
 object _101_SymmetricTree:
   def isSymmetric(root: TreeNode): Boolean =
-    val toVisit = mutable.Queue(root.left, root.right)
+    def dfs(l: TreeNode, r: TreeNode): Boolean =
+      if l == null ^ r == null then false
+      else if l == null then true
+      else l.value == r.value && dfs(l.left, r.right) && dfs(l.right, r.left)
 
-    while toVisit.nonEmpty do
-      val (left, right) = (toVisit.dequeue(), toVisit.dequeue())
-
-      if left == null ^ right == null then return false
-
-      if left != null then
-        if left.value != right.value then return false
-        toVisit.enqueue(left.left)
-        toVisit.enqueue(right.right)
-        toVisit.enqueue(left.right)
-        toVisit.enqueue(right.left)
-
-    true
+    dfs(root.left, root.right)
