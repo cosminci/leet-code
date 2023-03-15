@@ -2,22 +2,16 @@ package com.leetcode.cosminci._1000
 
 import com.leetcode.cosminci.utils.TreeNode
 
-import scala.collection.mutable
-
 object _958_CheckCompletenessOfABinaryTree:
-  def main(args: Array[String]): Unit =
-    print(isCompleteTree(new TreeNode(1, new TreeNode(2, new TreeNode(4)), new TreeNode(3))))
 
   def isCompleteTree(root: TreeNode): Boolean =
-    val toVisit   = mutable.Queue(root)
-    var foundNull = false
+    @annotation.tailrec
+    def dfs(toVisit: Seq[TreeNode], foundNull: Boolean): Boolean =
+      toVisit match
+        case Nil => true
+        case head +: tail =>
+          if head == null then dfs(tail, foundNull = true)
+          else if foundNull then false
+          else dfs(tail ++ Seq(head.left, head.right), foundNull)
 
-    while toVisit.nonEmpty do
-      val node = toVisit.dequeue()
-      if node == null then foundNull = true
-      else
-        if foundNull then return false
-        toVisit.enqueue(node.left)
-        toVisit.enqueue(node.right)
-
-    true
+    dfs(Seq(root), foundNull = false)
