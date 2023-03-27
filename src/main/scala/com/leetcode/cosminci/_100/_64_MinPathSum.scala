@@ -1,46 +1,23 @@
 package com.leetcode.cosminci._100
 
-import scala.collection.mutable
+import scala.collection.immutable.TreeSet
+import scala.util.chaining.*
 
 object _64_MinPathSum:
-  def main(args: Array[String]): Unit =
-    println(minPathSumDjikstra(Array(Array(1))))
-    println(minPathSumDP(Array(Array(1, 2, 3), Array(4, 5, 6))))
 
-  def minPathSumDP(grid: Array[Array[Int]]): Int =
-    val dp = Array.ofDim[Int](grid.head.length)
-    dp.indices.foreach { i =>
-      dp(i) = grid(0)(i) + (if i > 0 then dp(i - 1) else 0)
-    }
+  def minPathSum(grid: Array[Array[Int]]): Int =
+    val toVisit = TreeSet((0, 0, grid(0)(0)))(Ordering.by { case (x, y, cost) => (cost, x, y) })
+    val visited = Set((0, 0))
+    val (m, n)  = (grid.length - 1, grid.head.length - 1)
 
-    grid.indices.tail.foreach { row =>
-      var fromLeftCost = Int.MaxValue
-      grid(row).indices.foreach { col =>
-        val fromAboveCost = dp(col)
-        dp(col) = grid(row)(col) + math.min(fromAboveCost, fromLeftCost)
-        fromLeftCost = dp(col)
+    Iterator
+      .iterate((toVisit, visited)) { case (toVisit, visited) =>
+        val (x, y, pathCost) = toVisit.head
+        Seq((x + 1, y), (x, y + 1))
+          .filter { case (nx, ny) => nx <= m && ny <= n && !visited.contains((nx, ny)) }
+          .foldLeft(toVisit.tail, visited) { case ((toVisit, visited), (nx, ny)) =>
+            (toVisit + ((nx, ny, pathCost + grid(nx)(ny))), visited + ((nx, ny)))
+          }
       }
-    }
-
-    dp.last
-
-  def minPathSumDjikstra(grid: Array[Array[Int]]): Int =
-    given Ordering[(Int, Int, Int)] = (p1, p2) => p2._3.compareTo(p1._3)
-
-    val toVisit = mutable.PriorityQueue((0, 0, grid(0)(0)))
-    val visited = mutable.Set((0, 0))
-
-    while toVisit.nonEmpty do
-      val (x, y, pathCost) = toVisit.dequeue()
-      if x == grid.length - 1 && y == grid.head.length - 1 then return pathCost
-      reachable(grid, x, y).foreach { case reachable @ (rx, ry) =>
-        if !visited.contains(reachable) then
-          toVisit.enqueue((rx, ry, pathCost + grid(rx)(ry)))
-          visited.add((rx, ry))
-      }
-    0 // never reached
-
-  def reachable(grid: Array[Array[Int]], x: Int, y: Int) =
-    val lower = Option.when(x < grid.length - 1)((x + 1, y))
-    val right = Option.when(y < grid.head.length - 1)((x, y + 1))
-    List(lower, right).flatten
+      .dropWhile { case (toVisit, _) => toVisit.headOption.exists { case (x, y, _) => x != m || y != n } }.next()
+      .pipe { case (toVisit, _) => toVisit.head.pipe { case (_, _, cost) => cost } }
