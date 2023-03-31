@@ -1,21 +1,16 @@
 package com.leetcode.cosminci._100
 
+import scala.util.chaining.*
+
 object _7_ReverseInteger:
 
-  def main(args: Array[String]): Unit =
-    println(reverse(-2147483648))
-
   def reverse(n: Int): Int =
-    if n == Int.MinValue then return 0
-    var x = n
-    var result = 0
-
-    while math.abs(x) > 9 do
-      result = result * 10 + x % 10
-      x /= 10
-
-    val absRes = math.abs(result)
-
-    if absRes > Int.MaxValue / 10 then 0
-    else if absRes == Int.MaxValue / 10 && (x > Int.MaxValue % 10 || x < Int.MinValue % 10) then 0
-    else result * 10 + x
+    if n == Int.MinValue then 0
+    else Iterator
+      .iterate((n, 0)) { case (x, res) => (x / 10, res * 10 + x % 10) }
+      .dropWhile { case (x, _) => x.abs > 9 }.next()
+      .pipe { case (x, res) =>
+        if res.abs > Int.MaxValue / 10 then 0
+        else if res.abs == Int.MaxValue / 10 && (x > 7 || x < -8) then 0
+        else res * 10 + x
+      }
