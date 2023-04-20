@@ -2,7 +2,7 @@ package com.leetcode.cosminci._2700
 
 import scala.util.chaining.*
 
-object _2642_FindMatrixDivisibilityScore:
+object _2644_FindMatrixDivisibilityScore:
 
   def maxDivScore(nums: Array[Int], divisors: Array[Int]): Int =
     divisors
