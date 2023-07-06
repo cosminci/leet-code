@@ -1,23 +1,13 @@
 package com.leetcode.cosminci._300
 
-object _209_MinSizeSubarraySum {
-  def main(args: Array[String]): Unit = {
-    println(minSubArrayLen(11, Array(1, 2, 3, 4, 5)))
-    println(minSubArrayLen(7, Array(2, 3, 1, 2, 4, 3)))
-  }
-  def minSubArrayLen(target: Int, nums: Array[Int]): Int = {
-    var l = 0
-    var rollingSum = 0
-    var minWindow = Int.MaxValue
-    nums.indices.foreach { r =>
-      if (nums(r) >= target) return 1
-      rollingSum += nums(r)
-      while (rollingSum >= target) {
-        minWindow = math.min(minWindow, r - l + 1)
-        rollingSum -= nums(l)
-        l += 1
-      }
-    }
-    if (minWindow == Int.MaxValue) 0 else minWindow
-  }
-}
+import scala.util.chaining.*
+
+object _209_MinSizeSubarraySum:
+
+  def minSubArrayLen(target: Int, nums: Array[Int]): Int =
+    nums.indices.foldLeft((Int.MaxValue, 0, 0)) { case ((res, sum, l), r) =>
+      if nums(r) >= target then return 1
+      Iterator
+        .iterate((res, sum + nums(r), l)) { case (res, sum, l) => (res.min(r - l + 1), sum - nums(l), l + 1) }
+        .dropWhile { case (_, sum, _) => sum >= target }.next()
+    }.pipe { case (res, _, _) => if res == Int.MaxValue then 0 else res }
