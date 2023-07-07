@@ -1,23 +1,18 @@
 package com.leetcode.cosminci._2100
 
-import scala.collection.mutable
+import scala.util.chaining.*
 
 object _2024_MaximizeTheConfusionOfAnExam:
-  def main(args: Array[String]): Unit =
-    println(maxConsecutiveAnswers("TTFF", 2))
-    println(maxConsecutiveAnswers("TFFT", 1))
-    println(maxConsecutiveAnswers("TTFTTFTT", 1))
 
   def maxConsecutiveAnswers(answerKey: String, k: Int): Int =
     def max(char: Char): Int =
-      var (mismatchCount, left, result) = (0, 0, 0)
-      answerKey.indices.foreach { right =>
-        if answerKey(right) != char then mismatchCount += 1
-        while mismatchCount > k do
-          if answerKey(left) != char then mismatchCount -= 1
-          left += 1
-        result = math.max(result, right - left + 1)
-      }
-      result
+      answerKey.indices
+        .foldLeft(0, 0, 0) { case ((res, cnt, l), r) =>
+          val cost = if answerKey(r) != char then 1 else 0
+          Iterator
+            .iterate((cnt + cost, l)) { case (cnt, l) => (cnt - (if answerKey(l) != char then 1 else 0), l + 1) }
+            .dropWhile { case (cnt, _) => cnt > k }.next()
+            .pipe { case (cnt, l) => (res.max(r - l + 1), cnt, l) }
+        }.pipe { case (res, _, _) => res }
 
-    math.max(max('T'), max('F'))
+    max(char = 'T') max max(char = 'F')
