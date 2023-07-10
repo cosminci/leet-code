@@ -2,21 +2,19 @@ package com.leetcode.cosminci._200
 
 import com.leetcode.cosminci.utils.TreeNode
 
-import scala.collection.mutable
+import scala.util.chaining.*
 
 object _111_MinDepthOfBinaryTree:
 
   def minDepth(root: TreeNode): Int =
-    var level = 0
-    if root == null then return level
-    val toVisit = mutable.Queue(root)
-    while toVisit.nonEmpty do
-
-      level += 1
-      toVisit.dequeueAll(_ => true).foreach { n =>
-        if n.left == null && n.right == null then return level
-        if n.left != null then toVisit.enqueue(n.left)
-        if n.right != null then toVisit.enqueue(n.right)
-      }
-
-    level
+    if root == null then 0
+    else
+      Iterator
+        .iterate((Seq(root), 0)) { case (toVisit, level) =>
+          toVisit.flatMap { n =>
+            if n.left == null && n.right == null then return level
+            else Seq(n.left, n.right).filter(_ != null)
+          } -> (level + 1)
+        }
+        .dropWhile { case (toVisit, _) => toVisit.nonEmpty }
+        .next().pipe(_ => 0)
