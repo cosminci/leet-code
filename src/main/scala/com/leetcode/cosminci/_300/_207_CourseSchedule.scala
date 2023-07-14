@@ -1,29 +1,19 @@
 package com.leetcode.cosminci._300
 
-import scala.collection.mutable
+import scala.util.chaining.*
 
 object _207_CourseSchedule:
 
-  def main(args: Array[String]): Unit =
-    println(canFinish(3, Array(Array(0, 1), Array(0, 2), Array(2, 1))))
-
-
   def canFinish(numCourses: Int, prerequisites: Array[Array[Int]]): Boolean =
-    val graph = mutable.Map.empty[Int, mutable.ListBuffer[Int]]
-    (0 until numCourses).foreach(c => graph.update(c, mutable.ListBuffer.empty))
-    prerequisites.foreach { case Array(course, dependency) =>
-      graph.update(course, graph(course).addOne(dependency))
-    }
+    val graph   = prerequisites.groupMap(_.head)(_.last).withDefaultValue(Array.empty[Int])
+    val toVisit = (0 until numCourses).filter(graph(_).isEmpty)
 
-    val completable = mutable.Set.empty[Int]
-    val visited     = mutable.Set.empty[Int]
-    def dfs(course: Int): Boolean =
-      if completable.contains(course) then return true
-      if visited.contains(course) then return false
-      visited.add(course)
-      if graph(course).isEmpty || graph(course).forall(dfs) then
-        completable.add(course)
-        true
-      else false
-
-    (0 until numCourses).forall(dfs)
+    Iterator
+      .iterate((toVisit, toVisit.toSet)) { case (completable, completed) =>
+        val nextCompletable = (0 until numCourses)
+          .filterNot(completed.contains)
+          .filter(graph(_).forall(completed.contains))
+        (nextCompletable, completed ++ nextCompletable)
+      }
+      .dropWhile { case (completable, _) => completable.nonEmpty }.next()
+      .pipe { case (_, completed) => completed.size == numCourses }
