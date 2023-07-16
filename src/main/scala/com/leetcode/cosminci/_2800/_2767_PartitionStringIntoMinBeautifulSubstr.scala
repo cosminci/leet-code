@@ -5,7 +5,7 @@ import scala.util.chaining.*
 object _2767_PartitionStringIntoMinBeautifulSubstr:
 
   def minimumBeautifulSubstrings(s: String): Int =
-    val pows = Array(0, 1, 2, 3, 4, 5, 6).map(pow => math.pow(5, pow).toInt.toBinaryString).reverse
+    val pows = (0 to 6).map(pow => math.pow(5, pow).toInt.toBinaryString).reverse
 
     def dfs(i: Int): Int =
       if i == s.length then 0
