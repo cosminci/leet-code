@@ -1,23 +1,20 @@
 package com.leetcode.cosminci._800
 
-import scala.collection.mutable
+import scala.util.chaining.*
 
 object _735_AsteroidCollisions:
-  def main(args: Array[String]): Unit =
-    println(asteroidCollision(Array(2, 5, -7, 2, 8, -5, 20, 10, -15)).toList)
 
-  def asteroidCollision(asteroids: Array[Int]): Array[Int] =
-    if asteroids.length <= 1 then return asteroids
-
-    val stack = mutable.Stack.empty[Int]
-    stack.push(asteroids.head)
-    asteroids.tail.foreach { asteroid =>
-      if asteroid > 0 then stack.push(asteroid)
-      else {
-        while stack.headOption.exists(h => h > 0 && h < math.abs(asteroid)) do stack.pop()
-        if stack.headOption.contains(math.abs(asteroid)) then stack.pop()
-        else if stack.headOption.forall(_ < 0) then stack.push(asteroid)
+  def asteroidCollision2(asteroids: Array[Int]): Array[Int] =
+    if asteroids.length <= 1 then asteroids
+    else
+      asteroids.tail.foldLeft(Array(asteroids.head)) { (stack, asteroid) =>
+        if asteroid > 0 then stack :+ asteroid
+        else Iterator
+          .iterate(stack)(_.dropRight(1))
+          .dropWhile(_.lastOption.exists(h => h > 0 && h < asteroid.abs)).next()
+          .pipe { stack =>
+            if stack.lastOption.contains(asteroid.abs) then stack.dropRight(1)
+            else if stack.lastOption.forall(_ < 0) then stack :+ asteroid
+            else stack
+          }
       }
-    }
-
-    stack.popAll().toArray
