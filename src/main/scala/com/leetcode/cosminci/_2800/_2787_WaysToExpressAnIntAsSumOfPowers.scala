@@ -5,7 +5,7 @@ import scala.collection.mutable
 object _2787_WaysToExpressAnIntAsSumOfPowers:
 
   def numberOfWays(n: Int, x: Int): Int =
-    val nums = Iterator.iterate(1)(_ + 1).map(math.pow(_, x).toInt).takeWhile(_ <= n).toList
+    val nums = Iterator.iterate(1)(_ + 1).map(math.pow(_, x).toInt).takeWhile(_ <= n).toArray
 
     val mem = mutable.Map.empty[(Int, Int), Long]
     def dfs(i: Int, target: Int): Long = mem.getOrElseUpdate((i, target),
