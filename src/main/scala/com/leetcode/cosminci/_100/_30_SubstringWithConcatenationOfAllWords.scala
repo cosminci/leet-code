@@ -1,5 +1,7 @@
 package com.leetcode.cosminci._100
 
+import com.leetcode.cosminci.utils.decrementCounter
+
 object _30_SubstringWithConcatenationOfAllWords:
 
   def findSubstring(s: String, words: Array[String]): List[Int] =
@@ -7,15 +9,9 @@ object _30_SubstringWithConcatenationOfAllWords:
     val wordLen  = words.head.length
     val totalLen = wordLen * words.length
 
-    def updateNeed(r: Int, need: Map[String, Int]) =
-      need.updatedWith(s.slice(r, r + wordLen)) {
-        case None | Some(1) => None
-        case Some(c)        => Some(c - 1)
-      }
-
     (0 until s.length - totalLen + 1).flatMap { l =>
       val matched = Iterator
-        .iterate((l, wordBag)) { case (r, need) => (r + wordLen, updateNeed(r, need)) }
+        .iterate((l, wordBag)) { case (r, need) => (r + wordLen, decrementCounter(need, s.slice(r, r + wordLen))) }
         .dropWhile { case (r, need) => r < l + totalLen && need.contains(s.slice(r, r + wordLen)) }
         .next()._2.isEmpty
       Option.when(matched)(l)

@@ -16,19 +16,13 @@ object _90_SubsetsII:
     }
 
   def subsetsWithDupRecursive(nums: Array[Int]): List[List[Int]] =
-    def dfs(idx: Int): Set[Map[Int, Int]] =
-      if idx == nums.length then return Set(Map.empty)
-
-      dfs(idx + 1).flatMap { withoutCurrent =>
-        val withCurrent = withoutCurrent.updatedWith(nums(idx)) {
-          case None    => Some(1)
-          case Some(c) => Some(c + 1)
-        }
+    def dfs(i: Int): Set[Map[Int, Int]] =
+      if i == nums.length then Set(Map.empty)
+      else dfs(i + 1).flatMap { withoutCurrent =>
+        val withCurrent = withoutCurrent.updated(nums(i), withoutCurrent.getOrElse(nums(i), 0) + 1)
         Set(withoutCurrent, withCurrent)
       }
 
     dfs(0)
-      .map(_.foldLeft(List.empty[Int]) { case (acc, (digit, count)) =>
-        acc.prependedAll(Seq.fill(count)(digit))
-      })
+      .map(_.foldLeft(List.empty[Int]) { case (acc, (digit, count)) => acc.prependedAll(Seq.fill(count)(digit)) })
       .toList

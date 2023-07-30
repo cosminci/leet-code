@@ -1,5 +1,9 @@
 package com.leetcode.cosminci._2600
 
+import com.leetcode.cosminci.utils
+
+import scala.util.chaining.*
+
 object _2531_MaxNumDistinctCharsEqual:
 
   def isItPossible(word1: String, word2: String): Boolean =
@@ -16,7 +20,4 @@ object _2531_MaxNumDistinctCharsEqual:
   private def update(counts: Map[Char, Int], toAdd: Char, toRemove: Char) =
     counts
       .updated(toAdd, counts(toAdd) + 1)
-      .updatedWith(toRemove) {
-        case Some(cnt) if cnt >= 2 => Some(cnt - 1)
-        case _                     => None
-      }
+      .pipe(utils.decrementCounter(_, toRemove))

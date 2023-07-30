@@ -44,7 +44,7 @@ package object utils:
       case (dx, dy) if x + dx >= 0 && x + dx < grid.length && y + dy >= 0 && y + dy < grid.head.length =>
         (x + dx, y + dy)
     }
-    
+
   def decrementCounter[A](cnt: Map[A, Int], key: A): Map[A, Int] =
     cnt.updatedWith(key) {
       case Some(c) if c > 1 => Some(c - 1)

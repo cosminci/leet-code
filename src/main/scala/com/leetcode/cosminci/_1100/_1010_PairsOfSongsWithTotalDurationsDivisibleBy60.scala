@@ -8,12 +8,9 @@ object _1010_PairsOfSongsWithTotalDurationsDivisibleBy60:
 
   def numPairsDivisibleBy60(time: Array[Int]): Int =
     time
-      .foldLeft((0, Map.empty[Int, Int])) { case ((totalCount, prevCounts), duration) =>
-        val newTotal = totalCount + prevCounts.getOrElse((60 - duration % 60) % 60, 0)
-        val newCounts = prevCounts.updatedWith(duration % 60) {
-          case None    => Some(1)
-          case Some(c) => Some(c + 1)
-        }
+      .foldLeft((0, Map.empty[Int, Int])) { case ((totalCount, prevCounts), d) =>
+        val newTotal = totalCount + prevCounts.getOrElse((60 - d % 60) % 60, 0)
+        val newCounts = prevCounts.updated(d % 60, prevCounts.getOrElse(d % 60, 0) + 1)
         (newTotal, newCounts)
       }
       ._1
