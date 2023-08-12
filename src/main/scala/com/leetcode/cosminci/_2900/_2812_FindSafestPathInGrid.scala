@@ -24,13 +24,11 @@ object _2812_FindSafestPathInGrid:
 
     val toVisit = TreeSet((0, 0, safeness((0, 0))))(Ordering.by { case (x, y, dist) => (-dist, -x, -y) })
     Iterator
-      .iterate((toVisit, Map((0, 0) -> safeness((0, 0))))) { case (toVisit, visited) =>
+      .iterate((toVisit, Set((0, 0)))) { case (toVisit, visited) =>
         val (x, y, dist) = toVisit.head
-        val newToVisit = Seq((x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y))
+        val next = Seq((x, y + 1), (x, y - 1), (x + 1, y), (x - 1, y))
           .filter { case (nx, ny) => nx.min(ny) >= 0 && nx.max(ny) < n && !visited.contains((nx, ny)) }
-          .map { case (nx, ny) => (nx, ny, dist.min(safeness((nx, ny)))) }
-          .filter { case (nx, ny, ndist) => visited.get((nx, ny)).forall(_ < ndist) }
-        (toVisit.tail ++ newToVisit, visited + ((x, y) -> dist))
+        (toVisit.tail ++ next.map { case (nx, ny) => (nx, ny, dist.min(safeness((nx, ny)))) }, visited ++ next)
       }
       .dropWhile { case (toVisit, _) => toVisit.head.pipe { case (x, y, _) => x < n - 1 || y < n - 1 } }.next()
       .pipe { case (toVisit, _) => toVisit.head.pipe { case (_, _, dist) => dist } }
