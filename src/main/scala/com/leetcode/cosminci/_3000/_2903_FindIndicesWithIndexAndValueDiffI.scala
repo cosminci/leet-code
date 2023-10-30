@@ -1,6 +1,6 @@
 package com.leetcode.cosminci._3000
 
-object _2903_FindIndicesWithIndexAndValueDiff1:
+object _2903_FindIndicesWithIndexAndValueDiffI:
 
   def findIndices(nums: Array[Int], indexDifference: Int, valueDifference: Int): Array[Int] =
     val maybeResult = for
