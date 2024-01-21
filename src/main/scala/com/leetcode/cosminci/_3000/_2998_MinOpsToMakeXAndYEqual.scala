@@ -1,4 +1,4 @@
-package com.leetcode.cosminci._1300
+package com.leetcode.cosminci._3000
 
 object _2998_MinOpsToMakeXAndYEqual:
 
