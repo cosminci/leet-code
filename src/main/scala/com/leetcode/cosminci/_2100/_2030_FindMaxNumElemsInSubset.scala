@@ -1,4 +1,4 @@
-package com.leetcode.cosminci._3100
+package com.leetcode.cosminci._2100
 
 object _2030_FindMaxNumElemsInSubset:
 
