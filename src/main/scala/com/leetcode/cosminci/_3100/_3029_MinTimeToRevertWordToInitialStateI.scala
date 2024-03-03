@@ -1,6 +1,6 @@
 package com.leetcode.cosminci._3100
 
-object _3030_MinTimeToRevertWordToInitialStateI:
+object _3029_MinTimeToRevertWordToInitialStateI:
 
   def minimumTimeToInitialState(word: String, k: Int): Int =
     val z = zFunction(word)
